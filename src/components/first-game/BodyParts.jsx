@@ -3,9 +3,15 @@ import { useThree } from '@react-three/fiber'
 import { useEffect } from 'react'
 
 import Character from './Character.jsx'
+import { useFirstGame } from './store/useFirstGame.jsx'
 
 export function BodyParts()
 {
+    const startGame = useFirstGame((state) => state.startGame)
+    
+    useEffect(() => {
+        startGame()
+    }, [])
 
     return <>
         <RigidBody type="fixed">
@@ -18,4 +24,5 @@ export function BodyParts()
         <Character scale={ 0.2 } position={ [0, 0, 0] } />
                 
     </>
+
 }

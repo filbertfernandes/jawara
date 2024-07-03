@@ -1,5 +1,6 @@
 import { OrbitControls } from '@react-three/drei'
 import { Physics, CuboidCollider, RigidBody } from '@react-three/rapier'
+import { Perf } from 'r3f-perf'
 
 import Lights from '../Lights.jsx'
 import { BodyParts } from './first-game/BodyParts.jsx'
@@ -7,6 +8,8 @@ import { BodyParts } from './first-game/BodyParts.jsx'
 export default function Experience()
 {
     return <>
+
+        <Perf position="top-left" />
 
         <OrbitControls 
             makeDefault 

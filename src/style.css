@@ -14,6 +14,7 @@ body,
 {
     display: flex;
     font-family: Helvetica, Arial;
+    /* font-family: 'Bebas Neue', cursive; */
     position: absolute;
     background: rgba(0, 0, 0, 0);
     color: white;
@@ -23,8 +24,8 @@ body,
 }
 
 .number {
-    background: #00000088;
-    padding: 3px 5px; // left right, top bottom
+    background: #000000;
+    padding: 2px 4px; // left right, top bottom
 }
 
 .input-box {
@@ -34,7 +35,7 @@ body,
     transition: transform 0.3s ease; /* Optional: Adds a smooth transition effect */
     display: inline-block;
     white-space: nowrap; /* Ensure the input doesn't break to a new line */
-    padding: 2px 3px; // left right, top bottom
+    padding: 1px 2px; // left right, top bottom
 }
   
 .input-box.visible {
