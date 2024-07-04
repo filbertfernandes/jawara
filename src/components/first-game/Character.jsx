@@ -29,7 +29,6 @@ export default function Character(props) {
             setInputValues({})
             level[currentStage].map((word, index) => {
                 word.isCorrect = false
-                console.log(word)
             })
         }
 
@@ -43,8 +42,6 @@ export default function Character(props) {
 
     useEffect(() => {
         if(level) {
-            console.log('CORRECT COUNT NOW =', correctCount);
-            console.log('current stage', currentStage);
             if(correctCount === level[currentStage].length && currentStage < 4) {
                 nextStage()
             } else if(correctCount === level[currentStage].length) {
@@ -54,7 +51,6 @@ export default function Character(props) {
     }, [correctCount])
 
     const handleInputChange = (index, event) => {
-        console.log('INPUT CHANGED');
         const newInputValues = { ...inputValues, [index]: event.target.value };
         setInputValues(newInputValues);
         
@@ -65,10 +61,8 @@ export default function Character(props) {
 
             // Compare input value with correct answer, if it's true
             if(inputValue === levelInput.ngoko.toLowerCase()) {
-                console.log('CORRECT');
                 // If it was false before, then increment the correctCount
                 if(!levelInput.isCorrect) {
-                    console.log('false before');
                     setCorrectCount(prevCount => prevCount + 1)
                     levelInput.isCorrect = true
                 }
@@ -77,14 +71,11 @@ export default function Character(props) {
             
             else {
                 // if it was true before, then decrement the correctCount.
-                console.log('WRONG');
                 if(levelInput && levelInput.isCorrect) {
-                    console.log('true before', levelInput);
                     setCorrectCount(prevCount => prevCount - 1)
                     levelInput.isCorrect = false
                 }
             }
-            console.log('LEVEL', level);
         }
     }
 
@@ -98,7 +89,6 @@ export default function Character(props) {
         const newInputBoxes = [...inputBoxes]
         newInputBoxes[index].visible = !newInputBoxes[index].visible
         setInputBoxes(newInputBoxes)
-        console.log(correctCount);
     }
 
     const { nodes, materials } = useGLTF('./models/character/boy.glb')
@@ -115,10 +105,10 @@ export default function Character(props) {
                     distanceFactor={1.2}
                     occlude={[characterBody]}
                 >
-                    <div className="number" onMouseEnter={() => handleNumberHover(index)} onClick={() => handleNumberClick(index)}>
+                    <div className={ `number ${box.isCorrect ? 'number-green' : ''}` } onMouseEnter={() => handleNumberHover(index)} onClick={() => handleNumberClick(index)}>
                         {index + 1}
                     </div>
-                    <div className={`input-box ${box.visible ? 'visible' : ''}`}>
+                    <div className={`input-box ${box.visible ? 'visible' : ''} ${box.isCorrect ? 'input-box-green' : ''}`}>
                         <input 
                             type="text" 
                             value={inputValues[index] || ''} 

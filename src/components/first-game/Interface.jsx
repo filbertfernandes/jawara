@@ -61,7 +61,11 @@ export const Interface = () => {
             </div>
 
             {/* GAME INTERFACE */}
-            <div ref={ time } className="time">0.00</div>
+            <div
+                className={ `first-game-interface ${gameState !== gameStates.GAME ? 'first-game-hidden' : ''}` }
+            >
+                <div ref={ time } className="time">0.00</div>
+            </div>
         </>
     )
 

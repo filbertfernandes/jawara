@@ -68,10 +68,11 @@ body,
     transition: all 1s ease-in-out;
 }
 
-.menu-hidden, .game-over-hidden {
+.menu-hidden, .game-over-hidden, .first-game-hidden {
     opacity: 0;
     pointer-events: none;
 }
+
 
 /* Time */
 .time {
@@ -86,4 +87,12 @@ body,
     padding-top: 5px;
     text-align: center;
     pointer-events: none;
+}
+
+.input-box-green {
+    background: #2dd65288;
+}
+
+.number-green {
+    background: #2dd652;
 }
