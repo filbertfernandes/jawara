@@ -1,26 +1,92 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Html } from '@react-three/drei'
-import { useFirstGame } from './store/useFirstGame.jsx'
+import { gameStates, useFirstGame } from './store/useFirstGame.jsx'
+import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 export default function Character(props) {
-    const { level, currentStage, nextStage } = useFirstGame((state) => ({
+    const characterBody = useRef()
+
+    const { level, currentStage, nextStage, gameState, mode, gameOver } = useFirstGame((state) => ({
         level: state.level,
         currentStage: state.currentStage,
-        nextStage: state.nextStage
+        nextStage: state.nextStage,
+        gameState: state.gameState,
+        mode: state.mode,
+        gameOver: state.gameOver
     }))
 
     const [inputBoxes, setInputBoxes] = useState([])
-    
-    console.log('rerendered');
+    const [correctCount, setCorrectCount] = useState(0)
+    const [numberOfInput, setNumberOfInput] = useState(0)
+    const [inputValues, setInputValues] = useState({})
 
     useEffect(() => {
         if(level) {
             setInputBoxes(level[currentStage])
+            setNumberOfInput(level[currentStage].length)
+            setCorrectCount(0)
+            setInputValues({})
+            level[currentStage].map((word, index) => {
+                word.isCorrect = false
+                console.log(word)
+            })
+        }
+
+        if(level && Object.keys(inputValues).length === 0) {
+            const totalInputs = level[currentStage].length
+            for(let i = 0; i < totalInputs; i++) {
+                inputValues[i] = ''
+            }
         }
     }, [level, currentStage])
 
-    const characterBody = useRef()
+    useEffect(() => {
+        if(level) {
+            console.log('CORRECT COUNT NOW =', correctCount);
+            console.log('current stage', currentStage);
+            if(correctCount === level[currentStage].length && currentStage < 4) {
+                nextStage()
+            } else if(correctCount === level[currentStage].length) {
+                gameOver()
+            }
+        }
+    }, [correctCount])
+
+    const handleInputChange = (index, event) => {
+        console.log('INPUT CHANGED');
+        const newInputValues = { ...inputValues, [index]: event.target.value };
+        setInputValues(newInputValues);
+        
+        if(mode === 'ngoko') {
+
+            const inputValue = newInputValues[index].toLowerCase() 
+            const levelInput = level[currentStage][index] // corecct answer based on the index
+
+            // Compare input value with correct answer, if it's true
+            if(inputValue === levelInput.ngoko.toLowerCase()) {
+                console.log('CORRECT');
+                // If it was false before, then increment the correctCount
+                if(!levelInput.isCorrect) {
+                    console.log('false before');
+                    setCorrectCount(prevCount => prevCount + 1)
+                    levelInput.isCorrect = true
+                }
+                
+            }
+            
+            else {
+                // if it was true before, then decrement the correctCount.
+                console.log('WRONG');
+                if(levelInput && levelInput.isCorrect) {
+                    console.log('true before', levelInput);
+                    setCorrectCount(prevCount => prevCount - 1)
+                    levelInput.isCorrect = false
+                }
+            }
+            console.log('LEVEL', level);
+        }
+    }
 
     const handleNumberHover = (index) => {
         const newInputBoxes = [...inputBoxes]
@@ -32,16 +98,16 @@ export default function Character(props) {
         const newInputBoxes = [...inputBoxes]
         newInputBoxes[index].visible = !newInputBoxes[index].visible
         setInputBoxes(newInputBoxes)
+        console.log(correctCount);
     }
 
     const { nodes, materials } = useGLTF('./models/character/boy.glb')
 
-    if (!level) return null
-
     return (
         <group ref={characterBody} {...props} dispose={null}>
+            
             {/* Number with INPUT */}
-            {inputBoxes.map((box, index) => (
+            {level !== null && gameState === gameStates.GAME && inputBoxes.map((box, index) => (
                 <Html
                     key={index}
                     position={box.position}
@@ -53,7 +119,11 @@ export default function Character(props) {
                         {index + 1}
                     </div>
                     <div className={`input-box ${box.visible ? 'visible' : ''}`}>
-                        <input type="text" />
+                        <input 
+                            type="text" 
+                            value={inputValues[index] || ''} 
+                            onChange={(event) => handleInputChange(index, event)} 
+                        />
                     </div>
                 </Html>
             ))}

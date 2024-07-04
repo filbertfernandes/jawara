@@ -7,11 +7,11 @@ import { useFirstGame } from './store/useFirstGame.jsx'
 
 export function BodyParts()
 {
-    const startGame = useFirstGame((state) => state.startGame)
+    // const startGame = useFirstGame((state) => state.startGame)
     
-    useEffect(() => {
-        startGame()
-    }, [])
+    // useEffect(() => {
+    //     startGame({ mode: 'ngoko' })
+    // }, [])
 
     return <>
         <RigidBody type="fixed">

@@ -5,134 +5,151 @@ export const words = [
         madya: 'mripat', 
         alus: 'soca',  
         position: [0.85, 7.7, 1.1], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'rambut', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [0.85, 9, 1.4], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'dahi', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.1, 8.5, 1.5], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'alis', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [0.7, 8.2, 1.3], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'hidung', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.1, 7.2, 1.5], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'mulut', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [0.25, 6.75, 1.4], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'pipi', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.85, 6.9, 1.1], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'dagu', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.1, 6.45, 1.3], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'telinga', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-1.5, 7.5, 0], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'dada', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.1, 5.9, 0.85], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'perut', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.1, 4.3, 1.2], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'punggung', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [0, 5.3, -0.65], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'tangan', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [2.5, 5.9, 0.5], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'jari', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [4.3, 5.9, 0], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'paha', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.7, 2.3, 0.72], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'kaki', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-0.7, 0.75, 0.72], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
     { 
         indonesian: 'pundak', 
-        ngoko: '', 
+        ngoko: 'abc', 
         madya: '', 
         alus: '',  
         position: [-1.2, 6.4, 0], 
-        visible: false 
+        visible: false ,
+        isCorrect: false
     },
 ]
