@@ -55,14 +55,14 @@ export const Interface = () => {
             <div
                 className={ `game-over ${gameState !== gameStates.GAME_OVER ? 'game-over-hidden' : ''}` }
             >
-                <h1>GAME OVER</h1>
+                <h1>CONGRATULATIONS</h1>
                 <button onClick={ () => startGame({ mode: mode }) }>Retry</button>
                 <button onClick={ () => goToMenu() }>Back to Menu</button>
             </div>
 
             {/* GAME INTERFACE */}
             <div
-                className={ `first-game-interface ${gameState !== gameStates.GAME ? 'first-game-hidden' : ''}` }
+                className={ `first-game-interface ${gameState === gameStates.MENU ? 'first-game-hidden' : ''}` }
             >
                 <div ref={ time } className="time">0.00</div>
             </div>
