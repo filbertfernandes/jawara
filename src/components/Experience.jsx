@@ -11,6 +11,8 @@ export default function Experience()
 
         <Perf position="top-left" />
 
+        <color args={ ['#ccf2fc'] } attach="background" />
+
         <OrbitControls 
             makeDefault 
             enablePan={ true } 
