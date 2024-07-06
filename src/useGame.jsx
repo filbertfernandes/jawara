@@ -16,6 +16,12 @@ export const useGame = create(subscribeWithSelector((set) =>
             set((state) => {
                 return { phase: phases.FREE }
             })
+        },
+
+        goToFirstGame: () => {
+            set((state) => {
+                return { phase: phases.FIRST_GAME }
+            })
         }
     }
 }))

@@ -7,11 +7,14 @@ import { useFirstGame } from './store/useFirstGame.jsx'
 
 export function BodyParts()
 {
-    // const startGame = useFirstGame((state) => state.startGame)
-    
-    // useEffect(() => {
-    //     startGame({ mode: 'ngoko' })
-    // }, [])
+    const { camera } = useThree()
+
+    useEffect((state) => {
+        console.log(camera);
+        camera.position.x = 0
+        camera.position.y = 1
+        camera.position.z = 3
+    }, [])
 
     return <>
         

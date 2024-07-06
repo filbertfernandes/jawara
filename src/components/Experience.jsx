@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { OrbitControls } from '@react-three/drei'
+import { useEffect, useRef, useState } from 'react'
+import { useKeyboardControls, Edges, Html, OrbitControls, Outlines } from '@react-three/drei'
 import { useRapier, Physics, CuboidCollider, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
@@ -7,22 +7,33 @@ import Lights from '../Lights.jsx'
 import { BodyParts } from './first-game/BodyParts.jsx'
 import { PlayerController } from "./PlayerController.jsx"
 import { phases, useGame } from '../useGame.jsx'
-import { usePlayer } from './PlayerContext.jsx'
+import { useFrame } from '@react-three/fiber'
+import { Controls } from '../App.jsx'
 
 export default function Experience()
 {
-    const playerRef = usePlayer()
+    // GO TO GAMES CONTROL
+    const enterPressed = useKeyboardControls((state) => state[Controls.enter])
+    const [ canGoToFirstGame, setCanGoToFirstGame ] = useState(false)
     
-    useEffect(() => {
-        if (playerRef.current) {
-            console.log('Player component:', playerRef.current)
-        }
-    }, [playerRef])
+    const player = useRef()
+    const pinkBox = useRef()
 
-    const { phase } = useGame((state) => ({
-        phase: state.phase
+    useEffect(() => {
+        console.log('player in experience', player.current);
+    }, [player])
+
+    const { phase, goToFirstGame } = useGame((state) => ({
+        phase: state.phase,
+        goToFirstGame: state.goToFirstGame
     }))
 
+    useFrame(() => {
+        if(enterPressed && canGoToFirstGame) {
+            goToFirstGame()
+        }
+    })
+    
     return <>
 
         <Perf position="top-left" />
@@ -44,11 +55,36 @@ export default function Experience()
                 </mesh>
         </RigidBody>
 
+        <RigidBody 
+            type="fixed" 
+            name="Pink Box"
+        >
+                <mesh ref={ pinkBox } position={ [2, 0.5, 2] } scale={ [1, 1, 1] } receiveShadow >
+                    <boxGeometry />
+                    <meshStandardMaterial color="hotpink" />
+
+                    {/* WHITE BRIGHT EDGES */}
+                    { canGoToFirstGame && <Edges linewidth={5} threshold={15} color={ [1000, 1000, 1000] } /> }
+                    { canGoToFirstGame && <Outlines thickness={0.01} color={ [1, 1, 1] } /> }
+                </mesh>
+
+                { 
+                    pinkBox.current !== undefined && 
+                    <CuboidCollider
+                        args={ pinkBox.current.scale.toArray() }
+                        sensor
+                        position={ pinkBox.current.position.toArray() }
+                        onIntersectionEnter={ () => { setCanGoToFirstGame(true) }}
+                        onIntersectionExit={ () => { setCanGoToFirstGame(false) }}
+                    /> 
+                }
+        </RigidBody>
+
         {/* LIGHTS */}
         <Lights />
 
         {/* PLAYER */}
-        { phase === phases.FREE && <PlayerController /> }
+        { phase === phases.FREE && <PlayerController ref={ player } /> }
 
         {/* FIRST GAME */}
         { phase === phases.FIRST_GAME && <BodyParts /> }

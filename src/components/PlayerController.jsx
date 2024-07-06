@@ -1,18 +1,17 @@
 import * as THREE from 'three'
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody } from '@react-three/rapier'
-import { useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 import Player from './Player.jsx'
 import { Controls } from '../App.jsx'
-import { usePlayer } from './PlayerContext.jsx'
 
 const JUMP_FORCE = 0.5
 const MOVEMENT_SPEED = 0.1
 const MAX_VEL = 3
 
-export const PlayerController = () => {
+export const PlayerController = forwardRef((props, ref) => {
     const jumpPressed = useKeyboardControls((state) => state[Controls.jump])
     const leftPressed = useKeyboardControls((state) => state[Controls.left])
     const rightPressed = useKeyboardControls((state) => state[Controls.right])
@@ -21,7 +20,13 @@ export const PlayerController = () => {
 
     const rigidBody = useRef()
     const isOnFloor = useRef(true)
-    const player = usePlayer()
+    const player = useRef()
+
+    useEffect(() => {
+        if(ref) {
+            ref.current = player.current;
+        }
+    }, [ref])
 
     useFrame((state) => {
         const impulse = { x: 0, y: 0, z: 0 }
@@ -59,7 +64,7 @@ export const PlayerController = () => {
         // CAMERA FOLLOW
         const playerWorldPosition = player.current.getWorldPosition(new THREE.Vector3())
         state.camera.position.x = playerWorldPosition.x
-        state.camera.position.y = 5
+        state.camera.position.y = 3
         state.camera.position.z = playerWorldPosition.z + 6
 
         const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.5, playerWorldPosition.z)
@@ -70,8 +75,9 @@ export const PlayerController = () => {
     return (
         <group>
 
-            <RigidBody 
+            <RigidBody
                 ref={ rigidBody } 
+                name="PLayer"
                 colliders={ false } 
                 scale={ [0.5, 0.5, 0.5] } 
                 enabledRotations={ [false, false, false] }
@@ -87,4 +93,4 @@ export const PlayerController = () => {
 
         </group>
     )
-}
+})
