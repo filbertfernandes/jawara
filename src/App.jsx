@@ -1,26 +1,58 @@
 import { Canvas } from '@react-three/fiber'
+import { Physics } from "@react-three/rapier"
+import { useMemo } from "react"
+import { KeyboardControls } from "@react-three/drei"
+
 import Experience from './components/Experience.jsx'
-import { Interface } from './components/first-game/Interface.jsx'
+import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
+import { phases, useGame } from './useGame.jsx'
+import { PlayerProvider } from './components/PlayerContext.jsx'
+
+export const Controls = {
+    forward: "forward",
+    back: "back",
+    left: "left",
+    right: "right",
+    jump: "jump",
+}
 
 export default function App()
 {
+    // MAIN GAME STATE
+    const { phase } = useGame((state) => ({
+        phase: state.phase
+    }))
+
+    const map = useMemo(() => [
+        { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
+        { name: Controls.back, keys: ["ArrowDown", "KeyS"] },
+        { name: Controls.left, keys: ["ArrowLeft", "KeyA"] },
+        { name: Controls.right, keys: ["ArrowRight", "KeyD"] },
+        { name: Controls.jump, keys: ["Space"] },
+    ], [])
+
     return (
-        <>
-            <Canvas
-                shadows
-                camera={ {
-                    fov: 45,
-                    near: 0.1,
-                    far: 200,
-                    position: [ 0, 1, 3 ]
-                } }
-            >
+        <KeyboardControls map={ map }>
 
-                <Experience />
+            <PlayerProvider>
+                <Canvas
+                    shadows
+                    camera={ {
+                        fov: 45,
+                        near: 0.1,
+                        far: 200,
+                        position: [ 0, 1, 3 ]
+                    } }
+                >
+                    <Physics debug={ true }>
+                        <Experience />
+                    </Physics>
 
-            </Canvas>
+                </Canvas>
 
-            <Interface />
-        </>
+                { phase === phases.FIRST_GAME && <FirstGameInterface /> }
+            </PlayerProvider>
+
+        </KeyboardControls>
     )
 }

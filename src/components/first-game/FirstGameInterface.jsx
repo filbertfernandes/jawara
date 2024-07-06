@@ -1,17 +1,24 @@
 import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
 
-import { gameStates, useFirstGame } from "./store/useFirstGame"
+import { gameStates, useFirstGame } from "./store/useFirstGame.jsx"
+import { useGame } from "../../useGame.jsx"
 
-export const Interface = () => {
+export const FirstGameInterface = () => {
 
     const time = useRef()
 
+    // BODY PARTS / FIRST GAME STATE
     const { startGame, gameState, mode, goToMenu } = useFirstGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         mode: state.mode,
         goToMenu: state.goToMenu,
+    }))
+
+    // MAIN GAME STATE
+    const { goToHome } = useGame((state) => ({
+        goToHome: state.goToHome
     }))
 
     // SCORE
@@ -48,7 +55,7 @@ export const Interface = () => {
                 <button onClick={ () => startGame({ mode: 'ngoko' }) }>Ngoko</button>
                 <button onClick={ () => startGame({ mode: 'madya' }) }>Krama Madya</button>
                 <button onClick={ () => startGame({ mode: 'alus' }) }>Krama Alus</button>
-                <button>Back to Home</button>
+                <button onClick={ () => goToHome() }>Back to Home</button>
             </div>
 
             {/* GAME OVER INTERFACE */}
