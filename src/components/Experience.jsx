@@ -84,7 +84,8 @@ export default function Experience()
         <Lights />
 
         {/* PLAYER */}
-        { phase === phases.FREE && <PlayerController ref={ player } /> }
+        {/* { phase === phases.FREE && <PlayerController ref={ player } /> } */}
+        <PlayerController ref={ player } />
 
         {/* FIRST GAME */}
         { phase === phases.FIRST_GAME && <BodyParts /> }

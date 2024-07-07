@@ -10,7 +10,6 @@ export function BodyParts()
     const { camera } = useThree()
 
     useEffect((state) => {
-        console.log(camera);
         camera.position.x = 0
         camera.position.y = 1
         camera.position.z = 3

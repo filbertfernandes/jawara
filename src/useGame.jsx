@@ -9,9 +9,10 @@ export const phases = {
 export const useGame = create(subscribeWithSelector((set) => 
 {
     return {
-        // phase: phases.FREE
-        phase: phases.FIRST_GAME,
+        // DEFAULT PHASE
+        phase: phases.FREE,
 
+        // GO TO PHASES METHODS
         goToHome: () => {
             set((state) => {
                 return { phase: phases.FREE }
@@ -21,6 +22,14 @@ export const useGame = create(subscribeWithSelector((set) =>
         goToFirstGame: () => {
             set((state) => {
                 return { phase: phases.FIRST_GAME }
+            })
+        },
+
+        // PLAYER STATE
+        playerState: 'Idle',
+        setPlayerState: (playerState) => {
+            set({
+                playerState,
             })
         }
     }

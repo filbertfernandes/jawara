@@ -1,30 +1,108 @@
-import { useGLTF } from '@react-three/drei'
-import { log } from 'three/examples/jsm/nodes/Nodes.js'
+import React, { useEffect, useRef } from 'react'
+import { useGLTF, useAnimations } from '@react-three/drei'
+import { phases, useGame } from '../useGame.jsx'
 
 export default function Player(props) {
+  const group = useRef()
+  const { nodes, materials, animations } = useGLTF('./models/character/boy.glb')
+  const { actions } = useAnimations(animations, group)
 
-    const { nodes, materials } = useGLTF('./models/character/boy.glb')
+  const { playerState, phase } = useGame((state) => ({
+      playerState: state.playerState,
+      phase: state.phase,
+  }))
+  
+  useEffect(() => {
+      actions[playerState].reset().fadeIn(0.2).play()
+      return () => {
+          actions[playerState].fadeOut(0.2)
+      }
+  }, [playerState])
 
-    return (
-        <group {...props} dispose={null}>
-
-            <group rotation={[-Math.PI / 2, 0, 0]}>
-                <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.BajuSDlambert1SG} />
-                <mesh castShadow geometry={nodes.Object_3.geometry} material={materials.BaseIbu_Pitunglambert2SG} />
-                <mesh geometry={nodes.Object_4.geometry} material={materials.Texture_Pitung1MerahBajuSG} />
-                <mesh geometry={nodes.Object_5.geometry} material={materials.Tielambert1SG} />
-                <mesh castShadow geometry={nodes.Object_6.geometry} material={materials.Gedelambert3SG} />
-                <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.lambert6SG} />
-                <mesh geometry={nodes.Object_8.geometry} material={materials.lambert9SG} />
-                <mesh castShadow geometry={nodes.Object_9.geometry} material={materials.BaseIbu_Pitunglambert2SG} />
-                <mesh geometry={nodes.Object_10.geometry} material={materials.lambert5SG} />
-                <mesh castShadow geometry={nodes.Object_11.geometry} material={materials.lambert6SG} />
-                <mesh geometry={nodes.Object_12.geometry} material={materials.lambert7SG} />
-            </group>
-
+  return (
+    <group ref={group} {...props} dispose={null}>
+      <group name="Scene">
+        <group name="Sketchfab_model001">
+          <group name="Putuobjcleanermaterialmergergles001" />
         </group>
-    )
-
+        <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+          <skinnedMesh
+            name="Object_10001"
+            geometry={nodes.Object_10001.geometry}
+            material={materials['lambert5SG.001']}
+            skeleton={nodes.Object_10001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_11001"
+            geometry={nodes.Object_11001.geometry}
+            material={materials['lambert6SG.001']}
+            skeleton={nodes.Object_11001.skeleton}
+          />
+          <skinnedMesh
+            name="Object_12001"
+            geometry={nodes.Object_12001.geometry}
+            material={materials.lambert7SG}
+            skeleton={nodes.Object_12001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_2001"
+            geometry={nodes.Object_2001.geometry}
+            material={materials.BajuSDlambert1SG}
+            skeleton={nodes.Object_2001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_3001"
+            geometry={nodes.Object_3001.geometry}
+            material={materials['BaseIbu_Pitunglambert2SG.001']}
+            skeleton={nodes.Object_3001.skeleton}
+          />
+          <skinnedMesh
+            name="Object_4001"
+            geometry={nodes.Object_4001.geometry}
+            material={materials['Texture_Pitung1MerahBajuSG.001']}
+            skeleton={nodes.Object_4001.skeleton}
+          />
+          <skinnedMesh
+            name="Object_5001"
+            geometry={nodes.Object_5001.geometry}
+            material={materials.Tielambert1SG}
+            skeleton={nodes.Object_5001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_6001"
+            geometry={nodes.Object_6001.geometry}
+            material={materials.Gedelambert3SG}
+            skeleton={nodes.Object_6001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_7001"
+            geometry={nodes.Object_7001.geometry}
+            material={materials['lambert6SG.001']}
+            skeleton={nodes.Object_7001.skeleton}
+          />
+          <skinnedMesh
+            name="Object_8001"
+            geometry={nodes.Object_8001.geometry}
+            material={materials.lambert9SG}
+            skeleton={nodes.Object_8001.skeleton}
+          />
+          <skinnedMesh
+            castShadow
+            name="Object_9001"
+            geometry={nodes.Object_9001.geometry}
+            material={materials.BaseIbu_Pitunglambert2SG}
+            skeleton={nodes.Object_9001.skeleton}
+          />
+          <primitive object={nodes.mixamorigHips} />
+        </group>
+      </group>
+    </group>
+  )
 }
 
 useGLTF.preload('./models/character/boy.glb')

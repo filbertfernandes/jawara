@@ -6,12 +6,20 @@ import { useFrame } from '@react-three/fiber'
 
 import Player from './Player.jsx'
 import { Controls } from '../App.jsx'
+import { phases, useGame } from '../useGame.jsx'
 
 const JUMP_FORCE = 0.5
 const MOVEMENT_SPEED = 0.1
 const MAX_VEL = 3
+const RUN_VEL = 2
 
 export const PlayerController = forwardRef((props, ref) => {
+    const { playerState, setPlayerState, phase } = useGame((state) => ({
+        playerState: state.playerState,
+        setPlayerState: state.setPlayerState,
+        phase: state.phase,
+    }))
+
     const jumpPressed = useKeyboardControls((state) => state[Controls.jump])
     const leftPressed = useKeyboardControls((state) => state[Controls.left])
     const rightPressed = useKeyboardControls((state) => state[Controls.right])
@@ -29,47 +37,59 @@ export const PlayerController = forwardRef((props, ref) => {
     }, [ref])
 
     useFrame((state) => {
-        const impulse = { x: 0, y: 0, z: 0 }
-        if (jumpPressed && isOnFloor.current) {
-            impulse.y += JUMP_FORCE
-            isOnFloor.current = false
+        if(phase === phases.FREE) {
+            const impulse = { x: 0, y: 0, z: 0 }
+            if (jumpPressed && isOnFloor.current) {
+                impulse.y += JUMP_FORCE
+                isOnFloor.current = false
+            }
+    
+            const linvel = rigidBody.current.linvel()
+            let changeRotation = false
+            if (rightPressed && linvel.x < MAX_VEL) {
+                impulse.x += MOVEMENT_SPEED
+                changeRotation = true
+            }
+            if (leftPressed && linvel.x > -MAX_VEL) {
+                impulse.x -= MOVEMENT_SPEED
+                changeRotation = true
+            }
+            if (backPressed && linvel.z < MAX_VEL) {
+                impulse.z += MOVEMENT_SPEED
+                changeRotation = true
+            }
+            if (forwardPressed && linvel.z > -MAX_VEL) {
+                impulse.z -= MOVEMENT_SPEED
+                changeRotation = true
+            }
+    
+            rigidBody.current.applyImpulse(impulse, true)
+    
+            if(Math.abs(linvel.x) > RUN_VEL || Math.abs(linvel.z) > RUN_VEL) {
+                if(playerState !== 'Run') {
+                    setPlayerState('Run')
+                }
+            } else {
+                if(playerState !== 'Idle') {
+                    setPlayerState('Idle')
+                }
+            }
+    
+            if (changeRotation) {
+                const angle = Math.atan2(linvel.x, linvel.z)
+                player.current.rotation.y = angle
+            }
+    
+            // CAMERA FOLLOW
+            const playerWorldPosition = player.current.getWorldPosition(new THREE.Vector3())
+            state.camera.position.x = playerWorldPosition.x
+            state.camera.position.y = 3
+            state.camera.position.z = playerWorldPosition.z + 6
+    
+            const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.5, playerWorldPosition.z)
+    
+            state.camera.lookAt(targetLookAt)
         }
-
-        const linvel = rigidBody.current.linvel()
-        let changeRotation = false
-        if (rightPressed && linvel.x < MAX_VEL) {
-            impulse.x += MOVEMENT_SPEED
-            changeRotation = true
-        }
-        if (leftPressed && linvel.x > -MAX_VEL) {
-            impulse.x -= MOVEMENT_SPEED
-            changeRotation = true
-        }
-        if (backPressed && linvel.z < MAX_VEL) {
-            impulse.z += MOVEMENT_SPEED
-            changeRotation = true
-        }
-        if (forwardPressed && linvel.z > -MAX_VEL) {
-            impulse.z -= MOVEMENT_SPEED
-            changeRotation = true
-        }
-
-        rigidBody.current.applyImpulse(impulse, true)
-
-        if (changeRotation) {
-            const angle = Math.atan2(linvel.x, linvel.z)
-            player.current.rotation.y = angle
-        }
-
-        // CAMERA FOLLOW
-        const playerWorldPosition = player.current.getWorldPosition(new THREE.Vector3())
-        state.camera.position.x = playerWorldPosition.x
-        state.camera.position.y = 3
-        state.camera.position.z = playerWorldPosition.z + 6
-
-        const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.5, playerWorldPosition.z)
-
-        state.camera.lookAt(targetLookAt)
     })
 
     return (
@@ -84,6 +104,7 @@ export const PlayerController = forwardRef((props, ref) => {
                 onCollisionEnter={() => {
                     isOnFloor.current = true;
                 }}
+                position={ [-3, 0, 1] }
             >
                 <CapsuleCollider args={ [0.8, 0.4] } position={ [0, 1.2, 0] } />
                 <group ref={ player }>
