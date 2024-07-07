@@ -91,7 +91,7 @@ export default function Character(props) {
         setInputBoxes(newInputBoxes)
     }
 
-    const { nodes, materials } = useGLTF('./models/character/boy.glb')
+    const { nodes, materials } = useGLTF('./models/character/boy_no_animation.glb')
 
     return (
         <group ref={characterBody} {...props} dispose={null}>
@@ -135,4 +135,4 @@ export default function Character(props) {
     )
 }
 
-useGLTF.preload('./models/character/boy.glb')
+useGLTF.preload('./models/character/boy_no_animation.glb')
