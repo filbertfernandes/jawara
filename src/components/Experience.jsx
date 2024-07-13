@@ -31,7 +31,7 @@ export default function Experience()
     
     return <>
 
-        <Perf position="top-left" />
+        <Perf position="bottom-right" />
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />
@@ -54,7 +54,7 @@ export default function Experience()
             type="fixed" 
             name="Pink Box"
         >
-                <mesh ref={ pinkBox } position={ [-1, 0.5, 3.5] } scale={ [1, 1, 1] } castShadow receiveShadow >
+                <mesh ref={ pinkBox } position={ [-4, 0.5, -3.5] } scale={ [1, 1, 1] } castShadow receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="hotpink" />
 

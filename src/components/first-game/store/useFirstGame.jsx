@@ -14,8 +14,8 @@ export const generateGameLevel = ({ nbStages }) => {
   for (let i = 0; i < nbStages; i++) {
 
     const stage = []
-    // const nbOptions = 2 + (i * 2)
-    const nbOptions = 2 // FOR TESTING
+    const nbOptions = 2 + (i * 2)
+    // const nbOptions = 2 // FOR TESTING
 
     for (let j = 0; j < nbOptions; j++) {
 
