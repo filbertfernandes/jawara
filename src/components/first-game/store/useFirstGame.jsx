@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { words } from "./constants.js"
+import { useThree } from "@react-three/fiber"
 
 export const gameStates = {
   MENU: 'MENU',
@@ -35,6 +36,14 @@ export const generateGameLevel = ({ nbStages }) => {
   return level
 }
 
+const resetCamera = () => {
+  const { camera } = useThree()
+
+  camera.position.x = 0
+  camera.position.y = 1
+  camera.position.z = 3
+}
+
 export const useFirstGame = create((set) => ({
     level: null,
     currentStage: 0,
@@ -42,12 +51,13 @@ export const useFirstGame = create((set) => ({
     gameState: gameStates.MENU,
     startTime: 0,
     endTime: 0,
+    cameraPosition: {x: 0, y: 1, z: 3},
 
     startGame: ({ mode }) => {
 
         set((state) => {
             const level = generateGameLevel({ nbStages: 5 })
-            return { level, currentStage: 0, mode, gameState: gameStates.GAME, startTime: Date.now() }
+            return { level, currentStage: 0, mode, gameState: gameStates.GAME, startTime: Date.now(), cameraPosition: {x: 0, y: 1, z: 3} }
         })
 
     },

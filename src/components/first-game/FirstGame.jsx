@@ -9,11 +9,15 @@ export function FirstGame()
 {
     const { camera } = useThree()
 
+    const { cameraPosition } = useFirstGame((state) => ({
+        cameraPosition: state.cameraPosition
+    }))
+
     useEffect((state) => {
-        camera.position.x = 0
-        camera.position.y = 1
-        camera.position.z = 3
-    }, [])
+        camera.position.x = cameraPosition.x
+        camera.position.y = cameraPosition.y
+        camera.position.z = cameraPosition.z
+    }, [cameraPosition])
 
     return <>
         
