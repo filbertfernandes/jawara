@@ -4,7 +4,7 @@ import { useRapier, Physics, CuboidCollider, RigidBody } from '@react-three/rapi
 import { Perf } from 'r3f-perf'
 
 import Lights from '../Lights.jsx'
-import { BodyParts } from './first-game/BodyParts.jsx'
+import { FirstGame } from './first-game/FirstGame.jsx'
 import { PlayerController } from "./PlayerController.jsx"
 import { phases, useGame } from '../useGame.jsx'
 import { useFrame } from '@react-three/fiber'
@@ -16,12 +16,7 @@ export default function Experience()
     const enterPressed = useKeyboardControls((state) => state[Controls.enter])
     const [ canGoToFirstGame, setCanGoToFirstGame ] = useState(false)
     
-    const player = useRef()
     const pinkBox = useRef()
-
-    useEffect(() => {
-        console.log('player in experience', player.current);
-    }, [player])
 
     const { phase, goToFirstGame } = useGame((state) => ({
         phase: state.phase,
@@ -59,7 +54,7 @@ export default function Experience()
             type="fixed" 
             name="Pink Box"
         >
-                <mesh ref={ pinkBox } position={ [2, 0.5, 2] } scale={ [1, 1, 1] } receiveShadow >
+                <mesh ref={ pinkBox } position={ [-1, 0.5, 3.5] } scale={ [1, 1, 1] } castShadow receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="hotpink" />
 
@@ -85,10 +80,10 @@ export default function Experience()
 
         {/* PLAYER */}
         {/* { phase === phases.FREE && <PlayerController ref={ player } /> } */}
-        <PlayerController ref={ player } />
+        <PlayerController />
 
         {/* FIRST GAME */}
-        { phase === phases.FIRST_GAME && <BodyParts /> }
+        { phase === phases.FIRST_GAME && <FirstGame /> }
 
     </>
 }

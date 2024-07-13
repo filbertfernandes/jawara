@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Character from './Character.jsx'
 import { useFirstGame } from './store/useFirstGame.jsx'
 
-export function BodyParts()
+export function FirstGame()
 {
     const { camera } = useThree()
 

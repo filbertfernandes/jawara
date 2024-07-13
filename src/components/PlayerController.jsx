@@ -13,7 +13,7 @@ const MOVEMENT_SPEED = 0.1
 const MAX_VEL = 3
 const RUN_VEL = 2
 
-export const PlayerController = forwardRef((props, ref) => {
+export const PlayerController = (props) => {
     const { playerState, setPlayerState, phase } = useGame((state) => ({
         playerState: state.playerState,
         setPlayerState: state.setPlayerState,
@@ -29,12 +29,6 @@ export const PlayerController = forwardRef((props, ref) => {
     const rigidBody = useRef()
     const isOnFloor = useRef(true)
     const player = useRef()
-
-    useEffect(() => {
-        if(ref) {
-            ref.current = player.current;
-        }
-    }, [ref])
 
     useFrame((state) => {
         if(phase === phases.FREE) {
@@ -114,4 +108,4 @@ export const PlayerController = forwardRef((props, ref) => {
 
         </group>
     )
-})
+}
