@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { FirstGameLevel } from './FirstGameLevel'
+import { Level } from './Level'
 
 export default function Character(props) {
     const characterBody = useRef()
@@ -11,7 +11,7 @@ export default function Character(props) {
         <group ref={characterBody} {...props} dispose={null}>
             
             {/* Number with INPUT */}
-            <FirstGameLevel characterBody={ characterBody } />
+            <Level characterBody={ characterBody } />
 
             <group rotation={[-Math.PI / 2, 0, 0]}>
                 <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.BajuSDlambert1SG} />

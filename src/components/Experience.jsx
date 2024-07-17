@@ -10,12 +10,16 @@ import { phases, useGame } from '../useGame.jsx'
 import { useFrame } from '@react-three/fiber'
 import { Controls } from '../App.jsx'
 
+// IMPORT ENVIRONMENT
+import Tree01 from './environment/Tree01.jsx'
+
 export default function Experience()
 {
     // GO TO GAMES CONTROL
     const enterPressed = useKeyboardControls((state) => state[Controls.enter])
     const [ canGoToFirstGame, setCanGoToFirstGame ] = useState(false)
     
+    const orbitControls = useRef()
     const pinkBox = useRef()
 
     const { phase, goToFirstGame } = useGame((state) => ({
@@ -31,30 +35,41 @@ export default function Experience()
     
     return <>
 
+        {/* PERF */}
         <Perf position="bottom-right" />
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />
 
-        <OrbitControls 
+        {/* ORBIT CONTROLS */}
+        <OrbitControls
+            ref={ orbitControls }
             makeDefault 
             enablePan={ true } 
             enableZoom={ true }
             target={[0, 1, 0]}
+            maxPolarAngle={Math.PI / 1.65} // Limit vertical panning (up-down)
+            minPolarAngle={0}
+            maxDistance={5} // Limit zoom out
+            minDistance={1} // Limit zoom in
         />
 
+        {/* FLOOR */}
         <RigidBody type="fixed">
-                <mesh position={ [0, -0.1, 0] } scale={ [12, 0.2, 12] } receiveShadow >
+                <mesh position={ [0, -0.1, 0] } scale={ [18, 0.2, 40] } receiveShadow >
                     <boxGeometry />
-                    <meshStandardMaterial color="greenyellow" />
+                    <meshStandardMaterial color="#4ec206" />
                 </mesh>
         </RigidBody>
 
+        {/* ENVIRONMENT */}
+        
+        {/* Pink Box */}
         <RigidBody 
             type="fixed" 
             name="Pink Box"
         >
-                <mesh ref={ pinkBox } position={ [-4, 0.5, -3.5] } scale={ [1, 1, 1] } castShadow receiveShadow >
+                <mesh ref={ pinkBox } position={ [-4, 0.5, 5] } scale={ [1, 1, 1] } castShadow receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="hotpink" />
 
@@ -75,6 +90,14 @@ export default function Experience()
                 }
         </RigidBody>
 
+        {/* Tree */}
+        <RigidBody type='fixed' colliders={ false } position={ [-4, 0, -12] }>
+            <Tree01 scale={ 2 } />
+            <CuboidCollider args={ [0.6, 3, 0.6] } />
+        </RigidBody>
+
+        {/* END ENVIRONEMT */}
+
         {/* LIGHTS */}
         <Lights />
 
@@ -83,7 +106,7 @@ export default function Experience()
         <PlayerController />
 
         {/* FIRST GAME */}
-        { phase === phases.FIRST_GAME && <FirstGame /> }
+        { phase === phases.FIRST_GAME && <FirstGame orbitControls={ orbitControls } /> }
 
     </>
 }

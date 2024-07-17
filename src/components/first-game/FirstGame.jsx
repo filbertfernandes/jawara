@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Character from './Character.jsx'
 import { useFirstGame } from './store/useFirstGame.jsx'
 
-export function FirstGame()
+export function FirstGame({ orbitControls })
 {
     const { camera } = useThree()
 
@@ -13,10 +13,13 @@ export function FirstGame()
         cameraPosition: state.cameraPosition
     }))
 
-    useEffect((state) => {
+    useEffect(() => {
         camera.position.x = cameraPosition.x
         camera.position.y = cameraPosition.y
         camera.position.z = cameraPosition.z
+
+        orbitControls.current.target.set(0, 1, 0)
+        orbitControls.current.update()
     }, [cameraPosition])
 
     return <>

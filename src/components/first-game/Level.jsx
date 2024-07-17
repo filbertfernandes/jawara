@@ -3,7 +3,7 @@ import { Html } from '@react-three/drei'
 import { gameStates, useFirstGame } from './store/useFirstGame.jsx'
 
 
-export function FirstGameLevel({ characterBody })
+export function Level({ characterBody })
 {
     const { level, currentStage, nextStage, gameState, mode, gameOver } = useFirstGame((state) => ({
         level: state.level,
