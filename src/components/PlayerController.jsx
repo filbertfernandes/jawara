@@ -78,9 +78,9 @@ export const PlayerController = (props) => {
             const playerWorldPosition = player.current.getWorldPosition(new THREE.Vector3())
             state.camera.position.x = playerWorldPosition.x
             state.camera.position.y = 3
-            state.camera.position.z = playerWorldPosition.z + 5.5
+            state.camera.position.z = playerWorldPosition.z + 5.2   
     
-            const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.5, playerWorldPosition.z)
+            const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.6, playerWorldPosition.z)
     
             state.camera.lookAt(targetLookAt)
         }

@@ -12,6 +12,7 @@ import { Controls } from '../App.jsx'
 
 // IMPORT ENVIRONMENT
 import Tree01 from './environment/Tree01.jsx'
+import Flower01 from './environment/Flower01.jsx'
 
 export default function Experience()
 {
@@ -45,7 +46,7 @@ export default function Experience()
         <OrbitControls
             ref={ orbitControls }
             makeDefault 
-            enablePan={ true } 
+            enablePan={ false } 
             enableZoom={ true }
             target={[0, 1, 0]}
             maxPolarAngle={Math.PI / 1.65} // Limit vertical panning (up-down)
@@ -56,14 +57,14 @@ export default function Experience()
 
         {/* FLOOR */}
         <RigidBody type="fixed">
-                <mesh position={ [0, -0.1, 0] } scale={ [18, 0.2, 40] } receiveShadow >
+                <mesh position={ [0, -0.1, 0] } scale={ [20, 0.2, 40] } receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="#4ec206" />
                 </mesh>
         </RigidBody>
 
         {/* ENVIRONMENT */}
-        
+
         {/* Pink Box */}
         <RigidBody 
             type="fixed" 
@@ -95,6 +96,11 @@ export default function Experience()
             <Tree01 scale={ 2 } />
             <CuboidCollider args={ [0.6, 3, 0.6] } />
         </RigidBody>
+
+        {/* Flower */}
+        <Flower01 position={ [0, 0, 0] } scale={ 2 }/>
+        <Flower01 position={ [1, 0, 0] } scale={ 2 }/>
+        <Flower01 position={ [2, 0, 0] } scale={ 2 }/>
 
         {/* END ENVIRONEMT */}
 
