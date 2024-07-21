@@ -10,18 +10,18 @@ export default function Lights()
     // useHelper(light, DirectionalLightHelper, 5, 'hotpink')
 
     
-    useFrame((state) => {
-        light.current.position.z = state.camera.position.z + 1
-        light.current.target.position.z = state.camera.position.z
-        light.current.target.updateMatrixWorld()
-    })
+    // useFrame((state) => {
+    //     light.current.position.z = state.camera.position.z + 1
+    //     light.current.target.position.z = state.camera.position.z
+    //     light.current.target.updateMatrixWorld()
+    // })
 
     return <>
         <directionalLight
             ref={ light }
             castShadow
-            position={ [ 6.8, 6.8, 1 ] }
-            intensity={ 1.5 }
+            position={ [ 7.5, 7.5, 1 ] }
+            intensity={ 3.5 }
             shadow-mapSize={ [ 1024, 1024 ] }
             shadow-camera-near={ 1 }
             shadow-camera-far={ 20 }

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { useKeyboardControls, Edges, Html, OrbitControls, Outlines } from '@react-three/drei'
-import { useRapier, Physics, CuboidCollider, RigidBody } from '@react-three/rapier'
+import { useRef, useState } from 'react'
+import { useKeyboardControls, Edges, OrbitControls, Outlines, useGLTF, useTexture } from '@react-three/drei'
+import { Physics, CuboidCollider, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
 import Lights from '../Lights.jsx'
@@ -11,8 +11,14 @@ import { useFrame } from '@react-three/fiber'
 import { Controls } from '../App.jsx'
 
 // IMPORT ENVIRONMENT
-import Tree01 from './environment/Tree01.jsx'
-import Flower01 from './environment/Flower01.jsx'
+// import Tree01 from './environment/Tree01.jsx'
+// import Flower01 from './environment/Flower01.jsx'
+// import World from './environment/World.jsx'
+// import PineTree from './environment/PineTree.jsx'
+// import Fences from './environment/Fences.jsx'
+// import WorldTwo from './environment/WorldTwo.jsx'
+import WorldThree from './environment/WorldThree.jsx'
+import Football from './environment/Football.jsx'
 
 export default function Experience()
 {
@@ -33,6 +39,9 @@ export default function Experience()
             goToFirstGame()
         }
     })
+
+    // LOAD MODELS
+    const football = useGLTF('./models/environment/football.glb')
     
     return <>
 
@@ -57,13 +66,18 @@ export default function Experience()
 
         {/* FLOOR */}
         <RigidBody type="fixed">
-                <mesh position={ [0, -0.1, 0] } scale={ [20, 0.2, 40] } receiveShadow >
+                <mesh position={ [0, -0.1, 0] } scale={ [200, 0.2, 400] } receiveShadow >
                     <boxGeometry />
-                    <meshStandardMaterial color="#4ec206" />
+                    <meshStandardMaterial color="#89CB1F" transparent opacity={ 1 } />
                 </mesh>
         </RigidBody>
 
         {/* ENVIRONMENT */}
+
+        {/* World */}
+        {/* <World scale={0.55} position={ [0, -0.1, 0] } /> */}
+        {/* <WorldTwo scale={0.55} position={ [0, -0.1, 0] } /> */}
+        <WorldThree scale={0.55} position={ [0, -0.4, 0] } />
 
         {/* Pink Box */}
         <RigidBody 
@@ -92,17 +106,34 @@ export default function Experience()
         </RigidBody>
 
         {/* Tree */}
-        <RigidBody type='fixed' colliders={ false } position={ [-4, 0, -12] }>
+        {/* <RigidBody type='fixed' colliders={ false } position={ [-4, 0, -12] }>
             <Tree01 scale={ 2 } />
             <CuboidCollider args={ [0.6, 3, 0.6] } />
-        </RigidBody>
+        </RigidBody> */}
 
         {/* Flower */}
-        <Flower01 position={ [0, 0, 0] } scale={ 2 }/>
+        {/* <Flower01 position={ [0, 0, 0] } scale={ 2 }/>
         <Flower01 position={ [1, 0, 0] } scale={ 2 }/>
-        <Flower01 position={ [2, 0, 0] } scale={ 2 }/>
+        <Flower01 position={ [2, 0, 0] } scale={ 2 }/> */}
+
+        {/* Fences */}
+        {/* <Fences scale={ 0.55 } /> */}
+
+        {/* Football */}
+        <RigidBody colliders="ball" position={ [-3, 5, 12] } restitution={ 0.65 } friction={ 2 } >
+            {/* <primitive object={ football.scene } scale={ 0.3 } castShadow receiveShadow /> */}
+            <Football scale={ 0.25 } /> 
+        </RigidBody>
 
         {/* END ENVIRONEMT */}
+
+        {/* Invisible Collider */}
+        <RigidBody type='fixed'>
+            <CuboidCollider args={ [0.2, 2, 22] } position={ [ -10.3, 2, 0 ] } />
+            <CuboidCollider args={ [0.2, 2, 22] } position={ [ 10.2, 2, 0 ] } />
+            <CuboidCollider args={ [10, 2, 0.2] } position={ [ 0, 2, -21.5 ] } />
+            <CuboidCollider args={ [10, 2, 0.2] } position={ [ 0, 2, 20.6 ] } />
+        </RigidBody>
 
         {/* LIGHTS */}
         <Lights />

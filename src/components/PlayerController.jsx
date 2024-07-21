@@ -30,8 +30,17 @@ export const PlayerController = (props) => {
     const isOnFloor = useRef(true)
     const player = useRef()
 
+    const reset = () => {
+        console.log('reset position');
+        rigidBody.current.setTranslation({ x: 0, y: 1, z: 0 })
+        rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
+        rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
+    }
+
     useFrame((state) => {
         if(phase === phases.FREE) {
+            const rigidBodyPosition = rigidBody.current.translation()
+
             const impulse = { x: 0, y: 0, z: 0 }
             if (jumpPressed && isOnFloor.current) {
                 impulse.y += JUMP_FORCE
@@ -74,11 +83,15 @@ export const PlayerController = (props) => {
                 player.current.rotation.y = angle
             }
     
+            if(rigidBodyPosition.y < -4) {
+                reset()
+            }
+    
             // CAMERA FOLLOW
             const playerWorldPosition = player.current.getWorldPosition(new THREE.Vector3())
             state.camera.position.x = playerWorldPosition.x
             state.camera.position.y = 3
-            state.camera.position.z = playerWorldPosition.z + 5.2   
+            state.camera.position.z = playerWorldPosition.z + 5.5   
     
             const targetLookAt = new THREE.Vector3(playerWorldPosition.x, playerWorldPosition.y + 1.6, playerWorldPosition.z)
     
@@ -98,7 +111,7 @@ export const PlayerController = (props) => {
                 onCollisionEnter={() => {
                     isOnFloor.current = true;
                 }}
-                position={ [-3, 0, 1] }
+                position={ [0, 0.5, 15] }
             >
                 <CapsuleCollider args={ [0.8, 0.4] } position={ [0, 1.2, 0] } />
                 <group ref={ player }>
