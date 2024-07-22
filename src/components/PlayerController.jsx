@@ -9,7 +9,7 @@ import { Controls } from '../App.jsx'
 import { phases, useGame } from '../useGame.jsx'
 
 const JUMP_FORCE = 0.5
-const MOVEMENT_SPEED = 0.1
+const MOVEMENT_SPEED = 0.12
 const MAX_VEL = 3
 const RUN_VEL = 2
 

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useKeyboardControls, Edges, OrbitControls, Outlines, useGLTF, useTexture } from '@react-three/drei'
-import { Physics, CuboidCollider, RigidBody } from '@react-three/rapier'
+import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
 import Lights from '../Lights.jsx'

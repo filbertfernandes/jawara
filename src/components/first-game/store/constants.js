@@ -11,8 +11,8 @@ export const words = [
     { 
         indonesian: 'rambut', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [0.85, 9, 1.4], 
         visible: false ,
         isCorrect: false
@@ -20,8 +20,8 @@ export const words = [
     { 
         indonesian: 'dahi', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.1, 8.5, 1.5], 
         visible: false ,
         isCorrect: false
@@ -29,8 +29,8 @@ export const words = [
     { 
         indonesian: 'alis', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [0.7, 8.2, 1.3], 
         visible: false ,
         isCorrect: false
@@ -38,8 +38,8 @@ export const words = [
     { 
         indonesian: 'hidung', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.1, 7.2, 1.5], 
         visible: false ,
         isCorrect: false
@@ -47,8 +47,8 @@ export const words = [
     { 
         indonesian: 'mulut', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [0.25, 6.75, 1.4], 
         visible: false ,
         isCorrect: false
@@ -56,8 +56,8 @@ export const words = [
     { 
         indonesian: 'pipi', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.85, 6.9, 1.1], 
         visible: false ,
         isCorrect: false
@@ -65,8 +65,8 @@ export const words = [
     { 
         indonesian: 'dagu', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.1, 6.45, 1.3], 
         visible: false ,
         isCorrect: false
@@ -74,8 +74,8 @@ export const words = [
     { 
         indonesian: 'telinga', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-1.5, 7.5, 0], 
         visible: false ,
         isCorrect: false
@@ -83,8 +83,8 @@ export const words = [
     { 
         indonesian: 'dada', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.1, 5.9, 0.85], 
         visible: false ,
         isCorrect: false
@@ -92,8 +92,8 @@ export const words = [
     { 
         indonesian: 'perut', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.1, 4.3, 1.2], 
         visible: false ,
         isCorrect: false
@@ -101,8 +101,8 @@ export const words = [
     { 
         indonesian: 'punggung', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [0, 5.3, -0.65], 
         visible: false ,
         isCorrect: false
@@ -110,8 +110,8 @@ export const words = [
     { 
         indonesian: 'tangan', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [2.5, 5.9, 0.5], 
         visible: false ,
         isCorrect: false
@@ -119,8 +119,8 @@ export const words = [
     { 
         indonesian: 'jari', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [4.3, 5.9, 0], 
         visible: false ,
         isCorrect: false
@@ -128,8 +128,8 @@ export const words = [
     { 
         indonesian: 'paha', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.7, 2.3, 0.72], 
         visible: false ,
         isCorrect: false
@@ -137,8 +137,8 @@ export const words = [
     { 
         indonesian: 'kaki', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-0.7, 0.75, 0.72], 
         visible: false ,
         isCorrect: false
@@ -146,8 +146,8 @@ export const words = [
     { 
         indonesian: 'pundak', 
         ngoko: 'abc', 
-        madya: '', 
-        alus: '',  
+        madya: 'ab', 
+        alus: 'a',  
         position: [-1.2, 6.4, 0], 
         visible: false ,
         isCorrect: false

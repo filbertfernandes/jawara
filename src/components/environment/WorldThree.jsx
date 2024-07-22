@@ -9,77 +9,77 @@ export default function WorldThree(props) {
   const { nodes, materials } = useGLTF('./models/environment/worldThree.glb')
   return (
     <group {...props} dispose={null}>
-      <group position={[43.718, 2.117, 25.701]} rotation={[Math.PI / 2, 0, 1.401]}>
+      <group position={[-24.175, 0, -25.927]}>
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063.geometry}
-          material={materials['Material.003']}
-        />
-        <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_1.geometry}
-          material={materials['Material.005']}
-        />
-        <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_2.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013.geometry}
           material={materials['Banana Trunk']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_3.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_1.geometry}
           material={materials['Banana Leaf 3']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_4.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_2.geometry}
           material={materials['Banana Leaf 4']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_5.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_3.geometry}
           material={materials['Banana Leaf 2']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_6.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_4.geometry}
           material={materials['Banana Leaf 1']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_7.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_5.geometry}
+          material={materials['Material.003']}
+        />
+        <mesh
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_6.geometry}
+          material={materials['Material.005']}
+        />
+        <mesh
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_7.geometry}
           material={materials['rock.001']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_8.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_8.geometry}
           material={materials['rock.002']}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_9.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_9.geometry}
           material={materials.rock}
         />
         <mesh
-        //   castShadow
-        //   receiveShadow
-          geometry={nodes.Cube063_10.geometry}
+          // castShadow
+          // receiveShadow
+          geometry={nodes.Circle013_10.geometry}
           material={materials['Material.007']}
         />
         <mesh
-        //   castShadow
+          // castShadow
           receiveShadow
-          geometry={nodes.Cube063_11.geometry}
+          geometry={nodes.Circle013_11.geometry}
           material={materials['wood.001']}
         />
       </group>
