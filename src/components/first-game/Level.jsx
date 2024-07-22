@@ -16,13 +16,11 @@ export function Level({ characterBody })
 
     const [inputBoxes, setInputBoxes] = useState([])
     const [correctCount, setCorrectCount] = useState(0)
-    const [numberOfInput, setNumberOfInput] = useState(0)
     const [inputValues, setInputValues] = useState({})
 
     useEffect(() => {
         if(level) {
             setInputBoxes(level[currentStage])
-            setNumberOfInput(level[currentStage].length)
             setCorrectCount(0)
             setInputValues({})
             level[currentStage].map((word, index) => {

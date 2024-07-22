@@ -84,7 +84,7 @@ export default function Experience()
             type="fixed" 
             name="Pink Box"
         >
-                <mesh ref={ pinkBox } position={ [-4, 0.5, 5] } scale={ [1, 1, 1] } castShadow receiveShadow >
+                <mesh ref={ pinkBox } position={ [-8, 0.5, 5] } scale={ [1, 1, 1] } castShadow receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="hotpink" />
 
@@ -120,7 +120,7 @@ export default function Experience()
         {/* <Fences scale={ 0.55 } /> */}
 
         {/* Football */}
-        <RigidBody colliders="ball" position={ [-3, 5, 12] } restitution={ 0.65 } friction={ 2 } >
+        <RigidBody colliders="ball" position={ [-3, 5, 12] } restitution={ 0.65 } friction={ 1.5 } >
             {/* <primitive object={ football.scene } scale={ 0.3 } castShadow receiveShadow /> */}
             <Football scale={ 0.25 } /> 
         </RigidBody>
