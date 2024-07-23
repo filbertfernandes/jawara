@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
 
-import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
+import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
 import { useGame } from "../../useGame.jsx"
 
-export const FirstGameInterface = () => {
+export const SecondGameInterface = () => {
 
     const time = useRef()
 
     // BODY PARTS / FIRST GAME STATE
-    const { startGame, gameState, mode, goToMenu } = useFirstGame((state) => ({
+    const { startGame, gameState, mode, goToMenu } = useSecondGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         mode: state.mode,
@@ -24,22 +24,29 @@ export const FirstGameInterface = () => {
     // SCORE
     useEffect(() => {
         const unsubscribeEffect = addEffect(() => {
-            const state = useFirstGame.getState()
-
+            const state = useSecondGame.getState()
+    
             let elapsedTime = 0
-
-            if(state.gameState === gameStates.GAME)
-                elapsedTime = Date.now() - state.startTime
-            else if(state.gameState === gameStates.GAME_OVER)
-                elapsedTime = state.endTime - state.startTime
-
-            elapsedTime /= 1000
-            elapsedTime = elapsedTime.toFixed(2)
-
-            if(time.current)
-                time.current.textContent = elapsedTime
+    
+            if (state.gameState === gameStates.GAME) {
+                elapsedTime = (Date.now() - state.startTime) / 1000
+            }
+    
+            // Calculate remaining time
+            const remainingTime = Math.max(0, state.initialTimer - elapsedTime).toFixed(0)
+    
+            state.timer = remainingTime
+    
+            if (time.current) {
+                time.current.textContent = state.timer
+            }
+    
+            // Check if time has run out
+            if (state.timer <= 0) {
+                // Handle game over logic here
+            }
         })
-
+    
         return () => {
             unsubscribeEffect()
         }
@@ -57,7 +64,7 @@ export const FirstGameInterface = () => {
             <div
                 className={ `menu ${gameState !== gameStates.MENU ? 'menu-hidden' : ''}` }
             >
-                <h1>Anggota Tubuh</h1>
+                <h1>Warna</h1>
                 <button onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
                 <button onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
                 <button onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
@@ -77,7 +84,7 @@ export const FirstGameInterface = () => {
             <div
                 className={ `first-game-interface ${gameState === gameStates.MENU ? 'first-game-hidden' : ''}` }
             >
-                <div ref={ time } className="time">0.00</div>
+                <div ref={ time } className="time">120</div>
             </div>
         </>
     )

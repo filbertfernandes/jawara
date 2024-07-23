@@ -3,8 +3,9 @@ import { useMemo } from "react"
 import { KeyboardControls } from "@react-three/drei"
 
 import Experience from './components/Experience.jsx'
-import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { phases, useGame } from './useGame.jsx'
+import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
+import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
 
 export const Controls = {
     forward: "forward",
@@ -12,6 +13,7 @@ export const Controls = {
     left: "left",
     right: "right",
     jump: "jump",
+    enter: 'enter'
 }
 
 export default function App()
@@ -46,6 +48,7 @@ export default function App()
             </Canvas>
 
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }
+            { phase === phases.SECOND_GAME && <SecondGameInterface /> }
 
         </KeyboardControls>
     )

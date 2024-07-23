@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
-import useSecondGame from "./stores/useSecondGame.jsx"
+import { useSecondGame } from "./stores/useSecondGame.jsx"
 
 export default function Marble()
 {
@@ -19,7 +19,7 @@ export default function Marble()
         // setLinvel to remove any translation force
         // setAngvel to remove any angular forc
 
-        marbleBody.current.setTranslation({ x: 0, y: 1, z: 0 })
+        marbleBody.current.setTranslation({ x: 0, y: 1, z: 3.5 })
         marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
     }
@@ -59,14 +59,6 @@ export default function Marble()
     }
 
     useEffect(() => {
-        const unsubscribeReset = useSecondGame.subscribe(
-            (state) => state.phase,
-            (phase) => {
-                if(phase === 'ready')
-                    reset()
-            }
-        )
-
         const unsubscribeJump = subscribeKeys(
             // selector -> i want to listen to any changes on the key. In this case, a jump key. The changes is between false or true. If it was pressed, it's true.
             (state) => state.jump,
@@ -78,19 +70,17 @@ export default function Marble()
         )
 
         const unsubscribePush = subscribeKeys(
-            // selector -> i want to listen to any changes on the key. In this case, a jump key. The changes is between false or true. If it was pressed, it's true.
             (state) => state.forward,
 
-            // when changes happened, it will call this function below. Run jump() when true
             (isPush) => {
-                if(isPush) push() // when isJump true (pressed)
+                if(isPush) push()
             }
         )
 
         // this part will be called whenever we need to clean things
         return () => {
-            unsubscribeReset()
             unsubscribeJump()
+            unsubscribePush()
         }
     }, [])
 
@@ -128,7 +118,7 @@ export default function Marble()
 
         const cameraPosition = new THREE.Vector3()
         cameraPosition.copy(marbleBodyPosition)
-        cameraPosition.z = 3.5
+        cameraPosition.z = 7
         cameraPosition.y += 0.65
 
         const cameraTarget = new THREE.Vector3()
@@ -158,7 +148,7 @@ export default function Marble()
         friction={ 1 } 
         linearDamping={ 0.5 }
         angularDamping={ 0.5 }
-        position={ [0, 1, 0] }
+        position={ [0, 1, 3.5] }
     >
         <mesh castShadow>
             <icosahedronGeometry args={ [0.3, 1] } />

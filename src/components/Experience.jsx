@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useKeyboardControls, Edges, Outlines, useGLTF } from '@react-three/drei'
+import { useKeyboardControls, Edges, Outlines } from '@react-three/drei'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
@@ -9,7 +9,6 @@ import SecondGame from './second-game/SecondGame.jsx'
 import PlayerController from "./PlayerController.jsx"
 import { phases, useGame } from '../useGame.jsx'
 import { useFrame } from '@react-three/fiber'
-import { Controls } from '../App.jsx'
 
 // IMPORT ENVIRONMENT
 import World from './environment/World.jsx'
@@ -18,25 +17,33 @@ import Football from './environment/Football.jsx'
 export default function Experience()
 {
     // GO TO GAMES CONTROL
-    const enterPressed = useKeyboardControls((state) => state[Controls.enter])
+    const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const [ canGoToFirstGame, setCanGoToFirstGame ] = useState(false)
+    const [ canGoToSecondGame, setCanGoToSecondGame ] = useState(false)
     
-    const pinkBox = useRef()
+    const firstGameBox = useRef()
+    const secondGameBox = useRef()
 
-    const { phase, goToFirstGame } = useGame((state) => ({
+    const { phase, goToFirstGame, goToSecondGame } = useGame((state) => ({
         phase: state.phase,
-        goToFirstGame: state.goToFirstGame
+        goToFirstGame: state.goToFirstGame,
+        goToSecondGame: state.goToSecondGame
     }))
 
     useFrame(() => {
-        if(enterPressed && canGoToFirstGame) {
+        const { enter } = getKeys()
+
+        if(enter && canGoToFirstGame) {
+            setCanGoToFirstGame(false)
             goToFirstGame()
+        }
+
+        else if(enter && canGoToSecondGame) {
+            setCanGoToSecondGame(false)
+            goToSecondGame()
         }
     })
 
-    // LOAD MODELS
-    const football = useGLTF('./models/environment/football.glb')
-    
     return <>
 
         {/* PERF */}
@@ -64,12 +71,11 @@ export default function Experience()
             {/* World */}
             <World scale={0.55} position={ [0, -0.4, 0] } />
 
-            {/* Pink Box */}
+            {/* Game Boxex */}
             <RigidBody 
                 type="fixed" 
-                name="Pink Box"
             >
-                    <mesh ref={ pinkBox } position={ [-8, 0.5, 5] } scale={ [1, 1, 1] } castShadow receiveShadow >
+                    <mesh ref={ firstGameBox } position={ [-8, 0.5, 8] } scale={ [1, 1, 1] } castShadow receiveShadow >
                         <boxGeometry />
                         <meshStandardMaterial color="hotpink" />
 
@@ -79,13 +85,45 @@ export default function Experience()
                     </mesh>
 
                     { 
-                        pinkBox.current !== undefined && 
+                        firstGameBox.current !== undefined && 
                         <CuboidCollider
-                            args={ pinkBox.current.scale.toArray() }
+                            args={ firstGameBox.current.scale.toArray() }
                             sensor
-                            position={ pinkBox.current.position.toArray() }
-                            onIntersectionEnter={ () => { setCanGoToFirstGame(true) }}
-                            onIntersectionExit={ () => { setCanGoToFirstGame(false) }}
+                            position={ firstGameBox.current.position.toArray() }
+                            onIntersectionEnter={ (other) => { 
+                                if(other.rigidBodyObject.name) setCanGoToFirstGame(true) 
+                            }}
+                            onIntersectionExit={ (other) => { 
+                                if(other.rigidBodyObject.name) setCanGoToFirstGame(false) 
+                            }}
+                        /> 
+                    }
+            </RigidBody>
+
+            <RigidBody 
+                type="fixed" 
+            >
+                    <mesh ref={ secondGameBox } position={ [-4, 0.5, 8] } scale={ [1, 1, 1] } castShadow receiveShadow >
+                        <boxGeometry />
+                        <meshStandardMaterial color="purple" />
+
+                        {/* WHITE BRIGHT EDGES */}
+                        { canGoToSecondGame && <Edges linewidth={5} threshold={15} color={ [1000, 1000, 1000] } /> }
+                        { canGoToSecondGame && <Outlines thickness={0.01} color={ [1, 1, 1] } /> }
+                    </mesh>
+
+                    { 
+                        secondGameBox.current !== undefined && 
+                        <CuboidCollider
+                            args={ secondGameBox.current.scale.toArray() }
+                            sensor
+                            position={ secondGameBox.current.position.toArray() }
+                            onIntersectionEnter={ (other) => { 
+                                if(other.rigidBodyObject.name) setCanGoToSecondGame(true) 
+                            }}
+                            onIntersectionExit={ (other) => { 
+                                if(other.rigidBodyObject.name) setCanGoToSecondGame(false) 
+                            }}
                         /> 
                     }
             </RigidBody>

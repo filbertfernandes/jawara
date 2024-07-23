@@ -26,6 +26,12 @@ export const useGame = create(subscribeWithSelector((set) =>
             })
         },
 
+        goToSecondGame: () => {
+            set((state) => {
+                return { phase: phases.SECOND_GAME }
+            })
+        },
+
         // PLAYER STATE
         playerState: 'Idle',
         setPlayerState: (playerState) => {

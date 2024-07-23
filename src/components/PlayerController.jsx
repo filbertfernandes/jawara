@@ -32,7 +32,7 @@ export default function PlayerController()
     const player = useRef()
 
     const reset = () => {
-        rigidBody.current.setTranslation({ x: 0, y: 1, z: 0 })
+        rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 15 })
         rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
     }

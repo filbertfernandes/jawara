@@ -14,9 +14,9 @@ export function Level({ characterBody })
         gameOver: state.gameOver
     }))
 
-    const [inputBoxes, setInputBoxes] = useState([])
-    const [correctCount, setCorrectCount] = useState(0)
-    const [inputValues, setInputValues] = useState({})
+    const [inputBoxes, setInputBoxes] = useState([]) // all questions (input box need to be filled)
+    const [correctCount, setCorrectCount] = useState(0) // correct counts (used for checking when run nextStage or game over)
+    const [inputValues, setInputValues] = useState({}) // input values, used to update correct count
 
     useEffect(() => {
         if(level) {

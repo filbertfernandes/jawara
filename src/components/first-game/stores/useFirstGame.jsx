@@ -1,6 +1,5 @@
 import { create } from "zustand"
 import { words } from "./constants.js"
-import { useThree } from "@react-three/fiber"
 
 export const gameStates = {
   MENU: 'MENU',
@@ -14,7 +13,7 @@ export const generateGameLevel = ({ nbStages }) => {
   for (let i = 0; i < nbStages; i++) {
 
     const stage = []
-    const nbOptions = 2 + (i * 2)
+    const nbOptions = 2 + i
     // const nbOptions = 1 // FOR TESTING
 
     for (let j = 0; j < nbOptions; j++) {
