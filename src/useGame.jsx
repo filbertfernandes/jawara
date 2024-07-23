@@ -4,6 +4,7 @@ import { subscribeWithSelector } from "zustand/middleware"
 export const phases = {
     FREE: 'FREE',
     FIRST_GAME: 'FIRST_GAME',
+    SECOND_GAME: 'SECOND_GAME',
 }
 
 export const useGame = create(subscribeWithSelector((set) => 

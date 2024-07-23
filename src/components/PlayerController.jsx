@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody } from '@react-three/rapier'
-import { forwardRef, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 import Player from './Player.jsx'
@@ -13,7 +13,8 @@ const MOVEMENT_SPEED = 0.13
 const MAX_VEL = 3
 const RUN_VEL = 2
 
-export const PlayerController = (props) => {
+export default function PlayerController() 
+{
     const { playerState, setPlayerState, phase } = useGame((state) => ({
         playerState: state.playerState,
         setPlayerState: state.setPlayerState,
@@ -31,7 +32,6 @@ export const PlayerController = (props) => {
     const player = useRef()
 
     const reset = () => {
-        console.log('reset position');
         rigidBody.current.setTranslation({ x: 0, y: 1, z: 0 })
         rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })

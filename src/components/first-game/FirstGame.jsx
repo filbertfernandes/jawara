@@ -1,12 +1,14 @@
-import { RigidBody } from '@react-three/rapier'
 import { useThree } from '@react-three/fiber'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { OrbitControls } from '@react-three/drei'
 
 import Character from './Character.jsx'
-import { useFirstGame } from './store/useFirstGame.jsx'
+import { useFirstGame } from './stores/useFirstGame.jsx'
 
-export function FirstGame({ orbitControls })
+export default function FirstGame()
 {
+    const orbitControls = useRef()
+
     const { camera } = useThree()
 
     const { cameraPosition } = useFirstGame((state) => ({
@@ -23,7 +25,20 @@ export function FirstGame({ orbitControls })
     }, [cameraPosition])
 
     return <>
-        
+
+        {/* ORBIT CONTROLS */}
+        <OrbitControls
+            ref={ orbitControls }
+            makeDefault 
+            enablePan={ false } 
+            enableZoom={ true }
+            target={[0, 1, 0]}
+            maxPolarAngle={Math.PI / 1.65} // Limit vertical panning (up-down)
+            minPolarAngle={0}
+            maxDistance={5} // Limit zoom out
+            minDistance={1} // Limit zoom in
+        />
+
         <Character scale={ 0.2 } position={ [0, 0, 0] } />
                 
     </>

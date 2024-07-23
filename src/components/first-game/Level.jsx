@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
-import { gameStates, useFirstGame } from './store/useFirstGame.jsx'
+import { gameStates, useFirstGame } from './stores/useFirstGame.jsx'
 
 
 export function Level({ characterBody })

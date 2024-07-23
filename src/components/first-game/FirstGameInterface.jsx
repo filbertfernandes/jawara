@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
 
-import { gameStates, useFirstGame } from "./store/useFirstGame.jsx"
+import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
 import { useGame } from "../../useGame.jsx"
 
 export const FirstGameInterface = () => {

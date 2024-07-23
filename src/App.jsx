@@ -1,5 +1,4 @@
 import { Canvas } from '@react-three/fiber'
-import { Physics } from "@react-three/rapier"
 import { useMemo } from "react"
 import { KeyboardControls } from "@react-three/drei"
 
@@ -43,10 +42,7 @@ export default function App()
                     position: [ 0, 1, 3 ]
                 } }
             >
-                <Physics debug={ false }>
-                    <Experience />
-                </Physics>
-
+                <Experience />
             </Canvas>
 
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }

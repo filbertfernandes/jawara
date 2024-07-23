@@ -36,14 +36,6 @@ export const generateGameLevel = ({ nbStages }) => {
   return level
 }
 
-const resetCamera = () => {
-  const { camera } = useThree()
-
-  camera.position.x = 0
-  camera.position.y = 1
-  camera.position.z = 3
-}
-
 export const useFirstGame = create((set) => ({
     level: null,
     currentStage: 0,
