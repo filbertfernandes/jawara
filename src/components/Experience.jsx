@@ -150,8 +150,8 @@ export default function Experience()
 
             {/* Invisible Collider */}
             <RigidBody type='fixed'>
-                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ -9.5, 0.75, 0 ] } />
-                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ 10.3, 0.75, 0 ] } />
+                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ -9.6, 0.75, 0 ] } />
+                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ 10.35, 0.75, 0 ] } />
                 <CuboidCollider args={ [10, 0.75, 0.2] } position={ [ 0, 0.75, -18.8 ] } />
                 <CuboidCollider args={ [10, 0.75, 0.2] } position={ [ 0, 0.75, 18.8 ] } />
             </RigidBody>

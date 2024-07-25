@@ -6,7 +6,7 @@ Source: https://sketchfab.com/3d-models/football-89ce97755fe9499aa59cb0876c21ee8
 Title: Football
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Football(props) {
