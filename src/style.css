@@ -68,14 +68,17 @@ body,
     transition: all 1s ease-in-out;
 }
 
-.menu-hidden, .game-over-hidden, .first-game-hidden {
+.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
 
 /* Time */
-.time {
+.second-game-interface {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     top: 0;
@@ -87,6 +90,11 @@ body,
     padding-top: 5px;
     text-align: center;
     pointer-events: none;
+    /* border: 2px solid red; */
+}
+
+.second-game-interface > div {
+    margin: 0px 50px;
 }
 
 .input-box-green {

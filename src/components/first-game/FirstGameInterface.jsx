@@ -55,7 +55,7 @@ export const FirstGameInterface = () => {
         <>
             {/* MENU INTERFACE */}
             <div
-                className={ `menu ${gameState !== gameStates.MENU ? 'menu-hidden' : ''}` }
+                className={ `menu ${gameState !== gameStates.MENU ? 'hidden' : ''}` }
             >
                 <h1>Anggota Tubuh</h1>
                 <button onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
@@ -66,7 +66,7 @@ export const FirstGameInterface = () => {
 
             {/* GAME OVER INTERFACE */}
             <div
-                className={ `game-over ${gameState !== gameStates.GAME_OVER ? 'game-over-hidden' : ''}` }
+                className={ `game-over ${gameState !== gameStates.GAME_OVER ? 'hidden' : ''}` }
             >
                 <h1>CONGRATULATIONS</h1>
                 <button onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
@@ -75,7 +75,7 @@ export const FirstGameInterface = () => {
 
             {/* GAME INTERFACE */}
             <div
-                className={ `first-game-interface ${gameState === gameStates.MENU ? 'first-game-hidden' : ''}` }
+                className={ `game-interface ${gameState === gameStates.MENU ? 'hidden' : ''}` }
             >
                 <div ref={ time } className="time">0.00</div>
             </div>

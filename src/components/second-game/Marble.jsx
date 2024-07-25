@@ -54,7 +54,7 @@ export default function Marble()
 
             setTimeout(() => {
                 reset()
-            }, 2000)
+            }, 1800)
         }
     }
 

@@ -9,11 +9,15 @@ export const SecondGameInterface = () => {
     const time = useRef()
 
     // BODY PARTS / FIRST GAME STATE
-    const { startGame, gameState, mode, goToMenu } = useSecondGame((state) => ({
+    const { startGame, gameState, mode, goToMenu, score, correctAnswersOrder, correctCount, stage } = useSecondGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         mode: state.mode,
         goToMenu: state.goToMenu,
+        score: state.score,
+        correctAnswersOrder: state.correctAnswersOrder,
+        correctCount: state.correctCount,
+        stage: state.stage,
     }))
 
     // MAIN GAME STATE
@@ -44,6 +48,7 @@ export const SecondGameInterface = () => {
             // Check if time has run out
             if (state.timer <= 0) {
                 // Handle game over logic here
+                state.gameOver()
             }
         })
     
@@ -57,12 +62,12 @@ export const SecondGameInterface = () => {
             event.preventDefault(); // Prevent the default space key action
         }
     }
-    
+
     return (
         <>
             {/* MENU INTERFACE */}
             <div
-                className={ `menu ${gameState !== gameStates.MENU ? 'menu-hidden' : ''}` }
+                className={ `menu ${gameState !== gameStates.MENU ? 'hidden' : ''}` }
             >
                 <h1>Warna</h1>
                 <button onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
@@ -73,18 +78,23 @@ export const SecondGameInterface = () => {
 
             {/* GAME OVER INTERFACE */}
             <div
-                className={ `game-over ${gameState !== gameStates.GAME_OVER ? 'game-over-hidden' : ''}` }
+                className={ `game-over ${gameState !== gameStates.GAME_OVER ? 'hidden' : ''}` }
             >
-                <h1>CONGRATULATIONS</h1>
+                <h1>CONGRATULATIONS! Your score is { score }</h1>
                 <button onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
                 <button onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
             </div>
 
             {/* GAME INTERFACE */}
             <div
-                className={ `first-game-interface ${gameState === gameStates.MENU ? 'first-game-hidden' : ''}` }
+                className={ `game-interface ${gameState !== gameStates.GAME ? 'hidden' : ''}` }
             >
-                <div ref={ time } className="time">120</div>
+                <div className="second-game-interface">
+                    <div>Time Left: <span ref={ time } >120</span></div>
+                    { correctCount < 5 && <div>{ stage ? stage[correctAnswersOrder[correctCount]][mode] : '' }</div> }
+                    <div>Score: { score }</div>
+                </div>
+                
             </div>
         </>
     )

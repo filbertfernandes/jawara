@@ -26,30 +26,55 @@ export const generateGameLevel = () => {
     return stage
 }
 
+export const genereateCorrectAnswersOrder = () => {
+    // Create an array with integers 0 to 4
+    const arr = [0, 1, 2, 3, 4];
+    
+    // Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  
+    return arr;
+}
+
 export const useSecondGame = create((set) => ({
     stage: null,
     score: 0,
     mode: "",
     gameState: gameStates.MENU,
     timer: 0,
-    initialTimer: 100,
+    initialTimer: 120,
     startTime: 0,
+    correctAnswersOrder: [],
+    correctCount: 0,
 
     startGame: ({ mode }) => {
 
         set((state) => {
             const stage = generateGameLevel()
-            return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 100, startTime: Date.now() }
+            const correctAnswersOrder = genereateCorrectAnswersOrder()
+            return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 120, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
         })
 
+    },
+
+    incrementCorrectCount: () => {
+        set((state) => {
+            const correctCount = state.correctCount + 1
+            const score = state.score + 1
+            return { correctCount, score }
+        })
     },
 
     nextStage: () => {
 
         set((state) => {
-            stage = generateGameLevel()
-            const score = state.score + 1
-            return { stage, score }
+            const stage = generateGameLevel()
+            const correctCount = 0
+            const correctAnswersOrder = genereateCorrectAnswersOrder()
+            return { stage, correctCount, correctAnswersOrder }
         })
         
     },
