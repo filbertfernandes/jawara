@@ -18,16 +18,19 @@ export default function Experience({ joystickInput })
 {
     // GO TO GAMES CONTROL
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
-    const [ canGoToFirstGame, setCanGoToFirstGame ] = useState(false)
-    const [ canGoToSecondGame, setCanGoToSecondGame ] = useState(false)
     
     const firstGameBox = useRef()
     const secondGameBox = useRef()
 
-    const { phase, goToFirstGame, goToSecondGame } = useGame((state) => ({
+    const { phase, goToFirstGame, goToSecondGame, setCanPressEnter, canGoToFirstGame, setCanGoToFirstGame, canGoToSecondGame, setCanGoToSecondGame } = useGame((state) => ({
         phase: state.phase,
         goToFirstGame: state.goToFirstGame,
-        goToSecondGame: state.goToSecondGame
+        goToSecondGame: state.goToSecondGame,
+        setCanPressEnter: state.setCanPressEnter,
+        canGoToFirstGame: state.canGoToFirstGame,
+        setCanGoToFirstGame: state.setCanGoToFirstGame,
+        canGoToSecondGame: state.canGoToSecondGame,
+        setCanGoToSecondGame: state.setCanGoToSecondGame,
     }))
 
     useFrame(() => {
@@ -37,7 +40,7 @@ export default function Experience({ joystickInput })
             setCanGoToFirstGame(false)
             goToFirstGame()
         }
-
+        
         else if(enter && canGoToSecondGame) {
             setCanGoToSecondGame(false)
             goToSecondGame()
@@ -91,10 +94,16 @@ export default function Experience({ joystickInput })
                             sensor
                             position={ firstGameBox.current.position.toArray() }
                             onIntersectionEnter={ (other) => { 
-                                if(other.rigidBodyObject.name) setCanGoToFirstGame(true) 
+                                if(other.rigidBodyObject.name === 'Player') {
+                                    setCanPressEnter(true)
+                                    setCanGoToFirstGame(true) 
+                                }
                             }}
                             onIntersectionExit={ (other) => { 
-                                if(other.rigidBodyObject.name) setCanGoToFirstGame(false) 
+                                if(other.rigidBodyObject.name === 'Player') {
+                                    setCanPressEnter(false)
+                                    setCanGoToFirstGame(false) 
+                                }
                             }}
                         /> 
                     }
@@ -119,10 +128,16 @@ export default function Experience({ joystickInput })
                             sensor
                             position={ secondGameBox.current.position.toArray() }
                             onIntersectionEnter={ (other) => { 
-                                if(other.rigidBodyObject.name) setCanGoToSecondGame(true) 
+                                if(other.rigidBodyObject.name === 'Player') {
+                                    setCanPressEnter(true)
+                                    setCanGoToSecondGame(true) 
+                                }
                             }}
                             onIntersectionExit={ (other) => { 
-                                if(other.rigidBodyObject.name) setCanGoToSecondGame(false) 
+                                if(other.rigidBodyObject.name === 'Player') {
+                                    setCanPressEnter(false)
+                                    setCanGoToSecondGame(false) 
+                                }
                             }}
                         /> 
                     }

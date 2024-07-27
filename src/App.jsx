@@ -4,10 +4,11 @@ import { KeyboardControls } from "@react-three/drei"
 
 import Experience from './components/Experience.jsx'
 import { phases, useGame } from './useGame.jsx'
-import Joystick from './Joystick.jsx'
-import useIsMobile from './useIsMobile'
+import Joystick from './components/Joystick.jsx'
+import useIsMobile from './useIsMobile.jsx'
 import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
+import GameInterface from './components/GameInterface.jsx'
 
 export const Controls = {
     forward: "forward",
@@ -58,8 +59,10 @@ export default function App()
                 <Experience joystickInput={ joystickInput } />
             </Canvas>
 
-            { isMobile && <Joystick onMove={ handleJoystickMove } /> }
-
+            { isMobile && phase === phases.FREE && <Joystick onMove={ handleJoystickMove } /> }
+            
+            {/* INTERFACES */}
+            <GameInterface />
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }
             { phase === phases.SECOND_GAME && <SecondGameInterface /> }
 

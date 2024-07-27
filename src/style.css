@@ -47,6 +47,40 @@ body,
     pointer-events: none;
 }
 
+.press-enter-box {
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #ffffff;
+    font-size: 6vh;
+    background: #00000000;
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
+.press-enter {
+    width: 10%;
+    background: #00000033;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1024px) {
+    .press-enter {
+        width: 15%;
+    }
+}
+
+@media (max-width: 600px) {
+    .press-enter {
+        width: 50%;
+    }
+}
 
 /* FIRST GAME */
 .number {
@@ -119,4 +153,40 @@ body,
 
 .second-game-interface > div {
     margin: 0px 50px;
+}
+
+.second-game-mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #ffffff;
+    font-size: 6vh;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.second-game-mobile-controls .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
+
+.second-game-mobile-controls .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
+
+.second-game-mobile-controls .buttons .second-game-button {
+    border: 2px solid #000;
+    background: #00000033;
+    width: 100%;
+    margin: 10px;
+    user-select: none;
+    touch-action: manipulation;
 }

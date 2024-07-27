@@ -3,13 +3,14 @@ import { addEffect } from "@react-three/fiber"
 
 import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
 import { useGame } from "../../useGame.jsx"
+import useIsMobile from "../../useIsMobile.jsx"
 
 export const SecondGameInterface = () => {
 
     const time = useRef()
 
-    // BODY PARTS / FIRST GAME STATE
-    const { startGame, gameState, mode, goToMenu, score, correctAnswersOrder, correctCount, stage } = useSecondGame((state) => ({
+    // SECOND GAME STATE
+    const { startGame, gameState, mode, goToMenu, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         mode: state.mode,
@@ -18,6 +19,10 @@ export const SecondGameInterface = () => {
         correctAnswersOrder: state.correctAnswersOrder,
         correctCount: state.correctCount,
         stage: state.stage,
+        setMobileLeft: state.setMobileLeft,
+        setMobileRight: state.setMobileRight,
+        setMobilePush: state.setMobilePush,
+        setMobileJump: state.setMobileJump,
     }))
 
     // MAIN GAME STATE
@@ -57,11 +62,15 @@ export const SecondGameInterface = () => {
         }
     }, [])
 
+    // PREVENT DEFAULT SPACE & ENTER KEY ACTION
     const handleKeyDown = (event) => {
         if (event.key === ' ' || event.key === 'Enter') {
             event.preventDefault(); // Prevent the default space key action
         }
     }
+
+    // MOVILE CONTROLS
+    const isMobile = useIsMobile()
 
     return (
         <>
@@ -95,6 +104,43 @@ export const SecondGameInterface = () => {
                     <div>Score: { score }</div>
                 </div>
                 
+            </div>
+
+            {/* MOBILE CONTROLLERS */}
+            <div className={ `second-game-mobile-controls ${isMobile === false ? 'hidden' : ''}` } >
+                <div className="buttons">
+                    <div 
+                        className="second-game-button" 
+                        onTouchStart={ (e) => {
+                            e.preventDefault()
+                            setMobileLeft(true)
+                        } } 
+                        onTouchEnd={ () => setMobileLeft(false) }>Left</div>
+                    <div 
+                        className="second-game-button" 
+                        onTouchStart={ (e) => {
+                            e.preventDefault()
+                            setMobileRight(true)
+                        } } 
+                        onTouchEnd={ () => setMobileRight(false) }>Right</div>
+                </div>
+
+                <div className="buttons">
+                    <div 
+                        className="second-game-button" 
+                        onTouchStart={ (e) => {
+                            e.preventDefault()
+                            setMobilePush(true)
+                        } } 
+                        onTouchEnd={ () => setMobilePush(false) }>Push</div>
+                    <div 
+                        className="second-game-button" 
+                        onTouchStart={ (e) => {
+                            e.preventDefault()
+                            setMobileJump(true)
+                        } } 
+                        onTouchEnd={ () => setMobileJump(false) }>Jump</div>
+                </div>
             </div>
         </>
     )

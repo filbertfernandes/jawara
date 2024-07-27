@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
+import { useSecondGame } from "./stores/useSecondGame"
 
 export default function Marble()
 {
@@ -12,6 +13,12 @@ export default function Marble()
 
     const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(10, 10, 10)) // set the initial position to 10 10 10
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3())
+
+    // SECOND GAME STATE
+    const { mobileLeft, mobileRight } = useSecondGame((state) => ({
+        mobileLeft: state.mobileLeft,
+        mobileRight: state.mobileRight,
+    }))
 
     const reset = () => {
         // setTranslation to put it back at the origin
@@ -76,10 +83,26 @@ export default function Marble()
             }
         )
 
+        const unsubscribeMobileJump = useSecondGame.subscribe(
+            (state) => state.mobileJump,
+            (isJump) => {
+                if(isJump) jump()
+            }
+        )
+        
+        const unsubscribeMobilePush = useSecondGame.subscribe(
+            (state) => state.mobilePush,
+            (isPush) => {
+                if(isPush) push()
+            }
+        )
+
         // this part will be called whenever we need to clean things
         return () => {
             unsubscribeJump()
             unsubscribePush()
+            unsubscribeMobileJump()
+            unsubscribeMobilePush()
         }
     }, [])
 
@@ -94,13 +117,13 @@ export default function Marble()
 
         const impulseStrength = 0.6 * delta
         const torqueStrength = 0.2 * delta
-
-        if(left) {
+        
+        if(left || mobileLeft) {
             impulse.x -= impulseStrength
             torque.z += torqueStrength
         }
 
-        if(right) {
+        if(right || mobileRight) {
             impulse.x += impulseStrength
             torque.z -= torqueStrength
         }

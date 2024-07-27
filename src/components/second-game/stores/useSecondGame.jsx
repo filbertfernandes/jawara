@@ -1,4 +1,6 @@
 import { create } from "zustand"
+import { subscribeWithSelector } from "zustand/middleware"
+
 import { words } from "./constants.js"
 
 export const gameStates = {
@@ -39,56 +41,87 @@ export const genereateCorrectAnswersOrder = () => {
     return arr;
 }
 
-export const useSecondGame = create((set) => ({
-    stage: null,
-    score: 0,
-    mode: "",
-    gameState: gameStates.MENU,
-    timer: 0,
-    initialTimer: 120,
-    startTime: 0,
-    correctAnswersOrder: [],
-    correctCount: 0,
+export const useSecondGame = create(subscribeWithSelector((set) => {
+    return {
+        stage: null,
+        score: 0,
+        mode: "",
+        gameState: gameStates.MENU,
+        timer: 0,
+        initialTimer: 120,
+        startTime: 0,
+        correctAnswersOrder: [],
+        correctCount: 0,
+        mobileLeft: false,
+        mobileRight: false,
+        mobilePush: false,
+        mobileJump: false,
 
-    startGame: ({ mode }) => {
+        startGame: ({ mode }) => {
 
-        set((state) => {
-            const stage = generateGameLevel()
-            const correctAnswersOrder = genereateCorrectAnswersOrder()
-            return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 120, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
-        })
+            set((state) => {
+                const stage = generateGameLevel()
+                const correctAnswersOrder = genereateCorrectAnswersOrder()
+                return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 120, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
+            })
 
-    },
+        },
 
-    incrementCorrectCount: () => {
-        set((state) => {
-            const correctCount = state.correctCount + 1
-            const score = state.score + 1
-            return { correctCount, score }
-        })
-    },
+        incrementCorrectCount: () => {
+            set((state) => {
+                const correctCount = state.correctCount + 1
+                const score = state.score + 1
+                return { correctCount, score }
+            })
+        },
 
-    nextStage: () => {
+        nextStage: () => {
 
-        set((state) => {
-            const stage = generateGameLevel()
-            const correctCount = 0
-            const correctAnswersOrder = genereateCorrectAnswersOrder()
-            return { stage, correctCount, correctAnswersOrder }
-        })
+            set((state) => {
+                const stage = generateGameLevel()
+                const correctCount = 0
+                const correctAnswersOrder = genereateCorrectAnswersOrder()
+                return { stage, correctCount, correctAnswersOrder }
+            })
+            
+        },
+
+        gameOver: () => {
+            set((state) => {
+                return { gameState: gameStates.GAME_OVER }
+            })
+        },
+
+        goToMenu: () => {
+            set((state) => {
+                return { gameState: gameStates.MENU }
+            })
+        },
+
+        // MOBILE CONTROLS
+        setMobileLeft: (condition) => {
+            set((state) => {
+                return { mobileLeft: condition }
+            })
+        },
         
-    },
+        setMobileRight: (condition) => {
+            set((state) => {
+                return { mobileRight: condition }
+            })
+        },
 
-    gameOver: () => {
-        set((state) => {
-            return { gameState: gameStates.GAME_OVER }
-        })
-    },
+        setMobilePush: (condition) => {
+            set((state) => {
+                return { mobilePush: condition }
+            })
+        },
 
-    goToMenu: () => {
-        set((state) => {
-            return { gameState: gameStates.MENU }
-        })
-    }
+        setMobileJump: (condition) => {
+            set((state) => {
+                return { mobileJump: condition }
+            })
+        }
     
-  }))
+    }
+}))

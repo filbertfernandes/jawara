@@ -117,7 +117,7 @@ export default function PlayerController({ joystickInput })
 
             <RigidBody
                 ref={ rigidBody } 
-                name="PLayer"
+                name="Player"
                 colliders={ false } 
                 scale={ [0.5, 0.5, 0.5] } 
                 enabledRotations={ [false, false, false] }
