@@ -1,15 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { phases, useGame } from '../useGame.jsx'
+import { useGame } from '../useGame.jsx'
 
 export default function Player(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('./models/character/boy.glb')
   const { actions } = useAnimations(animations, group)
 
-  const { playerState, phase } = useGame((state) => ({
-      playerState: state.playerState,
-      phase: state.phase,
+  const { playerState } = useGame((state) => ({
+      playerState: state.playerState
   }))
   
   useEffect(() => {

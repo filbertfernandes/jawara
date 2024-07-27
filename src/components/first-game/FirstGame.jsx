@@ -32,11 +32,11 @@ export default function FirstGame()
             makeDefault 
             enablePan={ false } 
             enableZoom={ true }
-            target={[0, 1, 0]}
-            maxPolarAngle={Math.PI / 1.65} // Limit vertical panning (up-down)
-            minPolarAngle={0}
-            maxDistance={5} // Limit zoom out
-            minDistance={1} // Limit zoom in
+            target={ [0, 1, 0] }
+            maxPolarAngle={ Math.PI / 1.65 } // Limit vertical panning (up-down)
+            minPolarAngle={ 0 }
+            maxDistance={ 5 } // Limit zoom out
+            minDistance={ 1 } // Limit zoom in
         />
 
         <Character scale={ 0.2 } position={ [0, 0, 0] } />

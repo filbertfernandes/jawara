@@ -137,12 +137,8 @@ export default function Experience()
             {/* Flower */}
             {/* <Flower01 position={ [0, 0, 0] } scale={ 2 }/> */}
 
-            {/* Fences */}
-            {/* <Fences scale={ 0.55 } /> */}
-
             {/* Football */}
             <RigidBody colliders="ball" position={ [-3, 5, 12] } restitution={ 0.65 } friction={ 1.5 } >
-                {/* <primitive object={ football.scene } scale={ 0.3 } castShadow receiveShadow /> */}
                 <Football scale={ 0.3 } /> 
             </RigidBody>
 

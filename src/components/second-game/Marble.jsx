@@ -3,7 +3,6 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
-import { useSecondGame } from "./stores/useSecondGame.jsx"
 
 export default function Marble()
 {
@@ -106,10 +105,8 @@ export default function Marble()
             torque.z -= torqueStrength
         }
 
-        // if(marbleBody.current.translation().z >= -0.5) {
-            marbleBody.current.applyImpulse(impulse)
-            marbleBody.current.applyTorqueImpulse(torque)
-        // }
+        marbleBody.current.applyImpulse(impulse)
+        marbleBody.current.applyTorqueImpulse(torque)
 
         /**
          * Camera
