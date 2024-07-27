@@ -13,7 +13,7 @@ const MOVEMENT_SPEED = 0.13
 const MAX_VEL = 3
 const RUN_VEL = 2
 
-export default function PlayerController() 
+export default function PlayerController({ joystickInput }) 
 {
     const { playerState, setPlayerState, phase } = useGame((state) => ({
         playerState: state.playerState,
@@ -65,6 +65,19 @@ export default function PlayerController()
                 impulse.z -= MOVEMENT_SPEED
                 changeRotation = true
             }
+
+            // Joystick Controls
+            if(joystickInput && linvel.x < MAX_VEL && linvel.x > -MAX_VEL && linvel.z < MAX_VEL && linvel.z > -MAX_VEL) {
+                const { x, y } = joystickInput
+                const angle = Math.atan2(x, y) // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
+                const distance = Math.sqrt(x * x + y * y) // Computes the Euclidean distance from the center to the joystick's current position
+                
+                if(distance > 0) {
+                    impulse.x -= MOVEMENT_SPEED * Math.cos(angle)
+                    impulse.z -= MOVEMENT_SPEED * Math.sin(angle)
+                    changeRotation = true
+                }
+            }
     
             rigidBody.current.applyImpulse(impulse, true)
     
@@ -109,7 +122,7 @@ export default function PlayerController()
                 scale={ [0.5, 0.5, 0.5] } 
                 enabledRotations={ [false, false, false] }
                 onCollisionEnter={() => {
-                    isOnFloor.current = true;
+                    isOnFloor.current = true
                 }}
                 position={ [0, 0.5, 15] }
             >
@@ -120,5 +133,6 @@ export default function PlayerController()
             </RigidBody>
 
         </group>
+
     )
 }

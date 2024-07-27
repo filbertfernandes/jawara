@@ -1,9 +1,11 @@
 import { Canvas } from '@react-three/fiber'
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { KeyboardControls } from "@react-three/drei"
 
 import Experience from './components/Experience.jsx'
 import { phases, useGame } from './useGame.jsx'
+import Joystick from './Joystick.jsx'
+import useIsMobile from './useIsMobile'
 import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
 
@@ -23,6 +25,7 @@ export default function App()
         phase: state.phase
     }))
 
+    // KEYBOARD
     const map = useMemo(() => [
         { name: Controls.forward, keys: ['ArrowUp', 'KeyW'] },
         { name: Controls.back, keys: ['ArrowDown', 'KeyS'] },
@@ -31,6 +34,14 @@ export default function App()
         { name: Controls.jump, keys: ['Space'] },
         { name: Controls.enter, keys: ['Enter'] },
     ], [])
+
+    // JOYSTICK
+    const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 })
+    const isMobile = useIsMobile()
+
+    const handleJoystickMove = (input) => {
+        setJoystickInput(input)
+    }
 
     return (
         <KeyboardControls map={ map }>
@@ -44,11 +55,14 @@ export default function App()
                     position: [ 0, 1, 3 ]
                 } }
             >
-                <Experience />
+                <Experience joystickInput={ joystickInput } />
             </Canvas>
+
+            { isMobile && <Joystick onMove={ handleJoystickMove } /> }
 
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }
             { phase === phases.SECOND_GAME && <SecondGameInterface /> }
+
 
         </KeyboardControls>
     )

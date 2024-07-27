@@ -32,7 +32,7 @@ export default function Marble()
         const hit = world.castRay(ray, 10, true)
 
         if(hit.toi < 0.15)
-            marbleBody.current.applyImpulse({ x: 0, y: 0.5, z: 0 })
+            marbleBody.current.applyImpulse({ x: 0, y: 0.7, z: 0 })
     }
 
     const push = () => {

@@ -14,7 +14,7 @@ import { useFrame } from '@react-three/fiber'
 import World from './environment/World.jsx'
 import Football from './environment/Football.jsx'
 
-export default function Experience()
+export default function Experience({ joystickInput })
 {
     // GO TO GAMES CONTROL
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
@@ -47,7 +47,7 @@ export default function Experience()
     return <>
 
         {/* PERF */}
-        <Perf position="bottom-right" />
+        {/* <Perf position="bottom-right" /> */}
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />
@@ -154,7 +154,7 @@ export default function Experience()
 
             {/* PLAYER */}
             {/* { phase === phases.FREE && <PlayerController ref={ player } /> } */}
-            <PlayerController />
+            <PlayerController joystickInput={ joystickInput } />
 
             {/* FIRST GAME */}
             { phase === phases.FIRST_GAME && <FirstGame /> }
