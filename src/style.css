@@ -28,9 +28,9 @@ body,
     position: fixed;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     justify-content: center;
     align-items: center;
+    gap: 16px;
     left: 0;
     top: 0;
     width: 100%;
@@ -41,6 +41,8 @@ body,
     backdrop-filter: blur(4px);
     transition: all 1s ease-in-out;
 }
+
+
 
 .hidden {
     opacity: 0;
@@ -71,6 +73,15 @@ body,
 
 
 @media (max-width: 1024px) {
+    .menu {
+        gap: 0px;
+    }
+
+    .menu > button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
     .press-enter {
         width: 15%;
     }
