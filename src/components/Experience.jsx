@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useKeyboardControls, Edges, Outlines } from '@react-three/drei'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
@@ -6,6 +6,7 @@ import { Perf } from 'r3f-perf'
 import Lights from '../Lights.jsx'
 import FirstGame from './first-game/FirstGame.jsx'
 import SecondGame from './second-game/SecondGame.jsx'
+import ThirdGame from './third-game/ThirdGame.jsx'
 import PlayerController from "./PlayerController.jsx"
 import { phases, useGame } from '../useGame.jsx'
 import { useFrame } from '@react-three/fiber'
@@ -50,7 +51,7 @@ export default function Experience({ joystickInput })
     return <>
 
         {/* PERF */}
-        {/* <Perf position="bottom-right" /> */}
+        <Perf position="bottom-right" />
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />
@@ -171,11 +172,10 @@ export default function Experience({ joystickInput })
             {/* { phase === phases.FREE && <PlayerController ref={ player } /> } */}
             <PlayerController joystickInput={ joystickInput } />
 
-            {/* FIRST GAME */}
+            {/* GAME PHASES */}
             { phase === phases.FIRST_GAME && <FirstGame /> }
-
-            {/* SECOND GAME */}
             { phase === phases.SECOND_GAME && <SecondGame /> }
+            { phase === phases.THIRD_GAME && <ThirdGame /> }
 
         </Physics>
 

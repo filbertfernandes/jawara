@@ -48,7 +48,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
         mode: "",
         gameState: gameStates.MENU,
         timer: 0,
-        initialTimer: 120,
+        initialTimer: 5,
         startTime: 0,
         correctAnswersOrder: [],
         correctCount: 0,
@@ -62,7 +62,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
             set((state) => {
                 const stage = generateGameLevel()
                 const correctAnswersOrder = genereateCorrectAnswersOrder()
-                return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 120, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
+                return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 5, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
             })
 
         },

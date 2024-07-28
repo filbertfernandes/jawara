@@ -3,11 +3,12 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
-import { useSecondGame } from "./stores/useSecondGame"
+import { gameStates, useSecondGame } from "./stores/useSecondGame"
 
 export default function Marble()
 {
     const marbleBody = useRef()
+    const timeoutId = useRef(null);
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
 
@@ -15,9 +16,11 @@ export default function Marble()
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3())
 
     // SECOND GAME STATE
-    const { mobileLeft, mobileRight } = useSecondGame((state) => ({
+    const { mobileLeft, mobileRight, score, gameState } = useSecondGame((state) => ({
         mobileLeft: state.mobileLeft,
         mobileRight: state.mobileRight,
+        score: state.score,
+        gameState: state.gameState,
     }))
 
     const reset = () => {
@@ -25,6 +28,10 @@ export default function Marble()
         // setLinvel to remove any translation force
         // setAngvel to remove any angular forc
 
+        if(timeoutId.current !== null) {
+            clearTimeout(timeoutId.current)
+            timeoutId.current = null
+        }
         marbleBody.current.setTranslation({ x: 0, y: 1, z: 3.5 })
         marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
@@ -54,13 +61,13 @@ export default function Marble()
 
         const marbleBodyPosition = marbleBody.current.translation()
 
-        if(marbleBodyPosition.z >= -0.5) {
+        if(marbleBodyPosition.z >= -5.3) {
             marbleBody.current.applyImpulse(impulse)
             marbleBody.current.applyTorqueImpulse(torque)
 
-            setTimeout(() => {
+            timeoutId.current = setTimeout(() => {
                 reset()
-            }, 1800)
+            }, 3000)
         }
     }
 
@@ -105,6 +112,18 @@ export default function Marble()
             unsubscribeMobilePush()
         }
     }, [])
+
+    useEffect(() => {
+        if(score > 0) {
+            reset()
+        }
+    }, [score])
+
+    useEffect(() => {
+        if(gameState === gameStates.GAME) {
+            reset()
+        }
+    }, [gameState])
 
     useFrame((state, delta) => {
         /**

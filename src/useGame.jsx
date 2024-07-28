@@ -5,6 +5,7 @@ export const phases = {
     FREE: 'FREE',
     FIRST_GAME: 'FIRST_GAME',
     SECOND_GAME: 'SECOND_GAME',
+    THIRD_GAME: 'THIRD_GAME',
 }
 
 export const useGame = create(subscribeWithSelector((set) => 
@@ -15,6 +16,7 @@ export const useGame = create(subscribeWithSelector((set) =>
         canPressEnter: false,
         canGoToFirstGame: false,
         canGoToSecondGame: false,
+        canGoToThirdGame: false,
 
         // GO TO PHASES METHODS
         goToHome: () => {
@@ -34,7 +36,13 @@ export const useGame = create(subscribeWithSelector((set) =>
                 return { phase: phases.SECOND_GAME, canPressEnter: false }
             })
         },
-
+        
+        goToThirdGame: () => {
+            set((state) => {
+                return { phase: phases.THIRD_GAME, canPressEnter: false }
+            })
+        },
+        
         setCanPressEnter: (condition) => {
             set((state) => {
                 return { canPressEnter: condition }
@@ -50,6 +58,12 @@ export const useGame = create(subscribeWithSelector((set) =>
         setCanGoToSecondGame: (condition) => {
             set((state) => {
                 return { canGoToSecondGame: condition }
+            })
+        },
+
+        setCanGoToThirdGame: (condition) => {
+            set((state) => {
+                return { canGoToThirdGame: condition }
             })
         },
 
