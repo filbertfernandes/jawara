@@ -50,75 +50,24 @@ export function Level({ characterBody })
         const newInputValues = { ...inputValues, [index]: event.target.value };
         setInputValues(newInputValues);
         
-        // NGOKO
-        if(mode === 'ngoko') {
-            const inputValue = newInputValues[index].toLowerCase() 
-            const levelInput = level[currentStage][index] // corecct answer based on the index
+        const inputValue = newInputValues[index].toLowerCase() 
+        const levelInput = level[currentStage][index] // corecct answer based on the index
 
-            // Compare input value with correct answer, if it's true
-            if(inputValue === levelInput.ngoko.toLowerCase()) {
-                // If it was false before, then increment the correctCount
-                if(!levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount + 1)
-                    levelInput.isCorrect = true
-                }
-                
+        // Compare input value with correct answer, if it's true
+        if(inputValue === levelInput[mode].toLowerCase()) {
+            // If it was false before, then increment the correctCount
+            if(!levelInput.isCorrect) {
+                setCorrectCount(prevCount => prevCount + 1)
+                levelInput.isCorrect = true
             }
             
-            else {
-                // if it was true before, then decrement the correctCount.
-                if(levelInput && levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount - 1)
-                    levelInput.isCorrect = false
-                }
-            }
         }
-
-        // MADYA
-        else if(mode === 'madya') {
-            const inputValue = newInputValues[index].toLowerCase() 
-            const levelInput = level[currentStage][index] // corecct answer based on the index
-
-            // Compare input value with correct answer, if it's true
-            if(inputValue === levelInput.madya.toLowerCase()) {
-                // If it was false before, then increment the correctCount
-                if(!levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount + 1)
-                    levelInput.isCorrect = true
-                }
-                
-            }
-            
-            else {
-                // if it was true before, then decrement the correctCount.
-                if(levelInput && levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount - 1)
-                    levelInput.isCorrect = false
-                }
-            }
-        }
-
-        // ALUS
-        else if(mode === 'alus') {
-            const inputValue = newInputValues[index].toLowerCase() 
-            const levelInput = level[currentStage][index] // corecct answer based on the index
-
-            // Compare input value with correct answer, if it's true
-            if(inputValue === levelInput.alus.toLowerCase()) {
-                // If it was false before, then increment the correctCount
-                if(!levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount + 1)
-                    levelInput.isCorrect = true
-                }
-                
-            }
-            
-            else {
-                // if it was true before, then decrement the correctCount.
-                if(levelInput && levelInput.isCorrect) {
-                    setCorrectCount(prevCount => prevCount - 1)
-                    levelInput.isCorrect = false
-                }
+        
+        else {
+            // if it was true before, then decrement the correctCount.
+            if(levelInput && levelInput.isCorrect) {
+                setCorrectCount(prevCount => prevCount - 1)
+                levelInput.isCorrect = false
             }
         }
     }
