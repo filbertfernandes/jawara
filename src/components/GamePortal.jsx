@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
 import { useKeyboardControls, Edges, Outlines } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 
@@ -19,13 +18,21 @@ export default function GamePortal({ phase, portalPosition })
         setCanPressEnter: state.setCanPressEnter,
     }))
 
-    useFrame(() => {
-        const { enter } = getKeys()
+    useEffect(() => {
+        const unsubscribeEnter = subscribeKeys(
+            (state) => state.enter,
 
-        if(enter && canChangePhase) {
-            setCanPressEnter(false)
-            setCanChangePhase(false, '')
-            changePhase(phase)
+            (value) => {
+                if(value && canChangePhase.condition && canChangePhase.phase != '') {
+                    changePhase(canChangePhase.phase)
+                    setCanPressEnter(false)
+                    setCanChangePhase(false, '')
+                }
+            }
+        )
+
+        return () => {
+            unsubscribeEnter()
         }
     })
 
