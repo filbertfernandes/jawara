@@ -25,6 +25,12 @@ export const useGame = create(subscribeWithSelector((set) =>
             })
         },
 
+        goToGame: (gamePhase) => {
+            set((state) => {
+                return { phase: gamePhase }
+            })
+        }
+
         goToFirstGame: () => {
             set((state) => {
                 return { phase: phases.FIRST_GAME, canPressEnter: false }
