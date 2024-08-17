@@ -2,27 +2,27 @@ import { useGame } from '../useGame.jsx'
 
 export default function GameInterface()
 {
-    const { canPressEnter, canGoToFirstGame, goToFirstGame, canGoToSecondGame, goToSecondGame } = useGame((state) => ({
+    const { changePhase, canChangePhase, setCanChangePhase, canPressEnter, setCanPressEnter } = useGame((state) => ({
+        changePhase: state.changePhase,
+        canChangePhase: state.canChangePhase,
+        setCanChangePhase: state.setCanChangePhase,
         canPressEnter: state.canPressEnter,
-        canGoToFirstGame: state.canGoToFirstGame,
-        goToFirstGame: state.goToFirstGame,
-        canGoToSecondGame: state.canGoToSecondGame,
-        goToSecondGame: state.goToSecondGame,
+        setCanPressEnter: state.setCanPressEnter,
     }))
     
-    const goToGame = () => {
-        if(canGoToFirstGame) goToFirstGame()
-        
-        else if(canGoToSecondGame) goToSecondGame()
+    const handleEnterButtonClick = () => {
+        if(canChangePhase.condition && canChangePhase.phase != '') {
+            changePhase(canChangePhase.phase)
+            setCanPressEnter(false)
+            setCanChangePhase(false, '')
+        }
     }
 
     return (
         <>
-            {/* ENTER */}
-            <div
-                className={ `press-enter-box ${canPressEnter === false ? 'hidden' : ''}` }
-            >
-                <div className={ `press-enter` } onClick={ goToGame }>
+            {/* ENTER BUTTON */}
+            <div className={ `press-enter-box ${canPressEnter === false ? 'hidden' : ''}` } >
+                <div className={ `press-enter` } onClick={ handleEnterButtonClick }>
                     Enter
                 </div>
             </div>

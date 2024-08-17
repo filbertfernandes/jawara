@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useKeyboardControls, Edges, Outlines } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 
-import { useGame } from '../useGame.jsx'
+import { useGame } from '../../useGame.jsx'
 
 export default function GamePortal({ phase, portalPosition })
 {

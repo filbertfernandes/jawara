@@ -2,7 +2,6 @@ import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
 import Lights from '../Lights.jsx'
-import GamePortal from './GamePortal.jsx'
 import FirstGame from './first-game/FirstGame.jsx'
 import SecondGame from './second-game/SecondGame.jsx'
 import ThirdGame from './third-game/ThirdGame.jsx'
@@ -10,6 +9,7 @@ import PlayerController from "./PlayerController.jsx"
 import { phases, useGame } from '../useGame.jsx'
 
 // IMPORT ENVIRONMENT
+import GamePortal from './environment/GamePortal.jsx'
 import World from './environment/World.jsx'
 import Football from './environment/Football.jsx'
 
