@@ -107,17 +107,17 @@ export const SecondGameInterface = () => {
             </div>
 
             {/* MOBILE CONTROLLERS */}
-            <div className={ `second-game-mobile-controls ${isMobile === false ? 'hidden' : ''}` } >
-                <div className="buttons">
+            <div className={ `flex justify-between flex-nowrap font-bebas text-teal-50 text-3xl pt-1 text-center absolute bottom-0 left-0 w-full ${isMobile === false ? 'opacity-0 pointer-events-none' : ''}` } >
+                <div className="flex justify-evenly w-[30%]">
                     <div 
-                        className="second-game-button" 
+                        className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobileLeft(true)
                         } } 
                         onTouchEnd={ () => setMobileLeft(false) }>Left</div>
                     <div 
-                        className="second-game-button" 
+                        className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobileRight(true)
@@ -125,16 +125,16 @@ export const SecondGameInterface = () => {
                         onTouchEnd={ () => setMobileRight(false) }>Right</div>
                 </div>
 
-                <div className="buttons">
+                <div className="flex justify-evenly w-[30%]">
                     <div 
-                        className="second-game-button" 
+                        className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobilePush(true)
                         } } 
                         onTouchEnd={ () => setMobilePush(false) }>Push</div>
                     <div 
-                        className="second-game-button" 
+                        className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobileJump(true)
