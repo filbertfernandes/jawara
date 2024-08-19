@@ -57,27 +57,27 @@ export const FirstGameInterface = () => {
             <div
                 className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className="text-3xl text-teal-400 drop-shadow-lg font-bold">Anggota Tubuh</h1>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
+                <h1 className='text-3xl text-teal-400 drop-shadow-lg font-bold'>Anggota Tubuh</h1>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
             </div>
 
             {/* GAME OVER INTERFACE */}
             <div
                 className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className="text-3xl text-teal-400 drop-shadow-lg font-bold">CONGRATULATIONS</h1>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
-                <button className="p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md" onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
+                <h1 className='text-3xl text-teal-400 drop-shadow-lg font-bold'>CONGRATULATIONS</h1>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
             </div>
 
             {/* GAME INTERFACE */}
             <div
                 className={ `${gameState === gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <div ref={ time } className="absolute top-0 left-0 w-full text-teal-50 text-3xl bg-black/30 pt-1 text-center pointer-events-none font-bebas">0.00</div>
+                <div ref={ time } className='absolute top-0 left-0 w-full text-teal-50 text-3xl bg-black/30 pt-1 text-center pointer-events-none font-bebas'>0.00</div>
             </div>
         </>
     )
