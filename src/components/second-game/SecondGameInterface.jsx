@@ -78,27 +78,27 @@ export const SecondGameInterface = () => {
             <div
                 className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className='text-3xl text-teal-400 drop-shadow-lg font-bold'>Warna</h1>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
+                <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Warna</h1>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
             </div>
 
             {/* GAME OVER INTERFACE */}
             <div
                 className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className='text-3xl text-teal-400 drop-shadow-lg font-bold'>CONGRATULATIONS! Your score is { score }</h1>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-teal-100 font-semibold rounded-lg shadow-md' onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
+                <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>CONGRATULATIONS! Your score is { score }</h1>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
+                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
             </div>
 
             {/* GAME INTERFACE */}
             <div
                 className={ `${gameState === gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <div className='flex justify-between flex-wrap font-bebas text-teal-50 text-3xl bg-black/20 pt-1 text-center pointer-events-none absolute top-0 left-0 w-full'>
+                <div className='flex justify-between flex-wrap font-bebas text-sky-50 text-3xl bg-black/20 pt-1 text-center pointer-events-none absolute top-0 left-0 w-full'>
                     <div>Time Left: <span ref={ time } >120</span></div>
                     { correctCount < 5 && <div>{ stage ? stage[correctAnswersOrder[correctCount]][mode] : '' }</div> }
                     <div>Score: { score }</div>
@@ -107,7 +107,7 @@ export const SecondGameInterface = () => {
             </div>
 
             {/* MOBILE CONTROLLERS */}
-            <div className={ `flex justify-between flex-nowrap font-bebas text-teal-50 text-3xl pt-1 text-center absolute bottom-0 left-0 w-full ${isMobile === false ? 'opacity-0 pointer-events-none' : ''}` } >
+            <div className={ `flex justify-between flex-nowrap font-bebas text-sky-50 text-3xl pt-1 text-center absolute bottom-0 left-0 w-full ${isMobile === false ? 'opacity-0 pointer-events-none' : ''}` } >
                 <div className="flex justify-evenly w-[30%]">
                     <div 
                         className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
