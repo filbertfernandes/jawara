@@ -46,7 +46,6 @@ export default function App()
 
     return (
         <KeyboardControls map={ map }>
-
             <Canvas
                 shadows
                 camera={ {

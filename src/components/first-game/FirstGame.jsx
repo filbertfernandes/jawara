@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 
 import Character from './Character.jsx'
 import { useFirstGame } from './stores/useFirstGame.jsx'
+import './stores/firstGame.css'
 
 export default function FirstGame()
 {

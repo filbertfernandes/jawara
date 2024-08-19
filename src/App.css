@@ -96,7 +96,7 @@ body,
 /* FIRST GAME */
 .number {
     background: #000000;
-    padding: 3px 5px; // left right, top bottom
+    padding: 3px 5px; /* left right, top bottom */
 }
 
 .input-box {
@@ -106,7 +106,7 @@ body,
     transition: transform 0.3s ease; /* Optional: Adds a smooth transition effect */
     display: inline-block;
     white-space: nowrap; /* Ensure the input doesn't break to a new line */
-    padding: 2px 4px; // left right, top bottom
+    padding: 2px 4px; /* left right, top bottom */
 }
   
 .input-box.visible {
