@@ -107,7 +107,7 @@ export const SecondGameInterface = () => {
             </div>
 
             {/* MOBILE CONTROLLERS */}
-            <div className={ `flex justify-between flex-nowrap font-bebas text-sky-50 text-3xl pt-1 text-center absolute bottom-0 left-0 w-full ${isMobile === false ? 'opacity-0 pointer-events-none' : ''}` } >
+            <div className={ `flex justify-between flex-nowrap font-bebas text-sky-50 text-3xl pt-1 text-center absolute bottom-0 left-0 w-full ${isMobile === false || gameState != gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
                 <div className="flex justify-evenly w-[30%]">
                     <div 
                         className="border-2 border-black bg-black/20 w-full m-2.5 select-none touch-manipulation" 
