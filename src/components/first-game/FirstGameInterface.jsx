@@ -4,6 +4,11 @@ import { addEffect } from "@react-three/fiber"
 import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
 import { useGame } from "../../useGame.jsx"
 
+// react icons
+import { IoGameController } from "react-icons/io5"
+import { GrTrophy } from "react-icons/gr"
+import { FaBook } from "react-icons/fa"
+
 export const FirstGameInterface = () => {
 
     const time = useRef()
@@ -55,8 +60,20 @@ export const FirstGameInterface = () => {
         <>
             {/* MENU INTERFACE */}
             <div
-                className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
+                <div className="flex justify-evenly w-full">
+                    <button className="btn btn-square btn-lg rounded-[1rem] text-4xl text-sky-500 bg-white">
+                        <IoGameController />
+                    </button>
+                    <button className="btn btn-square btn-lg rounded-[1rem] text-4xl text-white/50 bg-white/10 border-white/50 border-2">
+                        <GrTrophy />
+                    </button>
+                    <button className="btn btn-square btn-lg rounded-[1rem] text-4xl text-white/50 bg-white/10 border-white/50 border-2">
+                        <FaBook />
+                    </button>
+                </div>
+                
                 <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Anggota Tubuh</h1>
                 <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
                 <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
@@ -66,7 +83,7 @@ export const FirstGameInterface = () => {
 
             {/* GAME OVER INTERFACE */}
             <div
-                className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>CONGRATULATIONS</h1>
                 <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>

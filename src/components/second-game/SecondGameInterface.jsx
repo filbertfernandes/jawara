@@ -76,7 +76,7 @@ export const SecondGameInterface = () => {
         <>
             {/* MENU INTERFACE */}
             <div
-                className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Warna</h1>
                 <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
@@ -87,7 +87,7 @@ export const SecondGameInterface = () => {
 
             {/* GAME OVER INTERFACE */}
             <div
-                className={ `font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/30 backdrop-blur bg-repeat transition-all duration-1000 ease-in-out ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>CONGRATULATIONS! Your score is { score }</h1>
                 <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>

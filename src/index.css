@@ -13,3 +13,7 @@ body,
     width: 100%;
     height: 100%;
 }
+
+.dark-layout {
+    @apply font-bebas fixed flex flex-col justify-center items-center gap-4 left-0 top-0 w-full h-full bg-black/60 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out
+}
