@@ -62,7 +62,7 @@ export const FirstGameInterface = () => {
             <div
                 className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <div className="flex justify-evenly w-full">
+                <div className="flex justify-evenly w-full mb-4">
                     <button className="btn btn-square btn-lg rounded-[1rem] text-4xl text-sky-500 bg-white">
                         <IoGameController />
                     </button>
@@ -74,11 +74,13 @@ export const FirstGameInterface = () => {
                     </button>
                 </div>
                 
-                <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Anggota Tubuh</h1>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
+                <div className="flex flex-col justify-center items-center gap-6 w-full h-[75%]">
+                    <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Anggota Tubuh</h1>
+                    <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
+                    <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
+                    <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
+                    <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
+                </div>
             </div>
 
             {/* GAME OVER INTERFACE */}
