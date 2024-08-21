@@ -6,6 +6,8 @@ import Experience from './components/Experience.jsx'
 import { phases, useGame } from './useGame.jsx'
 import Joystick from './components/Joystick.jsx'
 import useIsMobile from './useIsMobile.jsx'
+
+// INTERFACES
 import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
 import FreePhaseInterface from './components/FreePhaseInterface.jsx'
@@ -46,6 +48,7 @@ export default function App()
 
     return (
         <KeyboardControls map={ map }>
+            {/* 3D CANVAS */}
             <Canvas
                 shadows
                 camera={ {
@@ -58,10 +61,11 @@ export default function App()
                 <Experience joystickInput={ joystickInput } />
             </Canvas>
 
+            {/* JOYSTICK */}
             { isMobile && phase === phases.FREE && <Joystick onMove={ handleJoystickMove } /> }
             
             {/* INTERFACES */}
-            <FreePhaseInterface />
+            { phase === phases.FREE && <FreePhaseInterface /> }
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }
             { phase === phases.SECOND_GAME && <SecondGameInterface /> }
 

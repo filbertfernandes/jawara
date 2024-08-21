@@ -67,7 +67,7 @@ export default function Experience({ joystickInput })
             {/* PLAYER */}
             <PlayerController joystickInput={ joystickInput } />
 
-            {/* GAME PHASES */}
+            {/* PHASES */}
             { phase === phases.FIRST_GAME && <FirstGame /> }
             { phase === phases.SECOND_GAME && <SecondGame /> }
             { phase === phases.THIRD_GAME && <ThirdGame /> }
