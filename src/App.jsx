@@ -10,7 +10,7 @@ import useIsMobile from './useIsMobile.jsx'
 // INTERFACES
 import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
-import FreePhaseInterface from './components/FreePhaseInterface.jsx'
+import FreePhaseInterface from './components/interfaces/FreePhaseInterface.jsx'
 
 export const Controls = {
     forward: "forward",

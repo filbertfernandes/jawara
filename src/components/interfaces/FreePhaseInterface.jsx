@@ -1,4 +1,4 @@
-import { useGame } from '../useGame.jsx'
+import { useGame } from '../../useGame.jsx'
 
 export default function FreePhaseInterface()
 {
