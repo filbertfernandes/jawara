@@ -8,7 +8,7 @@ import Joystick from './components/Joystick.jsx'
 import useIsMobile from './useIsMobile.jsx'
 import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
 import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
-import GameInterface from './components/GameInterface.jsx'
+import FreePhaseInterface from './components/FreePhaseInterface.jsx'
 
 export const Controls = {
     forward: "forward",
@@ -61,7 +61,7 @@ export default function App()
             { isMobile && phase === phases.FREE && <Joystick onMove={ handleJoystickMove } /> }
             
             {/* INTERFACES */}
-            <GameInterface />
+            <FreePhaseInterface />
             { phase === phases.FIRST_GAME && <FirstGameInterface /> }
             { phase === phases.SECOND_GAME && <SecondGameInterface /> }
 

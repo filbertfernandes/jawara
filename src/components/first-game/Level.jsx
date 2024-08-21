@@ -52,7 +52,7 @@ export function Level({ characterBody })
         
         const inputValue = newInputValues[index].toLowerCase() 
         const levelInput = level[currentStage][index] // corecct answer based on the index
-
+        
         // Compare input value with correct answer, if it's true
         if(inputValue === levelInput[mode].toLowerCase()) {
             // If it was false before, then increment the correctCount

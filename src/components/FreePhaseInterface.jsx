@@ -1,6 +1,6 @@
 import { useGame } from '../useGame.jsx'
 
-export default function GameInterface()
+export default function FreePhaseInterface()
 {
     const { changePhase, canChangePhase, setCanChangePhase, canPressEnter, setCanPressEnter } = useGame((state) => ({
         changePhase: state.changePhase,

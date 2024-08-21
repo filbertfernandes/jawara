@@ -45,8 +45,10 @@ export const useFirstGame = create((set) => ({
     cameraPosition: {x: 0, y: 1, z: 3},
 
     startGame: ({ mode }) => {
-
+        
         set((state) => {
+            if(mode && state.mode != '') mode = state.mode
+
             const level = generateGameLevel({ nbStages: 5 })
             return { level, currentStage: 0, mode, gameState: gameStates.GAME, startTime: Date.now(), cameraPosition: {x: 0, y: 1, z: 3} }
         })
