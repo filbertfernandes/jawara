@@ -5,7 +5,7 @@ import { FaRankingStar } from "react-icons/fa6"
 
 const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) => {
   return (
-    <div className="flex justify-between w-full mb-4 px-4">
+    <div className="flex justify-evenly w-full mb-4 px-4 md:justify-center md:gap-20 lg:gap-32">
         <button 
           className={`
             btn btn-square btn-lg rounded-[1rem] text-4xl

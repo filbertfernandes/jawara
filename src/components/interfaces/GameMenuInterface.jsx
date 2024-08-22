@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useGame } from "../../useGame.jsx"
 
-const GameMenuInterface = ({ startGame }) => {
+const GameMenuInterface = ({ startGame, title }) => {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -23,11 +23,35 @@ const GameMenuInterface = ({ startGame }) => {
 
     return (
         <div className={ `flex flex-col justify-center items-center gap-6 w-full h-[75%] ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
-            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold">Anggota Tubuh</h1>
-            <button className="p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
-            <button className="p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
-            <button className="p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md" onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
-            <button className="p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md" onClick={ goToHome } onKeyDown={ handleKeyDown } >Back to Home</button>
+            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold sm:text-5xl lg:text-6xl">{ title }</h1>
+
+            <button 
+                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md sm:w-32 sm:p-1.5 sm:text-lg lg:w-40 lg:p-2 lg:text-2xl"
+                onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown }
+            >
+                Ngoko
+            </button>
+
+            <button 
+                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md sm:w-32 sm:p-1.5 sm:text-lg lg:w-40 lg:p-2 lg:text-2xl"
+                onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } 
+            >
+                Krama Madya
+            </button>
+
+            <button 
+                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md sm:w-32 sm:p-1.5 sm:text-lg lg:w-40 lg:p-2 lg:text-2xl"
+                onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown }
+            >
+                Krama Alus
+            </button>
+
+            <button 
+                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md sm:w-32 sm:p-1.5 sm:text-lg lg:w-40 lg:p-2 lg:text-2xl"
+                onClick={ goToHome } onKeyDown={ handleKeyDown }
+            >
+                Back to Home
+            </button>
         </div>
     )
 }
