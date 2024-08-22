@@ -12,8 +12,8 @@ export default function Marble()
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
 
-    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(10, 10, 10)) // set the initial position to 10 10 10
-    const [ smoothCameraTarget ] = useState(() => new THREE.Vector3())
+    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, 7)) // set the initial position to 10 10 10
+    const [ smoothCameraTarget ] = useState(() => new THREE.Vector3(0, 0.25, 3.5))
 
     // SECOND GAME STATE
     const { mobileLeft, mobileRight, score, gameState } = useSecondGame((state) => ({
@@ -32,7 +32,7 @@ export default function Marble()
             clearTimeout(timeoutId.current)
             timeoutId.current = null
         }
-        marbleBody.current.setTranslation({ x: 0, y: 1, z: 3.5 })
+        marbleBody.current.setTranslation({ x: 0, y: 0, z: 3.5 })
         marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
     }
@@ -187,7 +187,7 @@ export default function Marble()
         friction={ 1 } 
         linearDamping={ 0.5 }
         angularDamping={ 0.5 }
-        position={ [0, 1, 3.5] }
+        position={ [0, 0, 3.5] }
     >
         <mesh castShadow>
             <icosahedronGeometry args={ [0.3, 1] } />
