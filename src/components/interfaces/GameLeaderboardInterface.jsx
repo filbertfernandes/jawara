@@ -10,7 +10,9 @@ const GameLeaderboardInterface = () => {
     }, []);
 
     return (
-        <div className={ `flex flex-col items-center gap-6 w-full h-full mt-4 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+        <div className={ `flex flex-col gap-6 items-center w-full h-full mt-4 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold">Leaderboard</h1>
+
             <div className="flex justify-between text-sky-100 w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg text-md">
                 <div className="flex items-center text-center border-sky-400 border-b-2" onClick={ () => console.log('clicked') } >
                     Ngoko
@@ -23,6 +25,12 @@ const GameLeaderboardInterface = () => {
                 <div className="flex items-center text-center" onClick={ () => console.log('clicked') } >
                     Krama Alus
                 </div>
+            </div>
+
+            <div className="flex justify-between text-sky-100 w-full h-full bg-stone-800/50 px-4 rounded-t-3xl text-md">
+                <ul>
+                    <li></li>
+                </ul>
             </div>
         </div>
     )
