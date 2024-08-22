@@ -9,8 +9,8 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
         <button 
           className={`
             btn btn-square btn-lg rounded-[1rem] text-4xl
-            ${gameState === 'MENU' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
-            hover:text-sky-500 hover:bg-white
+            ${gameState === 'MENU' ? 'text-sky-500 bg-white border-none' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white hover:border-none
             transition-all duration-300
           `} 
           onClick={ goToMenu }
@@ -21,8 +21,8 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
         <button 
           className={`
             btn btn-square btn-lg rounded-[1rem] text-4xl
-            ${gameState === 'LEADERBOARD' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
-            hover:text-sky-500 hover:bg-white
+            ${gameState === 'LEADERBOARD' ? 'text-sky-500 bg-white border-none' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white hover:border-none
             transition-all duration-300
           `} 
           onClick={ goToLeaderboard }
@@ -33,8 +33,8 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
         <button 
           className={`
             btn btn-square btn-lg rounded-[1rem] text-4xl
-            ${gameState === 'MATERIAL' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
-            hover:text-sky-500 hover:bg-white
+            ${gameState === 'MATERIAL' ? 'text-sky-500 bg-white border-none' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white hover:border-none
             transition-all duration-300
           `} 
           onClick={ goToMaterial }
