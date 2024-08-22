@@ -1,6 +1,6 @@
 import { useGame } from "../../useGame.jsx"
 
-const GameInterface = ({ startGame }) => {
+const GameMenuInterface = ({ startGame }) => {
 
     // MAIN GAME STATE
     const { goToHome } = useGame((state) => ({
@@ -24,4 +24,4 @@ const GameInterface = ({ startGame }) => {
     )
 }
 
-export default GameInterface
+export default GameMenuInterface

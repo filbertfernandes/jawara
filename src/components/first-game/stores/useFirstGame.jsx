@@ -3,6 +3,8 @@ import { words } from "./constants.js"
 
 export const gameStates = {
   MENU: 'MENU',
+  LEADERBOARD: 'LEADERBOARD',
+  MATERIAL: 'MATERIAL',
   GAME: 'GAME',
   GAME_OVER: 'GAME_OVER',
 }
@@ -38,7 +40,7 @@ export const generateGameLevel = ({ nbStages }) => {
 export const useFirstGame = create((set) => ({
     level: null,
     currentStage: 0,
-    mode: "",
+    mode: '',
     gameState: gameStates.MENU,
     startTime: 0,
     endTime: 0,
@@ -47,7 +49,7 @@ export const useFirstGame = create((set) => ({
     startGame: ({ mode }) => {
         
         set((state) => {
-            if(mode && state.mode != '') mode = state.mode
+            if(!mode && state.mode != '') mode = state.mode
 
             const level = generateGameLevel({ nbStages: 5 })
             return { level, currentStage: 0, mode, gameState: gameStates.GAME, startTime: Date.now(), cameraPosition: {x: 0, y: 1, z: 3} }
@@ -73,6 +75,18 @@ export const useFirstGame = create((set) => ({
     goToMenu: () => {
         set((state) => {
             return { gameState: gameStates.MENU }
+        })
+    },
+
+    goToLeaderboard: () => {
+        set((state) => {
+            return { gameState: gameStates.LEADERBOARD }
+        })
+    },
+
+    goToMaterial: () => {
+        set((state) => {
+            return { gameState: gameStates.MATERIAL }
         })
     }
     

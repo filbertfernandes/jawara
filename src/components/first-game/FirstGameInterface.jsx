@@ -1,22 +1,25 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { addEffect } from "@react-three/fiber"
 
 import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
 
 // INTERFACES
 import TabsInterface from "../interfaces/TabsInterface.jsx"
-import GameInterface from "../interfaces/GameInterface.jsx"
+import GameMenuInterface from "../interfaces/GameMenuInterface.jsx"
 import GameOverInterface from "../interfaces/GameOverInterface.jsx"
 
 export const FirstGameInterface = () => {
+    const [score, setScore] = useState(0)
 
     const time = useRef()
 
     // BODY PARTS / FIRST GAME STATE
-    const { startGame, gameState, goToMenu } = useFirstGame((state) => ({
+    const { startGame, gameState, goToMenu, goToLeaderboard, goToMaterial } = useFirstGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         goToMenu: state.goToMenu,
+        goToLeaderboard: state.goToLeaderboard,
+        goToMaterial: state.goToMaterial,
     }))
 
     // SCORE
@@ -36,6 +39,10 @@ export const FirstGameInterface = () => {
 
             if(time.current)
                 time.current.textContent = elapsedTime
+
+            // Update the score when the game is over
+            if (state.gameState === gameStates.GAME_OVER) 
+                setScore(elapsedTime)
         })
 
         return () => {
@@ -55,20 +62,20 @@ export const FirstGameInterface = () => {
             <div
                 className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <TabsInterface />
-                <GameInterface startGame={ startGame } />
+                <TabsInterface goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                <GameMenuInterface startGame={ startGame } />
             </div>
 
             {/* GAME OVER INTERFACE */}
             <div
                 className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <GameOverInterface startGame={ startGame } goToMenu={ goToMenu } />
+                <GameOverInterface score={ score } startGame={ startGame } goToMenu={ goToMenu } />
             </div>
 
             {/* GAME INTERFACE */}
             <div
-                className={ `${gameState === gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <div ref={ time } className='absolute top-0 left-0 w-full text-sky-50 text-3xl bg-black/30 pt-1 text-center pointer-events-none font-bebas'>0.00</div>
             </div>
