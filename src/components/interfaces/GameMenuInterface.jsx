@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { useGame } from "../../useGame.jsx"
 
 const GameMenuInterface = ({ startGame }) => {

@@ -7,6 +7,8 @@ import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
 import TabsInterface from "../interfaces/TabsInterface.jsx"
 import GameMenuInterface from "../interfaces/GameMenuInterface.jsx"
 import GameOverInterface from "../interfaces/GameOverInterface.jsx"
+import GameLeaderboardInterface from "../interfaces/GameLeaderboardInterface.jsx"
+import GameMaterialInterface from "../interfaces/GameMaterialInterface.jsx"
 
 export const FirstGameInterface = () => {
     const [score, setScore] = useState(0)
@@ -64,6 +66,8 @@ export const FirstGameInterface = () => {
             >
                 <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
                 { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } />}
+                { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
+                { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
             </div>
 
             {/* GAME OVER INTERFACE */}
