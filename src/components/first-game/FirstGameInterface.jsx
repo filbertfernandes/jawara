@@ -63,7 +63,7 @@ export const FirstGameInterface = () => {
                 className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
-                <GameMenuInterface startGame={ startGame } />
+                { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } />}
             </div>
 
             {/* GAME OVER INTERFACE */}
