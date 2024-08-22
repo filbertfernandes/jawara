@@ -18,7 +18,7 @@ export default {
       keyframes: {
         bounceIn: {
           '0%': { transform: 'scale(0.3)', opacity: '0' },
-          '50%': { transform: 'scale(1.1)', opacity: '1' },
+          '50%': { transform: 'scale(1.06)', opacity: '1' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
       },
