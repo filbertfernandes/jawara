@@ -58,11 +58,11 @@ export const FirstGameInterface = () => {
     
     return (
         <>
-            {/* MENU INTERFACE */}
+            {/* TABS INTERFACE */}
             <div
-                className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <TabsInterface goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
                 <GameMenuInterface startGame={ startGame } />
             </div>
 
