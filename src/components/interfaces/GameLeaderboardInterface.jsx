@@ -10,7 +10,7 @@ const GameLeaderboardInterface = () => {
     }, []);
 
     return (
-        <div className={ `flex flex-col gap-6 items-center w-full h-full mt-4 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+        <div className={ `flex flex-col gap-6 items-center w-full h-full mt-8 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
             <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold">Leaderboard</h1>
 
             <div className="flex justify-between text-white w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg text-md">
@@ -28,7 +28,7 @@ const GameLeaderboardInterface = () => {
             </div>
 
             <div className="flex justify-between text-white w-full h-full bg-stone-800/50 px-4 rounded-t-3xl text-md pt-4">
-                <ul className="h-96 w-full overflow-y-auto">
+                <ul className="h-[28rem] w-full overflow-y-auto">
                     <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
