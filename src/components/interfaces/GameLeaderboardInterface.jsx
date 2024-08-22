@@ -33,7 +33,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">1</span>
@@ -50,7 +50,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-slate-500 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">2</span>
@@ -67,7 +67,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-orange-700 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">3</span>
@@ -84,7 +84,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">4</span>
@@ -101,7 +101,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">5</span>
@@ -118,7 +118,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">6</span>
@@ -135,7 +135,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">7</span>
@@ -152,7 +152,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">8</span>
@@ -169,7 +169,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">9</span>
@@ -186,7 +186,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-12 rounded-full">
                                     <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
                                 <span className="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">10</span>
