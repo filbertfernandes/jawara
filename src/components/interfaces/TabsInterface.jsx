@@ -6,13 +6,39 @@ import { FaRankingStar } from "react-icons/fa6"
 const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) => {
   return (
     <div className="flex justify-evenly w-full mb-4">
-        <button className={ `btn btn-square btn-lg rounded-[1rem] ${gameState === 'MENU' ? 'text-4xl text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}` } onClick={ goToMenu }>
+        <button 
+          className={`
+            btn btn-square btn-lg rounded-[1rem] text-4xl
+            ${gameState === 'MENU' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white
+            transition-all duration-300
+          `} 
+          onClick={ goToMenu }
+        >
             <IoGameController />
         </button>
-        <button className={ `btn btn-square btn-lg rounded-[1rem] ${gameState === 'LEADERBOARD' ? 'text-4xl text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}` } onClick={ goToLeaderboard }>
+        
+        <button 
+          className={`
+            btn btn-square btn-lg rounded-[1rem] text-4xl
+            ${gameState === 'LEADERBOARD' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white
+            transition-all duration-300
+          `} 
+          onClick={ goToLeaderboard }
+        >
             <FaRankingStar />
         </button>
-        <button className={ `btn btn-square btn-lg rounded-[1rem] ${gameState === 'MATERIAL' ? 'text-4xl text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}` } onClick={ goToMaterial }>
+
+        <button 
+          className={`
+            btn btn-square btn-lg rounded-[1rem] text-4xl
+            ${gameState === 'MATERIAL' ? 'text-sky-500 bg-white' : 'text-white/50 bg-white/10 border-white/50 border-2'}
+            hover:text-sky-500 hover:bg-white
+            transition-all duration-300
+          `} 
+          onClick={ goToMaterial }
+        >
             <FaBook />
         </button>
     </div>
