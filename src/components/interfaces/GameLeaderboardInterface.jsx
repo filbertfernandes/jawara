@@ -28,15 +28,15 @@ const GameLeaderboardInterface = () => {
             </div>
 
             <div className="flex justify-between text-sky-100 w-full h-full bg-stone-800/50 px-4 rounded-t-3xl text-md pt-4">
-                <ul className="h-full w-full">
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                <ul className="h-96 w-full overflow-y-auto">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                                <span class="absolute -top-1 -left-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">1</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -46,14 +46,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-slate-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                                <span class="absolute -top-1 -left-1 bg-slate-500 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">2</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -63,14 +63,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-orange-700 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                                <span class="absolute -top-1 -left-1 bg-orange-700 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">3</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -80,14 +80,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">4</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -97,14 +97,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">5</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -114,14 +114,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">6</span>
                             </div>
 
                             <div className="flex items-center ml-4">
@@ -131,14 +131,14 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-sky-800 border-opacity-[0.5] border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
                             <div class="avatar">
                                 <div class="w-14 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg" />
                                 </div>
-                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                                <span class="absolute -top-1 -left-1 bg-black text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center">10</span>
                             </div>
 
                             <div className="flex items-center ml-4">
