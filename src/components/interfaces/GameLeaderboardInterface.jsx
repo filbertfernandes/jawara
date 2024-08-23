@@ -27,8 +27,8 @@ const GameLeaderboardInterface = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between text-white w-full h-full bg-stone-800/50 px-4 rounded-t-3xl text-sm pt-4 sm:w-[80%]">
-                <ul className="h-[28rem] w-full overflow-y-auto sm:h-[12rem]">
+            <div className="flex justify-between text-white w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl text-sm pt-4 sm:w-[80%]">
+                <ul className="h-full w-full overflow-y-auto pb-64 sm:pb-28">
                     <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
                         <div className="flex">
@@ -182,7 +182,7 @@ const GameLeaderboardInterface = () => {
 
                         <div className="flex items-center" >35</div>
                     </li>
-                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
+                    <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1">
 
                         <div className="flex">
                             <div className="avatar">
