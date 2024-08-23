@@ -64,10 +64,12 @@ export const FirstGameInterface = () => {
             <div
                 className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
-                { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
-                { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
-                { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
+                <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
+                    <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                    { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
+                    { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
+                    { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
+                </div>
             </div>
 
             {/* GAME OVER INTERFACE */}

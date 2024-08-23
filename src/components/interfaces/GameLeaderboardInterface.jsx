@@ -11,9 +11,9 @@ const GameLeaderboardInterface = () => {
 
     return (
         <div className={ `flex flex-col gap-6 items-center w-full h-full mt-8 sm:gap-4 sm:-mt-8 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
-            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold">Leaderboard</h1>
+            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold lg:text-6xl">Leaderboard</h1>
 
-            <div className="flex justify-between text-white w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg text-md sm:w-[75%]">
+            <div className="flex justify-between text-white w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg sm:text-lg sm:w-[70%] md:text-xl lg:text-2xl lg:w-[50%]">
                 <div className="flex items-center text-center border-sky-400 border-b-2" onClick={ () => console.log('clicked') } >
                     Ngoko
                 </div>
@@ -27,7 +27,7 @@ const GameLeaderboardInterface = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between text-white w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl text-sm pt-4 sm:w-[80%]">
+            <div className="flex justify-between text-white text-sm w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl pt-4 sm:text-base sm:w-[90%] md:text-lg lg:text-2xl lg:w-[70%]">
                 <ul className="h-full w-full overflow-y-auto pb-64 sm:pb-28">
                     <li className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4">
 
