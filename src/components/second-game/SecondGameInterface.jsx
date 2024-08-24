@@ -3,7 +3,7 @@ import { addEffect } from "@react-three/fiber"
 
 import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
 import { useGame } from "../../useGame.jsx"
-import useIsMobile from "../../useIsMobile.jsx"
+import useIsMobile from "../../custom-hooks/useIsMobile.jsx"
 
 export const SecondGameInterface = () => {
 
