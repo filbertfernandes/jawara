@@ -8,9 +8,9 @@ import Joystick from './components/Joystick.jsx'
 import useIsMobile from './custom-hooks/useIsMobile.jsx'
 
 // INTERFACES
-import { FirstGameInterface } from './components/first-game/FirstGameInterface.jsx'
-import { SecondGameInterface } from './components/second-game/SecondGameInterface.jsx'
-import FreePhaseInterface from './components/interfaces/FreePhaseInterface.jsx'
+import { FirstGameInterface } from './components/games/first-game/FirstGameInterface.jsx'
+import { SecondGameInterface } from './components/games/second-game/SecondGameInterface.jsx'
+import FreePhaseInterface from './components/games/interfaces/FreePhaseInterface.jsx'
 
 export const Controls = {
     forward: "forward",

@@ -4,11 +4,11 @@ import { addEffect } from "@react-three/fiber"
 import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
 
 // INTERFACES
-import TabsInterface from "../interfaces/TabsInterface.jsx"
-import GameMenuInterface from "../interfaces/GameMenuInterface.jsx"
-import GameOverInterface from "../interfaces/GameOverInterface.jsx"
-import GameLeaderboardInterface from "../interfaces/GameLeaderboardInterface.jsx"
-import GameMaterialInterface from "../interfaces/GameMaterialInterface.jsx"
+import TabsInterface from "../../interfaces/TabsInterface.jsx"
+import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
+import GameOverInterface from "../../interfaces/GameOverInterface.jsx"
+import GameLeaderboardInterface from "../../interfaces/GameLeaderboardInterface.jsx"
+import GameMaterialInterface from "../../interfaces/GameMaterialInterface.jsx"
 
 export const FirstGameInterface = () => {
     const [score, setScore] = useState(0)
