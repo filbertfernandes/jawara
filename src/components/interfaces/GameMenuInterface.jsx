@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { useGame } from "../../useGame.jsx"
 
+// sound manager
+import { SoundManager } from '../SoundManager.jsx'
+
 const GameMenuInterface = ({ startGame, title }) => {
 
     const [isVisible, setIsVisible] = useState(false);
@@ -27,28 +30,44 @@ const GameMenuInterface = ({ startGame, title }) => {
 
             <button 
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown }
+                onClick={ () => {
+                    SoundManager.playSound('buttonClick')
+                    startGame({ mode: 'ngoko' }) 
+                }}
+                onKeyDown={ handleKeyDown }
             >
                 Ngoko
             </button>
 
             <button 
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } 
+                onClick={ () => {
+                    SoundManager.playSound('buttonClick')
+                    startGame({ mode: 'madya' }) 
+                }}
+                onKeyDown={ handleKeyDown } 
             >
                 Krama Madya
             </button>
 
             <button 
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown }
+                onClick={ () => {
+                    SoundManager.playSound('buttonClick')
+                    startGame({ mode: 'alus' }) 
+                }}
+                onKeyDown={ handleKeyDown }
             >
                 Krama Alus
             </button>
 
             <button 
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ goToHome } onKeyDown={ handleKeyDown }
+                onClick={ () => {
+                    SoundManager.playSound('buttonClick')
+                    goToHome() 
+                }}
+                onKeyDown={ handleKeyDown }
             >
                 Back to Home
             </button>

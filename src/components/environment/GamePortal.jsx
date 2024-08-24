@@ -4,6 +4,9 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier'
 
 import { useGame } from '../../useGame.jsx'
 
+// sound manager
+import { SoundManager } from '../SoundManager.jsx'
+
 export default function GamePortal({ phase, portalPosition })
 {
     const portal = useRef()
@@ -24,6 +27,7 @@ export default function GamePortal({ phase, portalPosition })
 
             (value) => {
                 if(value && canChangePhase.condition && canChangePhase.phase != '') {
+                    SoundManager.playSound('buttonClick')
                     changePhase(canChangePhase.phase)
                     setCanPressEnter(false)
                     setCanChangePhase(false, '')

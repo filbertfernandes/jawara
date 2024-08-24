@@ -1,5 +1,8 @@
 import { useGame } from '../../useGame.jsx'
 
+// sound manager
+import { SoundManager } from '../SoundManager.jsx'
+
 export default function FreePhaseInterface()
 {
     const { changePhase, canChangePhase, setCanChangePhase, canPressEnter, setCanPressEnter } = useGame((state) => ({
@@ -12,6 +15,7 @@ export default function FreePhaseInterface()
     
     const handleEnterButtonClick = () => {
         if(canChangePhase.condition && canChangePhase.phase != '') {
+            SoundManager.playSound('buttonClick')
             changePhase(canChangePhase.phase)
             setCanPressEnter(false)
             setCanChangePhase(false, '')
