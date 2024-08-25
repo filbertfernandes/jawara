@@ -1,9 +1,9 @@
-// react icons
+// REACT ICONS
 import { IoGameController } from "react-icons/io5"
 import { FaBook } from "react-icons/fa"
 import { FaRankingStar } from "react-icons/fa6"
 
-// sound manager
+// SOUND MANAGER
 import { SoundManager } from '../SoundManager.jsx'
 
 const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) => {

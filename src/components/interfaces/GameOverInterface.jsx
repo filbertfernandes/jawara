@@ -21,7 +21,7 @@ const GameOverInterface = ({ score, startGame, goToMenu }) => {
                 className='p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl' 
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    startGane()
+                    startGame({ mode: '' })
                 } }
                 onKeyDown={ handleKeyDown } 
             >

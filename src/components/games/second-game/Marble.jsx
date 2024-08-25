@@ -5,6 +5,9 @@ import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
 import { gameStates, useSecondGame } from "./stores/useSecondGame"
 
+// SOUND MANAGER
+import { SoundManager } from '../../SoundManager.jsx'
+
 export default function Marble()
 {
     const marbleBody = useRef()
@@ -62,6 +65,7 @@ export default function Marble()
         const marbleBodyPosition = marbleBody.current.translation()
 
         if(marbleBodyPosition.z >= -5.3) {
+            SoundManager.playSound('marblePush')
             marbleBody.current.applyImpulse(impulse)
             marbleBody.current.applyTorqueImpulse(torque)
 
@@ -188,6 +192,7 @@ export default function Marble()
         linearDamping={ 0.5 }
         angularDamping={ 0.5 }
         position={ [0, 0, 3.5] }
+        onCollisionEnter={ () => SoundManager.playSoundAfterFinished('marbleImpact') }
     >
         <mesh castShadow>
             <icosahedronGeometry args={ [0.3, 1] } />
