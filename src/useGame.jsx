@@ -12,7 +12,7 @@ export const useGame = create(subscribeWithSelector((set) =>
 {
     return {
         // DEFAULT PHASE
-        phase: phases.FIRST_GAME,
+        phase: phases.FREE,
         canPressEnter: false,
         canChangePhase: {condition: false, phase: ''},
 

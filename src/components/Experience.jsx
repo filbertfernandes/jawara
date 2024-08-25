@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
@@ -13,11 +14,27 @@ import GamePortal from './environment/GamePortal.jsx'
 import World from './environment/World.jsx'
 import Football from './environment/Football.jsx'
 
+// SOUND MANAGER
+import { SoundManager } from './SoundManager.jsx'
+
 export default function Experience({ joystickInput })
 {
     const { phase } = useGame((state) => ({
         phase: state.phase,
     }))
+
+       // BACKGROUND MUSIC
+    useEffect(() => {
+        if(phase === phases.FREE) {
+            SoundManager.stopBackgroundMusic('gamePhaseBackground')
+            SoundManager.startBackgroundMusic('freePhaseBackground')
+            return () => SoundManager.stopBackgroundMusic('freePhaseBackground')
+        } else {
+            SoundManager.stopBackgroundMusic('freePhaseBackground')
+            SoundManager.startBackgroundMusic('gamePhaseBackground')
+            return () => SoundManager.stopBackgroundMusic('gamePhaseBackground')
+        }
+    }, [phase])
 
     return <>
 

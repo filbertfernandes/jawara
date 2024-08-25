@@ -12,6 +12,7 @@ import { FirstGameInterface } from './components/games/first-game/FirstGameInter
 import { SecondGameInterface } from './components/games/second-game/SecondGameInterface.jsx'
 import FreePhaseInterface from './components/interfaces/FreePhaseInterface.jsx'
 
+// CONTROLS
 export const Controls = {
     forward: "forward",
     back: "back",
@@ -23,6 +24,8 @@ export const Controls = {
 
 export default function App()
 {
+    
+
     // MAIN GAME STATE
     const { phase } = useGame((state) => ({
         phase: state.phase
