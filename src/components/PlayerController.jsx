@@ -12,7 +12,7 @@ import { phases, useGame } from '../useGame.jsx'
 import { SoundManager } from './SoundManager.jsx'
 
 const JUMP_FORCE = 0.5
-const MOVEMENT_SPEED = 0.13
+const MOVEMENT_SPEED = 0.15
 const MAX_VEL = 3
 const RUN_VEL = 2
 
