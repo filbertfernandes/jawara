@@ -20,7 +20,7 @@ const GameMaterialInterface = ({ words }) => {
                     <div key={ index } className="flex justify-between items-center w-full h-36 bg-stone-800/50 rounded-[1rem] mb-2 pl-4 sm:w-[45%] lg:w-[30%] lg:h-40">
                         <img 
                             src="https://img.freepik.com/free-vector/hand-drawn-eyeball-cartoon-illustration_23-2150873727.jpg" 
-                            alt="Logo" 
+                            alt="material-image" 
                             className="w-24 h-24 object-cover rounded-[1rem]" 
                         />
                         <div className="flex flex-col w-full h-full p-4">

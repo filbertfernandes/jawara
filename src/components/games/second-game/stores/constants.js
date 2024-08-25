@@ -13,7 +13,7 @@ export const words = [
         ngoko: 'ijo', 
         madya: 'hejo', 
         alus: 'miro',  
-        hexColor: '#00ff00',
+        hexColor: '#09db09',
     },
     { 
         indonesian: 'biru', 
