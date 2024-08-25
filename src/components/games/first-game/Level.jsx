@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
 import { gameStates, useFirstGame } from './stores/useFirstGame.jsx'
 
+// SOUND MANAGER
+import { SoundManager } from '../../SoundManager.jsx'
 
 export function Level({ characterBody })
 {
@@ -41,6 +43,7 @@ export function Level({ characterBody })
             if(correctCount === level[currentStage].length && currentStage < 4) {
                 nextStage()
             } else if(correctCount === level[currentStage].length) {
+                SoundManager.playSound('gameComplete')
                 gameOver()
             }
         }
@@ -57,6 +60,7 @@ export function Level({ characterBody })
         if(inputValue === levelInput[mode].toLowerCase()) {
             // If it was false before, then increment the correctCount
             if(!levelInput.isCorrect) {
+                SoundManager.playSound('correctAnswer')
                 setCorrectCount(prevCount => prevCount + 1)
                 levelInput.isCorrect = true
             }

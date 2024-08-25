@@ -11,6 +11,9 @@ import GameOverInterface from "../../interfaces/GameOverInterface.jsx"
 import GameLeaderboardInterface from "../../interfaces/GameLeaderboardInterface.jsx"
 import GameMaterialInterface from "../../interfaces/GameMaterialInterface.jsx"
 
+// SOUND MANAGER
+import { SoundManager } from '../../SoundManager.jsx'
+
 export const SecondGameInterface = () => {
 
     const time = useRef()
@@ -55,7 +58,7 @@ export const SecondGameInterface = () => {
     
             // Check if time has run out
             if (state.timer <= 0) {
-                // Handle game over logic here
+                SoundManager.playSound('gameComplete')
                 state.gameOver()
             }
         })

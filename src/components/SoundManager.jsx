@@ -3,11 +3,13 @@ import { Howl, Howler } from 'howler'
 
 // Sound files
 const sounds = {
-    freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.03 }),
-    gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.03 }),
+    freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.05 }),
+    gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.05 }),
     move: new Howl({ src: ['./sounds/leaves01.mp3'], volume: 0.5 }),
-    soccerBallImpact: new Howl({ src: ['./sounds/soccer-ball.mp3'], volume: 0.1 }),
+    soccerBallImpact: new Howl({ src: ['./sounds/soccer-ball.mp3'], volume: 0.2 }),
     buttonClick: new Howl({ src: ['./sounds/btn-click-sfx.mp3'], volume: 0.7 }),
+    correctAnswer: new Howl({ src: ['./sounds/correct-answer.mp3'], volume: 0.5 }),
+    gameComplete: new Howl({ src: ['./sounds/game-complete.mp3'], volume: 0.5 }),
     marblePush: new Howl({ src: ['./sounds/marble-push.mp3'], volume: 0.7 }),
     marbleImpact: new Howl({ src: ['./sounds/marble-impact-2.mp3'], volume: 0.7 }),
 }
@@ -33,7 +35,7 @@ export const SoundManager = {
 
             if(sound) {
                 if(soundName === 'soccerBallImpact') {
-                    sound._volume = Math.random() * 0.2 + 0.1
+                    sound._volume = Math.random() * 0.2 + 0.2
                 }
 
                 if(!sound.playing()) {

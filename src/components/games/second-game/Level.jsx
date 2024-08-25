@@ -4,6 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx";
 import { useFrame } from "@react-three/fiber";
 
+// SOUND MANAGER
+import { SoundManager } from '../../SoundManager.jsx'
+
 export function BlockAxe({ coloredBlock, index }) {
     const { correctAnswersOrder, correctCount, incrementCorrectCount } = useSecondGame((state) => ({
         correctAnswersOrder: state.correctAnswersOrder,
@@ -38,6 +41,7 @@ export function BlockAxe({ coloredBlock, index }) {
             friction={0}
             onCollisionEnter={() => {
                 if (correctAnswersOrder[correctCount] === index) {
+                    SoundManager.playSound('correctAnswer')
                     incrementCorrectCount()
                 }
             }}
