@@ -12,7 +12,7 @@ const GameMaterialInterface = ({ words }) => {
     }, []);
 
     return (
-        <div className={ `flex flex-col items-center gap-6 w-full h-full mt-8 sm:gap-4 sm:-mt-8 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+        <div className={ `flex flex-col items-center gap-6 w-full h-full mt-8 sm:gap-4 sm:-mt-8 lg:ml-8 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
             <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold lg:text-6xl">Material</h1>
 
             <div className="flex flex-wrap gap-4 justify-evenly w-full h-full px-4 text-white overflow-y-auto sm:px-0 sm:gap-1">
