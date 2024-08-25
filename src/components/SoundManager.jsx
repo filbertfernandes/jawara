@@ -1,7 +1,6 @@
-// src/components/SoundManager.js
 import { Howl, Howler } from 'howler'
 
-// Sound files
+// SOUND FILES
 const sounds = {
     freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.05 }),
     gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.05 }),

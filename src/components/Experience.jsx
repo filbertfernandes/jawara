@@ -23,7 +23,7 @@ export default function Experience({ joystickInput })
         phase: state.phase,
     }))
 
-       // BACKGROUND MUSIC
+    // BACKGROUND MUSIC
     useEffect(() => {
         if(phase === phases.FREE) {
             SoundManager.stopBackgroundMusic('gamePhaseBackground')
@@ -79,7 +79,7 @@ export default function Experience({ joystickInput })
 
             {/* END ENVIRONEMT */}
 
-            {/* Invisible Collider */}
+            {/* INVISIBLE COLLIDER */}
             <RigidBody type='fixed'>
                 <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ -9.6, 0.75, 0 ] } />
                 <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ 10.35, 0.75, 0 ] } />

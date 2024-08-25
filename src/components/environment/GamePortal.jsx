@@ -12,7 +12,7 @@ export default function GamePortal({ phase, portalPosition })
     const portal = useRef()
 
     // GO TO GAMES CONTROL
-    const [ subscribeKeys, getKeys ] = useKeyboardControls()
+    const [ subscribeKeys ] = useKeyboardControls()
 
     const { changePhase, canChangePhase, setCanChangePhase, setCanPressEnter } = useGame((state) => ({
         changePhase: state.changePhase,
@@ -42,7 +42,7 @@ export default function GamePortal({ phase, portalPosition })
 
     return <>
 
-        {/* Game Boxex */}
+        {/* GAME PORTAL */}
         <RigidBody type="fixed" >
                 <mesh ref={ portal } position={ portalPosition } scale={ [1, 1, 1] } castShadow receiveShadow >
                     <boxGeometry />
