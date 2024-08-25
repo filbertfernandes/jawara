@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+// REACT ICONS
+import { PiSpeakerHighBold } from "react-icons/pi";
 
 const GameMaterialInterface = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -10,8 +12,45 @@ const GameMaterialInterface = () => {
     }, []);
 
     return (
-        <div className={ `flex flex-col justify-center items-center gap-6 w-full h-[75%] ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+        <div className={ `flex flex-col items-center gap-6 w-full h-full mt-8 sm:gap-4 sm:-mt-8 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
             <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold lg:text-6xl">Material</h1>
+
+            <div className="flex justify-center w-full h-full px-4 text-white">
+                <div className="flex justify-between items-center w-full h-36 bg-stone-800/50 rounded-[1rem] pl-4">
+                    <img 
+                        src="https://img.freepik.com/free-vector/hand-drawn-eyeball-cartoon-illustration_23-2150873727.jpg" 
+                        alt="Logo" 
+                        className="w-24 h-24 object-cover rounded-[1rem]" 
+                    />
+                    <div className="flex flex-col w-full h-full px-4 py-4">
+                        <div className="text-2xl underline mb-2">Mata</div>
+                        <div className="flex justify-between text-base">
+                            <div>
+                                Moto <span className="text-[0.5rem] text-white/50">(Ngoko)</span>
+                            </div>
+                            <div>
+                                <PiSpeakerHighBold />
+                            </div>
+                        </div>
+                        <div className="flex justify-between text-base">
+                            <div>
+                                Mripat <span className="text-[0.5rem] text-white/50">(Krama Madya)</span>
+                            </div>
+                            <div>
+                                <PiSpeakerHighBold />
+                            </div>
+                        </div>
+                        <div className="flex justify-between text-base">
+                            <div>
+                                Soca <span className="text-[0.5rem] text-white/50">(Krama Alus)</span>
+                            </div>
+                            <div>
+                                <PiSpeakerHighBold />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
