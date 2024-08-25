@@ -51,12 +51,6 @@ export const FirstGameInterface = () => {
             unsubscribeEffect()
         }
     }, [])
-
-    const handleKeyDown = (event) => {
-        if (event.key === ' ' || event.key === 'Enter') {
-            event.preventDefault(); // Prevent the default space key action
-        }
-    }
     
     return (
         <>

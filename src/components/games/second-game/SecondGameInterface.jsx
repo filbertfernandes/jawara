@@ -2,19 +2,27 @@ import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
 
 import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
-import { useGame } from "../../../useGame.jsx"
 import useIsMobile from "../../../custom-hooks/useIsMobile.jsx"
+
+// INTERFACES
+import TabsInterface from "../../interfaces/TabsInterface.jsx"
+import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
+import GameOverInterface from "../../interfaces/GameOverInterface.jsx"
+import GameLeaderboardInterface from "../../interfaces/GameLeaderboardInterface.jsx"
+import GameMaterialInterface from "../../interfaces/GameMaterialInterface.jsx"
 
 export const SecondGameInterface = () => {
 
     const time = useRef()
 
     // SECOND GAME STATE
-    const { startGame, gameState, mode, goToMenu, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
+    const { startGame, gameState, mode, goToMenu, goToLeaderboard, goToMaterial, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
         startGame: state.startGame,
         gameState: state.gameState,
         mode: state.mode,
         goToMenu: state.goToMenu,
+        goToLeaderboard: state.goToLeaderboard,
+        goToMaterial: state.goToMaterial,
         score: state.score,
         correctAnswersOrder: state.correctAnswersOrder,
         correctCount: state.correctCount,
@@ -23,11 +31,6 @@ export const SecondGameInterface = () => {
         setMobileRight: state.setMobileRight,
         setMobilePush: state.setMobilePush,
         setMobileJump: state.setMobileJump,
-    }))
-
-    // MAIN GAME STATE
-    const { goToHome } = useGame((state) => ({
-        goToHome: state.goToHome
     }))
 
     // SCORE
@@ -62,36 +65,28 @@ export const SecondGameInterface = () => {
         }
     }, [])
 
-    // PREVENT DEFAULT SPACE & ENTER KEY ACTION
-    const handleKeyDown = (event) => {
-        if (event.key === ' ' || event.key === 'Enter') {
-            event.preventDefault(); // Prevent the default space key action
-        }
-    }
-
     // MOVILE CONTROLS
     const isMobile = useIsMobile()
 
     return (
         <>
-            {/* MENU INTERFACE */}
+            {/* TABS INTERFACE */}
             <div
-                className={ `dark-layout ${gameState !== gameStates.MENU ? 'opacity-0 pointer-events-none' : ''}` }
+                className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>Warna</h1>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'ngoko' }) } onKeyDown={ handleKeyDown } >Ngoko</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'madya' }) } onKeyDown={ handleKeyDown } >Krama Madya</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: 'alus' }) } onKeyDown={ handleKeyDown } >Krama Alus</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToHome() } onKeyDown={ handleKeyDown } >Back to Home</button>
+                <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
+                    <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                    { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
+                    { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
+                    { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
+                </div>
             </div>
 
             {/* GAME OVER INTERFACE */}
             <div
                 className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <h1 className='text-3xl text-sky-400 drop-shadow-lg font-bold'>CONGRATULATIONS! Your score is { score }</h1>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => startGame({ mode: mode }) } onKeyDown={ handleKeyDown } >Retry</button>
-                <button className='p-1 bg-stone-800/50 w-28 text-sm text-sky-100 font-semibold rounded-lg shadow-md' onClick={ () => goToMenu() } onKeyDown={ handleKeyDown } >Back to Menu</button>
+                <GameOverInterface score={ score } startGame={ startGame } goToMenu={ goToMenu } />
             </div>
 
             {/* GAME INTERFACE */}

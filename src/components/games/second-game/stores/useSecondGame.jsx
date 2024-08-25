@@ -5,6 +5,8 @@ import { words } from "./constants.js"
 
 export const gameStates = {
   MENU: 'MENU',
+  LEADERBOARD: 'LEADERBOARD',
+  MATERIAL: 'MATERIAL',
   GAME: 'GAME',
   GAME_OVER: 'GAME_OVER',
 }
@@ -95,6 +97,18 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
         goToMenu: () => {
             set((state) => {
                 return { gameState: gameStates.MENU }
+            })
+        },
+
+        goToLeaderboard: () => {
+            set((state) => {
+                return { gameState: gameStates.LEADERBOARD }
+            })
+        },
+    
+        goToMaterial: () => {
+            set((state) => {
+                return { gameState: gameStates.MATERIAL }
             })
         },
 
