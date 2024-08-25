@@ -67,8 +67,14 @@ export default function Experience({ joystickInput })
             <GamePortal phase={ phases.SECOND_GAME } portalPosition={ [-4, 0.5, 8] } />
 
             {/* Football */}
-            <RigidBody colliders="ball" position={ [-3, 5, 12] } restitution={ 0.65 } friction={ 1.5 } >
-                <Football scale={ 0.3 } /> 
+            <RigidBody 
+                colliders="ball" 
+                position={ [-3, 5, 12] } 
+                restitution={ 0.65 } 
+                friction={ 1.5 }
+                onCollisionEnter={ SoundManager.playSoccerBallSound }
+            >
+                <Football scale={0.3} />
             </RigidBody>
 
             {/* END ENVIRONEMT */}
