@@ -8,6 +8,9 @@ import Player from './Player.jsx'
 import { Controls } from '../App.jsx'
 import { phases, useGame } from '../useGame.jsx'
 
+// SOUND MANAGER
+import { SoundManager } from './SoundManager.jsx'
+
 const JUMP_FORCE = 0.5
 const MOVEMENT_SPEED = 0.13
 const MAX_VEL = 3
@@ -37,6 +40,13 @@ export default function PlayerController({ joystickInput })
         rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
     }
 
+    const playFootstepSound = () => {
+        SoundManager.playSound('move')
+        setTimeout(() => {
+            SoundManager.playSound('move')
+        }, 200)
+    }
+
     useFrame((state) => {
         if(phase === phases.FREE) {
             const rigidBodyPosition = rigidBody.current.translation()
@@ -52,18 +62,22 @@ export default function PlayerController({ joystickInput })
             if (rightPressed && linvel.x < MAX_VEL) {
                 impulse.x += MOVEMENT_SPEED
                 changeRotation = true
+                if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
             if (leftPressed && linvel.x > -MAX_VEL) {
                 impulse.x -= MOVEMENT_SPEED
                 changeRotation = true
+                if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
             if (backPressed && linvel.z < MAX_VEL) {
                 impulse.z += MOVEMENT_SPEED
                 changeRotation = true
+                if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
             if (forwardPressed && linvel.z > -MAX_VEL) {
                 impulse.z -= MOVEMENT_SPEED
                 changeRotation = true
+                if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
 
             // Joystick Controls
@@ -76,6 +90,7 @@ export default function PlayerController({ joystickInput })
                     impulse.x -= MOVEMENT_SPEED * Math.cos(angle)
                     impulse.z -= MOVEMENT_SPEED * Math.sin(angle)
                     changeRotation = true
+                    if(isOnFloor.current) playFootstepSound()
                 }
             }
     

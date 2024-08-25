@@ -3,10 +3,10 @@ import { Howl, Howler } from 'howler'
 
 // Sound files
 const sounds = {
-    move: new Howl({ src: ['./sounds/move.mp3'], volume: 0.7 }),
+    move: new Howl({ src: ['./sounds/leaves01.mp3'], volume: 0.7 }),
     buttonClick: new Howl({ src: ['./sounds/btn-click-sfx.mp3'], volume: 0.7 }),
-    freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.02 }),
-    gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.02 })
+    freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.025 }),
+    gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.025 })
 }
 
 let isMuted = false
@@ -16,6 +16,9 @@ export const SoundManager = {
         if (!isMuted) {
             const sound = sounds[soundName]
             if (sound) {
+                if(soundName === 'move') {
+                    if(sound.playing()) return
+                }
                 sound.play()
             }
         }
