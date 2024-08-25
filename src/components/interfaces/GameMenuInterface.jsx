@@ -25,7 +25,7 @@ const GameMenuInterface = ({ startGame, title }) => {
     }
 
     return (
-        <div className={ `flex flex-col justify-center items-center gap-6 w-full h-[75%] sm:h-full lg:gap-10 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
+        <div className={ `flex flex-col justify-center items-center gap-6 w-full h-[75%] sm:h-full sm:pb-8 lg:gap-10 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
             <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold lg:text-6xl">{ title }</h1>
 
             <button 

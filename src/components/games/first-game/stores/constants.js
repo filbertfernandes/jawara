@@ -3,7 +3,9 @@ export const words = [
         indonesian: 'mata', 
         ngoko: 'moto', 
         madya: 'mripat', 
-        alus: 'soca',  
+        alus: 'soca',
+        sound: '',
+        imagePath: '',
         position: [0.85, 7.7, 1.1], 
         visible: false ,
         isCorrect: false

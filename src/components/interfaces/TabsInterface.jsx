@@ -8,7 +8,7 @@ import { SoundManager } from '../SoundManager.jsx'
 
 const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) => {
     return (
-        <div className="flex justify-evenly w-full px-4 sm:w-auto sm:flex-col sm:h-full sm:ml-4">
+        <div className="flex justify-evenly w-full px-4 sm:w-auto sm:flex-col sm:h-full sm:ml-4 sm:mb-8">
             <button 
                 className={`
                     btn btn-square btn-lg rounded-[1rem] text-4xl

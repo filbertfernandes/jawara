@@ -3,7 +3,9 @@ export const words = [
         indonesian: 'merah', 
         ngoko: 'abang', 
         madya: 'abrit', 
-        alus: 'kirmizi',  
+        alus: 'kirmizi',
+        sound: '',
+        imagePath: '',
         hexColor: '#ff0000',
     },
     { 

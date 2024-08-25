@@ -4,6 +4,9 @@ import { addEffect } from "@react-three/fiber"
 import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
 import useIsMobile from "../../../custom-hooks/useIsMobile.jsx"
 
+// IMPORT WORDS
+import { words } from './stores/constants.js'
+
 // INTERFACES
 import TabsInterface from "../../interfaces/TabsInterface.jsx"
 import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
@@ -81,7 +84,7 @@ export const SecondGameInterface = () => {
                     <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
                     { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
                     { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
-                    { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
+                    { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
                 </div>
             </div>
 
