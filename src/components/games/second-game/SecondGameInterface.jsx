@@ -76,7 +76,7 @@ export const SecondGameInterface = () => {
             >
                 <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
                     <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
-                    { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
+                    { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
                     { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
                     { gameState === gameStates.MATERIAL && <GameMaterialInterface />}
                 </div>
