@@ -64,7 +64,7 @@ export default function Marble()
 
         const marbleBodyPosition = marbleBody.current.translation()
 
-        if(marbleBodyPosition.z >= -5.3) {
+        if(marbleBodyPosition.z >= 3.5) {
             SoundManager.playSound('marblePush')
             marbleBody.current.applyImpulse(impulse)
             marbleBody.current.applyTorqueImpulse(torque)
