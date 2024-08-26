@@ -2,15 +2,15 @@ import { Howl, Howler } from 'howler'
 
 // SOUND FILES
 const sounds = {
-    freePhaseBackground: new Howl({ src: ['./sounds/bgm-2.mp3'], loop: true, volume: 0.05 }),
-    gamePhaseBackground: new Howl({ src: ['./sounds/bgm-3.mp3'], loop: true, volume: 0.05 }),
-    move: new Howl({ src: ['./sounds/leaves01.mp3'], volume: 0.5 }),
-    soccerBallImpact: new Howl({ src: ['./sounds/soccer-ball.mp3'], volume: 0.2 }),
-    buttonClick: new Howl({ src: ['./sounds/btn-click-sfx.mp3'], volume: 0.7 }),
-    correctAnswer: new Howl({ src: ['./sounds/correct-answer.mp3'], volume: 0.5 }),
-    gameComplete: new Howl({ src: ['./sounds/game-complete.mp3'], volume: 0.5 }),
-    marblePush: new Howl({ src: ['./sounds/marble-push.mp3'], volume: 0.7 }),
-    marbleImpact: new Howl({ src: ['./sounds/marble-impact-2.mp3'], volume: 0.7 }),
+    freePhaseBackground: new Howl({ src: ['./sounds/bgm/bgm-1.mp3'], loop: true, volume: 0.05 }),
+    gamePhaseBackground: new Howl({ src: ['./sounds/bgm/bgm-2.mp3'], loop: true, volume: 0.05 }),
+    move: new Howl({ src: ['./sounds/sfx/footstep-grass.mp3'], volume: 0.5 }),
+    soccerBallImpact: new Howl({ src: ['./sounds/sfx/soccer-ball.mp3'], volume: 0.2 }),
+    buttonClick: new Howl({ src: ['./sounds/sfx/btn-click.mp3'], volume: 0.7 }),
+    correctAnswer: new Howl({ src: ['./sounds/sfx/correct-answer.mp3'], volume: 0.5 }),
+    gameComplete: new Howl({ src: ['./sounds/sfx/game-complete.mp3'], volume: 0.5 }),
+    marblePush: new Howl({ src: ['./sounds/sfx/marble-push.mp3'], volume: 0.7 }),
+    marbleImpact: new Howl({ src: ['./sounds/sfx/marble-impact.mp3'], volume: 0.7 }),
 }
 
 let isMuted = false
