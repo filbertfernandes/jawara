@@ -1,6 +1,6 @@
 import { useGame } from '../../useGame.jsx'
 
-// sound manager
+// SOUND MANAGER
 import { SoundManager } from '../SoundManager.jsx'
 
 export default function FreePhaseInterface()

@@ -3,6 +3,9 @@ import { useEffect, useState } from "react"
 // REACT ICONS
 import { PiSpeakerHighBold } from "react-icons/pi";
 
+// SOUND MANAGER
+import { SoundManager } from "../SoundManager";
+
 const GameMaterialInterface = ({ words }) => {
     const [isVisible, setIsVisible] = useState(false);
     
@@ -17,37 +20,37 @@ const GameMaterialInterface = ({ words }) => {
 
             <div className="flex flex-wrap gap-4 justify-evenly w-full h-full px-4 text-white overflow-y-auto sm:px-0 sm:gap-1">
                 {words.map((word, index) => (
-                    <div key={ index } className="flex justify-between items-center w-full h-36 bg-stone-800/50 rounded-[1rem] mb-2 pl-4 sm:w-[45%] lg:w-[30%] lg:h-40">
+                    <div key={ index } className="flex justify-between items-center w-full h-40 bg-stone-800/50 rounded-[1rem] mb-2 pl-4 sm:w-[45%] xl:w-[30%] xl:h-44">
                         <img 
                             src="https://img.freepik.com/free-vector/hand-drawn-eyeball-cartoon-illustration_23-2150873727.jpg" 
                             alt="material-image" 
                             className="w-24 h-24 object-cover rounded-[1rem]" 
                         />
-                        <div className="flex flex-col w-full h-full p-4">
+                        <div className="flex flex-col w-full h-full px-4 py-2 xl:py-4">
                             <div className="text-2xl underline mb-2">{ word.indonesian }</div>
-                            <div className="flex justify-between text-base lg:text-xl">
+                            <div className="flex justify-between text-base mb-2 lg:text-xl">
                                 <div>
                                     { word.ngoko } <span className="text-[0.5rem] text-white/50 lg:text-xs">(Ngoko)</span>
                                 </div>
-                                <div>
+                                <button onClick={ () => SoundManager.playSound('gameComplete') }>
                                     <PiSpeakerHighBold />
-                                </div>
+                                </button>
                             </div>
-                            <div className="flex justify-between text-base lg:text-xl">
+                            <div className="flex justify-between text-base mb-2 lg:text-xl">
                                 <div>
                                     { word.madya } <span className="text-[0.5rem] text-white/50 lg:text-xs">(Krama Madya)</span>
                                 </div>
-                                <div>
+                                <button onClick={ () => SoundManager.playSound('gameComplete') }>
                                     <PiSpeakerHighBold />
-                                </div>
+                                </button>
                             </div>
-                            <div className="flex justify-between text-base lg:text-xl">
+                            <div className="flex justify-between text-base mb-2 lg:text-xl">
                                 <div>
                                     { word.alus } <span className="text-[0.5rem] text-white/50 lg:text-xs">(Krama Alus)</span>
                                 </div>
-                                <div>
+                                <button onClick={ () => SoundManager.playSound('gameComplete') }>
                                     <PiSpeakerHighBold />
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>
