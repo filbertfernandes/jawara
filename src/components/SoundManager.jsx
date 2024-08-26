@@ -9,6 +9,11 @@ const sounds = {
     buttonClick: new Howl({ src: ['./sounds/sfx/btn-click.mp3'], volume: 0.7 }),
     correctAnswer: new Howl({ src: ['./sounds/sfx/correct-answer.mp3'], volume: 0.5 }),
     gameComplete: new Howl({ src: ['./sounds/sfx/game-complete.mp3'], volume: 0.5 }),
+    
+    // FIRST GAME
+    keyboardType: new Howl({ src: ['./sounds/sfx/keyboard-type.mp3'], volume: 0.7 }),
+
+    // SECOND GAME
     marblePush: new Howl({ src: ['./sounds/sfx/marble-push.mp3'], volume: 0.7 }),
     marbleImpact: new Howl({ src: ['./sounds/sfx/marble-impact.mp3'], volume: 0.7 }),
 }

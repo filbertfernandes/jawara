@@ -50,6 +50,8 @@ export function Level({ characterBody })
     }, [correctCount])
 
     const handleInputChange = (index, event) => {
+        SoundManager.playSound('keyboardType')
+
         const newInputValues = { ...inputValues, [index]: event.target.value };
         setInputValues(newInputValues);
         
