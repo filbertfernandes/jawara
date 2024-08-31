@@ -3,10 +3,19 @@ import { IoGameController } from "react-icons/io5"
 import { FaBook } from "react-icons/fa"
 import { FaRankingStar } from "react-icons/fa6"
 
+// ZUSTAND
+import { gameStates, useGame } from "../../useGame.jsx"
+
 // SOUND MANAGER
 import { SoundManager } from '../SoundManager.jsx'
 
-const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) => {
+const TabsInterface = () => {
+    // GAME STATE
+    const { gameState, changeGameState } = useGame((state) => ({
+        gameState: state.gameState,
+        changeGameState: state.changeGameState,
+    }))
+
     return (
         <div className="flex justify-evenly w-full px-4 sm:w-auto sm:flex-col sm:h-full sm:ml-4 sm:mb-8">
             <button 
@@ -18,7 +27,7 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
                 `} 
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    goToMenu()
+                    changeGameState(gameStates.MENU)
                 } }
             >
                 <IoGameController />
@@ -33,7 +42,7 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
                 `} 
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    goToLeaderboard()
+                    changeGameState(gameStates.LEADERBOARD)
                 } }
             >
                 <FaRankingStar />
@@ -48,7 +57,7 @@ const TabsInterface = ({ gameState, goToMenu, goToLeaderboard, goToMaterial }) =
                 `} 
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    goToMaterial()
+                    changeGameState(gameStates.MATERIAL)
                 } }
             >
                 <FaBook />

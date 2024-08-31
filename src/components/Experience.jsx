@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
-import Lights from '../Lights.jsx'
+import Lights from './Lights.jsx'
 import FirstGame from './games/first-game/FirstGame.jsx'
 import SecondGame from './games/second-game/SecondGame.jsx'
 import ThirdGame from './games/third-game/ThirdGame.jsx'

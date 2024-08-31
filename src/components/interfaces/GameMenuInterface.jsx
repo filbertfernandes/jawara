@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useGame } from "../../useGame.jsx"
+import { useGame, phases, gameStates } from "../../useGame.jsx"
 
 // sound manager
 import { SoundManager } from '../SoundManager.jsx'
@@ -14,8 +14,9 @@ const GameMenuInterface = ({ startGame, title }) => {
     }, []);
 
     // MAIN GAME STATE
-    const { goToHome } = useGame((state) => ({
-        goToHome: state.goToHome
+    const { changePhase, changeGameState } = useGame((state) => ({
+        changePhase: state.changePhase,
+        changeGameState: state.changeGameState
     }))
 
     const handleKeyDown = (event) => {
@@ -32,6 +33,7 @@ const GameMenuInterface = ({ startGame, title }) => {
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
+                    changeGameState(gameStates.GAME)
                     startGame({ mode: 'ngoko' }) 
                 }}
                 onKeyDown={ handleKeyDown }
@@ -43,6 +45,7 @@ const GameMenuInterface = ({ startGame, title }) => {
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
+                    changeGameState(gameStates.GAME)
                     startGame({ mode: 'madya' }) 
                 }}
                 onKeyDown={ handleKeyDown } 
@@ -54,6 +57,7 @@ const GameMenuInterface = ({ startGame, title }) => {
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
+                    changeGameState(gameStates.GAME)
                     startGame({ mode: 'alus' }) 
                 }}
                 onKeyDown={ handleKeyDown }
@@ -65,7 +69,8 @@ const GameMenuInterface = ({ startGame, title }) => {
                 className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    goToHome() 
+                    changeGameState(gameStates.MENU)
+                    changePhase(phases.FREE) 
                 }}
                 onKeyDown={ handleKeyDown }
             >

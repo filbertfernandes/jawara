@@ -3,7 +3,10 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
-import { gameStates, useSecondGame } from "./stores/useSecondGame"
+
+// ZUSTAND
+import { useGame, gameStates } from "../../../useGame.jsx"
+import { useSecondGame } from "./stores/useSecondGame"
 
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
@@ -18,12 +21,15 @@ export default function Marble()
     const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, 7)) // set the initial position to 10 10 10
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3(0, 0.25, 3.5))
 
-    // SECOND GAME STATE
-    const { mobileLeft, mobileRight, score, gameState } = useSecondGame((state) => ({
+    // GAME STATE
+    const { gameState } = useGame((state) => ({
+        gameState: state.gameState
+    }))
+    
+    const { mobileLeft, mobileRight, score } = useSecondGame((state) => ({
         mobileLeft: state.mobileLeft,
         mobileRight: state.mobileRight,
         score: state.score,
-        gameState: state.gameState,
     }))
 
     const reset = () => {

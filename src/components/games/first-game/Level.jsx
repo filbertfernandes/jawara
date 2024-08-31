@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
-import { gameStates, useFirstGame } from './stores/useFirstGame.jsx'
+
+import { useGame, gameStates } from "../../../useGame.jsx"
+import { useFirstGame } from './stores/useFirstGame.jsx'
 
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
 
 export function Level({ characterBody })
 {
-    const { level, currentStage, nextStage, gameState, mode, gameOver } = useFirstGame((state) => ({
+    const { gameState, changeGameState } = useGame((state) => ({
+        gameState: state.gameState,
+        changeGameState: state.changeGameState
+    }))
+
+    const { level, currentStage, nextStage, mode, gameOver } = useFirstGame((state) => ({
         level: state.level,
         currentStage: state.currentStage,
         nextStage: state.nextStage,
-        gameState: state.gameState,
         mode: state.mode,
         gameOver: state.gameOver
     }))
@@ -44,6 +50,7 @@ export function Level({ characterBody })
                 nextStage()
             } else if(correctCount === level[currentStage].length) {
                 SoundManager.playSound('gameComplete')
+                changeGameState(gameStates.GAME_OVER)
                 gameOver()
             }
         }

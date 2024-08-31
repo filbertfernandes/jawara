@@ -3,14 +3,6 @@ import { subscribeWithSelector } from "zustand/middleware"
 
 import { words } from "./constants.js"
 
-export const gameStates = {
-  MENU: 'MENU',
-  LEADERBOARD: 'LEADERBOARD',
-  MATERIAL: 'MATERIAL',
-  GAME: 'GAME',
-  GAME_OVER: 'GAME_OVER',
-}
-
 export const generateGameLevel = () => {
     const stage = []
     const nbOptions = 5
@@ -48,7 +40,6 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
         stage: null,
         score: 0,
         mode: "",
-        gameState: gameStates.MENU,
         timer: 0,
         initialTimer: 120,
         startTime: 0,
@@ -66,7 +57,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
 
                 const stage = generateGameLevel()
                 const correctAnswersOrder = genereateCorrectAnswersOrder()
-                return { stage, score: 0, mode, gameState: gameStates.GAME, timer: 0, initialTimer: 120, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
+                return { stage, score: 0, mode, timer: 0, initialTimer: 3, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
             })
 
         },
@@ -81,7 +72,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
 
         nextStage: () => {
 
-            set((state) => {
+            set(() => {
                 const stage = generateGameLevel()
                 const correctCount = 0
                 const correctAnswersOrder = genereateCorrectAnswersOrder()
@@ -90,51 +81,27 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
             
         },
 
-        gameOver: () => {
-            set((state) => {
-                return { gameState: gameStates.GAME_OVER }
-            })
-        },
-
-        goToMenu: () => {
-            set((state) => {
-                return { gameState: gameStates.MENU }
-            })
-        },
-
-        goToLeaderboard: () => {
-            set((state) => {
-                return { gameState: gameStates.LEADERBOARD }
-            })
-        },
-    
-        goToMaterial: () => {
-            set((state) => {
-                return { gameState: gameStates.MATERIAL }
-            })
-        },
-
         // MOBILE CONTROLS
         setMobileLeft: (condition) => {
-            set((state) => {
+            set(() => {
                 return { mobileLeft: condition }
             })
         },
         
         setMobileRight: (condition) => {
-            set((state) => {
+            set(() => {
                 return { mobileRight: condition }
             })
         },
 
         setMobilePush: (condition) => {
-            set((state) => {
+            set(() => {
                 return { mobilePush: condition }
             })
         },
 
         setMobileJump: (condition) => {
-            set((state) => {
+            set(() => {
                 return { mobileJump: condition }
             })
         }

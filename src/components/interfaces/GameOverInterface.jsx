@@ -1,7 +1,13 @@
-// sound manager
+import { useGame, gameStates } from "../../useGame.jsx"
+
+// SOUND MANAGER
 import { SoundManager } from '../SoundManager.jsx'
 
 const GameOverInterface = ({ score, startGame, goToMenu }) => {
+
+    const { changeGameState } = useGame((state) => ({
+        changeGameState: state.changeGameState
+    }))
 
     const handleKeyDown = (event) => {
         if (event.key === ' ' || event.key === 'Enter') {
@@ -21,6 +27,7 @@ const GameOverInterface = ({ score, startGame, goToMenu }) => {
                 className='p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl' 
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
+                    changeGameState(gameStates.GAME)
                     startGame({ mode: '' })
                 } }
                 onKeyDown={ handleKeyDown } 
@@ -32,7 +39,7 @@ const GameOverInterface = ({ score, startGame, goToMenu }) => {
                 className='p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl'
                 onClick={ () => {
                     SoundManager.playSound('buttonClick')
-                    goToMenu()
+                    changeGameState(gameStates.MENU)
                 } }
                 onKeyDown={ handleKeyDown } 
             >

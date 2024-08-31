@@ -8,36 +8,46 @@ export const phases = {
     THIRD_GAME: 'THIRD_GAME',
 }
 
+export const gameStates = {
+    MENU: 'MENU',
+    LEADERBOARD: 'LEADERBOARD',
+    MATERIAL: 'MATERIAL',
+    GAME: 'GAME',
+    GAME_OVER: 'GAME_OVER',
+}
+
 export const useGame = create(subscribeWithSelector((set) => 
 {
     return {
         // DEFAULT PHASE
-        phase: phases.SECOND_GAME,
+        phase: phases.FREE,
+        gameState: gameStates.MENU,
         canPressEnter: false,
         canChangePhase: {condition: false, phase: ''},
 
-        // GO TO PHASES METHODS
-        goToHome: () => {
-            set((state) => {
-                return { phase: phases.FREE }
-            })
-        },
-
-        changePhase: (gamePhase) => {
-            set((state) => {
-                return { phase: gamePhase }
+        // CHANGE PHASES METHODS
+        changePhase: (phase) => {
+            set(() => {
+                return { phase }
             })
         },
         
         setCanChangePhase: (condition, phase) => {
-            set((state) => ({
+            set(() => ({
                 canChangePhase: { condition, phase }
             }));
         },
 
         setCanPressEnter: (condition) => {
-            set((state) => {
+            set(() => {
                 return { canPressEnter: condition }
+            })
+        },
+
+        // CHANGE GAME STATE METHOD
+        changeGameState: (gameState) => {
+            set(() => {
+                return { gameState }
             })
         },
 

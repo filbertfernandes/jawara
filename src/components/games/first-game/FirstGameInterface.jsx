@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { addEffect } from "@react-three/fiber"
 
-import { gameStates, useFirstGame } from "./stores/useFirstGame.jsx"
+import { useFirstGame } from "./stores/useFirstGame.jsx"
+import { gameStates, useGame } from "../../../useGame.jsx"
 
 // IMPORT WORDS
 import { words } from './stores/constants.js'
@@ -18,26 +19,27 @@ export const FirstGameInterface = () => {
 
     const time = useRef()
 
-    // BODY PARTS / FIRST GAME STATE
-    const { startGame, gameState, goToMenu, goToLeaderboard, goToMaterial } = useFirstGame((state) => ({
-        startGame: state.startGame,
+    // GAME STATE
+    const { gameState } = useGame((state) => ({
         gameState: state.gameState,
-        goToMenu: state.goToMenu,
-        goToLeaderboard: state.goToLeaderboard,
-        goToMaterial: state.goToMaterial,
+    }))
+
+    const { startGame } = useFirstGame((state) => ({
+        startGame: state.startGame,
     }))
 
     // SCORE
     useEffect(() => {
         const unsubscribeEffect = addEffect(() => {
-            const state = useFirstGame.getState()
+            const state = useGame.getState()
+            const firstGameState = useFirstGame.getState()
 
             let elapsedTime = 0
 
             if(state.gameState === gameStates.GAME)
-                elapsedTime = Date.now() - state.startTime
+                elapsedTime = Date.now() - firstGameState.startTime
             else if(state.gameState === gameStates.GAME_OVER)
-                elapsedTime = state.endTime - state.startTime
+                elapsedTime = firstGameState.endTime - firstGameState.startTime
 
             elapsedTime /= 1000
             elapsedTime = elapsedTime.toFixed(2)
@@ -62,7 +64,7 @@ export const FirstGameInterface = () => {
                 className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
-                    <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                    <TabsInterface gameState={ gameState } />
                     { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
                     { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
                     { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
@@ -73,7 +75,7 @@ export const FirstGameInterface = () => {
             <div
                 className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <GameOverInterface score={ score } startGame={ startGame } goToMenu={ goToMenu } />
+                <GameOverInterface score={ score } startGame={ startGame } />
             </div>
 
             {/* GAME INTERFACE */}

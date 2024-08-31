@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
 
-import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx"
+import { gameStates, useGame } from "../../../useGame.jsx"
+import { useSecondGame } from "./stores/useSecondGame.jsx"
 import useIsMobile from "../../../custom-hooks/useIsMobile.jsx"
 
 // IMPORT WORDS
@@ -21,14 +22,14 @@ export const SecondGameInterface = () => {
 
     const time = useRef()
 
-    // SECOND GAME STATE
-    const { startGame, gameState, mode, goToMenu, goToLeaderboard, goToMaterial, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
-        startGame: state.startGame,
+    // GAME STATE
+    const { gameState } = useGame((state) => ({
         gameState: state.gameState,
+    }))
+
+    const { startGame, mode, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
+        startGame: state.startGame,
         mode: state.mode,
-        goToMenu: state.goToMenu,
-        goToLeaderboard: state.goToLeaderboard,
-        goToMaterial: state.goToMaterial,
         score: state.score,
         correctAnswersOrder: state.correctAnswersOrder,
         correctCount: state.correctCount,
@@ -42,27 +43,28 @@ export const SecondGameInterface = () => {
     // SCORE
     useEffect(() => {
         const unsubscribeEffect = addEffect(() => {
-            const state = useSecondGame.getState()
+            const state = useGame.getState()
+            const secondGameState = useSecondGame.getState()
     
             let elapsedTime = 0
     
             if (state.gameState === gameStates.GAME) {
-                elapsedTime = (Date.now() - state.startTime) / 1000
+                elapsedTime = (Date.now() - secondGameState.startTime) / 1000
             }
     
             // Calculate remaining time
-            const remainingTime = Math.max(0, state.initialTimer - elapsedTime).toFixed(0)
+            const remainingTime = Math.max(0, secondGameState.initialTimer - elapsedTime).toFixed(0)
     
-            state.timer = remainingTime
+            secondGameState.timer = remainingTime
     
             if (time.current) {
-                time.current.textContent = state.timer
+                time.current.textContent = secondGameState.timer
             }
     
             // Check if time has run out
-            if (state.timer <= 0) {
+            if (secondGameState.timer <= 0) {
                 SoundManager.playSound('gameComplete')
-                state.gameOver()
+                state.changeGameState(gameStates.GAME_OVER)
             }
         })
     
@@ -81,7 +83,7 @@ export const SecondGameInterface = () => {
                 className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
             >
                 <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
-                    <TabsInterface gameState={ gameState } goToMenu={ goToMenu } goToLeaderboard={ goToLeaderboard } goToMaterial={ goToMaterial } />
+                    <TabsInterface />
                     { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
                     { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
                     { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
@@ -92,7 +94,7 @@ export const SecondGameInterface = () => {
             <div
                 className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
             >
-                <GameOverInterface score={ score } startGame={ startGame } goToMenu={ goToMenu } />
+                <GameOverInterface score={ score } startGame={ startGame } />
             </div>
 
             {/* GAME INTERFACE */}

@@ -1,8 +1,10 @@
 import { RigidBody } from "@react-three/rapier";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-import { gameStates, useSecondGame } from "./stores/useSecondGame.jsx";
 import { useFrame } from "@react-three/fiber";
+
+// ZUSTAND
+import { gameStates, useGame } from "../../../useGame.jsx"
+import { useSecondGame } from "./stores/useSecondGame.jsx";
 
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
@@ -55,14 +57,14 @@ export function BlockAxe({ coloredBlock, index }) {
 }
 
 export function Level({ types = [ BlockAxe ] })
-{   
-    const { stage, score, mode, gameState, nextStage, gameOver, correctCount } = useSecondGame((state) => ({
+{
+    const { gameState } = useGame((state) => ({
+        gameState: state.gameState,
+    }))
+    const { stage, nextStage, correctCount } = useSecondGame((state) => ({
         stage: state.stage,
         score: state.score,
         nextStage: state.nextStage,
-        gameState: state.gameState,
-        mode: state.mode,
-        gameOver: state.gameOver,
         correctCount: state.correctCount
     }))
 
