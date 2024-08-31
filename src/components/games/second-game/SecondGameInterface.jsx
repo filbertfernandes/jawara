@@ -79,22 +79,18 @@ export const SecondGameInterface = () => {
     return (
         <>
             {/* TABS INTERFACE */}
-            <div
-                className={ `dark-layout ${gameState !== gameStates.MENU && gameState !== gameStates.LEADERBOARD && gameState !== gameStates.MATERIAL ? 'opacity-0 pointer-events-none' : ''}` }
-            >
-                <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
-                    <TabsInterface />
-                    { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
-                    { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
-                    { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
-                </div>
-            </div>
-
-            {/* GAME OVER INTERFACE */}
-            <div
-                className={ `dark-layout ${gameState !== gameStates.GAME_OVER ? 'opacity-0 pointer-events-none' : ''}` }
-            >
-                <GameOverInterface score={ score } startGame={ startGame } />
+            <div className={ `dark-layout ${gameState === gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
+                {
+                    gameState !== gameStates.GAME_OVER && 
+                    <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
+                        <TabsInterface />
+                        { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
+                        { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
+                        { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
+                    </div>
+                }
+                
+                { gameState === gameStates.GAME_OVER && <GameOverInterface score={ score } startGame={ startGame } /> }
             </div>
 
             {/* GAME INTERFACE */}

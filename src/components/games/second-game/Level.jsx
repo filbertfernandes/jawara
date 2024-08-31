@@ -61,6 +61,7 @@ export function Level({ types = [ BlockAxe ] })
     const { gameState } = useGame((state) => ({
         gameState: state.gameState,
     }))
+    
     const { stage, nextStage, correctCount } = useSecondGame((state) => ({
         stage: state.stage,
         score: state.score,
