@@ -11,6 +11,8 @@ import { useSecondGame } from "./stores/useSecondGame"
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
 
+const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 3.5)
+
 export default function Marble()
 {
     const marbleBody = useRef()
@@ -41,7 +43,7 @@ export default function Marble()
             clearTimeout(timeoutId.current)
             timeoutId.current = null
         }
-        marbleBody.current.setTranslation({ x: 0, y: 0, z: 3.5 })
+        marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION)
         marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
     }
@@ -70,7 +72,7 @@ export default function Marble()
 
         const marbleBodyPosition = marbleBody.current.translation()
 
-        if(marbleBodyPosition.z >= 3.5) {
+        if(marbleBodyPosition.z >= MARBLE_INITIAL_POSITION.z - 0.5) {
             SoundManager.playSound('marblePush')
             marbleBody.current.applyImpulse(impulse)
             marbleBody.current.applyTorqueImpulse(torque)
@@ -197,12 +199,12 @@ export default function Marble()
         friction={ 1 } 
         linearDamping={ 0.5 }
         angularDamping={ 0.5 }
-        position={ [0, 0, 3.5] }
+        position={ MARBLE_INITIAL_POSITION }
         onCollisionEnter={ () => SoundManager.playSoundAfterFinished('marbleImpact') }
     >
         <mesh castShadow>
             <icosahedronGeometry args={ [0.3, 1] } />
-            <meshStandardMaterial flatShading color="mediumpurple" />
+            <meshStandardMaterial flatShading color="tan" />
         </mesh>
     </RigidBody>
 }

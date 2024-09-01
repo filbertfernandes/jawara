@@ -94,19 +94,16 @@ export const SecondGameInterface = () => {
             </div>
 
             {/* GAME INTERFACE */}
-            <div
-                className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` }
-            >
-                <div className='flex justify-between flex-wrap font-bebas text-2xl text-sky-50 bg-black/30 pt-1 px-2 text-center pointer-events-none absolute top-0 left-0 w-full md:text-3xl lg:text-4xl lg:px-12'>
+            <div className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` }>
+                <div className='flex justify-between flex-wrap font-bebas text-2xl text-white bg-black/30 pt-1 px-2 text-center pointer-events-none absolute top-0 left-0 w-full md:text-3xl lg:text-4xl lg:px-12'>
                     <div>Time Left: <span ref={ time } >120</span></div>
                     { correctCount < 5 && <div>{ stage ? stage[correctAnswersOrder[correctCount]][mode] : '' }</div> }
                     <div>Score: { score }</div>
                 </div>
-                
             </div>
 
             {/* MOBILE CONTROLLERS */}
-            <div className={ `flex justify-between flex-nowrap font-bebas text-sky-50 text-2xl pt-1 text-center absolute bottom-0 left-0 w-full md:text-3xl ${isMobile === false || gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
+            <div className={ `flex justify-between flex-nowrap font-bebas text-white text-2xl pt-1 text-center absolute bottom-0 left-0 w-full md:text-3xl ${isMobile === false || gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
                 <div className="flex justify-evenly w-[40%] sm:w-[30%]">
                     <div 
                         className="bg-black/30 w-full px-1 m-2.5 select-none touch-manipulation" 
@@ -114,14 +111,21 @@ export const SecondGameInterface = () => {
                             e.preventDefault()
                             setMobileLeft(true)
                         } } 
-                        onTouchEnd={ () => setMobileLeft(false) }>Left</div>
+                        onTouchEnd={ () => setMobileLeft(false) }
+                    >
+                        Left
+                    </div>
+
                     <div 
                         className="bg-black/30 w-full px-1 m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobileRight(true)
                         } } 
-                        onTouchEnd={ () => setMobileRight(false) }>Right</div>
+                        onTouchEnd={ () => setMobileRight(false) }
+                    >
+                        Right
+                    </div>
                 </div>
 
                 <div className="flex justify-evenly w-[40%] sm:w-[30%]">
@@ -131,14 +135,21 @@ export const SecondGameInterface = () => {
                             e.preventDefault()
                             setMobilePush(true)
                         } } 
-                        onTouchEnd={ () => setMobilePush(false) }>Push</div>
+                        onTouchEnd={ () => setMobilePush(false) }
+                    >
+                        Push
+                    </div>
+
                     <div 
                         className="bg-black/30 w-full px-1 m-2.5 select-none touch-manipulation" 
                         onTouchStart={ (e) => {
                             e.preventDefault()
                             setMobileJump(true)
                         } } 
-                        onTouchEnd={ () => setMobileJump(false) }>Jump</div>
+                        onTouchEnd={ () => setMobileJump(false) }
+                    >
+                        Jump
+                    </div>
                 </div>
             </div>
         </>
