@@ -193,6 +193,7 @@ export default function Marble()
 
     return <RigidBody 
         ref={ marbleBody } 
+        name="SecondGameMarble"
         canSleep={ false } 
         colliders="ball" 
         restitution={ 0.2 } 

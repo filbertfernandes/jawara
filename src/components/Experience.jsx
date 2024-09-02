@@ -66,7 +66,7 @@ export default function Experience({ joystickInput })
             <GamePortal phase={ phases.FIRST_GAME } portalPosition={ [-8, 0.5, 8] } />
             <GamePortal phase={ phases.SECOND_GAME } portalPosition={ [-4, 0.5, 8] } />
 
-            {/* Football */}
+            {/* Soccer Ball */}
             <RigidBody 
                 colliders="ball" 
                 position={ [-3, 5, 12] } 

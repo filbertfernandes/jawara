@@ -41,8 +41,8 @@ export function BlockAxe({ coloredBlock, index }) {
             position={[0, 0.5, -6 - (index * 3)]}
             restitution={0.2}
             friction={0}
-            onCollisionEnter={() => {
-                if (correctAnswersOrder[correctCount] === index) {
+            onCollisionEnter={(other) => {
+                if (correctAnswersOrder[correctCount] === index && other.rigidBodyObject.name === 'SecondGameMarble') {
                     SoundManager.playSound('correctAnswer')
                     incrementCorrectCount()
                 }
