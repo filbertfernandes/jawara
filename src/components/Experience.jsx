@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 import { Perf } from 'r3f-perf'
 
@@ -15,7 +14,7 @@ import World from './environment/World.jsx'
 import Football from './environment/Football.jsx'
 
 // SOUND MANAGER
-import { SoundManager } from './SoundManager.jsx'
+import useBackgroundMusic from '../hooks/useBackgroundMusic.jsx'
 
 export default function Experience({ joystickInput })
 {
@@ -23,20 +22,8 @@ export default function Experience({ joystickInput })
         phase: state.phase,
     }))
 
-    // BACKGROUND MUSIC
-    useEffect(() => {
-        if(phase === phases.FREE) {
-            SoundManager.stopBackgroundMusic('gamePhaseBackground')
-            SoundManager.startBackgroundMusic('freePhaseBackground')
-            return () => SoundManager.stopBackgroundMusic('freePhaseBackground')
-        } else {
-            SoundManager.stopBackgroundMusic('freePhaseBackground')
-            SoundManager.startBackgroundMusic('gamePhaseBackground')
-            return () => SoundManager.stopBackgroundMusic('gamePhaseBackground')
-        }
-    }, [phase])
+    useBackgroundMusic(phase)
 
-    // GAME COMPONENTS MAPPING
     const gamePhaseComponentMap = {
         [phases.FIRST_GAME]: <FirstGame />,
         [phases.SECOND_GAME]: <SecondGame />,
@@ -72,10 +59,7 @@ export default function Experience({ joystickInput })
             </RigidBody>
 
             {/* ENVIRONMENT */}
-            {/* World */}
             <World scale={0.55} position={ [0, -0.4, 0] } />
-
-            {/* Game Portals */}
             <GamePortal phase={ phases.FIRST_GAME } portalPosition={ [-8, 0.5, 8] } />
             <GamePortal phase={ phases.SECOND_GAME } portalPosition={ [-4, 0.5, 8] } />
 

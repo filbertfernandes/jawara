@@ -3,7 +3,7 @@ import { addEffect } from "@react-three/fiber"
 
 import { gameStates, useGame } from "../../../useGame.jsx"
 import { useSecondGame } from "./stores/useSecondGame.jsx"
-import useIsMobile from "../../../custom-hooks/useIsMobile.jsx"
+import useIsMobile from "../../../hooks/useIsMobile.jsx"
 
 // IMPORT WORDS
 import { words } from './stores/constants.js'

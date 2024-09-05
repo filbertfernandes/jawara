@@ -5,7 +5,7 @@ import { KeyboardControls } from "@react-three/drei"
 import Experience from './components/Experience.jsx'
 import { phases, useGame } from './useGame.jsx'
 import Joystick from './components/Joystick.jsx'
-import useIsMobile from './custom-hooks/useIsMobile.jsx'
+import useIsMobile from './hooks/useIsMobile.jsx'
 
 // INTERFACES
 import { FirstGameInterface } from './components/games/first-game/FirstGameInterface.jsx'
