@@ -52,29 +52,29 @@ export default function PlayerController({ joystickInput })
             const rigidBodyPosition = rigidBody.current.translation()
 
             const impulse = { x: 0, y: 0, z: 0 }
-            if (jumpPressed && isOnFloor.current) {
+            if(jumpPressed && isOnFloor.current) {
                 impulse.y += JUMP_FORCE
                 isOnFloor.current = false
             }
     
             const linvel = rigidBody.current.linvel()
             let changeRotation = false
-            if (rightPressed && linvel.x < MAX_VEL) {
+            if(rightPressed && linvel.x < MAX_VEL) {
                 impulse.x += MOVEMENT_SPEED
                 changeRotation = true
                 if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
-            if (leftPressed && linvel.x > -MAX_VEL) {
+            if(leftPressed && linvel.x > -MAX_VEL) {
                 impulse.x -= MOVEMENT_SPEED
                 changeRotation = true
                 if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
-            if (backPressed && linvel.z < MAX_VEL) {
+            if(backPressed && linvel.z < MAX_VEL) {
                 impulse.z += MOVEMENT_SPEED
                 changeRotation = true
                 if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
             }
-            if (forwardPressed && linvel.z > -MAX_VEL) {
+            if(forwardPressed && linvel.z > -MAX_VEL) {
                 impulse.z -= MOVEMENT_SPEED
                 changeRotation = true
                 if(isOnFloor.current && playerState !== 'Idle') playFootstepSound()
@@ -106,7 +106,7 @@ export default function PlayerController({ joystickInput })
                 }
             }
     
-            if (changeRotation) {
+            if(changeRotation) {
                 const angle = Math.atan2(linvel.x, linvel.z)
                 player.current.rotation.y = angle
             }

@@ -44,7 +44,7 @@ export const SecondGameInterface = () => {
     
             let elapsedTime = 0
     
-            if (state.gameState === gameStates.GAME) {
+            if(state.gameState === gameStates.GAME) {
                 elapsedTime = (Date.now() - secondGameState.startTime) / 1000
             }
     
@@ -53,12 +53,12 @@ export const SecondGameInterface = () => {
     
             secondGameState.timer = remainingTime
     
-            if (time.current) {
+            if(time.current) {
                 time.current.textContent = secondGameState.timer
             }
     
             // Check if time has run out
-            if (secondGameState.timer <= 0) {
+            if(secondGameState.timer <= 0) {
                 SoundManager.playSound('gameComplete')
                 state.changeGameState(gameStates.GAME_OVER)
             }

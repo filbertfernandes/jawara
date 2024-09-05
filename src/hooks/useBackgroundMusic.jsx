@@ -8,7 +8,7 @@ import { SoundManager } from '../components/SoundManager.jsx'
 
 export default function useBackgroundMusic(phase) {
     useEffect(() => {
-        if (phase === phases.FREE) {
+        if(phase === phases.FREE) {
             SoundManager.stopBackgroundMusic('gamePhaseBackground')
             SoundManager.startBackgroundMusic('freePhaseBackground')
             return () => SoundManager.stopBackgroundMusic('freePhaseBackground')

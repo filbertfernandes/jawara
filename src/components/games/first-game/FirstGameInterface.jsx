@@ -44,7 +44,7 @@ export const FirstGameInterface = () => {
                 time.current.textContent = elapsedTime
 
             // Update the score when the game is over
-            if (state.gameState === gameStates.GAME_OVER) 
+            if(state.gameState === gameStates.GAME_OVER) 
                 setScore(elapsedTime)
         })
 
