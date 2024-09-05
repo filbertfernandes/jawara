@@ -24,9 +24,7 @@ export const Controls = {
 
 export default function App()
 {
-    
-
-    // MAIN GAME STATE
+    // GAME PHASE
     const { phase } = useGame((state) => ({
         phase: state.phase
     }))
@@ -49,6 +47,13 @@ export default function App()
         setJoystickInput(input)
     }
 
+    // INTERFACES MAPPING
+    const gameInterfaces = {
+        [phases.FREE]: <FreePhaseInterface />,
+        [phases.FIRST_GAME]: <FirstGameInterface />,
+        [phases.SECOND_GAME]: <SecondGameInterface />,
+    }
+
     return (
         <KeyboardControls map={ map }>
             {/* 3D CANVAS */}
@@ -58,7 +63,6 @@ export default function App()
                     fov: 45,
                     near: 0.1,
                     far: 200,
-                    position: [ 0, 1, 3 ]
                 } }
             >
                 <Experience joystickInput={ joystickInput } />
@@ -68,9 +72,7 @@ export default function App()
             { isMobile && phase === phases.FREE && <Joystick onMove={ handleJoystickMove } /> }
             
             {/* INTERFACES */}
-            { phase === phases.FREE && <FreePhaseInterface /> }
-            { phase === phases.FIRST_GAME && <FirstGameInterface /> }
-            { phase === phases.SECOND_GAME && <SecondGameInterface /> }
+            { gameInterfaces[phase] }
 
 
         </KeyboardControls>
