@@ -1,81 +1,37 @@
-import { useEffect, useState } from "react"
-import { useGame, phases, gameStates } from "../../useGame.jsx"
+import { gameStates, useGame } from "../../useGame.jsx"
 
-// sound manager
-import { SoundManager } from '../SoundManager.jsx'
+// INTERFACES
+import GameTabsInterface from "./GameTabsInterface.jsx"
+import GameSelectInterface from "./GameSelectInterface.jsx"
+import GameOverInterface from "./GameOverInterface.jsx"
+import GameLeaderboardInterface from "./GameLeaderboardInterface.jsx"
+import GameMaterialInterface from "./GameMaterialInterface.jsx"
 
-const GameMenuInterface = ({ startGame, title }) => {
-
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        // Trigger the popup effect after the component mounts
-        setIsVisible(true);
-    }, []);
-
-    // MAIN GAME STATE
-    const { changePhase, changeGameState } = useGame((state) => ({
-        changePhase: state.changePhase,
-        changeGameState: state.changeGameState
+const GameMenuInterface = ({ startGame, title, words, score }) => {
+    // GAME STATE
+    const { gameState } = useGame((state) => ({
+        gameState: state.gameState,
     }))
 
-    const handleKeyDown = (event) => {
-        if (event.key === ' ' || event.key === 'Enter') {
-            event.preventDefault(); // Prevent the default space key action
-        }
+    const interfaceComponentMap = {
+        [gameStates.MENU]: <GameSelectInterface startGame={ startGame } title={ title } />,
+        [gameStates.LEADERBOARD]: <GameLeaderboardInterface />,
+        [gameStates.MATERIAL]: <GameMaterialInterface words={ words } />,
+        [gameStates.GAME_OVER]: <GameOverInterface score={ score } startGame={ startGame } />,
     }
-
+    
     return (
-        <div className={ `flex flex-col justify-center items-center gap-6 w-full h-[75%] sm:h-full sm:pb-8 lg:gap-10 ${isVisible ? 'animate-bounceIn' : 'opacity-0'}` }>
-            <h1 className="text-4xl text-sky-400 drop-shadow-lg font-bold lg:text-6xl">{ title }</h1>
-
-            <button 
-                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => {
-                    SoundManager.playSound('buttonClick')
-                    changeGameState(gameStates.GAME)
-                    startGame({ mode: 'ngoko' }) 
-                }}
-                onKeyDown={ handleKeyDown }
-            >
-                Ngoko
-            </button>
-
-            <button 
-                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => {
-                    SoundManager.playSound('buttonClick')
-                    changeGameState(gameStates.GAME)
-                    startGame({ mode: 'madya' }) 
-                }}
-                onKeyDown={ handleKeyDown } 
-            >
-                Krama Madya
-            </button>
-
-            <button 
-                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => {
-                    SoundManager.playSound('buttonClick')
-                    changeGameState(gameStates.GAME)
-                    startGame({ mode: 'alus' }) 
-                }}
-                onKeyDown={ handleKeyDown }
-            >
-                Krama Alus
-            </button>
-
-            <button 
-                className="p-1 bg-stone-800/50 w-28 text-sm text-white font-semibold rounded-lg shadow-md lg:p-1.5 lg:w-52 lg:text-3xl"
-                onClick={ () => {
-                    SoundManager.playSound('buttonClick')
-                    changeGameState(gameStates.MENU)
-                    changePhase(phases.FREE) 
-                }}
-                onKeyDown={ handleKeyDown }
-            >
-                Back to Home
-            </button>
+        <div
+            className={`dark-layout ${gameState === gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}`}
+        >
+            {gameState !== gameStates.GAME_OVER ? (
+                <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
+                    <GameTabsInterface />
+                    { interfaceComponentMap[gameState] }
+                </div>
+            ) : (
+                interfaceComponentMap[gameState]
+            )}
         </div>
     )
 }

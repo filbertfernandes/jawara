@@ -8,11 +8,7 @@ import { gameStates, useGame } from "../../../useGame.jsx"
 import { words } from './stores/constants.js'
 
 // INTERFACES
-import TabsInterface from "../../interfaces/TabsInterface.jsx"
 import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
-import GameOverInterface from "../../interfaces/GameOverInterface.jsx"
-import GameLeaderboardInterface from "../../interfaces/GameLeaderboardInterface.jsx"
-import GameMaterialInterface from "../../interfaces/GameMaterialInterface.jsx"
 
 export const FirstGameInterface = () => {
     const [score, setScore] = useState(0)
@@ -59,22 +55,10 @@ export const FirstGameInterface = () => {
     
     return (
         <>
-            {/* TABS INTERFACE */}
-            <div className={ `dark-layout ${gameState === gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
-                {
-                    gameState !== gameStates.GAME_OVER && 
-                    <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
-                        <TabsInterface />
-                        { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Anggota Tubuh" />}
-                        { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
-                        { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
-                    </div>
-                }
-                
-                { gameState === gameStates.GAME_OVER && <GameOverInterface score={ score } startGame={ startGame } /> }
-            </div>
+            {/* GAME MENU INTERFACE */}
+            <GameMenuInterface startGame={ startGame } title='Anggota Tubuh' words={ words } score={ score } />
 
-            {/* GAME INTERFACE */}
+            {/* IN GAME INTERFACE */}
             <div className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
                 <div ref={ time } className="absolute top-0 left-0 w-full text-white text-3xl bg-black/30 pt-1 text-center pointer-events-none font-bebas">0.00</div>
             </div>

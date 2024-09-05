@@ -9,7 +9,7 @@ import { gameStates, useGame } from "../../useGame.jsx"
 // SOUND MANAGER
 import { SoundManager } from '../SoundManager.jsx'
 
-const TabsInterface = () => {
+const GameTabsInterface = () => {
     // GAME STATE
     const { gameState, changeGameState } = useGame((state) => ({
         gameState: state.gameState,
@@ -66,4 +66,4 @@ const TabsInterface = () => {
     )
 }
 
-export default TabsInterface
+export default GameTabsInterface

@@ -37,9 +37,10 @@ export default function Experience({ joystickInput })
     }, [phase])
 
     // GAME COMPONENTS MAPPING
-    const gameComponents = {
+    const gamePhaseComponentMap = {
         [phases.FIRST_GAME]: <FirstGame />,
         [phases.SECOND_GAME]: <SecondGame />,
+        [phases.THIRD_GAME]: <ThirdGame />,
     }
 
     return <>
@@ -94,7 +95,7 @@ export default function Experience({ joystickInput })
             <PlayerController joystickInput={ joystickInput } />
 
             {/* PHASES */}
-            { gameComponents[phase] }
+            { gamePhaseComponentMap[phase] }
 
         </Physics>
 

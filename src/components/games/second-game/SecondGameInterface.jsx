@@ -9,23 +9,19 @@ import useIsMobile from "../../../custom-hooks/useIsMobile.jsx"
 import { words } from './stores/constants.js'
 
 // INTERFACES
-import TabsInterface from "../../interfaces/TabsInterface.jsx"
 import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
-import GameOverInterface from "../../interfaces/GameOverInterface.jsx"
-import GameLeaderboardInterface from "../../interfaces/GameLeaderboardInterface.jsx"
-import GameMaterialInterface from "../../interfaces/GameMaterialInterface.jsx"
 
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
 
 export const SecondGameInterface = () => {
 
-    const time = useRef()
-
     // GAME STATE
     const { gameState } = useGame((state) => ({
         gameState: state.gameState,
     }))
+
+    const time = useRef()
 
     const { startGame, mode, score, correctAnswersOrder, correctCount, stage, setMobileLeft, setMobileRight, setMobilePush, setMobileJump } = useSecondGame((state) => ({
         startGame: state.startGame,
@@ -78,22 +74,10 @@ export const SecondGameInterface = () => {
 
     return (
         <>
-            {/* TABS INTERFACE */}
-            <div className={ `dark-layout ${gameState === gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
-                {
-                    gameState !== gameStates.GAME_OVER && 
-                    <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
-                        <TabsInterface />
-                        { gameState === gameStates.MENU && <GameMenuInterface startGame={ startGame } title="Warna" />}
-                        { gameState === gameStates.LEADERBOARD && <GameLeaderboardInterface />}
-                        { gameState === gameStates.MATERIAL && <GameMaterialInterface words={ words } />}
-                    </div>
-                }
-                
-                { gameState === gameStates.GAME_OVER && <GameOverInterface score={ score } startGame={ startGame } /> }
-            </div>
+            {/* GAME MENU INTERFACE */}
+            <GameMenuInterface startGame={ startGame } title='Warna' words={ words } score={ score } />
 
-            {/* GAME INTERFACE */}
+            {/* IN GAME INTERFACE */}
             <div className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` }>
                 <div className='flex justify-between flex-wrap font-bebas text-2xl text-white bg-black/30 pt-1 px-2 text-center pointer-events-none absolute top-0 left-0 w-full md:text-3xl lg:text-4xl lg:px-12'>
                     <div>Time Left: <span ref={ time } >120</span></div>
