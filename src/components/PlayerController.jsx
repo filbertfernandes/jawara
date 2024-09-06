@@ -16,6 +16,18 @@ const MOVEMENT_SPEED = 0.15
 const MAX_VEL = 3
 const RUN_VEL = 2
 
+const debounce = (func, delay) => {
+    let timer
+    return () => {
+        clearTimeout(timer)
+        timer = setTimeout(func, delay)
+    }
+}
+
+const playFootstepSound = debounce(() => {
+    SoundManager.playSound('move')
+}, 200)
+
 export default function PlayerController({ joystickInput }) 
 {
     const { playerState, setPlayerState, phase } = useGame((state) => ({
@@ -38,13 +50,6 @@ export default function PlayerController({ joystickInput })
         rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 15 })
         rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
         rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
-    }
-
-    const playFootstepSound = () => {
-        SoundManager.playSound('move')
-        setTimeout(() => {
-            SoundManager.playSound('move')
-        }, 200)
     }
 
     useFrame((state) => {
