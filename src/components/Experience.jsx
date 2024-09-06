@@ -14,6 +14,7 @@ import World from './environment/World.jsx'
 import Football from './environment/Football.jsx'
 
 // SOUND MANAGER
+import { SoundManager } from './SoundManager.jsx'
 import useBackgroundMusic from '../hooks/useBackgroundMusic.jsx'
 
 export default function Experience({ joystickInput })

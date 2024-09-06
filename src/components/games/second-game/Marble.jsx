@@ -16,7 +16,9 @@ const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 3.5)
 export default function Marble()
 {
     const marbleBody = useRef()
-    const timeoutId = useRef(null);
+    const timeoutId = useRef(null)
+    const isMounted = useRef(true); // Track component mount status
+
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
 
@@ -40,12 +42,15 @@ export default function Marble()
         // setAngvel to remove any angular forc
 
         if(timeoutId.current !== null) {
-            clearTimeout(timeoutId.current)
-            timeoutId.current = null
+            clearTimeout(timeoutId.current);
+            timeoutId.current = null;
         }
-        marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION)
-        marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
-        marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
+
+        if(marbleBody.current) {
+            marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION);
+            marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 });
+            marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 });
+        }
     }
 
     const jump = () => {
@@ -79,12 +84,16 @@ export default function Marble()
             marbleBody.current.applyTorqueImpulse(torque)
 
             timeoutId.current = setTimeout(() => {
-                reset()
+                if(isMounted.current) {
+                    reset()
+                }
             }, 3000)
         }
     }
 
     useEffect(() => {
+        isMounted.current = true
+
         const unsubscribeJump = subscribeKeys(
             // selector -> i want to listen to any changes on the key. In this case, a jump key. The changes is between false or true. If it was pressed, it's true.
             (state) => state.jump,
@@ -119,10 +128,12 @@ export default function Marble()
 
         // this part will be called whenever we need to clean things
         return () => {
+            isMounted.current = false
             unsubscribeJump()
             unsubscribePush()
             unsubscribeMobileJump()
             unsubscribeMobilePush()
+            clearTimeout(timeoutId.current)
         }
     }, [])
 
@@ -139,6 +150,8 @@ export default function Marble()
     }, [gameState])
 
     useFrame((state, delta) => {
+        if (!isMounted.current || !marbleBody.current) return;
+
         /**
          * Controls
          */
