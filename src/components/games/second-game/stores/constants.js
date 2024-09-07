@@ -1,6 +1,7 @@
 export const words = [
     { 
         indonesian: 'merah', 
+        english: 'red',
         ngoko: 'abang', 
         madya: 'abrit', 
         alus: 'kirmizi',
@@ -12,6 +13,7 @@ export const words = [
     },
     { 
         indonesian: 'hijau', 
+        english: 'green',
         ngoko: 'ijo', 
         madya: 'hejo', 
         alus: 'miro',
@@ -23,6 +25,7 @@ export const words = [
     },
     { 
         indonesian: 'biru', 
+        english: 'blue',
         ngoko: 'biru', 
         madya: 'wungu', 
         alus: 'nila',
@@ -34,6 +37,7 @@ export const words = [
     },
     { 
         indonesian: 'kuning', 
+        english: 'yellow',
         ngoko: 'kuning', 
         madya: 'koneng', 
         alus: 'wars',
@@ -45,6 +49,7 @@ export const words = [
     },
     { 
         indonesian: 'ungu', 
+        english: 'purple',
         ngoko: 'ungu', 
         madya: 'tarung', 
         alus: 'tarung',
@@ -56,6 +61,7 @@ export const words = [
     },
     { 
         indonesian: 'hitam', 
+        english: 'black',
         ngoko: 'ireng', 
         madya: 'cemeng', 
         alus: 'wulung',
@@ -67,6 +73,7 @@ export const words = [
     },
     { 
         indonesian: 'putih', 
+        english: 'white',
         ngoko: 'putih', 
         madya: 'bodas', 
         alus: 'padhang',
@@ -78,6 +85,7 @@ export const words = [
     },
     { 
         indonesian: 'coklat', 
+        english: 'brown',
         ngoko: 'coklat', 
         madya: 'coklat', 
         alus: 'samin',
@@ -89,6 +97,7 @@ export const words = [
     },
     { 
         indonesian: 'abu-abu', 
+        english: 'gray',
         ngoko: 'abu-abu', 
         madya: 'kelabu', 
         alus: 'kimpul',
@@ -100,6 +109,7 @@ export const words = [
     },
     { 
         indonesian: 'jingga', 
+        english: 'orange',
         ngoko: 'oranye', 
         madya: 'wungu', 
         alus: 'ginggang',
@@ -111,6 +121,7 @@ export const words = [
     },
     { 
         indonesian: 'merah muda', 
+        english: 'pink',
         ngoko: 'jambu', 
         madya: 'jambu', 
         alus: 'rosa',
@@ -122,6 +133,7 @@ export const words = [
     },
     { 
         indonesian: 'biru muda', 
+        english: 'light blue',
         ngoko: 'biru enom', 
         madya: 'biru enom', 
         alus: 'biru enom',
@@ -133,6 +145,7 @@ export const words = [
     },
     { 
         indonesian: 'hijau muda', 
+        english: 'light green',
         ngoko: 'ijo enom', 
         madya: 'ijo enom', 
         alus: 'ijo enom',
@@ -140,6 +153,6 @@ export const words = [
         soundMadya: '',
         soundAlus: '',
         imagePath: '',
-        hexColor: '#66ff66',
+        hexColor: '#77fc77',
     },
 ];

@@ -72,7 +72,7 @@ export default function Experience({ joystickInput })
                 friction={ 1.5 }
                 onCollisionEnter={ () => SoundManager.playSoundAfterFinished('soccerBallImpact') }
             >
-                <Football scale={0.3} />
+                <Football scale={0.25} />
             </RigidBody>
             {/* END ENVIRONEMT */}
 

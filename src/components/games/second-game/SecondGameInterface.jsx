@@ -75,7 +75,7 @@ export const SecondGameInterface = () => {
     return (
         <>
             {/* GAME MENU INTERFACE */}
-            <GameMenuInterface startGame={ startGame } title='Warna' words={ words } score={ score } />
+            <GameMenuInterface startGame={ startGame } title='Colors' words={ words } score={ score } />
 
             {/* IN GAME INTERFACE */}
             <div className={ `${gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` }>
