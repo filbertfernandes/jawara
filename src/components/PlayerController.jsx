@@ -11,8 +11,8 @@ import { phases, useGame } from '../useGame.jsx'
 // SOUND MANAGER
 import { SoundManager } from './SoundManager.jsx'
 
-const JUMP_FORCE = 0.5
-const MOVEMENT_SPEED = 0.15
+const JUMP_FORCE = 2
+const MOVEMENT_SPEED = 0.25
 const MAX_VEL = 3
 const RUN_VEL = 2
 
@@ -26,7 +26,7 @@ const debounce = (func, delay) => {
 
 const playFootstepSound = debounce(() => {
     SoundManager.playSound('move')
-}, 200)
+}, 50)
 
 export default function PlayerController({ joystickInput }) 
 {
@@ -146,7 +146,7 @@ export default function PlayerController({ joystickInput })
                 }}
                 position={ [0, 0.5, 15] }
             >
-                <CapsuleCollider args={ [0.8, 0.4] } position={ [0, 1.2, 0] } />
+                <CapsuleCollider args={ [1.15, 0.65] } position={ [0, 1.75, 0] } />
                 <group ref={ player }>
                     <Player scale={ 0.4 } />
                 </group>

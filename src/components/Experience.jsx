@@ -53,10 +53,10 @@ export default function Experience({ joystickInput })
                 </mesh>
 
                 {/* INVISIBLE COLLIDER */}
-                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ -9.6, 0.75, 0 ] } />
-                <CuboidCollider args={ [0.2, 0.75, 22] } position={ [ 10.35, 0.75, 0 ] } />
-                <CuboidCollider args={ [10, 0.75, 0.2] } position={ [ 0, 0.75, -18.8 ] } />
-                <CuboidCollider args={ [10, 0.75, 0.2] } position={ [ 0, 0.75, 18.8 ] } />
+                <CuboidCollider args={ [0.1, 0.75, 22] } position={ [ -9.7, 0.75, 0 ] } />
+                <CuboidCollider args={ [0.1, 0.75, 22] } position={ [ 10.45, 0.75, 0 ] } />
+                <CuboidCollider args={ [10, 0.75, 0.1] } position={ [ 0, 0.75, -18.8 ] } />
+                <CuboidCollider args={ [10, 0.75, 0.1] } position={ [ 0, 0.75, 18.8 ] } />
             </RigidBody>
 
             {/* ENVIRONMENT */}

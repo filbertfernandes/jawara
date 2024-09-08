@@ -23,7 +23,7 @@ export default function Marble()
         const hit = world.castRay(ray, 10, true)
 
         if(hit.toi < 0.15)
-            body.current.applyImpulse({ x: 0, y: 1.25, z: 0 })
+            body.current.applyImpulse({ x: 0, y: 0.7, z: 0 })
     }
 
     const reset = () => {
@@ -54,11 +54,11 @@ export default function Marble()
         )
 
         // to change the phase from start to playing. the selector is any key on the KeyboardControls we defined in index.jsx, so we only have to put 1 argument which is the function
-        const unsubscribeAny = subscribeKeys(
-            () => {
-                start()
-            }
-        )
+        // const unsubscribeAny = subscribeKeys(
+        //     () => {
+        //         start()
+        //     }
+        // )
 
         // this part will be called whenever we need to clean things
         return () => {
