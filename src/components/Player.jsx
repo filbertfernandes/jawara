@@ -45,6 +45,7 @@ export default function Player(props) {
 
           {/* Mata */}
           <skinnedMesh
+            castShadow
             name="Object_12001"
             geometry={nodes.Object_12001.geometry}
             material={materials.lambert7SG}
