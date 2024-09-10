@@ -11,7 +11,7 @@ import { useSecondGame } from "./stores/useSecondGame"
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 3.5)
+const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4)
 
 export default function Marble()
 {
@@ -22,7 +22,7 @@ export default function Marble()
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
 
-    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, 7)) // set the initial position to 10 10 10
+    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)) // set the initial position to 10 10 10
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3(0, 0.25, 3.5))
 
     // GAME STATE
@@ -176,7 +176,7 @@ export default function Marble()
 
         const cameraPosition = new THREE.Vector3()
         cameraPosition.copy(marbleBodyPosition)
-        cameraPosition.z = 7
+        cameraPosition.z = MARBLE_INITIAL_POSITION.z + 3.5
         cameraPosition.y += 0.65
 
         const cameraTarget = new THREE.Vector3()

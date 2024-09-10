@@ -34,7 +34,7 @@ export default function Experience({ joystickInput })
     return <>
 
         {/* PERF */}
-        <Perf position="bottom-right" />
+        {/* <Perf position="bottom-right" /> */}
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />
@@ -61,13 +61,13 @@ export default function Experience({ joystickInput })
 
             {/* ENVIRONMENT */}
             <World scale={0.55} position={ [0, -0.4, 0] } />
-            <GamePortal phase={ phases.FIRST_GAME } portalPosition={ [-8, 0.5, 8] } />
-            <GamePortal phase={ phases.SECOND_GAME } portalPosition={ [-4, 0.5, 8] } />
+            <GamePortal phase={ phases.FIRST_GAME } portalPosition={ [-8, 0.5, 10] } />
+            <GamePortal phase={ phases.SECOND_GAME } portalPosition={ [-4, 0.5, 10] } />
 
             {/* Soccer Ball */}
             <RigidBody 
                 colliders="ball" 
-                position={ [-3, 5, 12] } 
+                position={ [-2, 5, 12] } 
                 restitution={ 0.65 } 
                 friction={ 1.5 }
                 onCollisionEnter={ () => SoundManager.playSoundAfterFinished('soccerBallImpact') }
