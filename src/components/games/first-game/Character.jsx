@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { Level } from './Level'
+import Level from './Level'
 
 export default function Character(props) {
     const characterBody = useRef()

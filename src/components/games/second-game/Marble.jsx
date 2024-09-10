@@ -17,7 +17,7 @@ export default function Marble()
 {
     const marbleBody = useRef()
     const timeoutId = useRef(null)
-    const isMounted = useRef(true); // Track component mount status
+    const isMounted = useRef(true) // Track component mount status
 
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
@@ -30,26 +30,20 @@ export default function Marble()
         gameState: state.gameState
     }))
     
-    const { mobileLeft, mobileRight, score } = useSecondGame((state) => ({
+    const { mobileLeft, mobileRight, score, resetCombo } = useSecondGame((state) => ({
         mobileLeft: state.mobileLeft,
         mobileRight: state.mobileRight,
         score: state.score,
+        resetCombo: state.resetCombo,
     }))
 
     const reset = () => {
-        // setTranslation to put it back at the origin
-        // setLinvel to remove any translation force
-        // setAngvel to remove any angular forc
-
-        if(timeoutId.current !== null) {
-            clearTimeout(timeoutId.current);
-            timeoutId.current = null;
-        }
+        if(timeoutId.current) resetCombo() // reset combo if marble didn't hit correct answer
 
         if(marbleBody.current) {
-            marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION);
-            marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 });
-            marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 });
+            marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION)
+            marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
+            marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
         }
     }
 
@@ -138,19 +132,18 @@ export default function Marble()
     }, [])
 
     useEffect(() => {
-        if(score > 0) {
-            reset()
-        }
-    }, [score])
-
-    useEffect(() => {
         if(gameState === gameStates.GAME) {
+            if(timeoutId.current) {
+                clearTimeout(timeoutId.current)
+                timeoutId.current = null
+            }
+            
             reset()
         }
-    }, [gameState])
+    }, [score, gameState])
 
     useFrame((state, delta) => {
-        if (!isMounted.current || !marbleBody.current) return;
+        if (!isMounted.current || !marbleBody.current) return
 
         /**
          * Controls

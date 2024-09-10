@@ -7,7 +7,7 @@ import { useFirstGame } from './stores/useFirstGame.jsx'
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
 
-export function Level({ characterBody })
+export default function Level({ characterBody })
 {
     const { gameState, changeGameState } = useGame((state) => ({
         gameState: state.gameState,

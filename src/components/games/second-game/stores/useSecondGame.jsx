@@ -39,6 +39,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
     return {
         stage: null,
         score: 0,
+        combo: 1,
         mode: "",
         timer: 0,
         initialTimer: 120,
@@ -57,7 +58,7 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
 
                 const stage = generateGameLevel()
                 const correctAnswersOrder = genereateCorrectAnswersOrder()
-                return { stage, score: 0, mode, timer: 0, initialTimer: 100, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
+                return { stage, score: 0, combo: 1, mode, timer: 0, initialTimer: 100, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
             })
 
         },
@@ -65,8 +66,9 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
         incrementCorrectCount: () => {
             set((state) => {
                 const correctCount = state.correctCount + 1
-                const score = state.score + 1
-                return { correctCount, score }
+                const score = state.score + state.combo
+                const combo = state.combo < 5 ? state.combo + 1 : state.combo
+                return { correctCount, score, combo }
             })
         },
 
@@ -79,6 +81,12 @@ export const useSecondGame = create(subscribeWithSelector((set) => {
                 return { stage, correctCount, correctAnswersOrder }
             })
             
+        },
+
+        resetCombo: () => {
+            set(() => {
+                return { combo: 1 }
+            })
         },
 
         // MOBILE CONTROLS
