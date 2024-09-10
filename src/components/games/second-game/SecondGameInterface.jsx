@@ -13,6 +13,7 @@ import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
 
 // SOUND MANAGER
 import { SoundManager } from '../../SoundManager.jsx'
+import ScorePlusInterface from "./ScorePlusInterface.jsx"
 
 export const SecondGameInterface = () => {
 
@@ -85,6 +86,8 @@ export const SecondGameInterface = () => {
                     <div>Score: { score }</div>
                 </div>
             </div>
+
+           { gameState === gameStates.GAME && <ScorePlusInterface />}
 
             {/* MOBILE CONTROLLERS */}
             <div className={ `flex justify-between flex-nowrap font-bebas text-white text-2xl pt-1 text-center absolute bottom-0 left-0 w-full md:text-3xl ${isMobile === false || gameState !== gameStates.GAME ? 'opacity-0 pointer-events-none' : ''}` } >
