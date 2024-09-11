@@ -12,6 +12,7 @@ import { useSecondGame } from "./stores/useSecondGame"
 import { SoundManager } from '../../SoundManager.jsx'
 
 const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4)
+const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3
 
 export default function Marble()
 {
@@ -60,21 +61,18 @@ export default function Marble()
     }
 
     const push = () => {
-        const impulse = { x: 0, y: 0, z: 0 }
-        const torque = { x: 0, y: 0, z: 0 }
-
-        const impulseStrength = 0.6
-        const torqueStrength = 0.2
-
-        impulse.z -= impulseStrength * 5
-        torque.x -= torqueStrength * 5
-
-        const marbleBodyPosition = marbleBody.current.translation()
-
-        // Marble allow push position limit
-        if(marbleBodyPosition.z >= MARBLE_INITIAL_POSITION.z - 3) {
+        if(marbleBody.current.translation().z >= MARBLE_ALLOW_PUSH_POSITION_LIMIT) {
             clearTimeout(timeoutId.current)
             timeoutId.current = null
+
+            const impulse = { x: 0, y: 0, z: 0 }
+            const torque = { x: 0, y: 0, z: 0 }
+
+            const impulseStrength = 0.6
+            const torqueStrength = 0.2
+
+            impulse.z -= impulseStrength * 5
+            torque.x -= torqueStrength * 5
 
             SoundManager.playSound('marblePush')
             marbleBody.current.applyImpulse(impulse)
