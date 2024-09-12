@@ -21,19 +21,19 @@ export default function Level({ types = [ BlockAxe ] })
     const [coloredBlocks, setColoredBlocks] = useState([])
 
     useEffect(() => {
-        if(stage) {
-            setColoredBlocks(stage)
-            stage.map((word) => {
-                word.isCorrect = false
-            })
-        }
+        if(!stage) return
+            
+        setColoredBlocks(stage)
+        stage.map((word) => {
+            word.isCorrect = false
+        })
     }, [stage])
 
     useEffect(() => {
-        if(stage) {
-            if(correctCount === stage.length) {
-                nextStage()
-            }
+        if(!stage) return
+        
+        if(correctCount === stage.length) {
+            nextStage()
         }
     }, [correctCount])
 

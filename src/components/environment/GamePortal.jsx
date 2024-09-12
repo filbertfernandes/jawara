@@ -44,7 +44,7 @@ export default function GamePortal({ phase, portalPosition })
 
         {/* GAME PORTAL */}
         <RigidBody type="fixed" >
-                <mesh ref={ portal } position={ portalPosition } scale={ [1, 1, 1] } castShadow receiveShadow >
+                <mesh ref={ portal } position={ portalPosition } scale={ [1.2, 1.5, 1.2] } castShadow receiveShadow >
                     <boxGeometry />
                     <meshStandardMaterial color="hotpink" />
 

@@ -34,7 +34,7 @@ export default function Experience({ joystickInput })
     return <>
 
         {/* PERF */}
-        {/* <Perf position="bottom-right" /> */}
+        <Perf position="bottom-right" />
 
         {/* BACKGROUND COLOR */}
         <color args={ ['#ccf2fc'] } attach="background" />

@@ -1,3 +1,5 @@
+import { useCallback } from "react"
+
 // REACT ICONS
 import { IoGameController } from "react-icons/io5"
 import { FaBook } from "react-icons/fa"
@@ -38,26 +40,16 @@ const GameTabsInterface = () => {
     const isMaterialActive = gameState === gameStates.MATERIAL
 
     // Button click handlers
-    const handleMenuClick = () => {
+    const handleTabButtonClick = useCallback((gameState) => {
         SoundManager.playSound('buttonClick')
-        changeGameState(gameStates.MENU)
-    }
-
-    const handleLeaderboardClick = () => {
-        SoundManager.playSound('buttonClick')
-        changeGameState(gameStates.LEADERBOARD)
-    }
-
-    const handleMaterialClick = () => {
-        SoundManager.playSound('buttonClick')
-        changeGameState(gameStates.MATERIAL)
-    }
+        changeGameState(gameState)
+    })
 
     return (
         <div className="flex justify-evenly w-full px-4 sm:w-auto sm:flex-col sm:h-full sm:ml-4 sm:mb-8">
-            <GameTabButton icon={IoGameController} isActive={isMenuActive} onClick={handleMenuClick} />
-            <GameTabButton icon={FaRankingStar} isActive={isLeaderboardActive} onClick={handleLeaderboardClick} />
-            <GameTabButton icon={FaBook} isActive={isMaterialActive} onClick={handleMaterialClick} />
+            <GameTabButton icon={IoGameController} isActive={isMenuActive} onClick={ () => handleTabButtonClick(gameStates.MENU) } />
+            <GameTabButton icon={FaRankingStar} isActive={isLeaderboardActive} onClick={ () => handleTabButtonClick(gameStates.LEADERBOARD) } />
+            <GameTabButton icon={FaBook} isActive={isMaterialActive} onClick={ () => handleTabButtonClick(gameStates.MATERIAL) } />
         </div>
     )
 }

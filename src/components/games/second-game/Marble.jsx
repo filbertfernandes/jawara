@@ -61,29 +61,29 @@ export default function Marble()
     }
 
     const push = () => {
-        if(marbleBody.current.translation().z >= MARBLE_ALLOW_PUSH_POSITION_LIMIT) {
-            clearTimeout(timeoutId.current)
-            timeoutId.current = null
+        if(!(marbleBody.current.translation().z >= MARBLE_ALLOW_PUSH_POSITION_LIMIT)) return
 
-            const impulse = { x: 0, y: 0, z: 0 }
-            const torque = { x: 0, y: 0, z: 0 }
+        clearTimeout(timeoutId.current)
+        timeoutId.current = null
 
-            const impulseStrength = 0.6
-            const torqueStrength = 0.2
+        const impulse = { x: 0, y: 0, z: 0 }
+        const torque = { x: 0, y: 0, z: 0 }
 
-            impulse.z -= impulseStrength * 5
-            torque.x -= torqueStrength * 5
+        const impulseStrength = 0.6
+        const torqueStrength = 0.2
 
-            SoundManager.playSound('marblePush')
-            marbleBody.current.applyImpulse(impulse)
-            marbleBody.current.applyTorqueImpulse(torque)
+        impulse.z -= impulseStrength * 5
+        torque.x -= torqueStrength * 5
 
-            timeoutId.current = setTimeout(() => {
-                if(isMounted.current) {
-                    reset()
-                }
-            }, 3000)
-        }
+        SoundManager.playSound('marblePush')
+        marbleBody.current.applyImpulse(impulse)
+        marbleBody.current.applyTorqueImpulse(torque)
+
+        timeoutId.current = setTimeout(() => {
+            if(isMounted.current) {
+                reset()
+            }
+        }, 3000)
     }
 
     useEffect(() => {
@@ -133,14 +133,14 @@ export default function Marble()
     }, [])
 
     useEffect(() => {
-        if(gameState === gameStates.GAME) {
-            if(timeoutId.current) {
-                clearTimeout(timeoutId.current)
-                timeoutId.current = null
-            }
-            
-            reset()
+        if(gameState !== gameStates.GAME) return
+        
+        if(timeoutId.current) {
+            clearTimeout(timeoutId.current)
+            timeoutId.current = null
         }
+        
+        reset()
     }, [score, gameState])
 
     useFrame((state, delta) => {

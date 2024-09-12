@@ -27,16 +27,16 @@ export default function Level({ characterBody })
     const [inputValues, setInputValues] = useState({}) // input values, used to update correct count
 
     useEffect(() => {
-        if(level) {
-            setInputBoxes(level[currentStage])
-            setCorrectCount(0)
-            setInputValues({})
-            level[currentStage].map((word, index) => {
-                word.isCorrect = false
-            })
-        }
+        if(!level) return
 
-        if(level && Object.keys(inputValues).length === 0) {
+        setInputBoxes(level[currentStage])
+        setCorrectCount(0)
+        setInputValues({})
+        level[currentStage].map((word) => {
+            word.isCorrect = false
+        })
+
+        if(Object.keys(inputValues).length === 0) {
             const totalInputs = level[currentStage].length
             for(let i = 0; i < totalInputs; i++) {
                 inputValues[i] = ''
@@ -45,14 +45,14 @@ export default function Level({ characterBody })
     }, [level, currentStage])
 
     useEffect(() => {
-        if(level) {
-            if(correctCount === level[currentStage].length && currentStage < 4) {
-                nextStage()
-            } else if(correctCount === level[currentStage].length) {
-                SoundManager.playSound('gameComplete')
-                changeGameState(gameStates.GAME_OVER)
-                gameOver()
-            }
+        if(!level) return
+
+        if(correctCount === level[currentStage].length && currentStage < 4) {
+            nextStage()
+        } else if(correctCount === level[currentStage].length) {
+            SoundManager.playSound('gameComplete')
+            changeGameState(gameStates.GAME_OVER)
+            gameOver()
         }
     }, [correctCount])
 
