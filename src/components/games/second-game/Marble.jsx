@@ -23,7 +23,7 @@ export default function Marble()
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
 
-    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)) // set the initial position to 10 10 10
+    const [ smoothCameraPosition ] = useState(() => new THREE.Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)) // set camera initial position to 0 0.65 7.5
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3(0, 0.25, 3.5))
 
     // GAME STATE

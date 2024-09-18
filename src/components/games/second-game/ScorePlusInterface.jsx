@@ -13,28 +13,27 @@ const ScorePlusInterface = () => {
     }))
 
     useEffect(() => {
-        if (score > 0) {
+        if (score <= 0) return
             
-            // Clear any existing timeout to avoid overlap
-            if (timeoutId.current) {
-                clearTimeout(timeoutId.current)
-            }
-
-            // Trigger the animation
-            setIsVisible(false) // Reset visibility to restart the animation
-            requestAnimationFrame(() => {
-                setIsVisible(true)
-            })
-            
-            // Set a new timeout to hide the animation after 4000ms
-            timeoutId.current = setTimeout(() => {
-                setIsVisible(false)
-            }, 3000)
-
-            // Handle score plus UI
-            setScoreDifferent(score - scoreBefore)
-            setScoreBefore(score)
+        // Clear any existing timeout to avoid overlap
+        if (timeoutId.current) {
+            clearTimeout(timeoutId.current)
         }
+
+        // Trigger the animation
+        setIsVisible(false) // Reset visibility to restart the animation
+        requestAnimationFrame(() => {
+            setIsVisible(true)
+        })
+        
+        // Set a new timeout to hide the animation after 4000ms
+        timeoutId.current = setTimeout(() => {
+            setIsVisible(false)
+        }, 3000)
+
+        // Handle score plus UI
+        setScoreDifferent(score - scoreBefore)
+        setScoreBefore(score)
     }, [score])
 
     return (
