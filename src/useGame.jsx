@@ -2,61 +2,62 @@ import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
 
 export const phases = {
-    FREE: 'FREE',
-    FIRST_GAME: 'FIRST_GAME',
-    SECOND_GAME: 'SECOND_GAME',
-    THIRD_GAME: 'THIRD_GAME',
+  FREE: "FREE",
+  FIRST_GAME: "FIRST_GAME",
+  SECOND_GAME: "SECOND_GAME",
+  THIRD_GAME: "THIRD_GAME",
 }
 
 export const gameStates = {
-    MENU: 'MENU',
-    LEADERBOARD: 'LEADERBOARD',
-    MATERIAL: 'MATERIAL',
-    GAME: 'GAME',
-    GAME_OVER: 'GAME_OVER',
+  MENU: "MENU",
+  LEADERBOARD: "LEADERBOARD",
+  MATERIAL: "MATERIAL",
+  GAME: "GAME",
+  GAME_OVER: "GAME_OVER",
 }
 
-export const useGame = create(subscribeWithSelector((set) => 
-{
+export const useGame = create(
+  subscribeWithSelector((set) => {
     return {
-        // DEFAULT PHASE
-        phase: phases.FREE,
-        gameState: gameStates.MENU,
-        canPressEnter: false,
-        canChangePhase: {condition: false, phase: ''},
+      // DEFAULT PHASE
+      phase: phases.FREE,
+      gameState: gameStates.MENU,
+      canPressEnter: false,
+      canChangePhase: { condition: false, phase: "" },
 
-        // CHANGE PHASES METHODS
-        changePhase: (phase) => {
-            set(() => {
-                return { phase }
-            })
-        },
-        
-        setCanChangePhase: (condition, phase) => {
-            set(() => ({
-                canChangePhase: { condition, phase }
-            }));
-        },
+      // CHANGE PHASES METHODS
+      changePhase: (phase) => {
+        set(() => {
+          return { phase }
+        })
+      },
 
-        setCanPressEnter: (condition) => {
-            set(() => {
-                return { canPressEnter: condition }
-            })
-        },
+      setCanChangePhase: (condition, phase) => {
+        set(() => ({
+          canChangePhase: { condition, phase },
+        }))
+      },
 
-        // CHANGE GAME STATE METHOD
-        changeGameState: (gameState) => {
-            set(() => {
-                return { gameState }
-            })
-        },
+      setCanPressEnter: (condition) => {
+        set(() => {
+          return { canPressEnter: condition }
+        })
+      },
 
-        // PLAYER STATE
-        playerState: 'Idle',
-        setPlayerState: (playerState) => {
-            set({
-                playerState,
-            })
-        }
+      // CHANGE GAME STATE METHOD
+      changeGameState: (gameState) => {
+        set(() => {
+          return { gameState }
+        })
+      },
+
+      // PLAYER STATE
+      playerState: "Idle",
+      setPlayerState: (playerState) => {
+        set({
+          playerState,
+        })
+      },
     }
-}))
+  })
+)

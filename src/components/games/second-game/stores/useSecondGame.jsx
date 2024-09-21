@@ -4,115 +4,120 @@ import { subscribeWithSelector } from "zustand/middleware"
 import { words } from "./constants.js"
 
 export const generateGameLevel = () => {
-    const stage = []
-    const nbOptions = 5
+  const stage = []
+  const nbOptions = 5
 
-    for (let j = 0; j < nbOptions; j++) {
+  for (let j = 0; j < nbOptions; j++) {
+    let word = null
 
-        let word = null
-
-        while (!word || stage.includes(word)) {
-            word = words[Math.floor(Math.random() * words.length)]
-        }
-
-        stage.push(word)
-
+    while (!word || stage.includes(word)) {
+      word = words[Math.floor(Math.random() * words.length)]
     }
 
-    return stage
+    stage.push(word)
+  }
+
+  return stage
 }
 
 export const genereateCorrectAnswersOrder = () => {
-    // Create an array with integers 0 to 4
-    const arr = [0, 1, 2, 3, 4];
-    
-    // Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-  
-    return arr;
+  // Create an array with integers 0 to 4
+  const arr = [0, 1, 2, 3, 4]
+
+  // Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+
+  return arr
 }
 
-export const useSecondGame = create(subscribeWithSelector((set) => {
+export const useSecondGame = create(
+  subscribeWithSelector((set) => {
     return {
-        stage: null,
-        score: 0,
-        combo: 1,
-        mode: "",
-        timer: 0,
-        initialTimer: 120,
-        startTime: 0,
-        correctAnswersOrder: [],
-        correctCount: 0,
-        mobileLeft: false,
-        mobileRight: false,
-        mobilePush: false,
-        mobileJump: false,
+      stage: null,
+      score: 0,
+      combo: 1,
+      mode: "",
+      timer: 0,
+      initialTimer: 120,
+      startTime: 0,
+      correctAnswersOrder: [],
+      correctCount: 0,
+      mobileLeft: false,
+      mobileRight: false,
+      mobilePush: false,
+      mobileJump: false,
 
-        startGame: ({ mode }) => {
+      startGame: ({ mode }) => {
+        set((state) => {
+          if (mode === "" && state.mode != "") mode = state.mode
 
-            set((state) => {
-                if(mode === '' && state.mode != '') mode = state.mode
+          const stage = generateGameLevel()
+          const correctAnswersOrder = genereateCorrectAnswersOrder()
+          return {
+            stage,
+            score: 0,
+            combo: 1,
+            mode,
+            timer: 0,
+            initialTimer: 100,
+            startTime: Date.now(),
+            correctAnswersOrder,
+            correctCount: 0,
+          }
+        })
+      },
 
-                const stage = generateGameLevel()
-                const correctAnswersOrder = genereateCorrectAnswersOrder()
-                return { stage, score: 0, combo: 1, mode, timer: 0, initialTimer: 100, startTime: Date.now(), correctAnswersOrder, correctCount: 0 }
-            })
+      incrementCorrectCount: () => {
+        set((state) => {
+          const correctCount = state.correctCount + 1
+          const score = state.score + state.combo
+          const combo = state.combo < 5 ? state.combo + 1 : state.combo
+          return { correctCount, score, combo }
+        })
+      },
 
-        },
+      nextStage: () => {
+        set(() => {
+          const stage = generateGameLevel()
+          const correctCount = 0
+          const correctAnswersOrder = genereateCorrectAnswersOrder()
+          return { stage, correctCount, correctAnswersOrder }
+        })
+      },
 
-        incrementCorrectCount: () => {
-            set((state) => {
-                const correctCount = state.correctCount + 1
-                const score = state.score + state.combo
-                const combo = state.combo < 5 ? state.combo + 1 : state.combo
-                return { correctCount, score, combo }
-            })
-        },
+      resetCombo: () => {
+        set(() => {
+          return { combo: 1 }
+        })
+      },
 
-        nextStage: () => {
+      // MOBILE CONTROLS
+      setMobileLeft: (condition) => {
+        set(() => {
+          return { mobileLeft: condition }
+        })
+      },
 
-            set(() => {
-                const stage = generateGameLevel()
-                const correctCount = 0
-                const correctAnswersOrder = genereateCorrectAnswersOrder()
-                return { stage, correctCount, correctAnswersOrder }
-            })
-            
-        },
+      setMobileRight: (condition) => {
+        set(() => {
+          return { mobileRight: condition }
+        })
+      },
 
-        resetCombo: () => {
-            set(() => {
-                return { combo: 1 }
-            })
-        },
+      setMobilePush: (condition) => {
+        set(() => {
+          return { mobilePush: condition }
+        })
+      },
 
-        // MOBILE CONTROLS
-        setMobileLeft: (condition) => {
-            set(() => {
-                return { mobileLeft: condition }
-            })
-        },
-        
-        setMobileRight: (condition) => {
-            set(() => {
-                return { mobileRight: condition }
-            })
-        },
-
-        setMobilePush: (condition) => {
-            set(() => {
-                return { mobilePush: condition }
-            })
-        },
-
-        setMobileJump: (condition) => {
-            set(() => {
-                return { mobileJump: condition }
-            })
-        }
-    
+      setMobileJump: (condition) => {
+        set(() => {
+          return { mobileJump: condition }
+        })
+      },
     }
-}))
+  })
+)

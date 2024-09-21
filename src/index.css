@@ -5,15 +5,24 @@
 /* BASE */
 html,
 body,
-#root
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.dark-layout {
-    @apply font-bebas fixed flex justify-center left-0 top-0 w-full h-full pt-8 bg-black/60 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out
+@layer utilities {
+  .dark-layout {
+    @apply font-bebas fixed flex justify-center left-0 top-0 w-full h-full pt-8 bg-black/60 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out;
+  }
+
+  .h1-bold {
+    @apply text-4xl font-bold lg:text-6xl;
+  }
+
+  .h5-bold {
+    @apply text-xl font-bold lg:text-3xl;
+  }
 }

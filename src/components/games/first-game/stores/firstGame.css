@@ -1,47 +1,47 @@
 /* FIRST GAME */
-.label > div
-{
-    display: flex;
-    font-family: Helvetica, Arial;
-    position: absolute;
-    background: rgba(0, 0, 0, 0);
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    cursor: pointer;
+.label > div {
+  display: flex;
+  font-family: Helvetica, Arial;
+  position: absolute;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .number {
-    background: #000000;
-    padding: 3px 5px; /* left right, top bottom */
+  background: #000000;
+  padding: 3px 5px; /* left right, top bottom */
 }
 
 .input-box {
-    background: #55555588;
-    transform: scaleX(0); /* Start with scale 0 (hidden) */
-    transform-origin: left; /* Scale from the left side */
-    transition: transform 0.3s ease; /* Optional: Adds a smooth transition effect */
-    display: inline-block;
-    white-space: nowrap; /* Ensure the input doesn't break to a new line */
-    padding: 2px 4px; /* left right, top bottom */
-}
-  
-.input-box.visible {
-    transform: scaleX(1); /* Scale to full width (visible) */
+  background: #55555588;
+  transform: scaleX(0); /* Start with scale 0 (hidden) */
+  transform-origin: left; /* Scale from the left side */
+  transition: transform 0.3s ease; /* Optional: Adds a smooth transition effect */
+  display: inline-block;
+  white-space: nowrap; /* Ensure the input doesn't break to a new line */
+  padding: 2px 4px; /* left right, top bottom */
 }
 
-.input-box input, .input-box input:focus {
-    background: transparent;
-    color: #fff;
-    border: none;
-    outline: none;
-    width: 80px;
+.input-box.visible {
+  transform: scaleX(1); /* Scale to full width (visible) */
+}
+
+.input-box input,
+.input-box input:focus {
+  background: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  width: 80px;
 }
 
 .input-box-green {
-    background: #2dd65288;
+  background: #2dd65288;
 }
 
 .number-green {
-    background: #2dd652;
+  background: #2dd652;
 }
