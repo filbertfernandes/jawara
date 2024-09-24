@@ -55,7 +55,7 @@ export default function App() {
     <KeyboardControls map={map}>
       {/* 3D CANVAS */}
       <Canvas
-        shadows
+        // shadows
         camera={{
           fov: 45,
           near: 0.1,

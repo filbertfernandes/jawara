@@ -6,16 +6,16 @@ Source: https://sketchfab.com/3d-models/football-89ce97755fe9499aa59cb0876c21ee8
 Title: Football
 */
 
-import React from 'react'
-import { useGLTF } from '@react-three/drei'
+import React from "react"
+import { useGLTF } from "@react-three/drei"
 
 export default function Football(props) {
-  const { nodes, materials } = useGLTF('./models/environment/football.glb')
+  const { nodes, materials } = useGLTF("./models/environment/football.glb")
   return (
     <group {...props} dispose={null}>
       <mesh
-        castShadow
-        receiveShadow
+        // castShadow
+        // receiveShadow
         geometry={nodes.Object_4.geometry}
         material={materials.Material}
         rotation={[Math.PI / 2, 0, 0]}
@@ -24,4 +24,4 @@ export default function Football(props) {
   )
 }
 
-useGLTF.preload('./models/environment/football.glb')
+useGLTF.preload("./models/environment/football.glb")

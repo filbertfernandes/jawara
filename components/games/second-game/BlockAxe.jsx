@@ -28,6 +28,8 @@ export default function BlockAxe({ coloredBlock, index }) {
   }, [coloredBlock])
 
   useFrame((state) => {
+    if (!obstacle.current) return
+
     const time = state.clock.getElapsedTime()
     const x = Math.sin(time * speedFactor + timeOffset) * 6.5
     obstacle.current.setNextKinematicTranslation({

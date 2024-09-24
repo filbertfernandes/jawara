@@ -48,8 +48,8 @@ export default function GamePortal({ phase, portalPosition }) {
           ref={portal}
           position={portalPosition}
           scale={[1.2, 1.5, 1.2]}
-          castShadow
-          receiveShadow
+          // castShadow
+          // receiveShadow
         >
           <boxGeometry />
           <meshStandardMaterial color="hotpink" />

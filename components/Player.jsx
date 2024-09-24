@@ -35,7 +35,7 @@ export default function Player(props) {
 
           {/* Sepatu & Alis */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_11001"
             geometry={nodes.Object_11001.geometry}
             material={materials["lambert6SG.001"]}
@@ -44,7 +44,7 @@ export default function Player(props) {
 
           {/* Mata */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_12001"
             geometry={nodes.Object_12001.geometry}
             material={materials.lambert7SG}
@@ -53,7 +53,7 @@ export default function Player(props) {
 
           {/* Baju */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_2001"
             geometry={nodes.Object_2001.geometry}
             material={materials.BajuSDlambert1SG}
@@ -62,7 +62,7 @@ export default function Player(props) {
 
           {/* Kepala */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_3001"
             geometry={nodes.Object_3001.geometry}
             material={materials["BaseIbu_Pitunglambert2SG.001"]}
@@ -85,7 +85,7 @@ export default function Player(props) {
           />
           {/* Celana */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_6001"
             geometry={nodes.Object_6001.geometry}
             material={materials.Gedelambert3SG}
@@ -93,7 +93,7 @@ export default function Player(props) {
           />
           {/* Rambut */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_7001"
             geometry={nodes.Object_7001.geometry}
             material={materials["lambert6SG.001"]}
@@ -108,7 +108,7 @@ export default function Player(props) {
           />
           {/* Tangan & Kaki */}
           <skinnedMesh
-            castShadow
+            // castShadow
             name="Object_9001"
             geometry={nodes.Object_9001.geometry}
             material={materials.BaseIbu_Pitunglambert2SG}

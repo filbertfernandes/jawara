@@ -1,4 +1,3 @@
-// JoystickControl.js
 import React, { useState } from "react"
 import Nipple from "react-nipple"
 

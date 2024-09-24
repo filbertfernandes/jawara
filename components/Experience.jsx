@@ -1,5 +1,3 @@
-"use client"
-
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
 import { Perf } from "r3f-perf"
 
