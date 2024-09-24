@@ -1,0 +1,35 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "vendor-chunks/@utsubo";
+exports.ids = ["vendor-chunks/@utsubo"];
+exports.modules = {
+
+/***/ "(ssr)/./node_modules/@utsubo/events/dist/react.mjs":
+/*!****************************************************!*\
+  !*** ./node_modules/@utsubo/events/dist/react.mjs ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   useEvent: () => (/* binding */ useEvent)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var _vanilla_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vanilla.mjs */ \"(ssr)/./node_modules/@utsubo/events/dist/vanilla.mjs\");\n\n\nfunction useEvent(eventName, handler, deps = [], options) {\n  const handlerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(handler);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => void (handlerRef.current = handler), [handler]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    const handler2 = (event) => {\n      var _a;\n      return (_a = handlerRef.current) == null ? void 0 : _a.call(handlerRef, event);\n    };\n    const context = (0,_vanilla_mjs__WEBPACK_IMPORTED_MODULE_1__.onEvent)(eventName, handler2, options);\n    return () => (0,_vanilla_mjs__WEBPACK_IMPORTED_MODULE_1__.offEvent)(eventName, handler2, { ...options, context });\n  }, [eventName, options == null ? void 0 : options.once, ...deps]);\n}\n\n//# sourceMappingURL=react.mjs.map\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvQHV0c3Viby9ldmVudHMvZGlzdC9yZWFjdC5tanMiLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQTBDO0FBQ1E7QUFDbEQ7QUFDQSxxQkFBcUIsNkNBQU07QUFDM0IsRUFBRSxnREFBUztBQUNYLEVBQUUsZ0RBQVM7QUFDWDtBQUNBO0FBQ0E7QUFDQTtBQUNBLG9CQUFvQixxREFBTztBQUMzQixpQkFBaUIsc0RBQVEsd0JBQXdCLHFCQUFxQjtBQUN0RSxHQUFHO0FBQ0g7QUFHRTtBQUNGIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vamF3YXJhLy4vbm9kZV9tb2R1bGVzL0B1dHN1Ym8vZXZlbnRzL2Rpc3QvcmVhY3QubWpzPzM5ZDUiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlUmVmLCB1c2VFZmZlY3QgfSBmcm9tIFwicmVhY3RcIjtcbmltcG9ydCB7IG9uRXZlbnQsIG9mZkV2ZW50IH0gZnJvbSBcIi4vdmFuaWxsYS5tanNcIjtcbmZ1bmN0aW9uIHVzZUV2ZW50KGV2ZW50TmFtZSwgaGFuZGxlciwgZGVwcyA9IFtdLCBvcHRpb25zKSB7XG4gIGNvbnN0IGhhbmRsZXJSZWYgPSB1c2VSZWYoaGFuZGxlcik7XG4gIHVzZUVmZmVjdCgoKSA9PiB2b2lkIChoYW5kbGVyUmVmLmN1cnJlbnQgPSBoYW5kbGVyKSwgW2hhbmRsZXJdKTtcbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBjb25zdCBoYW5kbGVyMiA9IChldmVudCkgPT4ge1xuICAgICAgdmFyIF9hO1xuICAgICAgcmV0dXJuIChfYSA9IGhhbmRsZXJSZWYuY3VycmVudCkgPT0gbnVsbCA/IHZvaWQgMCA6IF9hLmNhbGwoaGFuZGxlclJlZiwgZXZlbnQpO1xuICAgIH07XG4gICAgY29uc3QgY29udGV4dCA9IG9uRXZlbnQoZXZlbnROYW1lLCBoYW5kbGVyMiwgb3B0aW9ucyk7XG4gICAgcmV0dXJuICgpID0+IG9mZkV2ZW50KGV2ZW50TmFtZSwgaGFuZGxlcjIsIHsgLi4ub3B0aW9ucywgY29udGV4dCB9KTtcbiAgfSwgW2V2ZW50TmFtZSwgb3B0aW9ucyA9PSBudWxsID8gdm9pZCAwIDogb3B0aW9ucy5vbmNlLCAuLi5kZXBzXSk7XG59XG5leHBvcnQge1xuICB1c2VFdmVudFxufTtcbi8vIyBzb3VyY2VNYXBwaW5nVVJMPXJlYWN0Lm1qcy5tYXBcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/@utsubo/events/dist/react.mjs\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/@utsubo/events/dist/vanilla.mjs":
+/*!******************************************************!*\
+  !*** ./node_modules/@utsubo/events/dist/vanilla.mjs ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   emitEvent: () => (/* binding */ emitEvent),\n/* harmony export */   offEvent: () => (/* binding */ offEvent),\n/* harmony export */   onEvent: () => (/* binding */ onEvent)\n/* harmony export */ });\n/* harmony import */ var eventemitter3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! eventemitter3 */ \"(ssr)/./node_modules/eventemitter3/index.js\");\n\nconst eventEmitter = /* @__PURE__ */ new eventemitter3__WEBPACK_IMPORTED_MODULE_0__();\nfunction onEvent(eventName, handler, options) {\n  return (options == null ? void 0 : options.once) ? eventEmitter.once(eventName, handler) : eventEmitter.on(eventName, handler);\n}\nfunction offEvent(eventName, handler, options) {\n  var _a;\n  eventEmitter.removeListener(eventName, handler, (_a = options == null ? void 0 : options.context) != null ? _a : null, options == null ? void 0 : options.once);\n}\nfunction emitEvent(eventName, payload) {\n  eventEmitter.emit(eventName, payload);\n}\n\n//# sourceMappingURL=vanilla.mjs.map\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvQHV0c3Viby9ldmVudHMvZGlzdC92YW5pbGxhLm1qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7O0FBQXlDO0FBQ3pDLHlDQUF5QywwQ0FBWTtBQUNyRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUtFO0FBQ0YiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qYXdhcmEvLi9ub2RlX21vZHVsZXMvQHV0c3Viby9ldmVudHMvZGlzdC92YW5pbGxhLm1qcz80ZTgxIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBFdmVudEVtaXR0ZXIgZnJvbSBcImV2ZW50ZW1pdHRlcjNcIjtcbmNvbnN0IGV2ZW50RW1pdHRlciA9IC8qIEBfX1BVUkVfXyAqLyBuZXcgRXZlbnRFbWl0dGVyKCk7XG5mdW5jdGlvbiBvbkV2ZW50KGV2ZW50TmFtZSwgaGFuZGxlciwgb3B0aW9ucykge1xuICByZXR1cm4gKG9wdGlvbnMgPT0gbnVsbCA/IHZvaWQgMCA6IG9wdGlvbnMub25jZSkgPyBldmVudEVtaXR0ZXIub25jZShldmVudE5hbWUsIGhhbmRsZXIpIDogZXZlbnRFbWl0dGVyLm9uKGV2ZW50TmFtZSwgaGFuZGxlcik7XG59XG5mdW5jdGlvbiBvZmZFdmVudChldmVudE5hbWUsIGhhbmRsZXIsIG9wdGlvbnMpIHtcbiAgdmFyIF9hO1xuICBldmVudEVtaXR0ZXIucmVtb3ZlTGlzdGVuZXIoZXZlbnROYW1lLCBoYW5kbGVyLCAoX2EgPSBvcHRpb25zID09IG51bGwgPyB2b2lkIDAgOiBvcHRpb25zLmNvbnRleHQpICE9IG51bGwgPyBfYSA6IG51bGwsIG9wdGlvbnMgPT0gbnVsbCA/IHZvaWQgMCA6IG9wdGlvbnMub25jZSk7XG59XG5mdW5jdGlvbiBlbWl0RXZlbnQoZXZlbnROYW1lLCBwYXlsb2FkKSB7XG4gIGV2ZW50RW1pdHRlci5lbWl0KGV2ZW50TmFtZSwgcGF5bG9hZCk7XG59XG5leHBvcnQge1xuICBlbWl0RXZlbnQsXG4gIG9mZkV2ZW50LFxuICBvbkV2ZW50XG59O1xuLy8jIHNvdXJjZU1hcHBpbmdVUkw9dmFuaWxsYS5tanMubWFwXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/@utsubo/events/dist/vanilla.mjs\n");
+
+/***/ })
+
+};
+;
