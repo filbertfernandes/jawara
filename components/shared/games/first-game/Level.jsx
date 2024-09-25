@@ -5,7 +5,7 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx"
 import { useFirstGame } from "./stores/useFirstGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../../SoundManager.jsx"
+import { SoundManager } from "../../utils/SoundManager.jsx"
 
 export default function Level({ characterBody }) {
   const { gameState, changeGameState } = useGame((state) => ({

@@ -12,7 +12,7 @@ import { words } from "./stores/constants.js"
 import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../../SoundManager.jsx"
+import { SoundManager } from "../../utils/SoundManager.jsx"
 import ScorePlusInterface from "./ScorePlusInterface.jsx"
 
 export const SecondGameInterface = () => {

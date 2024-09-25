@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { useGame, gameStates } from "@/hooks/useGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../SoundManager.jsx"
+import { SoundManager } from "../utils/SoundManager.jsx"
 
 // Reusable Button Component
 const GameButton = ({ label, onClick }) => (

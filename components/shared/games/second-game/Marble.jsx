@@ -9,7 +9,7 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx"
 import { useSecondGame } from "./stores/useSecondGame"
 
 // SOUND MANAGER
-import { SoundManager } from "../../SoundManager.jsx"
+import { SoundManager } from "../../utils/SoundManager.jsx"
 
 const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4)
 const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3

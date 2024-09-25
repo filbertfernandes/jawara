@@ -1,5 +1,5 @@
 import { useGame } from "@/hooks/useGame.jsx"
-import { SoundManager } from "../SoundManager.jsx"
+import { SoundManager } from "../utils/SoundManager.jsx"
 import { useCallback } from "react"
 
 export default function FreePhaseInterface() {
@@ -26,7 +26,6 @@ export default function FreePhaseInterface() {
       setCanChangePhase(false, "")
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter])
-  console.log(canPressEnter)
 
   return (
     // ENTER BUTTON
