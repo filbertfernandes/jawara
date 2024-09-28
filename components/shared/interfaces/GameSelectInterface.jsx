@@ -28,23 +28,14 @@ const GameSelectInterface = ({ startGame, title }) => {
   }))
 
   // Memoized button click handlers
-  const handleNgokoClick = useCallback(() => {
-    SoundManager.playSound("buttonClick")
-    changeGameState(gameStates.GAME)
-    startGame({ mode: "ngoko" })
-  }, [changeGameState, startGame])
-
-  const handleMadyaClick = useCallback(() => {
-    SoundManager.playSound("buttonClick")
-    changeGameState(gameStates.GAME)
-    startGame({ mode: "madya" })
-  }, [changeGameState, startGame])
-
-  const handleAlusClick = useCallback(() => {
-    SoundManager.playSound("buttonClick")
-    changeGameState(gameStates.GAME)
-    startGame({ mode: "alus" })
-  }, [changeGameState, startGame])
+  const handleButtonClick = useCallback(
+    (mode) => {
+      SoundManager.playSound("buttonClick")
+      changeGameState(gameStates.GAME)
+      startGame({ mode })
+    },
+    [changeGameState, startGame]
+  )
 
   const handleBackClick = useCallback(() => {
     SoundManager.playSound("buttonClick")
@@ -67,9 +58,18 @@ const GameSelectInterface = ({ startGame, title }) => {
     >
       <h1 className="h1-bold text-sky-400 drop-shadow-lg">{title}</h1>
 
-      <GameSelectButton label="Ngoko" onClick={handleNgokoClick} />
-      <GameSelectButton label="Krama Madya" onClick={handleMadyaClick} />
-      <GameSelectButton label="Krama Alus" onClick={handleAlusClick} />
+      <GameSelectButton
+        label="Ngoko"
+        onClick={() => handleButtonClick("ngoko")}
+      />
+      <GameSelectButton
+        label="Krama Madya"
+        onClick={() => handleButtonClick("madya")}
+      />
+      <GameSelectButton
+        label="Krama Alus"
+        onClick={() => handleButtonClick("alus")}
+      />
       <GameSelectButton label="Back to Home" onClick={handleBackClick} />
     </div>
   )
