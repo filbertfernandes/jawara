@@ -1,5 +1,5 @@
 import { useGame } from "@/hooks/useGame.jsx"
-import { SoundManager } from "../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 import { useCallback } from "react"
 
 export default function FreePhaseInterface() {

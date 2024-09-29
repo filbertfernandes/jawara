@@ -9,7 +9,7 @@ import { Controls } from "@/utils/constants.js"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 const JUMP_FORCE = 2
 const MOVEMENT_SPEED = 0.4

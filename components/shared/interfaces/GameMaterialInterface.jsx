@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react"
 import { PiSpeakerHighBold } from "react-icons/pi"
-import { SoundManager } from "../utils/SoundManager"
+import { SoundManager } from "@/lib/SoundManager"
 import React from "react"
 
 // Reusable component to handle word variants (ngoko, madya, alus)

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { phases } from "./useGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "@/components/shared/utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function useBackgroundMusic(phase) {
   useEffect(() => {

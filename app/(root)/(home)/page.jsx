@@ -4,14 +4,14 @@ import { Canvas } from "@react-three/fiber"
 import { useMemo, useState } from "react"
 import { KeyboardControls } from "@react-three/drei"
 
-import Experience from "@/components/shared/Experience.jsx"
+import Experience from "@/components/home/Experience.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 import Joystick from "@/components/shared/Joystick.jsx"
 import useIsMobile from "@/hooks/useIsMobile.jsx"
 
 // INTERFACES
-import { FirstGameInterface } from "@/components/shared/games/first-game/FirstGameInterface.jsx"
-import { SecondGameInterface } from "@/components/shared/games/second-game/SecondGameInterface.jsx"
+import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx"
+import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx"
 import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx"
 
 // IMPORT CONTROLS CONSTANTS

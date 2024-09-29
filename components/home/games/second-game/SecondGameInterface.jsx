@@ -9,10 +9,10 @@ import useIsMobile from "@/hooks/useIsMobile.jsx"
 import { words } from "./stores/constants.js"
 
 // INTERFACES
-import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 import ScorePlusInterface from "./ScorePlusInterface.jsx"
 
 export const SecondGameInterface = () => {

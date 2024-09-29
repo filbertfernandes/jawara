@@ -5,7 +5,7 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier"
 import { useGame } from "@/hooks/useGame.jsx"
 
 // sound manager
-import { SoundManager } from "../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function GamePortal({ phase, portalPosition }) {
   const portal = useRef()

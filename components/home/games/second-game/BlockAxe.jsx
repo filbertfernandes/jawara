@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber"
 import { useSecondGame } from "./stores/useSecondGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function BlockAxe({ coloredBlock, index }) {
   const { correctAnswersOrder, correctCount, incrementCorrectCount } =

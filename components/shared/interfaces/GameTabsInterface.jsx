@@ -9,7 +9,7 @@ import { FaRankingStar } from "react-icons/fa6"
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
   return (

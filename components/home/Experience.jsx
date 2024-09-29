@@ -1,20 +1,20 @@
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
 import { Perf } from "r3f-perf"
 
-import Lights from "./environment/Lights.jsx"
+import Lights from "../shared/environment/Lights.jsx"
 import FirstGame from "./games/first-game/FirstGame.jsx"
 import SecondGame from "./games/second-game/SecondGame.jsx"
 import ThirdGame from "./games/third-game/ThirdGame.jsx"
-import PlayerController from "./player/PlayerController.jsx"
+import PlayerController from "../shared/player/PlayerController.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 
 // IMPORT ENVIRONMENT
-import GamePortal from "./environment/GamePortal.jsx"
-import World from "./environment/World.jsx"
-import Football from "./environment/Football.jsx"
+import GamePortal from "../shared/environment/GamePortal.jsx"
+import World from "../shared/environment/World.jsx"
+import Football from "../shared/environment/Football.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "./utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx"
 
 export default function Experience({ joystickInput }) {

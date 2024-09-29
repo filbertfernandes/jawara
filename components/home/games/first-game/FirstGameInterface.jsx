@@ -8,7 +8,7 @@ import { gameStates, useGame } from "@/hooks/useGame.jsx"
 import { words } from "./stores/constants.js"
 
 // INTERFACES
-import GameMenuInterface from "../../interfaces/GameMenuInterface.jsx"
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
 
 export const FirstGameInterface = () => {
   const [score, setScore] = useState(0)

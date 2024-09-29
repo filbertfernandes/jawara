@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react"
 import { useGame, phases, gameStates } from "@/hooks/useGame.jsx"
 
 // SOUND MANAGER
-import { SoundManager } from "../utils/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
