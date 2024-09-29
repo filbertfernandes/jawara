@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs"
 import { Bebas_Neue } from "next/font/google"
 import "./globals.css"
 
@@ -9,8 +10,17 @@ const bebas = Bebas_Neue({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${bebas.variable}`}>{children}</body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          formButtonPrimary: "bg-sky-500",
+          footerActionLink: "text-sky-400",
+        },
+      }}
+    >
+      <html lang="en">
+        <body className={`${bebas.variable}`}>{children}</body>
+      </html>
+    </ClerkProvider>
   )
 }

@@ -1,6 +1,7 @@
 import { useGame } from "@/hooks/useGame.jsx"
 import { SoundManager } from "@/lib/SoundManager.jsx"
 import { useCallback } from "react"
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 export default function FreePhaseInterface() {
   const {
@@ -28,18 +29,34 @@ export default function FreePhaseInterface() {
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter])
 
   return (
-    // ENTER BUTTON
-    <div
-      className={`flex justify-center absolute bottom-0 left-0 w-full text-white text-3xl p-1 mb-2 font-bebas lg:text-4xl ${
-        canPressEnter ? "" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      <div
-        className="w-[30%] pt-1 bg-sky-500 text-center cursor-pointer sm:w-[15%] lg:w-[10%]"
-        onClick={handleEnterButtonClick}
-      >
-        Enter
+    <>
+      <div className="flex justify-end absolute top-0 left-0 w-full text-white text-3xl py-2 pe-4 mb-2 font-bebas lg:text-4xl">
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox: "h-10 w-10",
+              },
+            }}
+          />
+        </SignedIn>
       </div>
-    </div>
+
+      <div
+        className={`flex justify-center absolute bottom-0 left-0 w-full text-white text-3xl p-1 mb-2 font-bebas lg:text-4xl ${
+          canPressEnter ? "" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          className="w-[30%] pt-1 bg-sky-500 text-center cursor-pointer sm:w-[15%] lg:w-[10%]"
+          onClick={handleEnterButtonClick}
+        >
+          Enter
+        </div>
+      </div>
+    </>
   )
 }
