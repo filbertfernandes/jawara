@@ -15,6 +15,9 @@ import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.
 import { SoundManager } from "@/lib/SoundManager.jsx"
 import ScorePlusInterface from "./ScorePlusInterface.jsx"
 
+// DB ACTIONS
+import { updateScore } from "@/lib/actions/score.action"
+
 export const SecondGameInterface = () => {
   // GAME STATE
   const { gameState } = useGame((state) => ({
@@ -46,6 +49,21 @@ export const SecondGameInterface = () => {
     setMobilePush: state.setMobilePush,
     setMobileJump: state.setMobileJump,
   }))
+
+  async function onFinish() {
+    try {
+      await updateScore({
+        userId: "clerk_12345",
+        game: "game2",
+        gameMode: mode,
+        score: score,
+      })
+    } catch (error) {
+      console.log(error)
+      throw error
+    } finally {
+    }
+  }
 
   // SCORE
   useEffect(() => {
@@ -82,6 +100,12 @@ export const SecondGameInterface = () => {
       unsubscribeEffect()
     }
   }, [])
+
+  useEffect(() => {
+    if (gameState === gameStates.GAME_OVER) {
+      onFinish()
+    }
+  }, [gameState])
 
   // MOVILE CONTROLS
   const isMobile = useIsMobile()

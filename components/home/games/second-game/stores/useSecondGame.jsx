@@ -62,7 +62,7 @@ export const useSecondGame = create(
             combo: 1,
             mode,
             timer: 0,
-            initialTimer: 100,
+            initialTimer: 15,
             startTime: Date.now(),
             correctAnswersOrder,
             correctCount: 0,

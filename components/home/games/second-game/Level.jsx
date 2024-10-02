@@ -12,7 +12,6 @@ export default function Level({ types = [BlockAxe] }) {
 
   const { stage, nextStage, correctCount } = useSecondGame((state) => ({
     stage: state.stage,
-    score: state.score,
     nextStage: state.nextStage,
     correctCount: state.correctCount,
   }))
