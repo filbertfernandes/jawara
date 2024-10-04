@@ -1,3 +1,6 @@
+import { phases, useGame } from "@/hooks/useGame"
+import { getAllScores } from "@/lib/actions/score.action"
+import { SoundManager } from "@/lib/SoundManager"
 import { useEffect, useState } from "react"
 
 const players = [
@@ -18,19 +21,61 @@ const players = [
   { _id: 15, name: "skyler_light", highscore: 101 },
 ]
 
-const LanguageCategory = ({ categoryName }) => (
+const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
-    className={`flex items-center text-center ${
-      categoryName === "Ngoko" ? "border-sky-400 border-b-2" : ""
+    className={`flex items-center text-center cursor-pointer capitalize ${
+      gameMode === activeGameMode ? "border-sky-400 border-b-2" : ""
     }`}
-    onClick={() => console.log("clicked")}
+    onClick={() => onClick(gameMode)}
   >
-    {categoryName}
+    {gameMode === "ngoko" ? gameMode : `Krama ${gameMode}`}
   </div>
 )
 
 const GameLeaderboardInterface = () => {
+  const { phase } = useGame((state) => ({
+    phase: state.phase,
+  }))
+  const [leaderboard, setLeaderboard] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [activeGameMode, setActiveGameMode] = useState("ngoko")
+
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      setLoading(true)
+      try {
+        let result
+
+        if (phase === phases.FIRST_GAME) {
+          result = await getAllScores({
+            game: "game1",
+            gameMode: activeGameMode,
+          })
+        } else if (phase === phases.SECOND_GAME) {
+          result = await getAllScores({
+            game: "game2",
+            gameMode: activeGameMode,
+          })
+        }
+
+        setLeaderboard(result)
+      } catch (error) {
+        console.log(error)
+        throw error
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchLeaderboard()
+  }, [phase, activeGameMode]) // Dependency array to re-fetch when phase changes
+
   const [isVisible, setIsVisible] = useState(false)
+
+  const changeGameModeFilter = (gameMode) => {
+    SoundManager.playSound("buttonClick")
+    setActiveGameMode(gameMode)
+  }
 
   useEffect(() => {
     // Trigger the popup effect after the component mounts
@@ -46,16 +91,27 @@ const GameLeaderboardInterface = () => {
       <h1 className="h1-bold text-sky-400 drop-shadow-lg">Leaderboard</h1>
 
       <div className="flex justify-between text-white w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg sm:text-lg sm:w-[70%] md:text-xl lg:text-2xl lg:w-[50%]">
-        <LanguageCategory categoryName="Ngoko" />
-        <LanguageCategory categoryName="Krama Madya" />
-        <LanguageCategory categoryName="Krama Alus" />
+        <LanguageCategory
+          gameMode="ngoko"
+          activeGameMode={activeGameMode}
+          onClick={changeGameModeFilter}
+        />
+        <LanguageCategory
+          gameMode="madya"
+          activeGameMode={activeGameMode}
+          onClick={changeGameModeFilter}
+        />
+        <LanguageCategory
+          gameMode="alus"
+          activeGameMode={activeGameMode}
+          onClick={changeGameModeFilter}
+        />
       </div>
 
-      <div className="flex justify-between text-white text-sm w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl pt-4 sm:text-base sm:w-[90%] md:text-lg lg:text-2xl lg:w-[70%]">
-        <ul className="h-full w-full overflow-y-auto pb-64 sm:pb-28">
-          {players
-            .sort((a, b) => b.highscore - a.highscore) // Sort by highscore in descending order
-            .map((player, index) => {
+      {!loading && (
+        <div className="flex justify-between text-white text-sm w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl pt-4 sm:text-base sm:w-[90%] md:text-lg lg:text-2xl lg:w-[70%]">
+          <ul className="h-full w-full overflow-y-auto pb-64 sm:pb-28">
+            {leaderboard.result.topScores.map((topScore, index) => {
               // Set the background color based on rank
               let bgColor
               if (index === 0) {
@@ -70,7 +126,7 @@ const GameLeaderboardInterface = () => {
 
               return (
                 <li
-                  key={player._id}
+                  key={topScore._id}
                   className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4"
                 >
                   <div className="flex">
@@ -87,14 +143,17 @@ const GameLeaderboardInterface = () => {
                         {index + 1} {/* Rank number */}
                       </span>
                     </div>
-                    <div className="flex items-center ml-4">{player.name}</div>
+                    <div className="flex items-center ml-4">
+                      {topScore.userId.nickname}
+                    </div>
                   </div>
-                  <div className="flex items-center">{player.highscore}</div>
+                  <div className="flex items-center">{topScore.score}</div>
                 </li>
               )
             })}
-        </ul>
-      </div>
+          </ul>
+        </div>
+      )}
     </div>
   )
 }
