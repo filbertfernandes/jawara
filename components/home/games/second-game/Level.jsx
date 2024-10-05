@@ -22,7 +22,6 @@ export default function Level({ types = [BlockAxe] }) {
     if (!stage) return
 
     setColoredBlocks(stage)
-    console.log(stage)
 
     stage.forEach((word) => {
       word.isCorrect = false
