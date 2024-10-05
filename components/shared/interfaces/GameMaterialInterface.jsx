@@ -1,7 +1,6 @@
-import { useEffect, useState, useCallback } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { PiSpeakerHighBold } from "react-icons/pi"
 import { SoundManager } from "@/lib/SoundManager"
-import React from "react"
 
 // Reusable component to handle word variants (ngoko, madya, alus)
 const WordVariant = ({ variant, label, playSound }) => (

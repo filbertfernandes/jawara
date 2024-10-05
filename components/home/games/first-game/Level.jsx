@@ -33,7 +33,7 @@ export default function Level({ characterBody }) {
     setInputBoxes(level[currentStage])
     setCorrectCount(0)
     setInputValues({})
-    level[currentStage].map((word) => {
+    level[currentStage].forEach((word) => {
       word.isCorrect = false
     })
 

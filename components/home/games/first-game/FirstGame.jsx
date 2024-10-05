@@ -9,13 +9,13 @@ import "./stores/firstGame.css"
 export default function FirstGame() {
   const orbitControls = useRef()
 
-  const { camera } = useThree()
-
   const { cameraPosition } = useFirstGame((state) => ({
     cameraPosition: state.cameraPosition,
   }))
 
   useEffect(() => {
+    const { camera } = useThree()
+
     camera.position.x = cameraPosition.x
     camera.position.y = cameraPosition.y
     camera.position.z = cameraPosition.z

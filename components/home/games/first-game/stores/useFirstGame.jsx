@@ -35,7 +35,7 @@ export const useFirstGame = create((set) => ({
 
   startGame: ({ mode }) => {
     set((state) => {
-      if (mode === "" && state.mode != "") mode = state.mode
+      if (mode === "" && state.mode !== "") mode = state.mode
       const level = generateGameLevel({ nbStages: 5 })
       return {
         level,

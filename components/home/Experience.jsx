@@ -4,7 +4,6 @@ import { Perf } from "r3f-perf"
 import Lights from "../shared/environment/Lights.jsx"
 import FirstGame from "./games/first-game/FirstGame.jsx"
 import SecondGame from "./games/second-game/SecondGame.jsx"
-import ThirdGame from "./games/third-game/ThirdGame.jsx"
 import PlayerController from "../shared/player/PlayerController.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 
@@ -27,7 +26,6 @@ export default function Experience({ joystickInput }) {
   const gamePhaseComponentMap = {
     [phases.FIRST_GAME]: <FirstGame />,
     [phases.SECOND_GAME]: <SecondGame />,
-    [phases.THIRD_GAME]: <ThirdGame />,
   }
 
   return (

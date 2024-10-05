@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
 
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
+  const [isMobile, setIsMobile] = useState(false) // Initialize as false or true based on your preference
 
   useEffect(() => {
-    const handleResize = () => {
+    const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024)
     }
 
-    window.addEventListener("resize", handleResize)
+    // Check on mount
+    checkMobile()
+
+    window.addEventListener("resize", checkMobile) // Add resize event listener
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("resize", checkMobile) // Cleanup
     }
   }, [])
 

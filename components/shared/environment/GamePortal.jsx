@@ -26,7 +26,7 @@ export default function GamePortal({ phase, portalPosition }) {
       (state) => state.enter,
 
       (value) => {
-        if (value && canChangePhase.condition && canChangePhase.phase != "") {
+        if (value && canChangePhase.condition && canChangePhase.phase !== "") {
           SoundManager.playSound("buttonClick")
           changePhase(canChangePhase.phase)
           setCanPressEnter(false)

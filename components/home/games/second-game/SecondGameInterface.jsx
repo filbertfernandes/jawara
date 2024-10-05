@@ -62,6 +62,7 @@ export const SecondGameInterface = () => {
       console.log(error)
       throw error
     } finally {
+      console.log("Finished update score")
     }
   }
 

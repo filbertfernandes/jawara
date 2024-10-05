@@ -5,7 +5,6 @@ export const phases = {
   FREE: "FREE",
   FIRST_GAME: "FIRST_GAME",
   SECOND_GAME: "SECOND_GAME",
-  THIRD_GAME: "THIRD_GAME",
 }
 
 export const gameStates = {

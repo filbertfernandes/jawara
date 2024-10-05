@@ -6,7 +6,7 @@ import { KeyboardControls } from "@react-three/drei"
 
 import Experience from "@/components/home/Experience.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
-import Joystick from "@/components/shared/Joystick.jsx"
+import dynamic from "next/dynamic" // Import dynamic
 import useIsMobile from "@/hooks/useIsMobile.jsx"
 
 // INTERFACES
@@ -16,6 +16,11 @@ import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterfac
 
 // IMPORT CONTROLS CONSTANTS
 import { Controls } from "@/utils/constants.js"
+
+// Dynamically import Joystick with SSR disabled
+const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
+  ssr: false,
+})
 
 export default function App() {
   // GAME PHASE
@@ -55,7 +60,6 @@ export default function App() {
     <KeyboardControls map={map}>
       {/* 3D CANVAS */}
       <Canvas
-        // shadows
         camera={{
           fov: 45,
           near: 0.1,
