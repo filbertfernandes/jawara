@@ -17,8 +17,11 @@ import ScorePlusInterface from "./ScorePlusInterface.jsx"
 
 // DB ACTIONS
 import { updateScore } from "@/lib/actions/score.action"
+import { useAuth } from "@clerk/nextjs"
 
 export const SecondGameInterface = () => {
+  const { userId } = useAuth()
+
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
@@ -51,9 +54,11 @@ export const SecondGameInterface = () => {
   }))
 
   async function onFinish() {
+    if (!userId) return
+
     try {
       await updateScore({
-        userId: "clerk_12345",
+        userId: userId,
         game: "game2",
         gameMode: mode,
         score: score,

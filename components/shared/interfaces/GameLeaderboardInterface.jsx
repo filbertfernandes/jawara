@@ -144,7 +144,7 @@ const GameLeaderboardInterface = () => {
                       </span>
                     </div>
                     <div className="flex items-center ml-4">
-                      {topScore.userId.nickname}
+                      {topScore.userId.username}
                     </div>
                   </div>
                   <div className="flex items-center">{topScore.score}</div>

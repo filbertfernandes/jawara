@@ -7,7 +7,6 @@ const LeaderboardSchema = new Schema({
     {
       userId: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User
       score: { type: Number, required: true }, // User's score
-      rank: { type: Number, required: true }, // User's rank in the leaderboard
     },
   ],
   updatedAt: { type: Date, default: Date.now },
