@@ -132,10 +132,7 @@ const GameLeaderboardInterface = () => {
                   <div className="flex">
                     <div className="avatar relative">
                       <div className="w-12 rounded-full">
-                        <img
-                          src="https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar3_3d.jpg"
-                          alt="avatar"
-                        />
+                        <img src={topScore.userId.picture} alt="avatar" />
                       </div>
                       <span
                         className={`absolute -top-1 -left-1 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center ${bgColor}`}
