@@ -4,7 +4,7 @@ import { useGame } from "@/hooks/useGame.jsx"
 
 export default function Player(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF("./models/character/boy.glb")
+  const { nodes, materials, animations } = useGLTF("/models/character/boy.glb")
   const { actions } = useAnimations(animations, group)
 
   const { playerState } = useGame((state) => ({
@@ -14,7 +14,9 @@ export default function Player(props) {
   useEffect(() => {
     actions[playerState].reset().fadeIn(0.2).play()
     return () => {
-      actions[playerState].fadeOut(0.2)
+      if (actions[playerState]) {
+        actions[playerState].fadeOut(0.2)
+      }
     }
   }, [playerState])
 
@@ -121,4 +123,4 @@ export default function Player(props) {
   )
 }
 
-useGLTF.preload("./models/character/boy.glb")
+useGLTF.preload("/models/character/boy.glb")

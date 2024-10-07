@@ -3,40 +3,40 @@ import { Howl, Howler } from "howler"
 // SOUND FILES
 const sounds = {
   freePhaseBackground: new Howl({
-    src: ["./sounds/bgm/bgm-1.mp3"],
+    src: ["/sounds/bgm/bgm-1.mp3"],
     loop: true,
     volume: 0.05,
   }),
   gamePhaseBackground: new Howl({
-    src: ["./sounds/bgm/bgm-2.mp3"],
+    src: ["/sounds/bgm/bgm-2.mp3"],
     loop: true,
     volume: 0.05,
   }),
-  move: new Howl({ src: ["./sounds/sfx/footstep-grass.mp3"], volume: 0.5 }),
+  move: new Howl({ src: ["/sounds/sfx/footstep-grass.mp3"], volume: 0.5 }),
   soccerBallImpact: new Howl({
-    src: ["./sounds/sfx/soccer-ball.mp3"],
+    src: ["/sounds/sfx/soccer-ball.mp3"],
     volume: 0.2,
   }),
-  buttonClick: new Howl({ src: ["./sounds/sfx/btn-click.mp3"], volume: 0.7 }),
+  buttonClick: new Howl({ src: ["/sounds/sfx/btn-click.mp3"], volume: 0.7 }),
   correctAnswer: new Howl({
-    src: ["./sounds/sfx/correct-answer.mp3"],
+    src: ["/sounds/sfx/correct-answer.mp3"],
     volume: 0.5,
   }),
   gameComplete: new Howl({
-    src: ["./sounds/sfx/game-complete.mp3"],
+    src: ["/sounds/sfx/game-complete.mp3"],
     volume: 0.5,
   }),
 
   // FIRST GAME
   keyboardType: new Howl({
-    src: ["./sounds/sfx/keyboard-type.mp3"],
+    src: ["/sounds/sfx/keyboard-type.mp3"],
     volume: 0.7,
   }),
 
   // SECOND GAME
-  marblePush: new Howl({ src: ["./sounds/sfx/marble-push.mp3"], volume: 0.7 }),
+  marblePush: new Howl({ src: ["/sounds/sfx/marble-push.mp3"], volume: 0.7 }),
   marbleImpact: new Howl({
-    src: ["./sounds/sfx/marble-impact.mp3"],
+    src: ["/sounds/sfx/marble-impact.mp3"],
     volume: 0.7,
   }),
 }

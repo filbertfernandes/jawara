@@ -10,7 +10,7 @@ import React from "react"
 import { useGLTF } from "@react-three/drei"
 
 export default function Football(props) {
-  const { nodes, materials } = useGLTF("./models/environment/football.glb")
+  const { nodes, materials } = useGLTF("/models/environment/football.glb")
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -24,4 +24,4 @@ export default function Football(props) {
   )
 }
 
-useGLTF.preload("./models/environment/football.glb")
+useGLTF.preload("/models/environment/football.glb")
