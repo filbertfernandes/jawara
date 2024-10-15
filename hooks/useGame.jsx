@@ -5,6 +5,8 @@ export const phases = {
   FREE: "FREE",
   FIRST_GAME: "FIRST_GAME",
   SECOND_GAME: "SECOND_GAME",
+  THIRD_GAME: "THIRD_GAME",
+  FOURTH_GAME: "FOURTH_GAME",
 }
 
 export const gameStates = {
@@ -19,7 +21,7 @@ export const useGame = create(
   subscribeWithSelector((set) => {
     return {
       // DEFAULT PHASE
-      phase: phases.FREE,
+      phase: phases.THIRD_GAME,
       gameState: gameStates.MENU,
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },

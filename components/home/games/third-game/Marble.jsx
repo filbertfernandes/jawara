@@ -6,13 +6,11 @@ import * as THREE from "three"
 
 // ZUSTAND
 import { useGame, gameStates } from "@/hooks/useGame.jsx"
-import { useSecondGame } from "./stores/useSecondGame"
 
 // SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4)
-const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3
+const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5)
 
 export default function Marble() {
   const marbleBody = useRef()
@@ -22,24 +20,10 @@ export default function Marble() {
   const [subscribeKeys, getKeys] = useKeyboardControls()
   const { rapier, world } = useRapier()
 
-  const [smoothCameraPosition] = useState(
-    () => new THREE.Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)
-  ) // set camera initial position to 0 0.65 7.5
-  const [smoothCameraTarget] = useState(() => new THREE.Vector3(0, 0.25, 3.5))
-
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
   }))
-
-  const { mobileLeft, mobileRight, score, resetCombo } = useSecondGame(
-    (state) => ({
-      mobileLeft: state.mobileLeft,
-      mobileRight: state.mobileRight,
-      score: state.score,
-      resetCombo: state.resetCombo,
-    })
-  )
 
   const reset = () => {
     if (timeoutId.current) resetCombo() // reset combo if marble didn't hit correct answer
@@ -62,77 +46,20 @@ export default function Marble() {
     if (hit.toi < 0.15) marbleBody.current.applyImpulse({ x: 0, y: 0.7, z: 0 })
   }
 
-  const push = () => {
-    if (
-      !(marbleBody.current.translation().z >= MARBLE_ALLOW_PUSH_POSITION_LIMIT)
-    )
-      return
-
-    clearTimeout(timeoutId.current)
-    timeoutId.current = null
-
-    const impulse = { x: 0, y: 0, z: 0 }
-    const torque = { x: 0, y: 0, z: 0 }
-
-    const impulseStrength = 0.6
-    const torqueStrength = 0.2
-
-    impulse.z -= impulseStrength * 5
-    torque.x -= torqueStrength * 5
-
-    SoundManager.playSound("marblePush")
-    marbleBody.current.applyImpulse(impulse)
-    marbleBody.current.applyTorqueImpulse(torque)
-
-    timeoutId.current = setTimeout(() => {
-      if (isMounted.current) {
-        reset()
-      }
-    }, 3000)
-  }
-
   useEffect(() => {
     isMounted.current = true
 
     const unsubscribeJump = subscribeKeys(
-      // selector -> i want to listen to any changes on the key. In this case, a jump key. The changes is between false or true. If it was pressed, it's true.
       (state) => state.jump,
 
-      // when changes happened, it will call this function below. Run jump() when true
-      (isJump) => {
-        if (isJump) jump() // when isJump true (pressed)
-      }
-    )
-
-    const unsubscribePush = subscribeKeys(
-      (state) => state.forward,
-
-      (isPush) => {
-        if (isPush) push()
-      }
-    )
-
-    const unsubscribeMobileJump = useSecondGame.subscribe(
-      (state) => state.mobileJump,
       (isJump) => {
         if (isJump) jump()
       }
     )
 
-    const unsubscribeMobilePush = useSecondGame.subscribe(
-      (state) => state.mobilePush,
-      (isPush) => {
-        if (isPush) push()
-      }
-    )
-
-    // this part will be called whenever we need to clean things
     return () => {
       isMounted.current = false
       unsubscribeJump()
-      unsubscribePush()
-      unsubscribeMobileJump()
-      unsubscribeMobilePush()
       clearTimeout(timeoutId.current)
     }
   }, [])
@@ -146,7 +73,7 @@ export default function Marble() {
     }
 
     reset()
-  }, [score, gameState])
+  }, [gameState])
 
   useFrame((state, delta) => {
     if (!isMounted.current || !marbleBody.current) return
@@ -154,7 +81,7 @@ export default function Marble() {
     /**
      * Controls
      */
-    const { left, right } = getKeys()
+    const { forward, back, left, right } = getKeys()
 
     const impulse = { x: 0, y: 0, z: 0 }
     const torque = { x: 0, y: 0, z: 0 }
@@ -162,12 +89,22 @@ export default function Marble() {
     const impulseStrength = 0.6 * delta
     const torqueStrength = 0.2 * delta
 
-    if (left || mobileLeft) {
+    if (forward) {
+      impulse.z -= impulseStrength
+      torque.x -= torqueStrength
+    }
+
+    if (back) {
+      impulse.z += impulseStrength
+      torque.x += torqueStrength
+    }
+
+    if (left) {
       impulse.x -= impulseStrength
       torque.z += torqueStrength
     }
 
-    if (right || mobileRight) {
+    if (right) {
       impulse.x += impulseStrength
       torque.z -= torqueStrength
     }
@@ -175,34 +112,13 @@ export default function Marble() {
     marbleBody.current.applyImpulse(impulse)
     marbleBody.current.applyTorqueImpulse(torque)
 
-    /**
-     * Camera
-     */
-    const marbleBodyPosition = marbleBody.current.translation()
-
-    const cameraPosition = new THREE.Vector3()
-    cameraPosition.copy(marbleBodyPosition)
-    cameraPosition.z = MARBLE_INITIAL_POSITION.z + 3.5
-    cameraPosition.y += 0.65
-
-    const cameraTarget = new THREE.Vector3()
-    cameraTarget.copy(marbleBodyPosition)
-    cameraTarget.y += 0.25
-
-    // make it smooth
-    smoothCameraPosition.lerp(cameraPosition, 5 * delta)
-    smoothCameraTarget.lerp(cameraTarget, 5 * delta)
-
-    state.camera.position.copy(smoothCameraPosition)
-    state.camera.lookAt(smoothCameraTarget)
-
-    if (marbleBodyPosition.y < -4) reset()
+    if (marbleBody.current.translation().y < -4) reset()
   })
 
   return (
     <RigidBody
       ref={marbleBody}
-      name="SecondGameMarble"
+      name="ThirdGameMarble"
       canSleep={false}
       colliders="ball"
       restitution={0.2}

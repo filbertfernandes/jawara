@@ -4,6 +4,7 @@ import { Perf } from "r3f-perf"
 import Lights from "../shared/environment/Lights.jsx"
 import FirstGame from "./games/first-game/FirstGame.jsx"
 import SecondGame from "./games/second-game/SecondGame.jsx"
+import ThirdGame from "./games/third-game/ThirdGame.jsx"
 import PlayerController from "../shared/player/PlayerController.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 
@@ -26,6 +27,7 @@ export default function Experience({ joystickInput }) {
   const gamePhaseComponentMap = {
     [phases.FIRST_GAME]: <FirstGame />,
     [phases.SECOND_GAME]: <SecondGame />,
+    [phases.THIRD_GAME]: <ThirdGame />,
   }
 
   return (
@@ -59,6 +61,7 @@ export default function Experience({ joystickInput }) {
         <World scale={0.55} position={[0, -0.4, 0]} />
         <GamePortal phase={phases.FIRST_GAME} portalPosition={[-8, 0.5, 10]} />
         <GamePortal phase={phases.SECOND_GAME} portalPosition={[-4, 0.5, 10]} />
+        <GamePortal phase={phases.THIRD_GAME} portalPosition={[-8, 0.5, 15]} />
 
         {/* Soccer Ball */}
         <RigidBody

@@ -27,11 +27,11 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
   return (
     <div
       className={`dark-layout ${
-        gameState === gameStates.GAME ? "opacity-0 pointer-events-none" : ""
+        gameState === gameStates.GAME ? "pointer-events-none opacity-0" : ""
       }`}
     >
       {gameState !== gameStates.GAME_OVER ? (
-        <div className="flex flex-col items-center w-full h-full sm:flex-row md:w-[90%] lg:w-[80%]">
+        <div className="flex size-full flex-col items-center sm:flex-row md:w-[90%] lg:w-4/5">
           <GameTabsInterface />
           {interfaceComponentMap[gameState]}
         </div>

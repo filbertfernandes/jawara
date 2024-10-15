@@ -12,6 +12,7 @@ import useIsMobile from "@/hooks/useIsMobile.jsx"
 // INTERFACES
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx"
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx"
+import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx"
 import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx"
 
 // IMPORT CONTROLS CONSTANTS
@@ -54,6 +55,7 @@ export default function App() {
     [phases.FREE]: <FreePhaseInterface />,
     [phases.FIRST_GAME]: <FirstGameInterface />,
     [phases.SECOND_GAME]: <SecondGameInterface />,
+    [phases.THIRD_GAME]: <ThirdGameInterface />,
   }
 
   return (

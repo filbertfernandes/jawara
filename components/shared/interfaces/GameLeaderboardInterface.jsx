@@ -23,8 +23,8 @@ const players = [
 
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
-    className={`flex items-center text-center cursor-pointer capitalize ${
-      gameMode === activeGameMode ? "border-sky-400 border-b-2" : ""
+    className={`flex cursor-pointer items-center text-center capitalize ${
+      gameMode === activeGameMode ? "border-b-2 border-sky-400" : ""
     }`}
     onClick={() => onClick(gameMode)}
   >
@@ -56,6 +56,16 @@ const GameLeaderboardInterface = () => {
             game: "game2",
             gameMode: activeGameMode,
           })
+        } else if (phase === phases.THIRD_GAME) {
+          result = await getAllScores({
+            game: "game3",
+            gameMode: activeGameMode,
+          })
+        } else if (phase === phases.FOURTH_GAME) {
+          result = await getAllScores({
+            game: "game4",
+            gameMode: activeGameMode,
+          })
         }
 
         setLeaderboard(result)
@@ -84,13 +94,13 @@ const GameLeaderboardInterface = () => {
 
   return (
     <div
-      className={`flex flex-col items-center gap-6 w-full h-full mt-8 sm:gap-4 sm:-mt-8 ${
+      className={`mt-8 flex size-full flex-col items-center gap-6 sm:-mt-8 sm:gap-4 ${
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
       <h1 className="h1-bold text-sky-400 drop-shadow-lg">Leaderboard</h1>
 
-      <div className="flex justify-between text-white w-[90%] h-10 bg-stone-800/50 px-4 rounded-lg sm:text-lg sm:w-[70%] md:text-xl lg:text-2xl lg:w-[50%]">
+      <div className="flex h-10 w-[90%] justify-between rounded-lg bg-stone-800/50 px-4 text-white sm:w-[70%] sm:text-lg md:text-xl lg:w-[50%] lg:text-2xl">
         <LanguageCategory
           gameMode="ngoko"
           activeGameMode={activeGameMode}
@@ -109,8 +119,8 @@ const GameLeaderboardInterface = () => {
       </div>
 
       {!loading && (
-        <div className="flex justify-between text-white text-sm w-full h-full bg-stone-800/50 px-4 rounded-t-3xl rounded-b-3xl pt-4 sm:text-base sm:w-[90%] md:text-lg lg:text-2xl lg:w-[70%]">
-          <ul className="h-full w-full overflow-y-auto pb-64 sm:pb-28">
+        <div className="flex size-full justify-between rounded-3xl bg-stone-800/50 px-4 pt-4 text-sm text-white sm:w-[90%] sm:text-base md:text-lg lg:w-[70%] lg:text-2xl">
+          <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
             {leaderboard.result.topScores.map((topScore, index) => {
               // Set the background color based on rank
               let bgColor
@@ -127,7 +137,7 @@ const GameLeaderboardInterface = () => {
               return (
                 <li
                   key={topScore._id}
-                  className="flex justify-between border-white/10 border-b-2 pt-1 pb-3 px-1 mb-4"
+                  className="mb-4 flex justify-between border-b-2 border-white/10 px-1 pb-3 pt-1"
                 >
                   <div className="flex">
                     <div className="avatar relative">
@@ -135,12 +145,12 @@ const GameLeaderboardInterface = () => {
                         <img src={topScore.userId.picture} alt="avatar" />
                       </div>
                       <span
-                        className={`absolute -top-1 -left-1 text-white text-xs font-bold rounded-full w-[1.125rem] h-[1.125rem] flex items-center justify-center ${bgColor}`}
+                        className={`absolute -left-1 -top-1 flex size-[1.125rem] items-center justify-center rounded-full text-xs font-bold text-white ${bgColor}`}
                       >
                         {index + 1} {/* Rank number */}
                       </span>
                     </div>
-                    <div className="flex items-center ml-4">
+                    <div className="ml-4 flex items-center">
                       {topScore.userId.username}
                     </div>
                   </div>

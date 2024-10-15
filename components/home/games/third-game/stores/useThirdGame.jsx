@@ -1,30 +1,41 @@
 import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
 
-import { words } from "./constants.js"
+import { words, positions } from "./constants.js"
 
 export const generateGameLevel = () => {
   const stage = []
-  const nbOptions = 5
+  const nbOptions = 10
+  const usedPositions = []
 
   for (let j = 0; j < nbOptions; j++) {
     let word = null
+    let position = null
 
-    while (!word || stage.includes(word)) {
+    // Find a unique word
+    while (!word || stage.some((item) => item.word === word)) {
       word = words[Math.floor(Math.random() * words.length)]
     }
 
-    stage.push(word)
+    // Find a unique position
+    while (!position || usedPositions.includes(position)) {
+      position =
+        positions[Math.floor(Math.random() * positions.length)].position
+    }
+
+    usedPositions.push(position)
+
+    // Add the word and its position to the stage
+    stage.push({ word, position })
   }
 
   return stage
 }
 
 export const genereateCorrectAnswersOrder = () => {
-  // Create an array with integers 0 to 4
-  const arr = [0, 1, 2, 3, 4]
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-  // Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
+  /// Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[arr[i], arr[j]] = [arr[j], arr[i]]
@@ -33,7 +44,7 @@ export const genereateCorrectAnswersOrder = () => {
   return arr
 }
 
-export const useSecondGame = create(
+export const useThirdGame = create(
   subscribeWithSelector((set) => {
     return {
       stage: null,
@@ -44,11 +55,7 @@ export const useSecondGame = create(
       initialTimer: 100,
       startTime: 0,
       correctAnswersOrder: [],
-      correctCount: 0,
-      mobileLeft: false,
-      mobileRight: false,
-      mobilePush: false,
-      mobileJump: false,
+      answerCount: 0,
 
       startGame: ({ mode }) => {
         set((state) => {
@@ -65,57 +72,32 @@ export const useSecondGame = create(
             initialTimer: 100,
             startTime: Date.now(),
             correctAnswersOrder,
-            correctCount: 0,
+            answerCount: 0,
           }
         })
       },
 
-      incrementCorrectCount: () => {
+      incrementanswerCount: () => {
         set((state) => {
-          const correctCount = state.correctCount + 1
+          const answerCount = state.answerCount + 1
           const score = state.score + state.combo
           const combo = state.combo < 5 ? state.combo + 1 : state.combo
-          return { correctCount, score, combo }
+          return { answerCount, score, combo }
         })
       },
 
       nextStage: () => {
         set(() => {
           const stage = generateGameLevel()
-          const correctCount = 0
+          const answerCount = 0
           const correctAnswersOrder = genereateCorrectAnswersOrder()
-          return { stage, correctCount, correctAnswersOrder }
+          return { stage, answerCount, correctAnswersOrder }
         })
       },
 
       resetCombo: () => {
         set(() => {
           return { combo: 1 }
-        })
-      },
-
-      // MOBILE CONTROLS
-      setMobileLeft: (condition) => {
-        set(() => {
-          return { mobileLeft: condition }
-        })
-      },
-
-      setMobileRight: (condition) => {
-        set(() => {
-          return { mobileRight: condition }
-        })
-      },
-
-      setMobilePush: (condition) => {
-        set(() => {
-          return { mobilePush: condition }
-        })
-      },
-
-      setMobileJump: (condition) => {
-        set(() => {
-          return { mobileJump: condition }
         })
       },
     }
