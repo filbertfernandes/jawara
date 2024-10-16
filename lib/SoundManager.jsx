@@ -22,6 +22,10 @@ const sounds = {
     src: ["/sounds/sfx/correct-answer.mp3"],
     volume: 0.5,
   }),
+  wrongAnswer: new Howl({
+    src: ["/sounds/sfx/wrong-answer.mp3"],
+    volume: 0.5,
+  }),
   gameComplete: new Howl({
     src: ["/sounds/sfx/game-complete.mp3"],
     volume: 0.5,

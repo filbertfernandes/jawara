@@ -67,6 +67,7 @@ export default function NumberedBoard({
                 SoundManager.playSound("correctAnswer")
                 incrementScore()
               } else {
+                SoundManager.playSound("wrongAnswer")
                 decrementScore()
               }
               setIsAnswered(index)
