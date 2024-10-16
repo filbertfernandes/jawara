@@ -17,7 +17,11 @@ const Level = () => {
       {stage !== null &&
         gameState === gameStates.GAME &&
         stage.map((s, index) => (
-          <NumberedBoard key={index} position={s.position} />
+          <NumberedBoard
+            key={index}
+            position={s.position}
+            number={s.word.english}
+          />
         ))}
     </>
   )

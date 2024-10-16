@@ -64,24 +64,26 @@ export default function GamePortal({ phase, portalPosition }) {
         </mesh>
 
         {/* SENSOR */}
-        {portal.current !== undefined && (
-          <CuboidCollider
-            args={portal.current.scale.toArray()}
-            sensor
-            position={portal.current.position.toArray()}
-            onIntersectionEnter={(other) => {
-              if (other.rigidBodyObject.name === "Player") {
-                setCanPressEnter(true)
-                setCanChangePhase(true, phase)
-              }
-            }}
-            onIntersectionExit={(other) => {
-              if (other.rigidBodyObject.name === "Player") {
-                setCanPressEnter(false)
-                setCanChangePhase(false, "")
-              }
-            }}
-          />
+        {portal.current !== undefined && portal.current !== null && (
+          <>
+            <CuboidCollider
+              args={portal.current.scale.toArray()}
+              sensor
+              position={portal.current.position.toArray()}
+              onIntersectionEnter={(other) => {
+                if (other.rigidBodyObject.name === "Player") {
+                  setCanPressEnter(true)
+                  setCanChangePhase(true, phase)
+                }
+              }}
+              onIntersectionExit={(other) => {
+                if (other.rigidBodyObject.name === "Player") {
+                  setCanPressEnter(false)
+                  setCanChangePhase(false, "")
+                }
+              }}
+            />
+          </>
         )}
       </RigidBody>
     </>

@@ -9,10 +9,10 @@ export default function ThirdGame() {
 
   useEffect(() => {
     camera.position.x = 0
-    camera.position.y = 12
-    camera.position.z = 8
+    camera.position.y = 11
+    camera.position.z = 9
 
-    camera.lookAt(0, 2, -3)
+    camera.lookAt(0, 3, -3)
   }, [])
 
   return (
