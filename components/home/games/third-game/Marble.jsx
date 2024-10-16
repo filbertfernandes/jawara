@@ -3,18 +3,14 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
-
-// ZUSTAND
-import { useGame, gameStates } from "@/hooks/useGame.jsx"
-
-// SOUND MANAGER
+import { useGame } from "@/hooks/useGame.jsx"
 import { SoundManager } from "@/lib/SoundManager.jsx"
+import { useThirdGame } from "./stores/useThirdGame"
 
 const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5)
 
 export default function Marble() {
   const marbleBody = useRef()
-  const timeoutId = useRef(null)
   const isMounted = useRef(true) // Track component mount status
 
   const [subscribeKeys, getKeys] = useKeyboardControls()
@@ -25,9 +21,11 @@ export default function Marble() {
     gameState: state.gameState,
   }))
 
-  const reset = () => {
-    if (timeoutId.current) resetCombo() // reset combo if marble didn't hit correct answer
+  const { stage } = useThirdGame((state) => ({
+    stage: state.stage,
+  }))
 
+  const reset = () => {
     if (marbleBody.current) {
       marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION)
       marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
@@ -60,20 +58,12 @@ export default function Marble() {
     return () => {
       isMounted.current = false
       unsubscribeJump()
-      clearTimeout(timeoutId.current)
     }
   }, [])
 
   useEffect(() => {
-    if (gameState !== gameStates.GAME) return
-
-    if (timeoutId.current) {
-      clearTimeout(timeoutId.current)
-      timeoutId.current = null
-    }
-
     reset()
-  }, [gameState])
+  }, [gameState, stage])
 
   useFrame((state, delta) => {
     if (!isMounted.current || !marbleBody.current) return

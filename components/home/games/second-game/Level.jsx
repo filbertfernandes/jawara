@@ -22,10 +22,6 @@ export default function Level({ types = [BlockAxe] }) {
     if (!stage) return
 
     setColoredBlocks(stage)
-
-    stage.forEach((word) => {
-      word.isCorrect = false
-    })
   }, [stage])
 
   useEffect(() => {

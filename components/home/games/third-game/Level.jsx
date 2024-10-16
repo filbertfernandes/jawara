@@ -1,4 +1,4 @@
-import React from "react"
+import { useEffect } from "react"
 import NumberedBoard from "./NumberedBoard"
 import { useThirdGame } from "./stores/useThirdGame"
 import { gameStates, useGame } from "@/hooks/useGame"
@@ -8,9 +8,33 @@ const Level = () => {
     gameState: state.gameState,
   }))
 
-  const { stage } = useThirdGame((state) => ({
+  const {
+    stage,
+    nextStage,
+    answerCount,
+    correctAnswersOrder,
+    incrementAnswerCount,
+  } = useThirdGame((state) => ({
     stage: state.stage,
+    nextStage: state.nextStage,
+    answerCount: state.answerCount,
+    correctAnswersOrder: state.correctAnswersOrder,
+    incrementAnswerCount: state.incrementAnswerCount,
   }))
+
+  useEffect(() => {
+    if (!stage) return
+
+    if (answerCount < stage.length) {
+      if (stage[correctAnswersOrder[answerCount]].isAnswered) {
+        incrementAnswerCount()
+      }
+    }
+
+    if (answerCount === stage.length) {
+      nextStage()
+    }
+  }, [answerCount])
 
   return (
     <>
@@ -20,7 +44,9 @@ const Level = () => {
           <NumberedBoard
             key={index}
             position={s.position}
-            number={s.word.english}
+            word={s.word}
+            isAnswered={s.isAnswered}
+            isCorrect={s.isCorrect}
             index={index}
           />
         ))}

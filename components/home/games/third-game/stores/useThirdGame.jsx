@@ -26,7 +26,7 @@ export const generateGameLevel = () => {
     usedPositions.push(position)
 
     // Add the word and its position to the stage
-    stage.push({ word, position })
+    stage.push({ word, position, isAnswered: false, isCorrect: false })
   }
 
   return stage
@@ -80,9 +80,50 @@ export const useThirdGame = create(
       incrementAnswerCount: () => {
         set((state) => {
           const answerCount = state.answerCount + 1
+          return { answerCount }
+        })
+      },
+
+      incrementScore: () => {
+        set((state) => {
           const score = state.score + state.combo
           const combo = state.combo < 5 ? state.combo + 1 : state.combo
-          return { answerCount, score, combo }
+          return { score, combo }
+        })
+      },
+
+      decrementScore: () => {
+        set((state) => {
+          if (
+            !state.stage[state.correctAnswersOrder[state.answerCount]]
+              .isAnswered
+          ) {
+            state.stage[
+              state.correctAnswersOrder[state.answerCount]
+            ].isAnswered = true
+          }
+
+          const score = state.score - 2
+          return {
+            combo: 1,
+            score,
+            stage: state.stage,
+            answerCount: state.answerCount,
+          }
+        })
+      },
+
+      setIsCorrect: (index) => {
+        set((state) => {
+          state.stage[index].isCorrect = true
+          return { stage: state.stage }
+        })
+      },
+
+      setIsAnswered: (index) => {
+        set((state) => {
+          state.stage[index].isAnswered = true
+          return { stage: state.stage }
         })
       },
 
@@ -92,12 +133,6 @@ export const useThirdGame = create(
           const answerCount = 0
           const correctAnswersOrder = genereateCorrectAnswersOrder()
           return { stage, answerCount, correctAnswersOrder }
-        })
-      },
-
-      resetCombo: () => {
-        set(() => {
-          return { combo: 1 }
         })
       },
     }
