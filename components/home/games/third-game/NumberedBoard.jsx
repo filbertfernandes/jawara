@@ -1,9 +1,15 @@
 import { RigidBody } from "@react-three/rapier"
 import { SoundManager } from "@/lib/SoundManager.jsx"
 import { Text } from "@react-three/drei"
+import { useThirdGame } from "./stores/useThirdGame"
 
-export default function NumberedBoard({ position, number }) {
-  console.log(number)
+export default function NumberedBoard({ position, number, index }) {
+  const { correctAnswersOrder, answerCount, incrementAnswerCount } =
+    useThirdGame((state) => ({
+      correctAnswersOrder: state.correctAnswersOrder,
+      answerCount: state.answerCount,
+      incrementAnswerCount: state.incrementAnswerCount,
+    }))
 
   return (
     <>
@@ -16,8 +22,18 @@ export default function NumberedBoard({ position, number }) {
         {number}
       </Text>
 
-      <RigidBody type="fixed">
-        <mesh position={position} scale={[2.2, 0.2, 2.2]}>
+      <RigidBody
+        type="fixed"
+        onCollisionEnter={(other) => {
+          if (other.rigidBodyObject.name === "ThirdGameMarble") {
+            if (correctAnswersOrder[answerCount] === index) {
+              SoundManager.playSound("correctAnswer")
+            }
+            incrementAnswerCount()
+          }
+        }}
+      >
+        <mesh position={position} scale={[2.2, 0.1, 2.2]}>
           <boxGeometry />
           <meshStandardMaterial color="lightgrey" />
         </mesh>

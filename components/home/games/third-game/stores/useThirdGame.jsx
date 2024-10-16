@@ -77,7 +77,7 @@ export const useThirdGame = create(
         })
       },
 
-      incrementanswerCount: () => {
+      incrementAnswerCount: () => {
         set((state) => {
           const answerCount = state.answerCount + 1
           const score = state.score + state.combo

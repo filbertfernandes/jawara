@@ -1,7 +1,7 @@
 import { RigidBody, useRapier } from "@react-three/rapier"
 import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import * as THREE from "three"
 
 // ZUSTAND
@@ -43,7 +43,7 @@ export default function Marble() {
     const ray = new rapier.Ray(origin, direction)
     const hit = world.castRay(ray, 10, true)
 
-    if (hit.toi < 0.15) marbleBody.current.applyImpulse({ x: 0, y: 0.7, z: 0 })
+    if (hit.toi < 0.15) marbleBody.current.applyImpulse({ x: 0, y: 0.8, z: 0 })
   }
 
   useEffect(() => {
@@ -86,8 +86,8 @@ export default function Marble() {
     const impulse = { x: 0, y: 0, z: 0 }
     const torque = { x: 0, y: 0, z: 0 }
 
-    const impulseStrength = 0.6 * delta
-    const torqueStrength = 0.2 * delta
+    const impulseStrength = 0.65 * delta
+    const torqueStrength = 0.25 * delta
 
     if (forward) {
       impulse.z -= impulseStrength
@@ -132,7 +132,7 @@ export default function Marble() {
     >
       <mesh castShadow>
         <icosahedronGeometry args={[0.3, 1]} />
-        <meshStandardMaterial flatShading color="tan" />
+        <meshStandardMaterial flatShading color="mediumpurple" />
       </mesh>
     </RigidBody>
   )

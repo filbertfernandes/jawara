@@ -21,6 +21,7 @@ const Level = () => {
             key={index}
             position={s.position}
             number={s.word.english}
+            index={index}
           />
         ))}
     </>
