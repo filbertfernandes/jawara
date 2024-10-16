@@ -18,6 +18,7 @@ import ScorePlusInterface from "./ScorePlusInterface.jsx"
 // DB ACTIONS
 import { updateScore } from "@/lib/actions/score.action"
 import { useAuth } from "@clerk/nextjs"
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
 
 export const SecondGameInterface = () => {
   const { userId } = useAuth()
@@ -145,7 +146,12 @@ export const SecondGameInterface = () => {
         </div>
       </div>
 
-      {gameState === gameStates.GAME && <ScorePlusInterface />}
+      {gameState === gameStates.GAME && (
+        <>
+          <ScorePlusInterface />
+          <ExitDoor />
+        </>
+      )}
 
       {/* MOBILE CONTROLLERS */}
       <div

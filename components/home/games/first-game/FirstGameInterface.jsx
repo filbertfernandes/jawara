@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { addEffect } from "@react-three/fiber"
-
 import { useFirstGame } from "./stores/useFirstGame.jsx"
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
-
-// IMPORT WORDS
 import { words } from "./stores/constants.js"
-
-// INTERFACES
 import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
 
 export const FirstGameInterface = () => {
   const [score, setScore] = useState(0)
@@ -64,16 +60,22 @@ export const FirstGameInterface = () => {
       {/* IN GAME INTERFACE */}
       <div
         className={`${
-          gameState !== gameStates.GAME ? "opacity-0 pointer-events-none" : ""
+          gameState !== gameStates.GAME ? "pointer-events-none opacity-0" : ""
         }`}
       >
         <div
           ref={time}
-          className="absolute top-0 left-0 w-full text-white text-3xl bg-black/30 pt-1 text-center pointer-events-none font-bebas"
+          className="pointer-events-none absolute left-0 top-0 w-full bg-black/30 pt-1 text-center font-bebas text-3xl text-white"
         >
           0.00
         </div>
       </div>
+
+      {gameState === gameStates.GAME && (
+        <>
+          <ExitDoor />
+        </>
+      )}
     </>
   )
 }

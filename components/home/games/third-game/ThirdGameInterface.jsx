@@ -1,16 +1,12 @@
 import { useEffect, useRef } from "react"
-
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
 import { useThirdGame } from "./stores/useThirdGame.jsx"
 import ScorePlusInterface from "./ScorePlusInterface.jsx"
 import { SoundManager } from "@/lib/SoundManager.jsx"
-
-// IMPORT WORDS
 import { words } from "./stores/constants.js"
-
-// INTERFACES
 import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
 import { addEffect } from "@react-three/fiber"
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
 
 export const ThirdGameInterface = () => {
   const time = useRef()
@@ -73,6 +69,14 @@ export const ThirdGameInterface = () => {
 
   return (
     <>
+      {/* GAME MENU INTERFACE */}
+      <GameMenuInterface
+        startGame={startGame}
+        title="Numbers"
+        words={words}
+        score={score}
+      />
+
       {/* IN GAME INTERFACE */}
       <div
         className={`${
@@ -92,15 +96,12 @@ export const ThirdGameInterface = () => {
         </div>
       </div>
 
-      {gameState === gameStates.GAME && <ScorePlusInterface />}
-
-      {/* GAME MENU INTERFACE */}
-      <GameMenuInterface
-        startGame={startGame}
-        title="Numbers"
-        words={words}
-        score={score}
-      />
+      {gameState === gameStates.GAME && (
+        <>
+          <ScorePlusInterface />
+          <ExitDoor />
+        </>
+      )}
     </>
   )
 }

@@ -1,6 +1,4 @@
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
-
-// INTERFACES
 import GameTabsInterface from "./GameTabsInterface.jsx"
 import GameSelectInterface from "./GameSelectInterface.jsx"
 import GameOverInterface from "./GameOverInterface.jsx"
