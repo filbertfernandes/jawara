@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
 import { useThirdGame } from "./stores/useThirdGame.jsx"
-import ScorePlusInterface from "./ScorePlusInterface.jsx"
+import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx"
 import { SoundManager } from "@/lib/SoundManager.jsx"
 import { words } from "./stores/constants.js"
 import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
@@ -98,7 +98,7 @@ export const ThirdGameInterface = () => {
 
       {gameState === gameStates.GAME && (
         <>
-          <ScorePlusInterface />
+          <ScorePlusInterface score={score} />
           <ExitDoor />
         </>
       )}

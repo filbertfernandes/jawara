@@ -1,19 +1,14 @@
 import { useRef, useEffect, useState } from "react"
-import { useSecondGame } from "./stores/useSecondGame"
 
-const ScorePlusInterface = () => {
+const ScorePlusInterface = ({ score }) => {
   const timeoutId = useRef(null)
 
   const [isVisible, setIsVisible] = useState(false)
   const [scoreBefore, setScoreBefore] = useState(0)
   const [scoreDifferent, setScoreDifferent] = useState(0)
 
-  const { score } = useSecondGame((state) => ({
-    score: state.score,
-  }))
-
   useEffect(() => {
-    if (score <= 0) return
+    if (score - scoreBefore === 0) return
 
     // Clear any existing timeout to avoid overlap
     if (timeoutId.current) {
@@ -38,11 +33,13 @@ const ScorePlusInterface = () => {
 
   return (
     <div
-      className={`flex justify-center items-center font-bebas text-5xl text-white text-center pointer-events-none absolute top-0 left-0 h-full w-full md:text-6xl lg:text-8xl ${
-        isVisible ? "animate-bounceInFadeOut" : "opacity-0"
-      }`}
+      className={`pointer-events-none absolute left-0 top-0 flex size-full items-center justify-center text-center font-bebas text-5xl md:text-6xl lg:text-8xl ${
+        scoreDifferent > 0 ? "text-white" : "text-red-600"
+      } ${isVisible ? "animate-bounceInFadeOut" : "opacity-0"}`}
     >
-      <div>+{scoreDifferent}</div>
+      <div>
+        {scoreDifferent > 0 ? `+${scoreDifferent}` : `${scoreDifferent}`}
+      </div>
     </div>
   )
 }

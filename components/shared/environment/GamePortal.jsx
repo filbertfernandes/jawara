@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useKeyboardControls, Edges, Outlines } from "@react-three/drei"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
-
 import { useGame } from "@/hooks/useGame.jsx"
-
-// sound manager
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function GamePortal({ phase, portalPosition }) {
@@ -44,15 +41,9 @@ export default function GamePortal({ phase, portalPosition }) {
     <>
       {/* GAME PORTAL */}
       <RigidBody type="fixed">
-        <mesh
-          ref={portal}
-          position={portalPosition}
-          scale={[1.2, 1.5, 1.2]}
-          // castShadow
-          // receiveShadow
-        >
+        <mesh ref={portal} position={portalPosition} scale={[1.2, 1.5, 1.2]}>
           <boxGeometry />
-          <meshStandardMaterial color="hotpink" />
+          <meshStandardMaterial color="rgb(14, 165, 233)" />
 
           {/* WHITE BRIGHT EDGES */}
           {canChangePhase.condition && canChangePhase.phase === phase && (

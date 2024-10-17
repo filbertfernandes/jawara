@@ -1,21 +1,12 @@
 import { useEffect, useRef } from "react"
 import { addEffect } from "@react-three/fiber"
-
+import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx"
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
 import { useSecondGame } from "./stores/useSecondGame.jsx"
 import useIsMobile from "@/hooks/useIsMobile.jsx"
-
-// IMPORT WORDS
 import { words } from "./stores/constants.js"
-
-// INTERFACES
 import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
-import ScorePlusInterface from "./ScorePlusInterface.jsx"
-
-// DB ACTIONS
 import { updateScore } from "@/lib/actions/score.action"
 import { useAuth } from "@clerk/nextjs"
 import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
@@ -148,7 +139,7 @@ export const SecondGameInterface = () => {
 
       {gameState === gameStates.GAME && (
         <>
-          <ScorePlusInterface />
+          <ScorePlusInterface score={score} />
           <ExitDoor />
         </>
       )}

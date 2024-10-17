@@ -3,8 +3,6 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from "three"
-
-// ZUSTAND
 import { useGame, gameStates } from "@/hooks/useGame.jsx"
 import { useSecondGame } from "./stores/useSecondGame"
 

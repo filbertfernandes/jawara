@@ -1,6 +1,5 @@
 import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
-
 import { words } from "./constants.js"
 
 export const generateGameLevel = () => {

@@ -14,8 +14,6 @@ export default function Football(props) {
   return (
     <group {...props} dispose={null}>
       <mesh
-        // castShadow
-        // receiveShadow
         geometry={nodes.Object_4.geometry}
         material={materials.Material}
         rotation={[Math.PI / 2, 0, 0]}

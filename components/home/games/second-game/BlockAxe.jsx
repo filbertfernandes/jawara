@@ -1,10 +1,7 @@
 import { RigidBody } from "@react-three/rapier"
 import { useRef, useState, useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
-
 import { useSecondGame } from "./stores/useSecondGame.jsx"
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function BlockAxe({ coloredBlock, index }) {

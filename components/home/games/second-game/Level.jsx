@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useState } from "react"
-
-// ZUSTAND
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
 import { useSecondGame } from "./stores/useSecondGame.jsx"
 import BlockAxe from "./BlockAxe.jsx"

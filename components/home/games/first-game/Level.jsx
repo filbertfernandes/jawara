@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
 import { Html } from "@react-three/drei"
-
 import { useGame, gameStates } from "@/hooks/useGame.jsx"
 import { useFirstGame } from "./stores/useFirstGame.jsx"
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
 export default function Level({ characterBody }) {

@@ -1,14 +1,8 @@
 import { useCallback } from "react"
-
-// REACT ICONS
 import { IoGameController } from "react-icons/io5"
 import { FaBook } from "react-icons/fa"
 import { FaRankingStar } from "react-icons/fa6"
-
-// ZUSTAND
 import { gameStates, useGame } from "@/hooks/useGame.jsx"
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
 const GameTabButton = ({ icon: Icon, isActive, onClick }) => {

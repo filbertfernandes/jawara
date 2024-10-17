@@ -1,19 +1,14 @@
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
 import { Perf } from "r3f-perf"
-
 import Lights from "../shared/environment/Lights.jsx"
 import FirstGame from "./games/first-game/FirstGame.jsx"
 import SecondGame from "./games/second-game/SecondGame.jsx"
 import ThirdGame from "./games/third-game/ThirdGame.jsx"
 import PlayerController from "../shared/player/PlayerController.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
-
-// IMPORT ENVIRONMENT
 import GamePortal from "../shared/environment/GamePortal.jsx"
 import World from "../shared/environment/World.jsx"
 import Football from "../shared/environment/Football.jsx"
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx"
 
@@ -59,9 +54,10 @@ export default function Experience({ joystickInput }) {
 
         {/* ENVIRONMENT */}
         <World scale={0.55} position={[0, -0.4, 0]} />
-        <GamePortal phase={phases.FIRST_GAME} portalPosition={[-8, 0.5, 10]} />
-        <GamePortal phase={phases.SECOND_GAME} portalPosition={[-4, 0.5, 10]} />
+        <GamePortal phase={phases.FIRST_GAME} portalPosition={[-8, 0.5, 11]} />
+        <GamePortal phase={phases.SECOND_GAME} portalPosition={[-4, 0.5, 11]} />
         <GamePortal phase={phases.THIRD_GAME} portalPosition={[-8, 0.5, 15]} />
+        <GamePortal phase={phases.FOURTH_GAME} portalPosition={[-4, 0.5, 15]} />
 
         {/* Soccer Ball */}
         <RigidBody

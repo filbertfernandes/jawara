@@ -1,7 +1,6 @@
 import { useThree } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
 import { OrbitControls } from "@react-three/drei"
-
 import Character from "./Character.jsx"
 import { useFirstGame } from "./stores/useFirstGame.jsx"
 import "./stores/firstGame.css"
