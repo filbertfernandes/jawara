@@ -38,9 +38,9 @@ const ScorePlusInterface = () => {
 
   return (
     <div
-      className={`pointer-events-none absolute left-0 top-0 flex size-full items-center justify-center text-center font-bebas text-5xl text-white md:text-6xl lg:text-8xl ${
-        isVisible ? "animate-bounceInFadeOut" : "opacity-0"
-      }`}
+      className={`pointer-events-none absolute left-0 top-0 flex size-full items-center justify-center text-center font-bebas text-5xl md:text-6xl lg:text-8xl ${
+        scoreDifferent > 0 ? "text-white" : "text-red-600"
+      } ${isVisible ? "animate-bounceInFadeOut" : "opacity-0"}`}
     >
       <div>
         {scoreDifferent > 0 ? `+${scoreDifferent}` : `${scoreDifferent}`}
