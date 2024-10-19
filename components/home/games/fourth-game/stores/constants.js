@@ -1,5 +1,6 @@
 import Chicken from "../models/Chicken"
 import Cow from "../models/Cow"
+import Pig from "../models/Pig"
 
 export const words = [
   {
@@ -9,8 +10,8 @@ export const words = [
     madya: "lembu",
     alus: "lembu",
     model: <Cow scale={5} />,
-    colliderSize: [0.7, 1.2, 2],
-    colliderPosition: [0, 1.2, 0.8],
+    colliderSize: [0.7, 1.2, 2.4],
+    colliderPosition: [0, 1.2, 0.9],
   },
   {
     indonesian: "ayam",
@@ -21,6 +22,16 @@ export const words = [
     model: <Chicken scale={0.003} />,
     colliderSize: [0.35, 0.5, 0.35],
     colliderPosition: [0, 0.5, 0],
+  },
+  {
+    indonesian: "babi",
+    english: "pig",
+    ngoko: "celeng",
+    madya: "celeng",
+    alus: "celeng",
+    model: <Pig scale={0.075} />,
+    colliderSize: [0.4, 0.6, 1],
+    colliderPosition: [0, 0.6, 0.2],
   },
 ]
 

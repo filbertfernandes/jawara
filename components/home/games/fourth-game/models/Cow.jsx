@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useGLTF, useAnimations } from "@react-three/drei"
 
 export default function Cow(props) {
@@ -8,7 +8,7 @@ export default function Cow(props) {
 
   useEffect(() => {
     actions["Armature|idle1"].reset().fadeIn(0.2).play()
-  }, [])
+  }, [actions])
 
   return (
     <group ref={group} {...props} dispose={null}>
