@@ -4,6 +4,7 @@ import Lights from "../shared/environment/Lights.jsx"
 import FirstGame from "./games/first-game/FirstGame.jsx"
 import SecondGame from "./games/second-game/SecondGame.jsx"
 import ThirdGame from "./games/third-game/ThirdGame.jsx"
+import FourthGame from "./games/fourth-game/FourthGame.jsx"
 import PlayerController from "../shared/player/PlayerController.jsx"
 import { phases, useGame } from "@/hooks/useGame.jsx"
 import GamePortal from "../shared/environment/GamePortal.jsx"
@@ -23,6 +24,7 @@ export default function Experience({ joystickInput }) {
     [phases.FIRST_GAME]: <FirstGame />,
     [phases.SECOND_GAME]: <SecondGame />,
     [phases.THIRD_GAME]: <ThirdGame />,
+    [phases.FOURTH_GAME]: <FourthGame />,
   }
 
   return (
@@ -54,10 +56,30 @@ export default function Experience({ joystickInput }) {
 
         {/* ENVIRONMENT */}
         <World scale={0.55} position={[0, -0.4, 0]} />
-        <GamePortal phase={phases.FIRST_GAME} portalPosition={[-8, 0.5, 11]} />
-        <GamePortal phase={phases.SECOND_GAME} portalPosition={[-4, 0.5, 11]} />
-        <GamePortal phase={phases.THIRD_GAME} portalPosition={[-8, 0.5, 15]} />
-        <GamePortal phase={phases.FOURTH_GAME} portalPosition={[-4, 0.5, 15]} />
+        {phase === phases.FREE && (
+          <GamePortal
+            phase={phases.FIRST_GAME}
+            portalPosition={[-8, 0.5, 11]}
+          />
+        )}
+        {phase === phases.FREE && (
+          <GamePortal
+            phase={phases.SECOND_GAME}
+            portalPosition={[-4, 0.5, 11]}
+          />
+        )}
+        {phase === phases.FREE && (
+          <GamePortal
+            phase={phases.THIRD_GAME}
+            portalPosition={[-8, 0.5, 15]}
+          />
+        )}
+        {phase === phases.FREE && (
+          <GamePortal
+            phase={phases.FOURTH_GAME}
+            portalPosition={[-4, 0.5, 15]}
+          />
+        )}
 
         {/* Soccer Ball */}
         <RigidBody

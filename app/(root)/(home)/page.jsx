@@ -9,10 +9,11 @@ import dynamic from "next/dynamic" // Import dynamic
 import useIsMobile from "@/hooks/useIsMobile.jsx"
 
 // INTERFACES
+import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx"
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx"
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx"
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx"
-import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx"
+import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface"
 
 // IMPORT CONTROLS CONSTANTS
 import { Controls } from "@/utils/constants.js"
@@ -55,6 +56,7 @@ export default function App() {
     [phases.FIRST_GAME]: <FirstGameInterface />,
     [phases.SECOND_GAME]: <SecondGameInterface />,
     [phases.THIRD_GAME]: <ThirdGameInterface />,
+    [phases.FOURTH_GAME]: <FourthGameInterface />,
   }
 
   return (

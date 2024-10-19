@@ -1,0 +1,107 @@
+import { useEffect, useRef } from "react"
+import { gameStates, useGame } from "@/hooks/useGame.jsx"
+import { useFourthGame } from "./stores/useFourthGame.jsx"
+import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx"
+import { words } from "./stores/constants.js"
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
+import { addEffect } from "@react-three/fiber"
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
+
+export const FourthGameInterface = () => {
+  const time = useRef()
+
+  const { gameState } = useGame((state) => ({
+    gameState: state.gameState,
+  }))
+
+  const { startGame, mode, score, correctAnswersOrder, answerCount, stage } =
+    useFourthGame((state) => ({
+      startGame: state.startGame,
+      mode: state.mode,
+      score: state.score,
+      correctAnswersOrder: state.correctAnswersOrder,
+      answerCount: state.answerCount,
+      stage: state.stage,
+    }))
+
+  useEffect(() => {
+    if (gameState === gameStates.GAME_OVER) {
+      // onFinish()
+    }
+  }, [gameState])
+
+  // SCORE
+  useEffect(() => {
+    const unsubscribeEffect = addEffect(() => {
+      const state = useGame.getState()
+      const fourthGameState = useFourthGame.getState()
+
+      let elapsedTime = 0
+
+      if (state.gameState === gameStates.GAME) {
+        elapsedTime = (Date.now() - fourthGameState.startTime) / 1000
+      }
+
+      // Calculate remaining time
+      const remainingTime = Math.max(
+        0,
+        fourthGameState.initialTimer - elapsedTime
+      ).toFixed(0)
+
+      fourthGameState.timer = remainingTime
+
+      if (time.current) {
+        time.current.textContent = fourthGameState.timer
+      }
+
+      // Check if time has run out
+      if (fourthGameState.timer <= 0) {
+        SoundManager.playSound("gameComplete")
+        state.changeGameState(gameStates.GAME_OVER)
+      }
+    })
+
+    return () => {
+      unsubscribeEffect()
+    }
+  }, [])
+
+  return (
+    <>
+      {/* GAME MENU INTERFACE */}
+      <GameMenuInterface
+        startGame={startGame}
+        title="Animals"
+        words={words}
+        score={score}
+      />
+
+      {/* IN GAME INTERFACE */}
+      <div
+        className={`${
+          gameState !== gameStates.GAME ? "pointer-events-none opacity-0" : ""
+        }`}
+      >
+        <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-black/30 px-2 pt-1 text-center font-bebas text-2xl text-white md:text-3xl lg:px-12 lg:text-4xl">
+          <div>
+            Time Left: <span ref={time}>100</span>
+          </div>
+          {answerCount < 10 && (
+            <div>
+              {stage ? stage[correctAnswersOrder[answerCount]].word[mode] : ""}
+            </div>
+          )}
+          <div>Score: {score}</div>
+        </div>
+      </div>
+
+      {gameState === gameStates.GAME && (
+        <>
+          <ScorePlusInterface score={score} />
+          <ExitDoor />
+        </>
+      )}
+    </>
+  )
+}

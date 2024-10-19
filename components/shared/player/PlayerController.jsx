@@ -52,7 +52,11 @@ export default function PlayerController({ joystickInput }) {
   }
 
   useFrame((state) => {
-    if (phase !== phases.FREE || !rigidBody.current) return
+    if (
+      (phase !== phases.FREE && phase !== phases.FOURTH_GAME) ||
+      !rigidBody.current
+    )
+      return
 
     const rigidBodyPosition = rigidBody.current.translation()
 
@@ -156,7 +160,7 @@ export default function PlayerController({ joystickInput }) {
         }}
         position={[0, 0.5, 15]}
       >
-        <CapsuleCollider args={[1.15, 0.65]} position={[0, 1.75, 0]} />
+        <CapsuleCollider args={[1.15, 0.65]} position={[0, 1.8, 0]} />
         <group ref={player}>
           <Player scale={0.4} />
         </group>
