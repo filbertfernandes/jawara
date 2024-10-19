@@ -4,7 +4,7 @@ import { words, positions } from "./constants.js"
 
 export const generateGameLevel = () => {
   const stage = []
-  const nbOptions = 6
+  const nbOptions = 8
   const usedPositions = []
 
   for (let j = 0; j < nbOptions; j++) {
@@ -32,7 +32,7 @@ export const generateGameLevel = () => {
 }
 
 export const genereateCorrectAnswersOrder = () => {
-  const arr = [0, 1, 2, 3, 4, 5]
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7]
 
   /// Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
   for (let i = arr.length - 1; i > 0; i--) {

@@ -2,7 +2,9 @@ import Cat from "../models/Cat"
 import Chicken from "../models/Chicken"
 import Cow from "../models/Cow"
 import Dog from "../models/Dog"
+import Horse from "../models/Horse"
 import Lion from "../models/Lion"
+import Mouse from "../models/Mouse"
 import Pig from "../models/Pig"
 
 export const words = [
@@ -50,7 +52,7 @@ export const words = [
     indonesian: "anjing",
     english: "dog",
     ngoko: "asu",
-    madya: "asuw",
+    madya: "asu",
     alus: "segawon",
     model: <Dog scale={0.5} />,
     colliderSize: [0.5, 0.6, 1.2],
@@ -61,18 +63,33 @@ export const words = [
     english: "cat",
     ngoko: "kucing",
     madya: "kucing",
-    alus: "marmot",
+    alus: "kucing",
     model: <Cat scale={2} />,
     colliderSize: [0.2, 0.3, 0.6],
     colliderPosition: [0, 0.3, 0],
   },
-  // {
-  //   indonesian: "kuda",
-  //   english: "horse",
-  //   ngoko: "jaran",
-  //   madya: "jaran",
-  //   alus: "kebo",
-  // },
+  {
+    indonesian: "tikus",
+    english: "mouse",
+    ngoko: "tikus",
+    madya: "tikus",
+    alus: "tikus",
+    model: <Mouse scale={0.7} />,
+    colliderSize: [0.1, 0.1, 0.35],
+    colliderPosition: [0, 0, 0],
+    rigidPositionY: 0.2,
+  },
+  {
+    indonesian: "kuda",
+    english: "horse",
+    ngoko: "jaran",
+    madya: "kapal",
+    alus: "titihan",
+    model: <Horse scale={0.6} />,
+    colliderSize: [1.3, 1.2, 0.6],
+    colliderPosition: [0.6, -0.5, 0],
+    rigidPositionY: 1.75,
+  },
 ]
 
 export const positions = [
@@ -80,57 +97,105 @@ export const positions = [
     position: [0, 0, -15],
   },
   {
-    position: [3, 0, -15],
+    position: [4, 0, -15],
   },
   {
-    position: [6, 0, -15],
+    position: [8, 0, -15],
   },
   {
-    position: [-3, 0, -15],
+    position: [-4, 0, -15],
   },
   {
-    position: [-6, 0, -15],
+    position: [-8, 0, -15],
   },
   {
     position: [0, 0, -10],
   },
   {
-    position: [3, 0, -10],
+    position: [4, 0, -10],
   },
   {
-    position: [6, 0, -10],
+    position: [8, 0, -10],
   },
   {
-    position: [-3, 0, -10],
+    position: [-4, 0, -10],
   },
   {
-    position: [-6, 0, -10],
+    position: [-8, 0, -10],
   },
   {
-    position: [3, 0, -5],
+    position: [4, 0, -5],
   },
   {
-    position: [6, 0, -5],
+    position: [8, 0, -5],
   },
   {
-    position: [-3, 0, -5],
+    position: [0, 0, -5],
   },
   {
-    position: [-6, 0, -5],
+    position: [-4, 0, -5],
+  },
+  {
+    position: [-8, 0, -5],
   },
   {
     position: [0, 0, 0],
   },
   {
-    position: [3, 0, 0],
+    position: [4, 0, 0],
   },
   {
-    position: [6, 0, 0],
+    position: [8, 0, 0],
   },
   {
-    position: [-3, 0, 0],
+    position: [-4, 0, 0],
   },
   {
-    position: [-6, 0, 0],
+    position: [-8, 0, 0],
+  },
+  {
+    position: [0, 0, 15],
+  },
+  {
+    position: [4, 0, 15],
+  },
+  {
+    position: [8, 0, 15],
+  },
+  {
+    position: [-4, 0, 15],
+  },
+  {
+    position: [-8, 0, 15],
+  },
+  {
+    position: [0, 0, 10],
+  },
+  {
+    position: [4, 0, 10],
+  },
+  {
+    position: [8, 0, 10],
+  },
+  {
+    position: [-4, 0, 10],
+  },
+  {
+    position: [-8, 0, 10],
+  },
+  {
+    position: [4, 0, 5],
+  },
+  {
+    position: [8, 0, 5],
+  },
+  {
+    position: [0, 0, 5],
+  },
+  {
+    position: [-4, 0, 5],
+  },
+  {
+    position: [-8, 0, 5],
   },
 ]

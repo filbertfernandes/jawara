@@ -106,11 +106,11 @@ export default function Experience({ joystickInput }) {
           colliders={false}
           scale={1}
           enabledRotations={[false, false, false]}
-          position={[0, 0, 10]}
-          rotation-y={Math.PI * 0.5}
+          position={[0, 1.75, 10]}
+          rotation-y={Math.PI}
         >
-          <CuboidCollider args={[0.2, 0.3, 0.6]} position={[0, 0.3, 0]} />
-          <Cat scale={2} />
+          <CuboidCollider args={[1.3, 1.2, 0.6]} position={[0.6, -0.5, 0]} />
+          <Horse scale={0.6} />
         </RigidBody> */}
       </Physics>
     </>
