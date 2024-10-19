@@ -100,6 +100,18 @@ export default function Experience({ joystickInput }) {
 
         {/* PHASES */}
         {gamePhaseComponentMap[phase]}
+
+        {/* <RigidBody
+          type="kinematicPosition"
+          colliders={false}
+          scale={1}
+          enabledRotations={[false, false, false]}
+          position={[0, 0, 10]}
+          rotation-y={Math.PI * 0.5}
+        >
+          <CuboidCollider args={[0.2, 0.3, 0.6]} position={[0, 0.3, 0]} />
+          <Cat scale={2} />
+        </RigidBody> */}
       </Physics>
     </>
   )

@@ -3,24 +3,6 @@ import { getAllScores } from "@/lib/actions/score.action"
 import { SoundManager } from "@/lib/SoundManager"
 import { useEffect, useState } from "react"
 
-const players = [
-  { _id: 1, name: "filbert_fernandes", highscore: 200 },
-  { _id: 2, name: "cyber_chris", highscore: 81 },
-  { _id: 3, name: "jordan_xoxo", highscore: 117 },
-  { _id: 4, name: "taylor_99", highscore: 46 },
-  { _id: 5, name: "morgan_hero", highscore: 193 },
-  { _id: 6, name: "jamie_fast", highscore: 174 },
-  { _id: 7, name: "avery_dragon", highscore: 198 },
-  { _id: 8, name: "charlie_wave", highscore: 67 },
-  { _id: 9, name: "casey_shadow", highscore: 113 },
-  { _id: 10, name: "riley_fire", highscore: 88 },
-  { _id: 11, name: "peyton_sky", highscore: 137 },
-  { _id: 12, name: "dakota_blaze", highscore: 164 },
-  { _id: 13, name: "harper_frost", highscore: 53 },
-  { _id: 14, name: "bailey_thunder", highscore: 142 },
-  { _id: 15, name: "skyler_light", highscore: 101 },
-]
-
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
     className={`flex cursor-pointer items-center text-center capitalize ${
