@@ -28,7 +28,6 @@ export default function Chicken(props) {
     }
   }, [chickenState, actions])
 
-  // Change chicken state every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setChickenState((prevState) =>
@@ -36,7 +35,7 @@ export default function Chicken(props) {
           ? "chicken-rig|pecking"
           : "chicken-rig|idle"
       )
-    }, 2500)
+    }, 1500)
 
     // Cleanup interval on component unmount
     return () => clearInterval(interval)
