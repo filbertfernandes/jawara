@@ -38,7 +38,7 @@ export default function Experience({ joystickInput }) {
       {/* LIGHTS */}
       <Lights />
 
-      <Physics debug={false}>
+      <Physics debug={true}>
         {/* FIXED RIGID BODIES */}
         <RigidBody type="fixed">
           {/* FLOOR */}
@@ -113,8 +113,8 @@ export default function Experience({ joystickInput }) {
           position={[0, 0, 10]}
           rotation-y={Math.PI * 0.5}
         >
-          <CuboidCollider args={[0.1, 0.25, 0.15]} position={[0, 0, 0.05]} />
-          <Frog scale={1} />
+          <CuboidCollider args={[0.45, 2.6, 2.3]} position={[0, 0, 0.75]} />
+          <Buffalo scale={0.35} />
         </RigidBody> */}
       </Physics>
     </>

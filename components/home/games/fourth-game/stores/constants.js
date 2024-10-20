@@ -1,6 +1,8 @@
+import Buffalo from "../models/Buffalo"
 import Cat from "../models/Cat"
 import Chicken from "../models/Chicken"
 import Cow from "../models/Cow"
+import Deer from "../models/Deer"
 import Dog from "../models/Dog"
 import Duck from "../models/Duck"
 import Elephant from "../models/Elephant"
@@ -156,6 +158,26 @@ export const words = [
     model: <Frog scale={1} />,
     colliderSize: [0.1, 0.25, 0.15],
     colliderPosition: [0, 0, 0.05],
+  },
+  {
+    indonesian: "rusa",
+    english: "deer",
+    ngoko: "kidang",
+    madya: "kidang",
+    alus: "kidang",
+    model: <Deer scale={0.5} />,
+    colliderSize: [0.3, 1.5, 1.2],
+    colliderPosition: [0, 0, 0.3],
+  },
+  {
+    indonesian: "kerbau",
+    english: "buffalo",
+    ngoko: "kebo",
+    madya: "kebo",
+    alus: "kebo",
+    model: <Buffalo scale={0.38} />,
+    colliderSize: [0.45, 2.6, 2.3],
+    colliderPosition: [0, 0, 0.75],
   },
 ]
 
