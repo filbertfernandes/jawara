@@ -8,7 +8,7 @@ export default function Horse(props) {
 
   useEffect(() => {
     const action = actions.metarigAction
-    action.reset().fadeIn(0.5).play()
+    action.reset().fadeIn(0.2).play()
     action.timeScale = 1
   }, [actions])
 

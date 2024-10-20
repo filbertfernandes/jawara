@@ -8,7 +8,7 @@ export default function Mouse(props) {
 
   useEffect(() => {
     const action = actions["rig|rigAction"]
-    action.reset().fadeIn(0.5).play()
+    action.reset().fadeIn(0.2).play()
     action.timeScale = 1.3
   }, [actions])
 

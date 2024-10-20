@@ -8,7 +8,7 @@ export default function Pig(props) {
 
   useEffect(() => {
     const action = actions.Pig_Idle
-    action.reset().fadeIn(0.5).play()
+    action.reset().fadeIn(0.2).play()
     action.timeScale = 9
   }, [actions])
 

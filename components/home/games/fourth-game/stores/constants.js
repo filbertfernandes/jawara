@@ -2,10 +2,16 @@ import Cat from "../models/Cat"
 import Chicken from "../models/Chicken"
 import Cow from "../models/Cow"
 import Dog from "../models/Dog"
+import Duck from "../models/Duck"
+import Elephant from "../models/Elephant"
+import Frog from "../models/Frog"
+import Giraffe from "../models/Giraffe"
 import Horse from "../models/Horse"
 import Lion from "../models/Lion"
 import Mouse from "../models/Mouse"
 import Pig from "../models/Pig"
+import Rabbit from "../models/Rabbit"
+import Sheep from "../models/Sheep"
 
 export const words = [
   {
@@ -90,6 +96,67 @@ export const words = [
     colliderPosition: [0.6, -0.5, 0],
     rigidPositionY: 1.75,
   },
+  {
+    indonesian: "bebek",
+    english: "duck",
+    ngoko: "itik",
+    madya: "itik",
+    alus: "itik",
+    model: <Duck scale={0.6} />,
+    colliderSize: [0.4, 1.2, 0.8],
+    colliderPosition: [0, 0, 0.2],
+  },
+  {
+    indonesian: "gajah",
+    english: "elephant",
+    ngoko: "gajah",
+    madya: "gajah",
+    alus: "gajah",
+    model: <Elephant scale={2} />,
+    colliderSize: [1, 4.6, 3.8],
+    colliderPosition: [0, 0, 1.5],
+  },
+  {
+    indonesian: "jerapah",
+    english: "giraffe",
+    ngoko: "jerapah",
+    madya: "jerapah",
+    alus: "jerapah",
+    model: <Giraffe scale={1.75} />,
+    colliderSize: [0.7, 4.5, 1.1],
+    colliderPosition: [0, 0, -1],
+  },
+  {
+    indonesian: "domba",
+    english: "sheep",
+    ngoko: "wedhus",
+    madya: "wedhus",
+    alus: "wedhus",
+    model: <Sheep scale={0.3} />,
+    colliderSize: [0.4, 1.5, 1.1],
+    colliderPosition: [0, 0, 0.3],
+  },
+  {
+    indonesian: "kelinci",
+    english: "rabbit",
+    ngoko: "terwelu",
+    madya: "terwelu",
+    alus: "terwelu",
+    model: <Rabbit scale={0.3} />,
+    colliderSize: [0.2, 0.45, 0.2],
+    colliderPosition: [0, 0, 0],
+    rigidPositionY: 0.22,
+  },
+  {
+    indonesian: "katak",
+    english: "frog",
+    ngoko: "kodhok",
+    madya: "kodhok",
+    alus: "kodhok",
+    model: <Frog scale={1} />,
+    colliderSize: [0.1, 0.25, 0.15],
+    colliderPosition: [0, 0, 0.05],
+  },
 ]
 
 export const positions = [
@@ -152,36 +219,6 @@ export const positions = [
   },
   {
     position: [-8, 0, 0],
-  },
-  {
-    position: [0, 0, 15],
-  },
-  {
-    position: [4, 0, 15],
-  },
-  {
-    position: [8, 0, 15],
-  },
-  {
-    position: [-4, 0, 15],
-  },
-  {
-    position: [-8, 0, 15],
-  },
-  {
-    position: [0, 0, 10],
-  },
-  {
-    position: [4, 0, 10],
-  },
-  {
-    position: [8, 0, 10],
-  },
-  {
-    position: [-4, 0, 10],
-  },
-  {
-    position: [-8, 0, 10],
   },
   {
     position: [4, 0, 5],
