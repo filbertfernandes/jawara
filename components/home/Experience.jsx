@@ -38,7 +38,7 @@ export default function Experience({ joystickInput }) {
       {/* LIGHTS */}
       <Lights />
 
-      <Physics debug={true}>
+      <Physics debug={false}>
         {/* FIXED RIGID BODIES */}
         <RigidBody type="fixed">
           {/* FLOOR */}

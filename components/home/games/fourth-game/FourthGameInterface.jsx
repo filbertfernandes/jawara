@@ -15,15 +15,23 @@ export const FourthGameInterface = () => {
     gameState: state.gameState,
   }))
 
-  const { startGame, mode, score, correctAnswersOrder, answerCount, stage } =
-    useFourthGame((state) => ({
-      startGame: state.startGame,
-      mode: state.mode,
-      score: state.score,
-      correctAnswersOrder: state.correctAnswersOrder,
-      answerCount: state.answerCount,
-      stage: state.stage,
-    }))
+  const {
+    startGame,
+    mode,
+    score,
+    correctAnswersOrder,
+    answerCount,
+    stage,
+    selectAnimal,
+  } = useFourthGame((state) => ({
+    startGame: state.startGame,
+    mode: state.mode,
+    score: state.score,
+    correctAnswersOrder: state.correctAnswersOrder,
+    answerCount: state.answerCount,
+    stage: state.stage,
+    selectAnimal: state.selectAnimal,
+  }))
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
@@ -87,13 +95,19 @@ export const FourthGameInterface = () => {
           <div>
             Time Left: <span ref={time}>100</span>
           </div>
-          {answerCount < 10 && (
+          {answerCount < 8 && (
             <div>
               {stage ? stage[correctAnswersOrder[answerCount]].word[mode] : ""}
             </div>
           )}
           <div>Score: {score}</div>
         </div>
+
+        {selectAnimal !== null && (
+          <div className="absolute bottom-0 left-0 flex w-full flex-wrap justify-center pb-2 text-center font-bebas text-xl text-white md:text-2xl lg:px-12 lg:text-3xl">
+            <div>Press Enter to Select this Animal</div>
+          </div>
+        )}
       </div>
 
       {gameState === gameStates.GAME && (

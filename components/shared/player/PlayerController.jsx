@@ -1,18 +1,18 @@
 import * as THREE from "three"
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody } from "@react-three/rapier"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 
 import Player from "./Player.jsx"
 import { Controls } from "@/utils/constants.js"
-import { phases, useGame } from "@/hooks/useGame.jsx"
+import { phases, gameStates, useGame } from "@/hooks/useGame.jsx"
 
 // SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
 const JUMP_FORCE = 2
-const MOVEMENT_SPEED = 0.5
+const MOVEMENT_SPEED = 0.6
 const MAX_VEL = 3
 const RUN_VEL = 2
 
@@ -29,11 +29,14 @@ const playFootstepSound = debounce(() => {
 }, 50)
 
 export default function PlayerController({ joystickInput }) {
-  const { playerState, setPlayerState, phase } = useGame((state) => ({
-    playerState: state.playerState,
-    setPlayerState: state.setPlayerState,
-    phase: state.phase,
-  }))
+  const { playerState, setPlayerState, phase, gameState } = useGame(
+    (state) => ({
+      playerState: state.playerState,
+      setPlayerState: state.setPlayerState,
+      phase: state.phase,
+      gameState: state.gameState,
+    })
+  )
 
   const jumpPressed = useKeyboardControls((state) => state[Controls.jump])
   const leftPressed = useKeyboardControls((state) => state[Controls.left])
@@ -46,10 +49,16 @@ export default function PlayerController({ joystickInput }) {
   const player = useRef()
 
   const reset = () => {
-    rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 15 })
+    rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 12 })
     rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
     rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
   }
+
+  useEffect(() => {
+    if (phase === phases.FOURTH_GAME && gameState === gameStates.GAME) {
+      reset()
+    }
+  }, [gameState])
 
   useFrame((state) => {
     if (

@@ -55,6 +55,7 @@ export const useFourthGame = create(
       startTime: 0,
       correctAnswersOrder: [],
       answerCount: 0,
+      selectAnimal: null,
 
       startGame: ({ mode }) => {
         set((state) => {
@@ -73,6 +74,13 @@ export const useFourthGame = create(
             correctAnswersOrder,
             answerCount: 0,
           }
+        })
+      },
+
+      setSelectAnimal: (index) => {
+        set(() => {
+          const selectAnimal = index
+          return { selectAnimal }
         })
       },
 
