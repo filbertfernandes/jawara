@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
-import { useKeyboardControls, Edges, Outlines } from "@react-three/drei"
+import { useKeyboardControls, Edges, Outlines, Text } from "@react-three/drei"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
 import { useGame } from "@/hooks/useGame.jsx"
 import { SoundManager } from "@/lib/SoundManager.jsx"
 
-export default function GamePortal({ phase, portalPosition }) {
+export default function GamePortal({ phase, portalPosition, game }) {
   const portal = useRef()
 
   // GO TO GAMES CONTROL
@@ -39,9 +39,18 @@ export default function GamePortal({ phase, portalPosition }) {
 
   return (
     <>
+      <Text
+        position={[portalPosition[0], 0.75, portalPosition[2] + 0.76]}
+        fontSize={0.45}
+        color="white"
+        font="./fonts/bebas-neue-v9-latin-regular.woff"
+      >
+        {game}
+      </Text>
+
       {/* GAME PORTAL */}
       <RigidBody type="fixed">
-        <mesh ref={portal} position={portalPosition} scale={[1.2, 1.5, 1.2]}>
+        <mesh ref={portal} position={portalPosition} scale={[1.5, 2, 1.5]}>
           <boxGeometry />
           <meshStandardMaterial color="rgb(14, 165, 233)" />
 

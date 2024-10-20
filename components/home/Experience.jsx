@@ -59,32 +59,36 @@ export default function Experience({ joystickInput }) {
         {phase === phases.FREE && (
           <GamePortal
             phase={phases.FIRST_GAME}
-            portalPosition={[-8, 0.5, 11]}
+            portalPosition={[-6, 0.5, 8]}
+            game={`Body\nParts`}
           />
         )}
         {phase === phases.FREE && (
           <GamePortal
             phase={phases.SECOND_GAME}
-            portalPosition={[-4, 0.5, 11]}
+            portalPosition={[-2, 0.5, 8]}
+            game={`Colors`}
           />
         )}
         {phase === phases.FREE && (
           <GamePortal
             phase={phases.THIRD_GAME}
-            portalPosition={[-8, 0.5, 15]}
+            portalPosition={[2, 0.5, 8]}
+            game={`Numbers`}
           />
         )}
         {phase === phases.FREE && (
           <GamePortal
             phase={phases.FOURTH_GAME}
-            portalPosition={[-4, 0.5, 15]}
+            portalPosition={[6, 0.5, 8]}
+            game={`Animals`}
           />
         )}
 
         {/* Soccer Ball */}
         <RigidBody
           colliders="ball"
-          position={[-2, 5, 12]}
+          position={[0, 10, 5]}
           restitution={0.65}
           friction={1.5}
           onCollisionEnter={() =>
