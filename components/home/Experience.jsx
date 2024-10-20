@@ -27,6 +27,13 @@ export default function Experience({ joystickInput }) {
     [phases.FOURTH_GAME]: <FourthGame />,
   }
 
+  const portals = [
+    { phase: phases.FIRST_GAME, position: [-6, 0.5, 8], game: "Body\nParts" },
+    { phase: phases.SECOND_GAME, position: [-2, 0.5, 8], game: "Colors" },
+    { phase: phases.THIRD_GAME, position: [2, 0.5, 8], game: "Numbers" },
+    { phase: phases.FOURTH_GAME, position: [6, 0.5, 8], game: "Animals" },
+  ]
+
   return (
     <>
       {/* PERF */}
@@ -38,7 +45,7 @@ export default function Experience({ joystickInput }) {
       {/* LIGHTS */}
       <Lights />
 
-      <Physics debug={true}>
+      <Physics debug={false}>
         {/* FIXED RIGID BODIES */}
         <RigidBody type="fixed">
           {/* FLOOR */}
@@ -56,34 +63,16 @@ export default function Experience({ joystickInput }) {
 
         {/* ENVIRONMENT */}
         <World scale={0.55} position={[0, -0.4, 0]} />
-        {phase === phases.FREE && (
-          <GamePortal
-            phase={phases.FIRST_GAME}
-            portalPosition={[-6, 0.5, 8]}
-            game={`Body\nParts`}
-          />
-        )}
-        {phase === phases.FREE && (
-          <GamePortal
-            phase={phases.SECOND_GAME}
-            portalPosition={[-2, 0.5, 8]}
-            game={`Colors`}
-          />
-        )}
-        {phase === phases.FREE && (
-          <GamePortal
-            phase={phases.THIRD_GAME}
-            portalPosition={[2, 0.5, 8]}
-            game={`Numbers`}
-          />
-        )}
-        {phase === phases.FREE && (
-          <GamePortal
-            phase={phases.FOURTH_GAME}
-            portalPosition={[6, 0.5, 8]}
-            game={`Animals`}
-          />
-        )}
+
+        {phase === phases.FREE &&
+          portals.map(({ phase, position, game }) => (
+            <GamePortal
+              key={phase}
+              phase={phase}
+              portalPosition={position}
+              game={game}
+            />
+          ))}
 
         {/* Soccer Ball */}
         <RigidBody
@@ -104,18 +93,6 @@ export default function Experience({ joystickInput }) {
 
         {/* PHASES */}
         {gamePhaseComponentMap[phase]}
-
-        {/* <RigidBody
-          type="kinematicPosition"
-          colliders={false}
-          scale={1}
-          enabledRotations={[false, false, false]}
-          position={[0, 0, 10]}
-          rotation-y={Math.PI * 0.5}
-        >
-          <CuboidCollider args={[0.45, 2.6, 2.3]} position={[0, 0, 0.75]} />
-          <Buffalo scale={0.35} />
-        </RigidBody> */}
       </Physics>
     </>
   )
