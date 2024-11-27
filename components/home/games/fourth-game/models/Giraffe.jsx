@@ -1,16 +1,16 @@
-import { useRef, useEffect } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useRef, useEffect } from "react";
 
 export default function Giraffe(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/giraffe.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/giraffe.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions.loopEating
-    action.reset().fadeIn(0.2).play()
-    action.timeScale = 1
-  }, [actions])
+    const action = actions.loopEating;
+    action.reset().fadeIn(0.2).play();
+    action.timeScale = 1;
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -64,7 +64,7 @@ export default function Giraffe(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/giraffe.glb")
+useGLTF.preload("/models/game/giraffe.glb");

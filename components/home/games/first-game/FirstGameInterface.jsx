@@ -1,51 +1,53 @@
-import { useEffect, useRef, useState } from "react"
-import { addEffect } from "@react-three/fiber"
-import { useFirstGame } from "./stores/useFirstGame.jsx"
-import { gameStates, useGame } from "@/hooks/useGame.jsx"
-import { words } from "./stores/constants.js"
-import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
-import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
+import { addEffect } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+
+import { words } from "./stores/constants.js";
+import { useFirstGame } from "./stores/useFirstGame.jsx";
+
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx";
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx";
+import { gameStates, useGame } from "@/hooks/useGame.jsx";
 
 export const FirstGameInterface = () => {
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
 
-  const time = useRef()
+  const time = useRef();
 
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const { startGame } = useFirstGame((state) => ({
     startGame: state.startGame,
-  }))
+  }));
 
   // SCORE
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
-      const state = useGame.getState()
-      const firstGameState = useFirstGame.getState()
+      const state = useGame.getState();
+      const firstGameState = useFirstGame.getState();
 
-      let elapsedTime = 0
+      let elapsedTime = 0;
 
       if (state.gameState === gameStates.GAME)
-        elapsedTime = Date.now() - firstGameState.startTime
+        elapsedTime = Date.now() - firstGameState.startTime;
       else if (state.gameState === gameStates.GAME_OVER)
-        elapsedTime = firstGameState.endTime - firstGameState.startTime
+        elapsedTime = firstGameState.endTime - firstGameState.startTime;
 
-      elapsedTime /= 1000
-      elapsedTime = elapsedTime.toFixed(2)
+      elapsedTime /= 1000;
+      elapsedTime = elapsedTime.toFixed(2);
 
-      if (time.current) time.current.textContent = elapsedTime
+      if (time.current) time.current.textContent = elapsedTime;
 
       // Update the score when the game is over
-      if (state.gameState === gameStates.GAME_OVER) setScore(elapsedTime)
-    })
+      if (state.gameState === gameStates.GAME_OVER) setScore(elapsedTime);
+    });
 
     return () => {
-      unsubscribeEffect()
-    }
-  }, [])
+      unsubscribeEffect();
+    };
+  }, []);
 
   return (
     <>
@@ -77,5 +79,5 @@ export const FirstGameInterface = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};

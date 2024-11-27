@@ -479,7 +479,7 @@ export const words = [
     madya: "setunggal atus",
     alus: "setunggal atus",
   },
-]
+];
 
 export const positions = [
   {
@@ -539,4 +539,4 @@ export const positions = [
   {
     position: [-6, 0, 0],
   },
-]
+];

@@ -1,16 +1,16 @@
-import { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 export default function Mouse(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/mouse.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/mouse.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions["rig|rigAction"]
-    action.reset().fadeIn(0.2).play()
-    action.timeScale = 1.3
-  }, [actions])
+    const action = actions["rig|rigAction"];
+    action.reset().fadeIn(0.2).play();
+    action.timeScale = 1.3;
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -50,7 +50,7 @@ export default function Mouse(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/mouse.glb")
+useGLTF.preload("/models/game/mouse.glb");

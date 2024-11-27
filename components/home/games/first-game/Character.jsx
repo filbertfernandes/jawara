@@ -1,11 +1,14 @@
-import { useRef } from "react"
-import { useGLTF } from "@react-three/drei"
-import Level from "./Level"
+import { useGLTF } from "@react-three/drei";
+import { useRef } from "react";
+
+import Level from "./Level";
 
 export default function Character(props) {
-  const characterBody = useRef()
+  const characterBody = useRef();
 
-  const { nodes, materials } = useGLTF("/models/character/boy_no_animation.glb")
+  const { nodes, materials } = useGLTF(
+    "/models/character/boy_no_animation.glb"
+  );
 
   return (
     <group ref={characterBody} {...props} dispose={null}>
@@ -65,7 +68,7 @@ export default function Character(props) {
         />
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/character/boy_no_animation.glb")
+useGLTF.preload("/models/character/boy_no_animation.glb");

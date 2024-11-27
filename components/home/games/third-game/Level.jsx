@@ -1,12 +1,14 @@
-import { useEffect } from "react"
-import NumberedBoard from "./NumberedBoard"
-import { useThirdGame } from "./stores/useThirdGame"
-import { gameStates, useGame } from "@/hooks/useGame"
+import { useEffect } from "react";
+
+import NumberedBoard from "./NumberedBoard";
+import { useThirdGame } from "./stores/useThirdGame";
+
+import { gameStates, useGame } from "@/hooks/useGame";
 
 const Level = () => {
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const {
     stage,
@@ -20,21 +22,21 @@ const Level = () => {
     answerCount: state.answerCount,
     correctAnswersOrder: state.correctAnswersOrder,
     incrementAnswerCount: state.incrementAnswerCount,
-  }))
+  }));
 
   useEffect(() => {
-    if (!stage) return
+    if (!stage) return;
 
     if (answerCount < stage.length) {
       if (stage[correctAnswersOrder[answerCount]].isAnswered) {
-        incrementAnswerCount()
+        incrementAnswerCount();
       }
     }
 
     if (answerCount === stage.length) {
-      nextStage()
+      nextStage();
     }
-  }, [answerCount])
+  }, [answerCount]);
 
   return (
     <>
@@ -51,7 +53,7 @@ const Level = () => {
           />
         ))}
     </>
-  )
-}
+  );
+};
 
-export default Level
+export default Level;

@@ -1,19 +1,21 @@
-import { useEffect, useRef } from "react"
-import { gameStates, useGame } from "@/hooks/useGame.jsx"
-import { useThirdGame } from "./stores/useThirdGame.jsx"
-import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import { words } from "./stores/constants.js"
-import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
-import { addEffect } from "@react-three/fiber"
-import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
+import { addEffect } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+
+import { words } from "./stores/constants.js";
+import { useThirdGame } from "./stores/useThirdGame.jsx";
+
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx";
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx";
+import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx";
+import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const ThirdGameInterface = () => {
-  const time = useRef()
+  const time = useRef();
 
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const { startGame, mode, score, correctAnswersOrder, answerCount, stage } =
     useThirdGame((state) => ({
@@ -23,49 +25,49 @@ export const ThirdGameInterface = () => {
       correctAnswersOrder: state.correctAnswersOrder,
       answerCount: state.answerCount,
       stage: state.stage,
-    }))
+    }));
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
       // onFinish()
     }
-  }, [gameState])
+  }, [gameState]);
 
   // SCORE
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
-      const state = useGame.getState()
-      const thirdGameState = useThirdGame.getState()
+      const state = useGame.getState();
+      const thirdGameState = useThirdGame.getState();
 
-      let elapsedTime = 0
+      let elapsedTime = 0;
 
       if (state.gameState === gameStates.GAME) {
-        elapsedTime = (Date.now() - thirdGameState.startTime) / 1000
+        elapsedTime = (Date.now() - thirdGameState.startTime) / 1000;
       }
 
       // Calculate remaining time
       const remainingTime = Math.max(
         0,
         thirdGameState.initialTimer - elapsedTime
-      ).toFixed(0)
+      ).toFixed(0);
 
-      thirdGameState.timer = remainingTime
+      thirdGameState.timer = remainingTime;
 
       if (time.current) {
-        time.current.textContent = thirdGameState.timer
+        time.current.textContent = thirdGameState.timer;
       }
 
       // Check if time has run out
       if (thirdGameState.timer <= 0) {
-        SoundManager.playSound("gameComplete")
-        state.changeGameState(gameStates.GAME_OVER)
+        SoundManager.playSound("gameComplete");
+        state.changeGameState(gameStates.GAME_OVER);
       }
-    })
+    });
 
     return () => {
-      unsubscribeEffect()
-    }
-  }, [])
+      unsubscribeEffect();
+    };
+  }, []);
 
   return (
     <>
@@ -103,5 +105,5 @@ export const ThirdGameInterface = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};

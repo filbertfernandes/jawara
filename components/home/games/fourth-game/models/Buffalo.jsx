@@ -1,16 +1,16 @@
-import { useRef, useEffect } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useRef, useEffect } from "react";
 
 export default function Buffalo(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/buffalo.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/buffalo.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions.Animation
-    action.reset().fadeIn(0.2).play()
-    action.timeScale = 1
-  }, [actions])
+    const action = actions.Animation;
+    action.reset().fadeIn(0.2).play();
+    action.timeScale = 1;
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -37,7 +37,7 @@ export default function Buffalo(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/buffalo.glb")
+useGLTF.preload("/models/game/buffalo.glb");

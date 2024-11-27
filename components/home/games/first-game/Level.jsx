@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
-import { Html } from "@react-three/drei"
-import { useGame, gameStates } from "@/hooks/useGame.jsx"
-import { useFirstGame } from "./stores/useFirstGame.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
+import { Html } from "@react-three/drei";
+import { useEffect, useState } from "react";
+
+import { useFirstGame } from "./stores/useFirstGame.jsx";
+
+import { useGame, gameStates } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Level({ characterBody }) {
   const { gameState, changeGameState } = useGame((state) => ({
     gameState: state.gameState,
     changeGameState: state.changeGameState,
-  }))
+  }));
 
   const { level, currentStage, nextStage, mode, gameOver } = useFirstGame(
     (state) => ({
@@ -18,79 +20,79 @@ export default function Level({ characterBody }) {
       mode: state.mode,
       gameOver: state.gameOver,
     })
-  )
+  );
 
-  const [inputBoxes, setInputBoxes] = useState([]) // all questions (input box need to be filled)
-  const [correctCount, setCorrectCount] = useState(0) // correct counts (used for checking when run nextStage or game over)
-  const [inputValues, setInputValues] = useState({}) // input values, used to update correct count
+  const [inputBoxes, setInputBoxes] = useState([]); // all questions (input box need to be filled)
+  const [correctCount, setCorrectCount] = useState(0); // correct counts (used for checking when run nextStage or game over)
+  const [inputValues, setInputValues] = useState({}); // input values, used to update correct count
 
   useEffect(() => {
-    if (!level) return
+    if (!level) return;
 
-    setInputBoxes(level[currentStage])
-    setCorrectCount(0)
-    setInputValues({})
+    setInputBoxes(level[currentStage]);
+    setCorrectCount(0);
+    setInputValues({});
     level[currentStage].forEach((word) => {
-      word.isCorrect = false
-    })
+      word.isCorrect = false;
+    });
 
     if (Object.keys(inputValues).length === 0) {
-      const totalInputs = level[currentStage].length
+      const totalInputs = level[currentStage].length;
       for (let i = 0; i < totalInputs; i++) {
-        inputValues[i] = ""
+        inputValues[i] = "";
       }
     }
-  }, [level, currentStage])
+  }, [level, currentStage]);
 
   useEffect(() => {
-    if (!level) return
+    if (!level) return;
 
     if (correctCount === level[currentStage].length && currentStage < 4) {
-      nextStage()
+      nextStage();
     } else if (correctCount === level[currentStage].length) {
-      SoundManager.playSound("gameComplete")
-      changeGameState(gameStates.GAME_OVER)
-      gameOver()
+      SoundManager.playSound("gameComplete");
+      changeGameState(gameStates.GAME_OVER);
+      gameOver();
     }
-  }, [correctCount])
+  }, [correctCount]);
 
   const handleInputChange = (index, event) => {
-    SoundManager.playSound("keyboardType")
+    SoundManager.playSound("keyboardType");
 
-    const newInputValues = { ...inputValues, [index]: event.target.value }
-    setInputValues(newInputValues)
+    const newInputValues = { ...inputValues, [index]: event.target.value };
+    setInputValues(newInputValues);
 
-    const inputValue = newInputValues[index].toLowerCase()
-    const levelInput = level[currentStage][index] // corecct answer based on the index
+    const inputValue = newInputValues[index].toLowerCase();
+    const levelInput = level[currentStage][index]; // corecct answer based on the index
 
     // Compare input value with correct answer, if it's true
     if (inputValue === levelInput[mode].toLowerCase()) {
       // If it was false before, then increment the correctCount
       if (!levelInput.isCorrect) {
-        SoundManager.playSound("correctAnswer")
-        setCorrectCount((prevCount) => prevCount + 1)
-        levelInput.isCorrect = true
+        SoundManager.playSound("correctAnswer");
+        setCorrectCount((prevCount) => prevCount + 1);
+        levelInput.isCorrect = true;
       }
     } else {
       // if it was true before, then decrement the correctCount.
       if (levelInput && levelInput.isCorrect) {
-        setCorrectCount((prevCount) => prevCount - 1)
-        levelInput.isCorrect = false
+        setCorrectCount((prevCount) => prevCount - 1);
+        levelInput.isCorrect = false;
       }
     }
-  }
+  };
 
   const handleNumberHover = (index) => {
-    const newInputBoxes = [...inputBoxes]
-    newInputBoxes[index].visible = true
-    setInputBoxes(newInputBoxes)
-  }
+    const newInputBoxes = [...inputBoxes];
+    newInputBoxes[index].visible = true;
+    setInputBoxes(newInputBoxes);
+  };
 
   const handleNumberClick = (index) => {
-    const newInputBoxes = [...inputBoxes]
-    newInputBoxes[index].visible = !newInputBoxes[index].visible
-    setInputBoxes(newInputBoxes)
-  }
+    const newInputBoxes = [...inputBoxes];
+    newInputBoxes[index].visible = !newInputBoxes[index].visible;
+    setInputBoxes(newInputBoxes);
+  };
 
   return (
     <>
@@ -126,5 +128,5 @@ export default function Level({ characterBody }) {
           </Html>
         ))}
     </>
-  )
+  );
 }

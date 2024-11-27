@@ -1,27 +1,28 @@
-import { useThree } from "@react-three/fiber"
-import { useEffect, useRef } from "react"
-import { OrbitControls } from "@react-three/drei"
-import Character from "./Character.jsx"
-import { useFirstGame } from "./stores/useFirstGame.jsx"
-import "./stores/firstGame.css"
+import { OrbitControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+
+import Character from "./Character.jsx";
+import { useFirstGame } from "./stores/useFirstGame.jsx";
+import "./stores/firstGame.css";
 
 export default function FirstGame() {
-  const orbitControls = useRef()
+  const orbitControls = useRef();
 
-  const { camera } = useThree()
+  const { camera } = useThree();
 
   const { cameraPosition } = useFirstGame((state) => ({
     cameraPosition: state.cameraPosition,
-  }))
+  }));
 
   useEffect(() => {
-    camera.position.x = cameraPosition.x
-    camera.position.y = cameraPosition.y
-    camera.position.z = cameraPosition.z
+    camera.position.x = cameraPosition.x;
+    camera.position.y = cameraPosition.y;
+    camera.position.z = cameraPosition.z;
 
-    orbitControls.current.target.set(0, 1, 0)
-    orbitControls.current.update()
-  }, [cameraPosition])
+    orbitControls.current.target.set(0, 1, 0);
+    orbitControls.current.update();
+  }, [cameraPosition]);
 
   return (
     <>
@@ -40,5 +41,5 @@ export default function FirstGame() {
 
       <Character scale={0.2} position={[0, 0, 0]} />
     </>
-  )
+  );
 }

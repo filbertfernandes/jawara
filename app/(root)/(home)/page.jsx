@@ -1,33 +1,30 @@
-"use client"
+"use client";
 
-import { Canvas } from "@react-three/fiber"
-import { useMemo, useState } from "react"
-import { KeyboardControls } from "@react-three/drei"
-import Experience from "@/components/home/Experience.jsx"
-import { phases, useGame } from "@/hooks/useGame.jsx"
-import dynamic from "next/dynamic" // Import dynamic
-import useIsMobile from "@/hooks/useIsMobile.jsx"
+import { KeyboardControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import dynamic from "next/dynamic"; // Import dynamic
+import { useMemo, useState } from "react";
 
-// INTERFACES
-import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx"
-import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx"
-import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx"
-import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx"
-import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface"
-
-// IMPORT CONTROLS CONSTANTS
-import { Controls } from "@/utils/constants.js"
+import Experience from "@/components/home/Experience.jsx";
+import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
+import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface";
+import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx";
+import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
+import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx";
+import { phases, useGame } from "@/hooks/useGame.jsx";
+import useIsMobile from "@/hooks/useIsMobile.jsx";
+import { Controls } from "@/utils/constants.js";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
   ssr: false,
-})
+});
 
 export default function App() {
   // GAME PHASE
   const { phase } = useGame((state) => ({
     phase: state.phase,
-  }))
+  }));
 
   // KEYBOARD
   const map = useMemo(
@@ -40,15 +37,15 @@ export default function App() {
       { name: Controls.enter, keys: ["Enter"] },
     ],
     []
-  )
+  );
 
   // JOYSTICK
-  const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 })
-  const isMobile = useIsMobile()
+  const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 });
+  const isMobile = useIsMobile();
 
   const handleJoystickMove = (input) => {
-    setJoystickInput(input)
-  }
+    setJoystickInput(input);
+  };
 
   // INTERFACES MAPPING
   const gameInterfaces = {
@@ -57,7 +54,7 @@ export default function App() {
     [phases.SECOND_GAME]: <SecondGameInterface />,
     [phases.THIRD_GAME]: <ThirdGameInterface />,
     [phases.FOURTH_GAME]: <FourthGameInterface />,
-  }
+  };
 
   return (
     <KeyboardControls map={map}>
@@ -80,5 +77,5 @@ export default function App() {
       {/* INTERFACES */}
       {gameInterfaces[phase]}
     </KeyboardControls>
-  )
+  );
 }

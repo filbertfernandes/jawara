@@ -1,109 +1,111 @@
-import { RigidBody, useRapier } from "@react-three/rapier"
-import { useFrame } from "@react-three/fiber"
-import { useKeyboardControls } from "@react-three/drei"
-import { useEffect, useRef } from "react"
-import * as THREE from "three"
-import { useGame } from "@/hooks/useGame.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import { useThirdGame } from "./stores/useThirdGame"
+import { useKeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { RigidBody, useRapier } from "@react-three/rapier";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5)
+import { useThirdGame } from "./stores/useThirdGame";
+
+import { useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
+
+const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5);
 
 export default function Marble() {
-  const marbleBody = useRef()
-  const isMounted = useRef(true) // Track component mount status
+  const marbleBody = useRef();
+  const isMounted = useRef(true); // Track component mount status
 
-  const [subscribeKeys, getKeys] = useKeyboardControls()
-  const { rapier, world } = useRapier()
+  const [subscribeKeys, getKeys] = useKeyboardControls();
+  const { rapier, world } = useRapier();
 
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const { stage } = useThirdGame((state) => ({
     stage: state.stage,
-  }))
+  }));
 
   const reset = () => {
     if (marbleBody.current) {
-      marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION)
-      marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 })
-      marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 })
+      marbleBody.current.setTranslation(MARBLE_INITIAL_POSITION);
+      marbleBody.current.setLinvel({ x: 0, y: 0, z: 0 });
+      marbleBody.current.setAngvel({ x: 0, y: 0, z: 0 });
     }
-  }
+  };
 
   const jump = () => {
-    const origin = marbleBody.current.translation()
-    origin.y -= 0.31 // add a little 0.01 so it slightly below the player. The player size is 0.3.
+    const origin = marbleBody.current.translation();
+    origin.y -= 0.31; // add a little 0.01 so it slightly below the player. The player size is 0.3.
 
-    const direction = { x: 0, y: -1, z: 0 }
-    const ray = new rapier.Ray(origin, direction)
-    const hit = world.castRay(ray, 10, true)
+    const direction = { x: 0, y: -1, z: 0 };
+    const ray = new rapier.Ray(origin, direction);
+    const hit = world.castRay(ray, 10, true);
 
-    if (hit.toi < 0.15) marbleBody.current.applyImpulse({ x: 0, y: 0.8, z: 0 })
-  }
+    if (hit.toi < 0.15) marbleBody.current.applyImpulse({ x: 0, y: 0.8, z: 0 });
+  };
 
   useEffect(() => {
-    isMounted.current = true
+    isMounted.current = true;
 
     const unsubscribeJump = subscribeKeys(
       (state) => state.jump,
 
       (isJump) => {
-        if (isJump) jump()
+        if (isJump) jump();
       }
-    )
+    );
 
     return () => {
-      isMounted.current = false
-      unsubscribeJump()
-    }
-  }, [])
+      isMounted.current = false;
+      unsubscribeJump();
+    };
+  }, []);
 
   useEffect(() => {
-    reset()
-  }, [gameState, stage])
+    reset();
+  }, [gameState, stage]);
 
   useFrame((state, delta) => {
-    if (!isMounted.current || !marbleBody.current) return
+    if (!isMounted.current || !marbleBody.current) return;
 
     /**
      * Controls
      */
-    const { forward, back, left, right } = getKeys()
+    const { forward, back, left, right } = getKeys();
 
-    const impulse = { x: 0, y: 0, z: 0 }
-    const torque = { x: 0, y: 0, z: 0 }
+    const impulse = { x: 0, y: 0, z: 0 };
+    const torque = { x: 0, y: 0, z: 0 };
 
-    const impulseStrength = 0.65 * delta
-    const torqueStrength = 0.25 * delta
+    const impulseStrength = 0.65 * delta;
+    const torqueStrength = 0.25 * delta;
 
     if (forward) {
-      impulse.z -= impulseStrength
-      torque.x -= torqueStrength
+      impulse.z -= impulseStrength;
+      torque.x -= torqueStrength;
     }
 
     if (back) {
-      impulse.z += impulseStrength
-      torque.x += torqueStrength
+      impulse.z += impulseStrength;
+      torque.x += torqueStrength;
     }
 
     if (left) {
-      impulse.x -= impulseStrength
-      torque.z += torqueStrength
+      impulse.x -= impulseStrength;
+      torque.z += torqueStrength;
     }
 
     if (right) {
-      impulse.x += impulseStrength
-      torque.z -= torqueStrength
+      impulse.x += impulseStrength;
+      torque.z -= torqueStrength;
     }
 
-    marbleBody.current.applyImpulse(impulse)
-    marbleBody.current.applyTorqueImpulse(torque)
+    marbleBody.current.applyImpulse(impulse);
+    marbleBody.current.applyTorqueImpulse(torque);
 
-    if (marbleBody.current.translation().y < -4) reset()
-  })
+    if (marbleBody.current.translation().y < -4) reset();
+  });
 
   return (
     <RigidBody
@@ -125,5 +127,5 @@ export default function Marble() {
         <meshStandardMaterial flatShading color="mediumpurple" />
       </mesh>
     </RigidBody>
-  )
+  );
 }

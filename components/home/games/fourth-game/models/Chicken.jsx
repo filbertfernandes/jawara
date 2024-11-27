@@ -1,32 +1,32 @@
-import { useEffect, useRef, useState } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
 
 export default function Chicken(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/chicken.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/chicken.glb");
+  const { actions } = useAnimations(animations, group);
 
   // Initial chicken state is set to "idle"
-  const [chickenState, setChickenState] = useState("chicken-rig|idle")
+  const [chickenState, setChickenState] = useState("chicken-rig|idle");
 
   useEffect(() => {
-    const action = actions[chickenState]
-    action.reset().fadeIn(0.5).play()
+    const action = actions[chickenState];
+    action.reset().fadeIn(0.5).play();
 
     // Set the timeScale based on the chickenState
     if (chickenState === "chicken-rig|idle") {
-      action.timeScale = 0.2 // Slow down idle animation
+      action.timeScale = 0.2; // Slow down idle animation
     } else if (chickenState === "chicken-rig|pecking") {
-      action.timeScale = 0.5 // Keep pecking animation at normal speed
+      action.timeScale = 0.5; // Keep pecking animation at normal speed
     }
 
     // Cleanup the current animation before switching states
     return () => {
       if (actions[chickenState]) {
-        action.fadeOut(0.5)
+        action.fadeOut(0.5);
       }
-    }
-  }, [chickenState, actions])
+    };
+  }, [chickenState, actions]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,12 +34,12 @@ export default function Chicken(props) {
         prevState === "chicken-rig|idle"
           ? "chicken-rig|pecking"
           : "chicken-rig|idle"
-      )
-    }, 1500)
+      );
+    }, 1500);
 
     // Cleanup interval on component unmount
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -121,7 +121,7 @@ export default function Chicken(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/chicken.glb")
+useGLTF.preload("/models/game/chicken.glb");

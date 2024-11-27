@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 export default function Cow(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/cow.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/cow.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    actions["Armature|idle1"].reset().fadeIn(0.2).play()
-  }, [actions])
+    actions["Armature|idle1"].reset().fadeIn(0.2).play();
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -73,7 +73,7 @@ export default function Cow(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/cow.glb")
+useGLTF.preload("/models/game/cow.glb");

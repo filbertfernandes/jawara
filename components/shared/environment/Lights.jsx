@@ -16,5 +16,5 @@ export default function Lights() {
 
       <ambientLight intensity={1.5} />
     </>
-  )
+  );
 }

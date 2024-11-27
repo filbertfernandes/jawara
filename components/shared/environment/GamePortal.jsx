@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react"
-import { useKeyboardControls, Edges, Outlines, Text } from "@react-three/drei"
-import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import { useGame } from "@/hooks/useGame.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
+import { useKeyboardControls, Edges, Outlines, Text } from "@react-three/drei";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
+import { useEffect, useRef } from "react";
+
+import { useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function GamePortal({ phase, portalPosition, game }) {
-  const portal = useRef()
+  const portal = useRef();
 
   // GO TO GAMES CONTROL
-  const [subscribeKeys] = useKeyboardControls()
+  const [subscribeKeys] = useKeyboardControls();
 
   const { changePhase, canChangePhase, setCanChangePhase, setCanPressEnter } =
     useGame((state) => ({
@@ -16,7 +17,7 @@ export default function GamePortal({ phase, portalPosition, game }) {
       canChangePhase: state.canChangePhase,
       setCanChangePhase: state.setCanChangePhase,
       setCanPressEnter: state.setCanPressEnter,
-    }))
+    }));
 
   useEffect(() => {
     const unsubscribeEnter = subscribeKeys(
@@ -24,18 +25,18 @@ export default function GamePortal({ phase, portalPosition, game }) {
 
       (value) => {
         if (value && canChangePhase.condition && canChangePhase.phase !== "") {
-          SoundManager.playSound("buttonClick")
-          changePhase(canChangePhase.phase)
-          setCanPressEnter(false)
-          setCanChangePhase(false, "")
+          SoundManager.playSound("buttonClick");
+          changePhase(canChangePhase.phase);
+          setCanPressEnter(false);
+          setCanChangePhase(false, "");
         }
       }
-    )
+    );
 
     return () => {
-      unsubscribeEnter()
-    }
-  })
+      unsubscribeEnter();
+    };
+  });
 
   return (
     <>
@@ -72,14 +73,14 @@ export default function GamePortal({ phase, portalPosition, game }) {
               position={portal.current.position.toArray()}
               onIntersectionEnter={(other) => {
                 if (other.rigidBodyObject.name === "Player") {
-                  setCanPressEnter(true)
-                  setCanChangePhase(true, phase)
+                  setCanPressEnter(true);
+                  setCanChangePhase(true, phase);
                 }
               }}
               onIntersectionExit={(other) => {
                 if (other.rigidBodyObject.name === "Player") {
-                  setCanPressEnter(false)
-                  setCanChangePhase(false, "")
+                  setCanPressEnter(false);
+                  setCanChangePhase(false, "");
                 }
               }}
             />
@@ -87,5 +88,5 @@ export default function GamePortal({ phase, portalPosition, game }) {
         )}
       </RigidBody>
     </>
-  )
+  );
 }

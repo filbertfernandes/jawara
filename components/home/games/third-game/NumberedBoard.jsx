@@ -1,9 +1,11 @@
-import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import { Text } from "@react-three/drei"
-import { useThirdGame } from "./stores/useThirdGame"
+import { Text } from "@react-three/drei";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
 
-const NUMBERED_BOARD_SIZE = [2.2, 0.2, 2.2]
+import { useThirdGame } from "./stores/useThirdGame";
+
+import { SoundManager } from "@/lib/SoundManager.jsx";
+
+const NUMBERED_BOARD_SIZE = [2.2, 0.2, 2.2];
 
 export default function NumberedBoard({
   position,
@@ -28,7 +30,7 @@ export default function NumberedBoard({
     decrementScore: state.decrementScore,
     setIsCorrect: state.setIsCorrect,
     setIsAnswered: state.setIsAnswered,
-  }))
+  }));
 
   return (
     <>
@@ -63,19 +65,19 @@ export default function NumberedBoard({
               !isAnswered
             ) {
               if (correctAnswersOrder[answerCount] === index) {
-                setIsCorrect(index)
-                SoundManager.playSound("correctAnswer")
-                incrementScore()
+                setIsCorrect(index);
+                SoundManager.playSound("correctAnswer");
+                incrementScore();
               } else {
-                SoundManager.playSound("wrongAnswer")
-                decrementScore()
+                SoundManager.playSound("wrongAnswer");
+                decrementScore();
               }
-              setIsAnswered(index)
-              incrementAnswerCount()
+              setIsAnswered(index);
+              incrementAnswerCount();
             }
           }}
         />
       </RigidBody>
     </>
-  )
+  );
 }

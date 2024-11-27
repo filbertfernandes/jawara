@@ -1,16 +1,16 @@
-import { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 export default function Dog(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/dog.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/dog.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions.Animation
-    action.reset().fadeIn(0.2).play()
-    action.timeScale = 1.5
-  }, [actions])
+    const action = actions.Animation;
+    action.reset().fadeIn(0.2).play();
+    action.timeScale = 1.5;
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -37,7 +37,7 @@ export default function Dog(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/dog.glb")
+useGLTF.preload("/models/game/dog.glb");

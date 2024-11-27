@@ -155,4 +155,4 @@ export const words = [
     imagePath: "",
     hexColor: "#77fc77",
   },
-]
+];

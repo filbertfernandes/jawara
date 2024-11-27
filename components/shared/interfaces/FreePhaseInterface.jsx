@@ -1,6 +1,7 @@
-import { useGame } from "@/hooks/useGame.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import { useCallback } from "react"
+import { useCallback } from "react";
+
+import { useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
   const {
@@ -15,32 +16,32 @@ export default function FreePhaseInterface() {
     setCanChangePhase: state.setCanChangePhase,
     canPressEnter: state.canPressEnter,
     setCanPressEnter: state.setCanPressEnter,
-  }))
+  }));
 
   // Memoized callback to prevent unnecessary re-renders
   const handleEnterButtonClick = useCallback(() => {
     if (canChangePhase.condition && canChangePhase.phase !== "") {
-      SoundManager.playSound("buttonClick")
-      changePhase(canChangePhase.phase)
-      setCanPressEnter(false)
-      setCanChangePhase(false, "")
+      SoundManager.playSound("buttonClick");
+      changePhase(canChangePhase.phase);
+      setCanPressEnter(false);
+      setCanChangePhase(false, "");
     }
-  }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter])
+  }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
   return (
     <>
       <div
-        className={`flex justify-center absolute bottom-0 left-0 w-full text-white text-3xl p-1 mb-2 font-bebas lg:text-4xl ${
-          canPressEnter ? "" : "opacity-0 pointer-events-none"
+        className={`absolute bottom-0 left-0 mb-2 flex w-full justify-center p-1 font-bebas text-3xl text-white lg:text-4xl ${
+          canPressEnter ? "" : "pointer-events-none opacity-0"
         }`}
       >
         <div
-          className="w-[30%] pt-1 bg-orange-500 text-center cursor-pointer sm:w-[15%] lg:w-[10%]"
+          className="btn-template w-[30%] bg-orange-500 sm:w-[15%] lg:w-[10%]"
           onClick={handleEnterButtonClick}
         >
           Enter
         </div>
       </div>
     </>
-  )
+  );
 }

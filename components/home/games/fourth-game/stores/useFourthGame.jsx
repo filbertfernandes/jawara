@@ -1,47 +1,48 @@
-import { create } from "zustand"
-import { subscribeWithSelector } from "zustand/middleware"
-import { words, positions } from "./constants.js"
+import { create } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
+
+import { words, positions } from "./constants.js";
 
 export const generateGameLevel = () => {
-  const stage = []
-  const nbOptions = 8
-  const usedPositions = []
+  const stage = [];
+  const nbOptions = 8;
+  const usedPositions = [];
 
   for (let j = 0; j < nbOptions; j++) {
-    let word = null
-    let position = null
+    let word = null;
+    let position = null;
 
     // Find a unique word
     while (!word || stage.some((item) => item.word === word)) {
-      word = words[Math.floor(Math.random() * words.length)]
+      word = words[Math.floor(Math.random() * words.length)];
     }
 
     // Find a unique position
     while (!position || usedPositions.includes(position)) {
       position =
-        positions[Math.floor(Math.random() * positions.length)].position
+        positions[Math.floor(Math.random() * positions.length)].position;
     }
 
-    usedPositions.push(position)
+    usedPositions.push(position);
 
     // Add the word and its position to the stage
-    stage.push({ word, position, isAnswered: false, isCorrect: false })
+    stage.push({ word, position, isAnswered: false, isCorrect: false });
   }
 
-  return stage
-}
+  return stage;
+};
 
 export const genereateCorrectAnswersOrder = () => {
-  const arr = [0, 1, 2, 3, 4, 5, 6, 7]
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7];
 
   /// Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 
-  return arr
-}
+  return arr;
+};
 
 export const useFourthGame = create(
   subscribeWithSelector((set) => {
@@ -59,10 +60,10 @@ export const useFourthGame = create(
 
       startGame: ({ mode }) => {
         set((state) => {
-          if (mode === "" && state.mode !== "") mode = state.mode
+          if (mode === "" && state.mode !== "") mode = state.mode;
 
-          const stage = generateGameLevel()
-          const correctAnswersOrder = genereateCorrectAnswersOrder()
+          const stage = generateGameLevel();
+          const correctAnswersOrder = genereateCorrectAnswersOrder();
           return {
             stage,
             score: 0,
@@ -73,52 +74,52 @@ export const useFourthGame = create(
             startTime: Date.now(),
             correctAnswersOrder,
             answerCount: 0,
-          }
-        })
+          };
+        });
       },
 
       setSelectAnimal: (index) => {
         set(() => {
-          const selectAnimal = index
-          return { selectAnimal }
-        })
+          const selectAnimal = index;
+          return { selectAnimal };
+        });
       },
 
       incrementAnswerCount: () => {
         set((state) => {
-          const answerCount = state.answerCount + 1
-          return { answerCount }
-        })
+          const answerCount = state.answerCount + 1;
+          return { answerCount };
+        });
       },
 
       incrementScore: () => {
         set((state) => {
-          const score = state.score + state.combo
-          const combo = state.combo < 5 ? state.combo + 1 : state.combo
-          return { score, combo }
-        })
+          const score = state.score + state.combo;
+          const combo = state.combo < 5 ? state.combo + 1 : state.combo;
+          return { score, combo };
+        });
       },
 
       decrementScore: () => {
         set((state) => {
-          const score = state.score - 2
+          const score = state.score - 2;
           return {
             combo: 1,
             score,
             stage: state.stage,
             answerCount: state.answerCount,
-          }
-        })
+          };
+        });
       },
 
       nextStage: () => {
         set(() => {
-          const stage = generateGameLevel()
-          const answerCount = 0
-          const correctAnswersOrder = genereateCorrectAnswersOrder()
-          return { stage, answerCount, correctAnswersOrder }
-        })
+          const stage = generateGameLevel();
+          const answerCount = 0;
+          const correctAnswersOrder = genereateCorrectAnswersOrder();
+          return { stage, answerCount, correctAnswersOrder };
+        });
       },
-    }
+    };
   })
-)
+);

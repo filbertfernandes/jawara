@@ -1,15 +1,16 @@
-import { gameStates, useGame } from "@/hooks/useGame.jsx"
-import GameTabsInterface from "./GameTabsInterface.jsx"
-import GameSelectInterface from "./GameSelectInterface.jsx"
-import GameOverInterface from "./GameOverInterface.jsx"
-import GameLeaderboardInterface from "./GameLeaderboardInterface.jsx"
-import GameMaterialInterface from "./GameMaterialInterface.jsx"
+import GameLeaderboardInterface from "./GameLeaderboardInterface.jsx";
+import GameMaterialInterface from "./GameMaterialInterface.jsx";
+import GameOverInterface from "./GameOverInterface.jsx";
+import GameSelectInterface from "./GameSelectInterface.jsx";
+import GameTabsInterface from "./GameTabsInterface.jsx";
+
+import { gameStates, useGame } from "@/hooks/useGame.jsx";
 
 const GameMenuInterface = ({ startGame, title, words, score }) => {
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const interfaceComponentMap = {
     [gameStates.MENU]: (
@@ -20,7 +21,7 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
     [gameStates.GAME_OVER]: (
       <GameOverInterface score={score} startGame={startGame} />
     ),
-  }
+  };
 
   return (
     <div
@@ -37,7 +38,7 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
         interfaceComponentMap[gameState]
       )}
     </div>
-  )
-}
+  );
+};
 
-export default GameMenuInterface
+export default GameMenuInterface;

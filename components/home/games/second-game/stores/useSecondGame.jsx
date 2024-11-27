@@ -1,36 +1,37 @@
-import { create } from "zustand"
-import { subscribeWithSelector } from "zustand/middleware"
-import { words } from "./constants.js"
+import { create } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
+
+import { words } from "./constants.js";
 
 export const generateGameLevel = () => {
-  const stage = []
-  const nbOptions = 5
+  const stage = [];
+  const nbOptions = 5;
 
   for (let j = 0; j < nbOptions; j++) {
-    let word = null
+    let word = null;
 
     while (!word || stage.includes(word)) {
-      word = words[Math.floor(Math.random() * words.length)]
+      word = words[Math.floor(Math.random() * words.length)];
     }
 
-    stage.push(word)
+    stage.push(word);
   }
 
-  return stage
-}
+  return stage;
+};
 
 export const genereateCorrectAnswersOrder = () => {
   // Create an array with integers 0 to 4
-  const arr = [0, 1, 2, 3, 4]
+  const arr = [0, 1, 2, 3, 4];
 
   // Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 
-  return arr
-}
+  return arr;
+};
 
 export const useSecondGame = create(
   subscribeWithSelector((set) => {
@@ -51,10 +52,10 @@ export const useSecondGame = create(
 
       startGame: ({ mode }) => {
         set((state) => {
-          if (mode === "" && state.mode !== "") mode = state.mode
+          if (mode === "" && state.mode !== "") mode = state.mode;
 
-          const stage = generateGameLevel()
-          const correctAnswersOrder = genereateCorrectAnswersOrder()
+          const stage = generateGameLevel();
+          const correctAnswersOrder = genereateCorrectAnswersOrder();
           return {
             stage,
             score: 0,
@@ -65,58 +66,58 @@ export const useSecondGame = create(
             startTime: Date.now(),
             correctAnswersOrder,
             correctCount: 0,
-          }
-        })
+          };
+        });
       },
 
       incrementCorrectCount: () => {
         set((state) => {
-          const correctCount = state.correctCount + 1
-          const score = state.score + state.combo
-          const combo = state.combo < 5 ? state.combo + 1 : state.combo
-          return { correctCount, score, combo }
-        })
+          const correctCount = state.correctCount + 1;
+          const score = state.score + state.combo;
+          const combo = state.combo < 5 ? state.combo + 1 : state.combo;
+          return { correctCount, score, combo };
+        });
       },
 
       nextStage: () => {
         set(() => {
-          const stage = generateGameLevel()
-          const correctCount = 0
-          const correctAnswersOrder = genereateCorrectAnswersOrder()
-          return { stage, correctCount, correctAnswersOrder }
-        })
+          const stage = generateGameLevel();
+          const correctCount = 0;
+          const correctAnswersOrder = genereateCorrectAnswersOrder();
+          return { stage, correctCount, correctAnswersOrder };
+        });
       },
 
       resetCombo: () => {
         set(() => {
-          return { combo: 1 }
-        })
+          return { combo: 1 };
+        });
       },
 
       // MOBILE CONTROLS
       setMobileLeft: (condition) => {
         set(() => {
-          return { mobileLeft: condition }
-        })
+          return { mobileLeft: condition };
+        });
       },
 
       setMobileRight: (condition) => {
         set(() => {
-          return { mobileRight: condition }
-        })
+          return { mobileRight: condition };
+        });
       },
 
       setMobilePush: (condition) => {
         set(() => {
-          return { mobilePush: condition }
-        })
+          return { mobilePush: condition };
+        });
       },
 
       setMobileJump: (condition) => {
         set(() => {
-          return { mobileJump: condition }
-        })
+          return { mobileJump: condition };
+        });
       },
-    }
+    };
   })
-)
+);

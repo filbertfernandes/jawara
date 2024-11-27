@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import React, { useEffect, useRef } from "react";
 
 export default function Lion(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/lion.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/lion.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    actions.Animation.reset().fadeIn(0.2).play()
-  }, [actions])
+    actions.Animation.reset().fadeIn(0.2).play();
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -42,7 +42,7 @@ export default function Lion(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/lion.glb")
+useGLTF.preload("/models/game/lion.glb");

@@ -1,19 +1,19 @@
-import Buffalo from "../models/Buffalo"
-import Cat from "../models/Cat"
-import Chicken from "../models/Chicken"
-import Cow from "../models/Cow"
-import Deer from "../models/Deer"
-import Dog from "../models/Dog"
-import Duck from "../models/Duck"
-import Elephant from "../models/Elephant"
-import Frog from "../models/Frog"
-import Giraffe from "../models/Giraffe"
-import Horse from "../models/Horse"
-import Lion from "../models/Lion"
-import Mouse from "../models/Mouse"
-import Pig from "../models/Pig"
-import Rabbit from "../models/Rabbit"
-import Sheep from "../models/Sheep"
+import Buffalo from "../models/Buffalo";
+import Cat from "../models/Cat";
+import Chicken from "../models/Chicken";
+import Cow from "../models/Cow";
+import Deer from "../models/Deer";
+import Dog from "../models/Dog";
+import Duck from "../models/Duck";
+import Elephant from "../models/Elephant";
+import Frog from "../models/Frog";
+import Giraffe from "../models/Giraffe";
+import Horse from "../models/Horse";
+import Lion from "../models/Lion";
+import Mouse from "../models/Mouse";
+import Pig from "../models/Pig";
+import Rabbit from "../models/Rabbit";
+import Sheep from "../models/Sheep";
 
 export const words = [
   {
@@ -179,7 +179,7 @@ export const words = [
     colliderSize: [0.45, 2.6, 2.3],
     colliderPosition: [0, 0, 0.75],
   },
-]
+];
 
 export const positions = [
   {
@@ -257,4 +257,4 @@ export const positions = [
   {
     position: [-8, 0, 5],
   },
-]
+];

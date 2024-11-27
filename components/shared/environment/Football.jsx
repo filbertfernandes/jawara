@@ -6,11 +6,11 @@ Source: https://sketchfab.com/3d-models/football-89ce97755fe9499aa59cb0876c21ee8
 Title: Football
 */
 
-import React from "react"
-import { useGLTF } from "@react-three/drei"
+import { useGLTF } from "@react-three/drei";
+import React from "react";
 
 export default function Football(props) {
-  const { nodes, materials } = useGLTF("/models/environment/football.glb")
+  const { nodes, materials } = useGLTF("/models/environment/football.glb");
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -19,7 +19,7 @@ export default function Football(props) {
         rotation={[Math.PI / 2, 0, 0]}
       />
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/environment/football.glb")
+useGLTF.preload("/models/environment/football.glb");

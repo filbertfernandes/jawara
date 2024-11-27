@@ -1,16 +1,16 @@
-import { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 export default function Elephant(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/game/elephant.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/game/elephant.glb");
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions["Armature|Idle"]
-    action.reset().fadeIn(0.2).play()
-    action.timeScale = 1
-  }, [actions])
+    const action = actions["Armature|Idle"];
+    action.reset().fadeIn(0.2).play();
+    action.timeScale = 1;
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -50,7 +50,7 @@ export default function Elephant(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/game/elephant.glb")
+useGLTF.preload("/models/game/elephant.glb");

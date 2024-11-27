@@ -1,38 +1,40 @@
-import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
-import { Perf } from "r3f-perf"
-import Lights from "../shared/environment/Lights.jsx"
-import FirstGame from "./games/first-game/FirstGame.jsx"
-import SecondGame from "./games/second-game/SecondGame.jsx"
-import ThirdGame from "./games/third-game/ThirdGame.jsx"
-import FourthGame from "./games/fourth-game/FourthGame.jsx"
-import PlayerController from "../shared/player/PlayerController.jsx"
-import { phases, useGame } from "@/hooks/useGame.jsx"
-import GamePortal from "../shared/environment/GamePortal.jsx"
-import World from "../shared/environment/World.jsx"
-import Football from "../shared/environment/Football.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx"
+import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
+import { Perf } from "r3f-perf";
+
+import Lights from "../shared/environment/Lights.jsx";
+import FirstGame from "./games/first-game/FirstGame.jsx";
+import FourthGame from "./games/fourth-game/FourthGame.jsx";
+import SecondGame from "./games/second-game/SecondGame.jsx";
+import ThirdGame from "./games/third-game/ThirdGame.jsx";
+import Football from "../shared/environment/Football.jsx";
+import GamePortal from "../shared/environment/GamePortal.jsx";
+import World from "../shared/environment/World.jsx";
+import PlayerController from "../shared/player/PlayerController.jsx";
+
+import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
+import { phases, useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Experience({ joystickInput }) {
   const { phase } = useGame((state) => ({
     phase: state.phase,
-  }))
+  }));
 
-  useBackgroundMusic(phase)
+  useBackgroundMusic(phase);
 
   const gamePhaseComponentMap = {
     [phases.FIRST_GAME]: <FirstGame />,
     [phases.SECOND_GAME]: <SecondGame />,
     [phases.THIRD_GAME]: <ThirdGame />,
     [phases.FOURTH_GAME]: <FourthGame />,
-  }
+  };
 
   const portals = [
     { phase: phases.FIRST_GAME, position: [-6, 0.5, 8], game: "Body\nParts" },
     { phase: phases.SECOND_GAME, position: [-2, 0.5, 8], game: "Colors" },
     { phase: phases.THIRD_GAME, position: [2, 0.5, 8], game: "Numbers" },
     { phase: phases.FOURTH_GAME, position: [6, 0.5, 8], game: "Animals" },
-  ]
+  ];
 
   return (
     <>
@@ -95,5 +97,5 @@ export default function Experience({ joystickInput }) {
         {gamePhaseComponentMap[phase]}
       </Physics>
     </>
-  )
+  );
 }

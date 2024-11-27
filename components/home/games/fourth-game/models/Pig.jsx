@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react"
 import { useGLTF, useAnimations } from "@react-three/drei"
+import { useEffect, useRef } from "react"
 
 export default function Pig(props) {
   const group = useRef()

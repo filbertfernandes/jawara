@@ -237,4 +237,4 @@ export const words = [
     visible: false,
     isCorrect: false,
   },
-]
+];
