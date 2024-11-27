@@ -1,24 +1,25 @@
-import { useEffect, useRef } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
-import { useGame } from "@/hooks/useGame.jsx"
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+
+import { useGame } from "@/hooks/useGame.jsx";
 
 export default function Player(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF("/models/character/boy.glb")
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/character/boy.glb");
+  const { actions } = useAnimations(animations, group);
 
   const { playerState } = useGame((state) => ({
     playerState: state.playerState,
-  }))
+  }));
 
   useEffect(() => {
-    actions[playerState].reset().fadeIn(0.2).play()
+    actions[playerState].reset().fadeIn(0.2).play();
     return () => {
       if (actions[playerState]) {
-        actions[playerState].fadeOut(0.2)
+        actions[playerState].fadeOut(0.2);
       }
-    }
-  }, [playerState])
+    };
+  }, [playerState]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -120,7 +121,7 @@ export default function Player(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload("/models/character/boy.glb")
+useGLTF.preload("/models/character/boy.glb");

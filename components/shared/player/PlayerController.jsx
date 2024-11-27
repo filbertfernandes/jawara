@@ -1,32 +1,31 @@
-import * as THREE from "three"
-import { useKeyboardControls } from "@react-three/drei"
-import { CapsuleCollider, RigidBody } from "@react-three/rapier"
-import { useEffect, useRef } from "react"
-import { useFrame } from "@react-three/fiber"
+import { useKeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-import Player from "./Player.jsx"
-import { Controls } from "@/utils/constants.js"
-import { phases, gameStates, useGame } from "@/hooks/useGame.jsx"
+import Player from "./Player.jsx";
 
-// SOUND MANAGER
-import { SoundManager } from "@/lib/SoundManager.jsx"
+import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
+import { SoundManager } from "@/lib/SoundManager.jsx";
+import { Controls } from "@/utils/constants.js";
 
-const JUMP_FORCE = 2
-const MOVEMENT_SPEED = 0.6
-const MAX_VEL = 3
-const RUN_VEL = 2
+const JUMP_FORCE = 2;
+const MOVEMENT_SPEED = 0.6;
+const MAX_VEL = 3;
+const RUN_VEL = 2;
 
 const debounce = (func, delay) => {
-  let timer
+  let timer;
   return () => {
-    clearTimeout(timer)
-    timer = setTimeout(func, delay)
-  }
-}
+    clearTimeout(timer);
+    timer = setTimeout(func, delay);
+  };
+};
 
 const playFootstepSound = debounce(() => {
-  SoundManager.playSound("move")
-}, 50)
+  SoundManager.playSound("move");
+}, 50);
 
 export default function PlayerController({ joystickInput }) {
   const { playerState, setPlayerState, phase, gameState } = useGame(
@@ -36,66 +35,68 @@ export default function PlayerController({ joystickInput }) {
       phase: state.phase,
       gameState: state.gameState,
     })
-  )
+  );
 
-  const jumpPressed = useKeyboardControls((state) => state[Controls.jump])
-  const leftPressed = useKeyboardControls((state) => state[Controls.left])
-  const rightPressed = useKeyboardControls((state) => state[Controls.right])
-  const backPressed = useKeyboardControls((state) => state[Controls.back])
-  const forwardPressed = useKeyboardControls((state) => state[Controls.forward])
+  const jumpPressed = useKeyboardControls((state) => state[Controls.jump]);
+  const leftPressed = useKeyboardControls((state) => state[Controls.left]);
+  const rightPressed = useKeyboardControls((state) => state[Controls.right]);
+  const backPressed = useKeyboardControls((state) => state[Controls.back]);
+  const forwardPressed = useKeyboardControls(
+    (state) => state[Controls.forward]
+  );
 
-  const rigidBody = useRef()
-  const isOnFloor = useRef(true)
-  const player = useRef()
+  const rigidBody = useRef();
+  const isOnFloor = useRef(true);
+  const player = useRef();
 
   const reset = () => {
-    rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 12 })
-    rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 })
-    rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 })
-  }
+    rigidBody.current.setTranslation({ x: 0, y: 0.5, z: 12 });
+    rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
+    rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 });
+  };
 
   useEffect(() => {
     if (phase === phases.FOURTH_GAME && gameState === gameStates.GAME) {
-      reset()
+      reset();
     }
-  }, [gameState])
+  }, [gameState]);
 
   useFrame((state) => {
     if (
       (phase !== phases.FREE && phase !== phases.FOURTH_GAME) ||
       !rigidBody.current
     )
-      return
+      return;
 
-    const rigidBodyPosition = rigidBody.current.translation()
+    const rigidBodyPosition = rigidBody.current.translation();
 
-    const impulse = { x: 0, y: 0, z: 0 }
+    const impulse = { x: 0, y: 0, z: 0 };
     if (jumpPressed && isOnFloor.current) {
-      impulse.y += JUMP_FORCE
-      isOnFloor.current = false
+      impulse.y += JUMP_FORCE;
+      isOnFloor.current = false;
     }
 
-    const linvel = rigidBody.current.linvel()
-    let changeRotation = false
+    const linvel = rigidBody.current.linvel();
+    let changeRotation = false;
     if (rightPressed && linvel.x < MAX_VEL) {
-      impulse.x += MOVEMENT_SPEED
-      changeRotation = true
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound()
+      impulse.x += MOVEMENT_SPEED;
+      changeRotation = true;
+      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
     }
     if (leftPressed && linvel.x > -MAX_VEL) {
-      impulse.x -= MOVEMENT_SPEED
-      changeRotation = true
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound()
+      impulse.x -= MOVEMENT_SPEED;
+      changeRotation = true;
+      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
     }
     if (backPressed && linvel.z < MAX_VEL) {
-      impulse.z += MOVEMENT_SPEED
-      changeRotation = true
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound()
+      impulse.z += MOVEMENT_SPEED;
+      changeRotation = true;
+      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
     }
     if (forwardPressed && linvel.z > -MAX_VEL) {
-      impulse.z -= MOVEMENT_SPEED
-      changeRotation = true
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound()
+      impulse.z -= MOVEMENT_SPEED;
+      changeRotation = true;
+      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
     }
 
     // Joystick Controls
@@ -106,55 +107,55 @@ export default function PlayerController({ joystickInput }) {
       linvel.z < MAX_VEL &&
       linvel.z > -MAX_VEL
     ) {
-      const { x, y } = joystickInput
-      const angle = Math.atan2(x, y) // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
-      const distance = Math.sqrt(x * x + y * y) // Computes the Euclidean distance from the center to the joystick's current position
+      const { x, y } = joystickInput;
+      const angle = Math.atan2(x, y); // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
+      const distance = Math.sqrt(x * x + y * y); // Computes the Euclidean distance from the center to the joystick's current position
 
       if (distance > 0) {
-        impulse.x -= MOVEMENT_SPEED * Math.cos(angle)
-        impulse.z -= MOVEMENT_SPEED * Math.sin(angle)
-        changeRotation = true
-        if (isOnFloor.current) playFootstepSound()
+        impulse.x -= MOVEMENT_SPEED * Math.cos(angle);
+        impulse.z -= MOVEMENT_SPEED * Math.sin(angle);
+        changeRotation = true;
+        if (isOnFloor.current) playFootstepSound();
       }
     }
 
-    rigidBody.current.applyImpulse(impulse, true)
+    rigidBody.current.applyImpulse(impulse, true);
 
     if (Math.abs(linvel.x) > RUN_VEL || Math.abs(linvel.z) > RUN_VEL) {
       if (playerState !== "Run") {
-        setPlayerState("Run")
+        setPlayerState("Run");
       }
     } else {
       if (playerState !== "Idle") {
-        setPlayerState("Idle")
+        setPlayerState("Idle");
       }
     }
 
     if (changeRotation) {
-      const angle = Math.atan2(linvel.x, linvel.z)
-      player.current.rotation.y = angle
+      const angle = Math.atan2(linvel.x, linvel.z);
+      player.current.rotation.y = angle;
     }
 
     if (rigidBodyPosition.y < -4) {
-      reset()
+      reset();
     }
 
     // CAMERA FOLLOW
     const playerWorldPosition = player.current.getWorldPosition(
       new THREE.Vector3()
-    )
-    state.camera.position.x = playerWorldPosition.x
-    state.camera.position.y = 3
-    state.camera.position.z = playerWorldPosition.z + 5.5
+    );
+    state.camera.position.x = playerWorldPosition.x;
+    state.camera.position.y = 3;
+    state.camera.position.z = playerWorldPosition.z + 5.5;
 
     const targetLookAt = new THREE.Vector3(
       playerWorldPosition.x,
       playerWorldPosition.y + 1.6,
       playerWorldPosition.z
-    )
+    );
 
-    state.camera.lookAt(targetLookAt)
-  })
+    state.camera.lookAt(targetLookAt);
+  });
 
   return (
     <group>
@@ -165,7 +166,7 @@ export default function PlayerController({ joystickInput }) {
         scale={[0.5, 0.5, 0.5]}
         enabledRotations={[false, false, false]}
         onCollisionEnter={() => {
-          isOnFloor.current = true
+          isOnFloor.current = true;
         }}
         position={[0, 0.5, 15]}
       >
@@ -175,5 +176,5 @@ export default function PlayerController({ joystickInput }) {
         </group>
       </RigidBody>
     </group>
-  )
+  );
 }

@@ -7,8 +7,6 @@ import * as THREE from "three";
 import { useSecondGame } from "./stores/useSecondGame";
 
 import { useGame, gameStates } from "@/hooks/useGame.jsx";
-
-// SOUND MANAGER
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4);

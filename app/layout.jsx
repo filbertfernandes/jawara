@@ -1,5 +1,4 @@
 import { Bebas_Neue, Questrial } from "next/font/google";
-
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 

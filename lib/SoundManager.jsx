@@ -1,4 +1,4 @@
-import { Howl, Howler } from "howler"
+import { Howl, Howler } from "howler";
 
 // SOUND FILES
 const sounds = {
@@ -43,61 +43,61 @@ const sounds = {
     src: ["/sounds/sfx/marble-impact.mp3"],
     volume: 0.7,
   }),
-}
+};
 
-let isMuted = false
+let isMuted = false;
 
 export const SoundManager = {
   playSound: (soundName) => {
     if (!isMuted) {
-      const sound = sounds[soundName]
+      const sound = sounds[soundName];
       if (sound) {
         if (soundName === "move") {
-          if (sound.playing()) return
+          if (sound.playing()) return;
         }
-        sound.play()
+        sound.play();
       }
     }
   },
 
   playSoundAfterFinished: (soundName) => {
     if (!isMuted) {
-      const sound = sounds[soundName]
+      const sound = sounds[soundName];
 
       if (sound) {
         if (soundName === "soccerBallImpact") {
-          sound._volume = Math.random() * 0.2 + 0.2
+          sound._volume = Math.random() * 0.2 + 0.2;
         }
 
         if (!sound.playing()) {
-          sound.play()
+          sound.play();
         }
       }
     }
   },
 
   toggleMute: () => {
-    isMuted = !isMuted
-    Howler.mute(isMuted)
+    isMuted = !isMuted;
+    Howler.mute(isMuted);
   },
 
   setVolume: (soundName, volume) => {
-    const sound = sounds[soundName]
+    const sound = sounds[soundName];
     if (sound) {
-      sound.volume(volume)
+      sound.volume(volume);
     }
   },
 
   startBackgroundMusic: (bgmName) => {
     if (!isMuted) {
-      const sound = sounds[bgmName]
+      const sound = sounds[bgmName];
       if (sound) {
-        sound.play()
+        sound.play();
       }
     }
   },
 
   stopBackgroundMusic: (bgmName) => {
-    sounds[bgmName].stop()
+    sounds[bgmName].stop();
   },
-}
+};
