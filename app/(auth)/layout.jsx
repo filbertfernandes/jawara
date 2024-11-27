@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
         <SocialAuthForm />
       </div>
 
-      <div className="flex flex-1 items-center justify-center bg-orange-100">
+      <div className="to-orange-00 flex flex-1 items-center justify-center bg-orange-200">
         <Image
           src="/images/jawara/jawara-logo.png"
           alt="Jawara Logo"
