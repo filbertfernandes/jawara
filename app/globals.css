@@ -33,3 +33,9 @@ body {
     @apply flex cursor-pointer items-center justify-center rounded-lg py-1 text-center font-bold text-center;
   }
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

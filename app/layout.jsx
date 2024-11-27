@@ -1,5 +1,10 @@
 import { Bebas_Neue, Questrial } from "next/font/google";
+
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
+
+import { auth } from "@/auth";
+import { Toaster } from "@/components/ui/toaster";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -13,12 +18,19 @@ const questrial = Questrial({
   variable: "--font-questrial",
 });
 
-export default function RootLayout({ children }) {
+const RootLayout = async ({ children }) => {
+  const session = await auth();
+
   return (
     <html lang="en">
-      <body className={`${questrial.variable} ${bebas.variable}`}>
-        {children}
-      </body>
+      <SessionProvider session={session}>
+        <body className={`${questrial.variable} ${bebas.variable}`}>
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

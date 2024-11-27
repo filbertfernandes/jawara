@@ -3,8 +3,10 @@
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic"; // Import dynamic
-import { useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect, useMemo, useState } from "react";
 
+import { auth } from "@/auth";
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
 import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface";
@@ -21,6 +23,8 @@ const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
 });
 
 export default function App() {
+  const { data } = useSession();
+
   // GAME PHASE
   const { phase } = useGame((state) => ({
     phase: state.phase,
