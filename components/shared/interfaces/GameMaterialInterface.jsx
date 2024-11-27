@@ -5,14 +5,16 @@ import { SoundManager } from "@/lib/SoundManager";
 
 // Reusable component to handle word variants (ngoko, madya, alus)
 const WordVariant = ({ variant, label, playSound }) => (
-  <div className="mb-2 flex justify-between text-base lg:text-xl">
-    <div>
-      {variant}{" "}
-      <span className="text-[0.5rem] text-white/50 lg:text-xs">({label})</span>
+  <div className="mb-3">
+    <div className="-mb-2 flex justify-between text-xl md:text-2xl lg:text-3xl">
+      <div>{variant} </div>
+      <button onClick={playSound}>
+        <PiSpeakerHighBold />
+      </button>
     </div>
-    <button onClick={playSound}>
-      <PiSpeakerHighBold />
-    </button>
+    <span className="text-sm text-white/75 md:text-base lg:text-lg">
+      ({label})
+    </span>
   </div>
 );
 
@@ -37,28 +39,32 @@ const GameMaterialInterface = ({ words }) => {
     >
       <h1 className="h1-bold text-orange-500 drop-shadow-lg">Material</h1>
 
-      <div className="flex size-full flex-wrap justify-evenly gap-4 overflow-y-auto px-4 text-white sm:gap-1 sm:px-0">
+      <div className="flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
         {words.map((word, index) => (
           <div
             key={index}
-            className="mb-2 flex h-40 w-full items-center justify-between rounded-2xl bg-stone-800/50 pl-4 sm:w-[45%] xl:h-44 xl:w-[30%]"
+            className="my-5 flex h-60 w-full items-center justify-between rounded-2xl sm:my-10 sm:w-[90%] md:h-64 lg:h-72 xl:w-[45%]"
           >
-            {word.hexColor ? (
+            {word.type === "colors" ? (
               <div
-                className="h-24 w-36 rounded-2xl"
+                className="h-full w-[75%] sm:w-[90%]"
                 style={{ backgroundColor: word.hexColor }}
               ></div>
+            ) : word.type === "numbers" ? (
+              ""
             ) : (
               <img
                 src="https://static.vecteezy.com/system/resources/previews/002/388/394/non_2x/funny-child-showing-human-body-parts-vector.jpg"
                 alt="material-image"
-                className="size-24 rounded-2xl object-cover"
+                className="h-full w-[45%] object-cover sm:w-[50%]"
                 loading="lazy" // Lazy load image for performance
               />
             )}
 
-            <div className="flex size-full flex-col px-4 py-2 xl:py-4">
-              <div className="mb-2 text-2xl underline">{word.english}</div>
+            <div className="flex size-full flex-col bg-gradient-to-r from-orange-500 to-orange-700 p-4 xl:py-4">
+              <div className="mb-4 text-center text-2xl md:text-3xl lg:text-4xl">
+                {word.english}
+              </div>
               <WordVariant
                 variant={word.ngoko}
                 label="Ngoko"

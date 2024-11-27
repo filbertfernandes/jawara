@@ -124,7 +124,7 @@ export default function Marble() {
     >
       <mesh castShadow>
         <icosahedronGeometry args={[0.3, 1]} />
-        <meshStandardMaterial flatShading color="mediumpurple" />
+        <meshStandardMaterial flatShading color="orangered" />
       </mesh>
     </RigidBody>
   );

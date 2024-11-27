@@ -14,7 +14,7 @@ body {
 
 @layer utilities {
   .dark-layout {
-    @apply font-bebas fixed flex justify-center left-0 top-0 w-full h-full pt-8 bg-black/60 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out;
+    @apply font-bebas fixed flex justify-center left-0 top-0 w-full h-full pt-8 bg-white/50 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out;
   }
 
   .h1-bold {

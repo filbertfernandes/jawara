@@ -17,6 +17,7 @@ import Sheep from "../models/Sheep";
 
 export const words = [
   {
+    type: "animals",
     indonesian: "sapi",
     english: "cow",
     ngoko: "sapi",
@@ -27,6 +28,7 @@ export const words = [
     colliderPosition: [0, 1.2, 0.9],
   },
   {
+    type: "animals",
     indonesian: "ayam",
     english: "chicken",
     ngoko: "pitik",
@@ -37,6 +39,7 @@ export const words = [
     colliderPosition: [0, 0.5, 0],
   },
   {
+    type: "animals",
     indonesian: "babi",
     english: "pig",
     ngoko: "celeng",
@@ -47,6 +50,7 @@ export const words = [
     colliderPosition: [0, 0.6, 0.2],
   },
   {
+    type: "animals",
     indonesian: "singa",
     english: "lion",
     ngoko: "singo",
@@ -57,6 +61,7 @@ export const words = [
     colliderPosition: [0, 1, 0.2],
   },
   {
+    type: "animals",
     indonesian: "anjing",
     english: "dog",
     ngoko: "asu",
@@ -67,6 +72,7 @@ export const words = [
     colliderPosition: [0, 0.6, 0],
   },
   {
+    type: "animals",
     indonesian: "kucing",
     english: "cat",
     ngoko: "kucing",
@@ -77,6 +83,7 @@ export const words = [
     colliderPosition: [0, 0.3, 0],
   },
   {
+    type: "animals",
     indonesian: "tikus",
     english: "mouse",
     ngoko: "tikus",
@@ -88,6 +95,7 @@ export const words = [
     rigidPositionY: 0.2,
   },
   {
+    type: "animals",
     indonesian: "kuda",
     english: "horse",
     ngoko: "jaran",
@@ -99,6 +107,7 @@ export const words = [
     rigidPositionY: 1.75,
   },
   {
+    type: "animals",
     indonesian: "bebek",
     english: "duck",
     ngoko: "itik",
@@ -109,6 +118,7 @@ export const words = [
     colliderPosition: [0, 0, 0.2],
   },
   {
+    type: "animals",
     indonesian: "gajah",
     english: "elephant",
     ngoko: "gajah",
@@ -119,6 +129,7 @@ export const words = [
     colliderPosition: [0, 0, 1.5],
   },
   {
+    type: "animals",
     indonesian: "jerapah",
     english: "giraffe",
     ngoko: "jerapah",
@@ -129,6 +140,7 @@ export const words = [
     colliderPosition: [0, 0, -1],
   },
   {
+    type: "animals",
     indonesian: "domba",
     english: "sheep",
     ngoko: "wedhus",
@@ -139,6 +151,7 @@ export const words = [
     colliderPosition: [0, 0, 0.3],
   },
   {
+    type: "animals",
     indonesian: "kelinci",
     english: "rabbit",
     ngoko: "terwelu",
@@ -150,6 +163,7 @@ export const words = [
     rigidPositionY: 0.22,
   },
   {
+    type: "animals",
     indonesian: "katak",
     english: "frog",
     ngoko: "kodhok",
@@ -160,6 +174,7 @@ export const words = [
     colliderPosition: [0, 0, 0.05],
   },
   {
+    type: "animals",
     indonesian: "rusa",
     english: "deer",
     ngoko: "kidang",
@@ -170,6 +185,7 @@ export const words = [
     colliderPosition: [0, 0, 0.3],
   },
   {
+    type: "animals",
     indonesian: "kerbau",
     english: "buffalo",
     ngoko: "kebo",

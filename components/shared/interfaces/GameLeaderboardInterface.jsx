@@ -7,7 +7,7 @@ import { SoundManager } from "@/lib/SoundManager";
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
     className={`flex cursor-pointer items-center text-center capitalize ${
-      gameMode === activeGameMode ? "border-b-2 border-orange-500" : ""
+      gameMode === activeGameMode ? "border-b-4 border-white" : ""
     }`}
     onClick={() => onClick(gameMode)}
   >
@@ -23,45 +23,45 @@ const GameLeaderboardInterface = () => {
   const [loading, setLoading] = useState(true);
   const [activeGameMode, setActiveGameMode] = useState("ngoko");
 
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      setLoading(true);
-      try {
-        let result;
+  // useEffect(() => {
+  //   const fetchLeaderboard = async () => {
+  //     setLoading(true);
+  //     try {
+  //       let result;
 
-        if (phase === phases.FIRST_GAME) {
-          result = await getAllScores({
-            game: "game1",
-            gameMode: activeGameMode,
-          });
-        } else if (phase === phases.SECOND_GAME) {
-          result = await getAllScores({
-            game: "game2",
-            gameMode: activeGameMode,
-          });
-        } else if (phase === phases.THIRD_GAME) {
-          result = await getAllScores({
-            game: "game3",
-            gameMode: activeGameMode,
-          });
-        } else if (phase === phases.FOURTH_GAME) {
-          result = await getAllScores({
-            game: "game4",
-            gameMode: activeGameMode,
-          });
-        }
+  //       if (phase === phases.FIRST_GAME) {
+  //         result = await getAllScores({
+  //           game: "game1",
+  //           gameMode: activeGameMode,
+  //         });
+  //       } else if (phase === phases.SECOND_GAME) {
+  //         result = await getAllScores({
+  //           game: "game2",
+  //           gameMode: activeGameMode,
+  //         });
+  //       } else if (phase === phases.THIRD_GAME) {
+  //         result = await getAllScores({
+  //           game: "game3",
+  //           gameMode: activeGameMode,
+  //         });
+  //       } else if (phase === phases.FOURTH_GAME) {
+  //         result = await getAllScores({
+  //           game: "game4",
+  //           gameMode: activeGameMode,
+  //         });
+  //       }
 
-        setLeaderboard(result);
-      } catch (error) {
-        console.log(error);
-        throw error;
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setLeaderboard(result);
+  //     } catch (error) {
+  //       console.log(error);
+  //       throw error;
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchLeaderboard();
-  }, [phase, activeGameMode]); // Dependency array to re-fetch when phase changes
+  //   fetchLeaderboard();
+  // }, [phase, activeGameMode]);
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -83,7 +83,7 @@ const GameLeaderboardInterface = () => {
     >
       <h1 className="h1-bold text-orange-500 drop-shadow-lg">Leaderboard</h1>
 
-      <div className="flex h-10 w-[90%] justify-between rounded-lg bg-stone-800/50 px-4 text-white sm:w-[70%] sm:text-lg md:text-xl lg:w-[50%] lg:text-2xl">
+      <div className="flex h-10 w-[90%] justify-between rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 px-4 text-white sm:w-[70%] sm:text-lg md:text-xl lg:w-[50%] lg:text-2xl">
         <LanguageCategory
           gameMode="ngoko"
           activeGameMode={activeGameMode}

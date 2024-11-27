@@ -51,19 +51,12 @@ export default function FreePhaseInterface() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 mb-2 flex w-full justify-end py-2 pe-4 font-questrial text-lg text-white lg:text-xl">
+      <div className="absolute left-0 top-0 mb-2 flex w-full justify-end py-2 pe-4 font-bebas text-3xl text-white lg:text-4xl">
         {data !== null ? (
-          <div
-            className="btn-template border border-orange-800 bg-orange-500 px-2 drop-shadow-lg"
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </div>
+          <div onClick={handleSignOut}>Sign Out</div>
         ) : (
           <Link href="/sign-in">
-            <div className="btn-template border border-orange-800 bg-orange-500 px-2 drop-shadow-lg">
-              Sign In
-            </div>
+            <div>Sign In</div>
           </Link>
         )}
       </div>
@@ -73,7 +66,7 @@ export default function FreePhaseInterface() {
         }`}
       >
         <div
-          className="btn-template border border-orange-800 bg-orange-500 px-8 drop-shadow-lg"
+          className="btn-template bg-orange-500 px-8 drop-shadow-lg"
           onClick={handleEnterButtonClick}
         >
           Enter

@@ -1,5 +1,6 @@
 export const words = [
   {
+    type: "colors",
     indonesian: "merah",
     english: "red",
     ngoko: "abang",
@@ -12,6 +13,7 @@ export const words = [
     hexColor: "#ff0000",
   },
   {
+    type: "colors",
     indonesian: "hijau",
     english: "green",
     ngoko: "ijo",
@@ -24,6 +26,7 @@ export const words = [
     hexColor: "#09db09",
   },
   {
+    type: "colors",
     indonesian: "biru",
     english: "blue",
     ngoko: "biru",
@@ -36,6 +39,7 @@ export const words = [
     hexColor: "#0000ff",
   },
   {
+    type: "colors",
     indonesian: "kuning",
     english: "yellow",
     ngoko: "kuning",
@@ -48,6 +52,7 @@ export const words = [
     hexColor: "#FFFF00",
   },
   {
+    type: "colors",
     indonesian: "ungu",
     english: "purple",
     ngoko: "ungu",
@@ -60,6 +65,7 @@ export const words = [
     hexColor: "#A020F0",
   },
   {
+    type: "colors",
     indonesian: "hitam",
     english: "black",
     ngoko: "ireng",
@@ -72,6 +78,7 @@ export const words = [
     hexColor: "#000000",
   },
   {
+    type: "colors",
     indonesian: "putih",
     english: "white",
     ngoko: "putih",
@@ -84,6 +91,7 @@ export const words = [
     hexColor: "#FFFFFF",
   },
   {
+    type: "colors",
     indonesian: "coklat",
     english: "brown",
     ngoko: "coklat",
@@ -96,6 +104,7 @@ export const words = [
     hexColor: "#8B4513",
   },
   {
+    type: "colors",
     indonesian: "abu-abu",
     english: "gray",
     ngoko: "abu-abu",
@@ -108,6 +117,7 @@ export const words = [
     hexColor: "#808080",
   },
   {
+    type: "colors",
     indonesian: "jingga",
     english: "orange",
     ngoko: "oranye",
@@ -120,6 +130,7 @@ export const words = [
     hexColor: "#ff7e05",
   },
   {
+    type: "colors",
     indonesian: "merah muda",
     english: "pink",
     ngoko: "jambu",
@@ -132,6 +143,7 @@ export const words = [
     hexColor: "#ff8ca0",
   },
   {
+    type: "colors",
     indonesian: "biru muda",
     english: "light blue",
     ngoko: "biru enom",
@@ -144,6 +156,7 @@ export const words = [
     hexColor: "#1cb3ff",
   },
   {
+    type: "colors",
     indonesian: "hijau muda",
     english: "light green",
     ngoko: "ijo enom",
