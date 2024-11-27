@@ -1,14 +1,16 @@
-import { useEffect } from "react"
-import { useFourthGame } from "./stores/useFourthGame"
-import { gameStates, useGame } from "@/hooks/useGame"
-import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import { SoundManager } from "@/lib/SoundManager"
-import { useKeyboardControls } from "@react-three/drei"
+import { useKeyboardControls } from "@react-three/drei";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
+import { useEffect } from "react";
+
+import { useFourthGame } from "./stores/useFourthGame";
+
+import { gameStates, useGame } from "@/hooks/useGame";
+import { SoundManager } from "@/lib/SoundManager";
 
 const Level = () => {
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const {
     stage,
@@ -30,17 +32,17 @@ const Level = () => {
     incrementScore: state.incrementScore,
     decrementScore: state.decrementScore,
     incrementAnswerCount: state.incrementAnswerCount,
-  }))
+  }));
 
   useEffect(() => {
-    if (!stage) return
+    if (!stage) return;
 
     if (answerCount === stage.length) {
-      nextStage()
+      nextStage();
     }
-  }, [answerCount])
+  }, [answerCount]);
 
-  const [subscribeKeys] = useKeyboardControls()
+  const [subscribeKeys] = useKeyboardControls();
 
   useEffect(() => {
     const unsubscribeEnter = subscribeKeys(
@@ -49,21 +51,21 @@ const Level = () => {
       (value) => {
         if (value && selectAnimal !== null) {
           if (correctAnswersOrder[answerCount] === selectAnimal) {
-            SoundManager.playSound("correctAnswer")
-            incrementScore()
+            SoundManager.playSound("correctAnswer");
+            incrementScore();
           } else {
-            SoundManager.playSound("wrongAnswer")
-            decrementScore()
+            SoundManager.playSound("wrongAnswer");
+            decrementScore();
           }
-          incrementAnswerCount()
+          incrementAnswerCount();
         }
       }
-    )
+    );
 
     return () => {
-      unsubscribeEnter()
-    }
-  })
+      unsubscribeEnter();
+    };
+  });
 
   return (
     <>
@@ -97,12 +99,12 @@ const Level = () => {
                 position={s.word.colliderPosition}
                 onIntersectionEnter={(other) => {
                   if (other.rigidBodyObject.name === "Player") {
-                    setSelectAnimal(index)
+                    setSelectAnimal(index);
                   }
                 }}
                 onIntersectionExit={(other) => {
                   if (other.rigidBodyObject.name === "Player") {
-                    setSelectAnimal(null)
+                    setSelectAnimal(null);
                   }
                 }}
               />
@@ -111,7 +113,7 @@ const Level = () => {
           </>
         ))}
     </>
-  )
-}
+  );
+};
 
-export default Level
+export default Level;

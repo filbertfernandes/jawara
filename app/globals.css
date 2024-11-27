@@ -24,4 +24,12 @@ body {
   .h5-bold {
     @apply text-xl font-bold lg:text-3xl;
   }
+
+  .h6-bold {
+    @apply text-lg font-bold lg:text-xl;
+  }
+
+  .btn-template {
+    @apply flex cursor-pointer items-center justify-center rounded-lg py-2 text-center font-bold;
+  }
 }

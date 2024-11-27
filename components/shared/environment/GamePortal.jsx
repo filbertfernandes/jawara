@@ -52,7 +52,7 @@ export default function GamePortal({ phase, portalPosition, game }) {
       <RigidBody type="fixed">
         <mesh ref={portal} position={portalPosition} scale={[1.5, 2, 1.5]}>
           <boxGeometry />
-          <meshStandardMaterial color="rgb(14, 165, 233)" />
+          <meshStandardMaterial color="rgb(249, 115, 22)" />
 
           {/* WHITE BRIGHT EDGES */}
           {canChangePhase.condition && canChangePhase.phase === phase && (

@@ -1,45 +1,47 @@
-import { useEffect, useMemo, useState } from "react"
-import { gameStates, useGame } from "@/hooks/useGame.jsx"
-import { useSecondGame } from "./stores/useSecondGame.jsx"
-import BlockAxe from "./BlockAxe.jsx"
+import { useEffect, useMemo, useState } from "react";
+
+import BlockAxe from "./BlockAxe.jsx";
+import { useSecondGame } from "./stores/useSecondGame.jsx";
+
+import { gameStates, useGame } from "@/hooks/useGame.jsx";
 
 export default function Level({ types = [BlockAxe] }) {
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
   const { stage, nextStage, correctCount } = useSecondGame((state) => ({
     stage: state.stage,
     nextStage: state.nextStage,
     correctCount: state.correctCount,
-  }))
+  }));
 
-  const [coloredBlocks, setColoredBlocks] = useState([])
-
-  useEffect(() => {
-    if (!stage) return
-
-    setColoredBlocks(stage)
-  }, [stage])
+  const [coloredBlocks, setColoredBlocks] = useState([]);
 
   useEffect(() => {
-    if (!stage) return
+    if (!stage) return;
+
+    setColoredBlocks(stage);
+  }, [stage]);
+
+  useEffect(() => {
+    if (!stage) return;
 
     if (correctCount === stage.length) {
-      nextStage()
+      nextStage();
     }
-  }, [correctCount])
+  }, [correctCount]);
 
   const blocks = useMemo(() => {
-    const blocks = []
+    const blocks = [];
 
     for (let i = 0; i < coloredBlocks.length; i++) {
-      const type = types[Math.floor(Math.random() * types.length)]
-      blocks.push(type)
+      const type = types[Math.floor(Math.random() * types.length)];
+      blocks.push(type);
     }
 
-    return blocks
-  }, [types, coloredBlocks])
+    return blocks;
+  }, [types, coloredBlocks]);
 
   return (
     <>
@@ -53,5 +55,5 @@ export default function Level({ types = [BlockAxe] }) {
           />
         ))}
     </>
-  )
+  );
 }

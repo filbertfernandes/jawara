@@ -13,6 +13,7 @@ export default {
     extend: {
       fontFamily: {
         bebas: ["var(--font-bebas)"],
+        questrial: ["var(--font-questrial)"],
       },
       animation: {
         bounceIn: "bounceIn 0.5s ease-out",

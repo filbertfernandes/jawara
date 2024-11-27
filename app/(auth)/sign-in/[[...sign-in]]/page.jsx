@@ -1,5 +1,11 @@
-import { SignIn } from "@clerk/nextjs"
-
 export default function Page() {
-  return <SignIn />
+  return (
+    <div className="mt-5 w-full opacity-75">
+      <p>
+        Sign in to access exclusive curriculum materials, earn badges, and{" "}
+        <br />
+        climb the leaderboard as you master Javanese!
+      </p>
+    </div>
+  );
 }

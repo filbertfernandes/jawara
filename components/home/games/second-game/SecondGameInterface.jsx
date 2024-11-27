@@ -1,25 +1,27 @@
-import { useEffect, useRef } from "react"
-import { addEffect } from "@react-three/fiber"
-import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx"
-import { gameStates, useGame } from "@/hooks/useGame.jsx"
-import { useSecondGame } from "./stores/useSecondGame.jsx"
-import useIsMobile from "@/hooks/useIsMobile.jsx"
-import { words } from "./stores/constants.js"
-import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
-import { updateScore } from "@/lib/actions/score.action"
-import { useAuth } from "@clerk/nextjs"
-import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx"
+import { addEffect } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+
+import { words } from "./stores/constants.js";
+import { useSecondGame } from "./stores/useSecondGame.jsx";
+
+import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx";
+import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx";
+import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx";
+import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import useIsMobile from "@/hooks/useIsMobile.jsx";
+import { updateScore } from "@/lib/actions/score.action";
+import { SoundManager } from "@/lib/SoundManager.jsx";
+// import { useAuth } from "@clerk/nextjs"
 
 export const SecondGameInterface = () => {
-  const { userId } = useAuth()
+  // const { userId } = useAuth()
 
   // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
-  }))
+  }));
 
-  const time = useRef()
+  const time = useRef();
 
   const {
     startGame,
@@ -43,10 +45,10 @@ export const SecondGameInterface = () => {
     setMobileRight: state.setMobileRight,
     setMobilePush: state.setMobilePush,
     setMobileJump: state.setMobileJump,
-  }))
+  }));
 
   async function onFinish() {
-    if (!userId) return
+    if (!userId) return;
 
     try {
       await updateScore({
@@ -54,59 +56,59 @@ export const SecondGameInterface = () => {
         game: "game2",
         gameMode: mode,
         score,
-      })
+      });
     } catch (error) {
-      console.log(error)
-      throw error
+      console.log(error);
+      throw error;
     } finally {
-      console.log("Finished update score")
+      console.log("Finished update score");
     }
   }
 
   // SCORE
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
-      const state = useGame.getState()
-      const secondGameState = useSecondGame.getState()
+      const state = useGame.getState();
+      const secondGameState = useSecondGame.getState();
 
-      let elapsedTime = 0
+      let elapsedTime = 0;
 
       if (state.gameState === gameStates.GAME) {
-        elapsedTime = (Date.now() - secondGameState.startTime) / 1000
+        elapsedTime = (Date.now() - secondGameState.startTime) / 1000;
       }
 
       // Calculate remaining time
       const remainingTime = Math.max(
         0,
         secondGameState.initialTimer - elapsedTime
-      ).toFixed(0)
+      ).toFixed(0);
 
-      secondGameState.timer = remainingTime
+      secondGameState.timer = remainingTime;
 
       if (time.current) {
-        time.current.textContent = secondGameState.timer
+        time.current.textContent = secondGameState.timer;
       }
 
       // Check if time has run out
       if (secondGameState.timer <= 0) {
-        SoundManager.playSound("gameComplete")
-        state.changeGameState(gameStates.GAME_OVER)
+        SoundManager.playSound("gameComplete");
+        state.changeGameState(gameStates.GAME_OVER);
       }
-    })
+    });
 
     return () => {
-      unsubscribeEffect()
-    }
-  }, [])
+      unsubscribeEffect();
+    };
+  }, []);
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
-      onFinish()
+      onFinish();
     }
-  }, [gameState])
+  }, [gameState]);
 
   // MOVILE CONTROLS
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -156,8 +158,8 @@ export const SecondGameInterface = () => {
           <div
             className="m-2.5 w-full touch-manipulation select-none bg-black/30 px-1"
             onTouchStart={(e) => {
-              e.preventDefault()
-              setMobileLeft(true)
+              e.preventDefault();
+              setMobileLeft(true);
             }}
             onTouchEnd={() => setMobileLeft(false)}
           >
@@ -167,8 +169,8 @@ export const SecondGameInterface = () => {
           <div
             className="m-2.5 w-full touch-manipulation select-none bg-black/30 px-1"
             onTouchStart={(e) => {
-              e.preventDefault()
-              setMobileRight(true)
+              e.preventDefault();
+              setMobileRight(true);
             }}
             onTouchEnd={() => setMobileRight(false)}
           >
@@ -180,8 +182,8 @@ export const SecondGameInterface = () => {
           <div
             className="m-2.5 w-full touch-manipulation select-none bg-black/30 px-1"
             onTouchStart={(e) => {
-              e.preventDefault()
-              setMobilePush(true)
+              e.preventDefault();
+              setMobilePush(true);
             }}
             onTouchEnd={() => setMobilePush(false)}
           >
@@ -191,8 +193,8 @@ export const SecondGameInterface = () => {
           <div
             className="m-2.5 w-full touch-manipulation select-none bg-black/30 px-1"
             onTouchStart={(e) => {
-              e.preventDefault()
-              setMobileJump(true)
+              e.preventDefault();
+              setMobileJump(true);
             }}
             onTouchEnd={() => setMobileJump(false)}
           >
@@ -201,5 +203,5 @@ export const SecondGameInterface = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};

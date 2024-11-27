@@ -1,8 +1,10 @@
-import { RigidBody } from "@react-three/rapier"
-import { useRef, useState, useEffect } from "react"
-import { useFrame } from "@react-three/fiber"
-import { useSecondGame } from "./stores/useSecondGame.jsx"
-import { SoundManager } from "@/lib/SoundManager.jsx"
+import { useFrame } from "@react-three/fiber";
+import { RigidBody } from "@react-three/rapier";
+import { useRef, useState, useEffect } from "react";
+
+import { useSecondGame } from "./stores/useSecondGame.jsx";
+
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function BlockAxe({ coloredBlock, index }) {
   const { correctAnswersOrder, correctCount, incrementCorrectCount } =
@@ -10,31 +12,31 @@ export default function BlockAxe({ coloredBlock, index }) {
       correctAnswersOrder: state.correctAnswersOrder,
       correctCount: state.correctCount,
       incrementCorrectCount: state.incrementCorrectCount,
-    }))
+    }));
 
-  const obstacle = useRef()
+  const obstacle = useRef();
 
   // State to hold timeOffset and speedFactor
-  const [timeOffset, setTimeOffset] = useState(Math.random() * Math.PI * 2)
-  const [speedFactor, setSpeedFactor] = useState(Math.random() + 0.5)
+  const [timeOffset, setTimeOffset] = useState(Math.random() * Math.PI * 2);
+  const [speedFactor, setSpeedFactor] = useState(Math.random() + 0.5);
 
   useEffect(() => {
     // Update timeOffset and speedFactor when coloredBlock changes
-    setTimeOffset(Math.random() * Math.PI * 2)
-    setSpeedFactor(Math.random() + 0.5)
-  }, [coloredBlock])
+    setTimeOffset(Math.random() * Math.PI * 2);
+    setSpeedFactor(Math.random() + 0.5);
+  }, [coloredBlock]);
 
   useFrame((state) => {
-    if (!obstacle.current) return
+    if (!obstacle.current) return;
 
-    const time = state.clock.getElapsedTime()
-    const x = Math.sin(time * speedFactor + timeOffset) * 6.5
+    const time = state.clock.getElapsedTime();
+    const x = Math.sin(time * speedFactor + timeOffset) * 6.5;
     obstacle.current.setNextKinematicTranslation({
-      x: x,
+      x,
       y: 0.5,
       z: -6 - index * 3,
-    })
-  })
+    });
+  });
 
   return (
     <RigidBody
@@ -48,8 +50,8 @@ export default function BlockAxe({ coloredBlock, index }) {
           correctAnswersOrder[correctCount] === index &&
           other.rigidBodyObject.name === "SecondGameMarble"
         ) {
-          SoundManager.playSound("correctAnswer")
-          incrementCorrectCount()
+          SoundManager.playSound("correctAnswer");
+          incrementCorrectCount();
         }
       }}
     >
@@ -58,5 +60,5 @@ export default function BlockAxe({ coloredBlock, index }) {
         <meshStandardMaterial color={coloredBlock.hexColor} />
       </mesh>
     </RigidBody>
-  )
+  );
 }
