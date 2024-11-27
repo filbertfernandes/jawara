@@ -18,6 +18,14 @@ const questrial = Questrial({
   variable: "--font-questrial",
 });
 
+export const metadata = {
+  title: "Jawara",
+  description: "A Javanese language learning application.",
+  icons: {
+    icon: "/images/jawara/jawara-icon.png",
+  },
+};
+
 const RootLayout = async ({ children }) => {
   const session = await auth();
 

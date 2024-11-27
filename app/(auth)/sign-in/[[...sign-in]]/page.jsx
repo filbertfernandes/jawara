@@ -4,7 +4,7 @@ export default function Page() {
       <p>
         Sign in to access exclusive curriculum materials, earn badges, and{" "}
         <br />
-        climb the leaderboard as you master Javanese!
+        climb the leaderboard as you master Javanese language!
       </p>
     </div>
   );
