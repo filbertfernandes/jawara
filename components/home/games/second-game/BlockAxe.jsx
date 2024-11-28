@@ -18,12 +18,12 @@ export default function BlockAxe({ coloredBlock, index }) {
 
   // State to hold timeOffset and speedFactor
   const [timeOffset, setTimeOffset] = useState(Math.random() * Math.PI * 2);
-  const [speedFactor, setSpeedFactor] = useState(Math.random() + 0.5);
+  const [speedFactor, setSpeedFactor] = useState(Math.random() * 0.6 + 0.4);
 
   useEffect(() => {
     // Update timeOffset and speedFactor when coloredBlock changes
     setTimeOffset(Math.random() * Math.PI * 2);
-    setSpeedFactor(Math.random() + 0.5);
+    setSpeedFactor(Math.random() * 0.6 + 0.4);
   }, [coloredBlock]);
 
   useFrame((state) => {
@@ -55,7 +55,7 @@ export default function BlockAxe({ coloredBlock, index }) {
         }
       }}
     >
-      <mesh scale={[1, 1, 1]} castShadow receiveShadow>
+      <mesh scale={[1.25, 1, 1]} castShadow receiveShadow>
         <boxGeometry />
         <meshStandardMaterial color={coloredBlock.hexColor} />
       </mesh>
