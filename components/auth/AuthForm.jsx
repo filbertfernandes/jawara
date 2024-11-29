@@ -1,7 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { BiSolidLock } from "react-icons/bi";
+import { MdEmail, MdPerson } from "react-icons/md";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,17 +15,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
-
-import { MdEmail, MdPerson } from "react-icons/md";
-import { BiSolidLock } from "react-icons/bi";
 
 const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
   // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(schema),
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   // 2. Define a submit handler.
@@ -33,25 +32,19 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
 
   const iconMap = {
-    ["email"]: (
-      <MdEmail className="w-5 h-5 absolute ml-3 pointer-events-none" />
+    email: <MdEmail className="pointer-events-none absolute ml-3 size-5" />,
+    password: (
+      <BiSolidLock className="pointer-events-none absolute ml-3 size-5" />
     ),
-    ["password"]: (
-      <BiSolidLock className="w-5 h-5 absolute ml-3 pointer-events-none" />
-    ),
-    ["username"]: (
-      <MdPerson className="w-5 h-5 absolute ml-3 pointer-events-none" />
-    ),
-    ["name"]: (
-      <MdPerson className="w-5 h-5 absolute ml-3 pointer-events-none" />
-    ),
+    username: <MdPerson className="pointer-events-none absolute ml-3 size-5" />,
+    name: <MdPerson className="pointer-events-none absolute ml-3 size-5" />,
   };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="space-y-8 flex flex-wrap justify-center"
+        className="flex flex-wrap justify-center space-y-8"
       >
         {Object.keys(defaultValues).map((field) => (
           <FormField
@@ -59,7 +52,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             control={form.control}
             name={field}
             render={({ field }) => (
-              <FormItem className="flex flex-wrap justify-center mt-10 w-full">
+              <FormItem className="mt-10 flex w-full flex-wrap justify-center">
                 <FormControl className="w-[50%]">
                   <div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
                     {iconMap[field.name]}
@@ -68,7 +61,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                       type={field.name === "password" ? "password" : "text"}
                       placeholder="Email"
                       {...field}
-                      className="pr-3 pl-10 py-2 font-semibold placeholder:text-gray-500 text-black rounded-2xl border-none ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2"
+                      className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
                     />
                   </div>
                 </FormControl>
@@ -92,14 +85,14 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
         {formType === "SIGN_IN" ? (
           <p className="w-full">
             Don't have an account?{" "}
-            <Link href={ROUTES.SIGN_UP} className="text-orange-500 font-bold">
+            <Link href={ROUTES.SIGN_UP} className="font-bold text-orange-500">
               Sign Up
             </Link>
           </p>
         ) : (
           <p className="w-full">
             Already have an account?{" "}
-            <Link href={ROUTES.SIGN_IN} className="text-orange-500 font-bold">
+            <Link href={ROUTES.SIGN_IN} className="font-bold text-orange-500">
               Sign In
             </Link>
           </p>
