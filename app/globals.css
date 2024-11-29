@@ -30,7 +30,7 @@ body {
   }
 
   .btn-template {
-    @apply flex cursor-pointer items-center justify-center rounded-lg py-1 text-center font-bold text-center;
+    @apply flex cursor-pointer items-center justify-center rounded-full py-1 text-center font-bold text-center;
   }
 }
 

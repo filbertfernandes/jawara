@@ -5,7 +5,7 @@ import { SoundManager } from "@/lib/SoundManager.jsx";
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
-    className="btn-template w-28 bg-orange-500 px-1 text-sm text-white lg:w-52 lg:p-1.5 lg:text-3xl"
+    className="btn-template w-28 bg-orange-500 px-1 text-sm text-white hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}

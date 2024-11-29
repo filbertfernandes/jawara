@@ -66,7 +66,7 @@ export default function FreePhaseInterface() {
         }`}
       >
         <div
-          className="btn-template bg-orange-500 px-8 drop-shadow-lg"
+          className="btn-template bg-orange-500 hover:bg-orange-600 px-8 drop-shadow-lg"
           onClick={handleEnterButtonClick}
         >
           Enter

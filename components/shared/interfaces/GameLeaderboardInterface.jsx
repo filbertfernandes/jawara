@@ -6,7 +6,7 @@ import { SoundManager } from "@/lib/SoundManager";
 
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
-    className={`flex cursor-pointer items-center text-center capitalize ${
+    className={`flex cursor-pointer items-center text-center capitalize hover:border-b-4 hover:border-white ${
       gameMode === activeGameMode ? "border-b-4 border-white" : ""
     }`}
     onClick={() => onClick(gameMode)}
