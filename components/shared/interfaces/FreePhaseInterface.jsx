@@ -8,6 +8,8 @@ import { SoundManager } from "@/lib/SoundManager.jsx";
 export default function FreePhaseInterface() {
   const { data } = useSession();
 
+  console.log(data);
+
   const handleSignOut = async () => {
     try {
       await signOut();

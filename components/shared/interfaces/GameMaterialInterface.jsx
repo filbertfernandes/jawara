@@ -33,13 +33,13 @@ const GameMaterialInterface = ({ words }) => {
 
   return (
     <div
-      className={`mt-8 flex size-full flex-col items-center gap-6 sm:-mt-8 sm:gap-4 lg:ml-8 ${
+      className={`mt-8 flex size-full flex-col items-center ${
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
       <h1 className="h1-bold text-orange-500 drop-shadow-lg">Material</h1>
 
-      <div className="flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
+      <div className="mt-4 flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
         {words.map((word, index) => (
           <div
             key={index}

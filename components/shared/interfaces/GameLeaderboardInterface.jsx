@@ -4,6 +4,287 @@ import { phases, useGame } from "@/hooks/useGame";
 import { getAllScores } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager";
 
+// DUMMY DATA
+const leaderboard = {
+  result: {
+    _id: "66fc98eff4f06778967b8192",
+    game: "game2",
+    gameMode: "ngoko",
+    topScores: [
+      {
+        userId: {
+          name: "Filbert Fernandes Lienardy",
+          username: "budis",
+          email: "budi.santoso@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 10,
+              madya: 5,
+              alus: 2,
+            },
+            game2: {
+              ngoko: 200,
+              madya: 35,
+              alus: 15,
+            },
+            game3: {
+              ngoko: 8,
+              madya: 12,
+              alus: 6,
+            },
+          },
+        },
+        score: 239,
+      },
+      {
+        userId: {
+          name: "Peter Parker",
+          username: "sitia",
+          email: "siti.aisyah@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 12,
+              madya: 7,
+              alus: 4,
+            },
+            game2: {
+              ngoko: 182,
+              madya: 30,
+              alus: 18,
+            },
+            game3: {
+              ngoko: 14,
+              madya: 9,
+              alus: 11,
+            },
+          },
+        },
+        score: 182,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+      {
+        userId: {
+          name: "Jonas Kahnwald",
+          username: "andip",
+          email: "andi.pratama@example.com",
+          picture:
+            "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
+          scores: {
+            game1: {
+              ngoko: 15,
+              madya: 10,
+              alus: 5,
+            },
+            game2: {
+              ngoko: 150,
+              madya: 28,
+              alus: 12,
+            },
+            game3: {
+              ngoko: 20,
+              madya: 15,
+              alus: 10,
+            },
+          },
+        },
+        score: 150,
+      },
+    ],
+  },
+};
+
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
     className={`flex cursor-pointer items-center text-center capitalize hover:border-b-4 hover:border-white ${
@@ -19,8 +300,8 @@ const GameLeaderboardInterface = () => {
   const { phase } = useGame((state) => ({
     phase: state.phase,
   }));
-  const [leaderboard, setLeaderboard] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [leaderboard, setLeaderboard] = useState(null);
+  const [loading, setLoading] = useState(false); // <- SEMENTARA, JANGAN LUPA UBAH KE TRUE
   const [activeGameMode, setActiveGameMode] = useState("ngoko");
 
   // useEffect(() => {
@@ -77,7 +358,7 @@ const GameLeaderboardInterface = () => {
 
   return (
     <div
-      className={`mt-8 flex size-full flex-col items-center gap-6 sm:-mt-8 sm:gap-4 ${
+      className={`mt-8 flex h-screen w-full flex-col items-center gap-6 ${
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
@@ -102,45 +383,29 @@ const GameLeaderboardInterface = () => {
       </div>
 
       {!loading && (
-        <div className="flex size-full justify-between rounded-3xl bg-stone-800/50 px-4 pt-4 text-sm text-white sm:w-[90%] sm:text-base md:text-lg lg:w-[70%] lg:text-2xl">
+        <div className="flex size-full justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-white sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
           <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
-            {leaderboard.result.topScores.map((topScore, index) => {
-              // Set the background color based on rank
-              let bgColor;
-              if (index === 0) {
-                bgColor = "bg-yellow-500"; // Rank 1
-              } else if (index === 1) {
-                bgColor = "bg-slate-500"; // Rank 2
-              } else if (index === 2) {
-                bgColor = "bg-orange-700"; // Rank 3
-              } else {
-                bgColor = "bg-black"; // Rank 4 and onward
-              }
-
-              return (
-                <li
-                  key={topScore._id}
-                  className="mb-4 flex justify-between border-b-2 border-white/10 px-1 pb-3 pt-1"
-                >
-                  <div className="flex">
-                    <div className="avatar relative">
-                      <div className="w-12 rounded-full">
-                        <img src={topScore.userId.picture} alt="avatar" />
-                      </div>
-                      <span
-                        className={`absolute -left-1 -top-1 flex size-[1.125rem] items-center justify-center rounded-full text-xs font-bold text-white ${bgColor}`}
-                      >
-                        {index + 1} {/* Rank number */}
-                      </span>
-                    </div>
-                    <div className="ml-4 flex items-center">
-                      {topScore.userId.username}
+            {leaderboard.result.topScores.map((topScore, index) => (
+              <li
+                key={topScore._id}
+                className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
+              >
+                <div className="flex">
+                  <div className="flex w-5 items-center text-center sm:w-10">
+                    {index + 1}
+                  </div>
+                  <div className="avatar relative">
+                    <div className="w-12 rounded-full">
+                      <img src={topScore.userId.picture} alt="avatar" />
                     </div>
                   </div>
-                  <div className="flex items-center">{topScore.score}</div>
-                </li>
-              );
-            })}
+                  <div className="ml-4 flex items-center">
+                    {topScore.userId.name}
+                  </div>
+                </div>
+                <div className="flex items-center">{topScore.score}</div>
+              </li>
+            ))}
           </ul>
         </div>
       )}
