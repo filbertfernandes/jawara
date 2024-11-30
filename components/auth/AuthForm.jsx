@@ -59,7 +59,9 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                     <Input
                       required
                       type={field.name === "password" ? "password" : "text"}
-                      placeholder="Email"
+                      placeholder={`${field.name
+                        .charAt(0)
+                        .toUpperCase()}${field.name.slice(1)}`}
                       {...field}
                       className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
                     />

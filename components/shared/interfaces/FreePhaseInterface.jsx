@@ -8,7 +8,7 @@ import { SoundManager } from "@/lib/SoundManager.jsx";
 export default function FreePhaseInterface() {
   const { data } = useSession();
 
-  const handleSignOut = async (provider) => {
+  const handleSignOut = async () => {
     try {
       await signOut();
     } catch (error) {
@@ -53,7 +53,9 @@ export default function FreePhaseInterface() {
     <>
       <div className="absolute left-0 top-0 mb-2 flex w-full justify-end py-2 pe-4 font-bebas text-3xl text-white lg:text-4xl">
         {data !== null ? (
-          <div onClick={handleSignOut}>Sign Out</div>
+          <div onClick={handleSignOut} className="cursor-pointer">
+            Sign Out
+          </div>
         ) : (
           <Link href="/sign-in">
             <div>Sign In</div>
