@@ -5,10 +5,9 @@ import { SignInSchema } from "@/lib/validations";
 
 export default function Page() {
   return (
-    <div className="mt-6 w-full opacity-75">
-      <p>
+    <>
+      <p className="mb-6 opacity-75">
         Sign in to access exclusive curriculum materials, earn rewards, and
-        <br />
         climb the leaderboard as you master Javanese language!
       </p>
 
@@ -18,6 +17,6 @@ export default function Page() {
         defaultValues={{ email: "", password: "" }}
         onSubmit={(data) => Promise.resolve({ success: true, data })}
       />
-    </div>
+    </>
   );
 }

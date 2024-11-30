@@ -5,12 +5,10 @@ import { SignUpSchema } from "@/lib/validations";
 
 export default function Page() {
   return (
-    <div className="mt-5 w-full opacity-75">
-      <p>
+    <>
+      <p className="mb-6 opacity-75">
         Create an account to unlock curriculum materials, earn rewards, climb
-        the
-        <br />
-        leaderboard and become a master of the Javanese language!
+        the leaderboard and become a master of the Javanese language!
       </p>
 
       <AuthForm
@@ -19,6 +17,6 @@ export default function Page() {
         defaultValues={{ email: "", password: "", name: "", username: "" }}
         onSubmit={(data) => Promise.resolve({ success: true, data })}
       />
-    </div>
+    </>
   );
 }

@@ -52,8 +52,8 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             control={form.control}
             name={field}
             render={({ field }) => (
-              <FormItem className="mt-10 flex w-full flex-wrap justify-center">
-                <FormControl className="w-[50%]">
+              <FormItem className="flex w-full flex-wrap justify-center">
+                <FormControl className="w-full">
                   <div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
                     {iconMap[field.name]}
                     <Input
@@ -63,7 +63,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                         .charAt(0)
                         .toUpperCase()}${field.name.slice(1)}`}
                       {...field}
-                      className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
+                      className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
                     />
                   </div>
                 </FormControl>
@@ -75,7 +75,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
 
         <Button
           disabled={form.formState.isSubmitting}
-          className="btn-template w-[50%] bg-orange-500 text-base hover:bg-orange-600"
+          className="btn-template w-full bg-orange-500 text-xs hover:bg-orange-600 lg:text-sm xl:text-base"
         >
           {form.formState.isSubmitting
             ? buttonText === "Sign In"
@@ -87,14 +87,20 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
         {formType === "SIGN_IN" ? (
           <p className="w-full">
             Don&apos;t have an account?{" "}
-            <Link href={ROUTES.SIGN_UP} className="font-bold text-orange-500">
+            <Link
+              href={ROUTES.SIGN_UP}
+              className="font-bold text-orange-500 hover:text-orange-600"
+            >
               Sign Up
             </Link>
           </p>
         ) : (
           <p className="w-full">
             Already have an account?{" "}
-            <Link href={ROUTES.SIGN_IN} className="font-bold text-orange-500">
+            <Link
+              href={ROUTES.SIGN_IN}
+              className="font-bold text-orange-500 hover:text-orange-600"
+            >
               Sign In
             </Link>
           </p>

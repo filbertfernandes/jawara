@@ -28,11 +28,11 @@ export default function SocialAuthForm() {
   };
 
   return (
-    <div className="flex w-[50%] flex-wrap justify-center -mt-52">
+    <div className="flex w-3/4 flex-wrap justify-center 2xl:w-1/2">
       <div className="my-4 flex w-full items-center justify-center">
-        <div className="w-[50%] border-t border-gray-400"></div>
+        <div className="w-1/2 border-t border-gray-400"></div>
         <span className="px-4 text-black">Or</span>
-        <div className="w-[50%] border-t border-gray-400"></div>
+        <div className="w-1/2 border-t border-gray-400"></div>
       </div>
       <div
         className="btn-template w-full border bg-white text-black drop-shadow-lg"

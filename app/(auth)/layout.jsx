@@ -1,35 +1,63 @@
+"use client";
+
+import { useMediaQuery } from "@uidotdev/usehooks";
 import Image from "next/image";
 import Link from "next/link";
 
 import SocialAuthForm from "@/components/auth/SocialAuthForm";
 
 const Layout = ({ children }) => {
-  return (
-    <main className="flex min-h-screen w-full justify-center font-questrial">
-      <div className="flex flex-1 flex-wrap items-center justify-center bg-white text-black">
-        <div className="flex w-full flex-wrap justify-center text-center">
-          <h1 className="h6-bold w-full">WELCOME TO</h1>
-          <Link href="/">
-            <Image
-              src="/images/jawara/jawara-logo-2.png"
-              alt="Jawara Logo"
-              width={300}
-              height={300}
-            />
-          </Link>
-          {children}
-        </div>
-        <SocialAuthForm />
-      </div>
+  const isMediumDevice = useMediaQuery("only screen and (min-width : 768px)");
+  console.log(isMediumDevice);
 
-      <div className="to-orange-00 flex flex-1 items-center justify-center bg-orange-200">
-        <Image
-          src="/images/jawara/jawara-logo.png"
-          alt="Jawara Logo"
-          width={550}
-          height={550}
-        />
-      </div>
+  return (
+    <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
+      {isMediumDevice ? (
+        <>
+          <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-black">
+            <div className="flex w-full flex-wrap justify-center text-center">
+              <h1 className="h6-bold w-full">WELCOME TO</h1>
+              <Link href="/" className="mb-6 flex w-full justify-center">
+                <Image
+                  src="/images/jawara/jawara-logo-2.png"
+                  alt="Jawara Logo"
+                  width={300}
+                  height={300}
+                />
+              </Link>
+              <div className="w-3/4 2xl:w-1/2">{children}</div>
+            </div>
+            <div className="flex w-full justify-center">
+              <SocialAuthForm />
+            </div>
+          </div>
+          <div className="flex flex-1 items-center justify-center bg-orange-200">
+            <Image
+              src="/images/jawara/jawara-logo.png"
+              alt="Jawara Logo"
+              width={550}
+              height={550}
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center justify-center bg-orange-200">
+            <Image
+              src="/images/jawara/jawara-logo.png"
+              alt="Jawara Logo"
+              width={200}
+              height={200}
+            />
+          </div>
+          <div className="flex grow flex-wrap items-center justify-center bg-white py-4 text-black">
+            <div className="flex w-full flex-wrap justify-center text-center">
+              <div className="w-3/4 2xl:w-1/2">{children}</div>
+            </div>
+            <SocialAuthForm />
+          </div>
+        </>
+      )}
     </main>
   );
 };
