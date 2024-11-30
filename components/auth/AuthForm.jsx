@@ -84,7 +84,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
 
         {formType === "SIGN_IN" ? (
           <p className="w-full">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href={ROUTES.SIGN_UP} className="font-bold text-orange-500">
               Sign Up
             </Link>
