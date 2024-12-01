@@ -16,7 +16,7 @@ const leaderboard = {
           name: "Filbert Fernandes Lienardy",
           username: "budis",
           email: "budi.santoso@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -43,7 +43,7 @@ const leaderboard = {
           name: "Peter Parker",
           username: "sitia",
           email: "siti.aisyah@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -70,7 +70,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -97,7 +97,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -124,7 +124,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -151,7 +151,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -178,7 +178,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -205,7 +205,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -232,7 +232,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -259,7 +259,7 @@ const leaderboard = {
           name: "Jonas Kahnwald",
           username: "andip",
           email: "andi.pratama@example.com",
-          picture:
+          image:
             "https://imgcdn.stablediffusionweb.com/2024/9/19/3db00914-ee1b-4c69-9608-fec58216ca93.jpg",
           scores: {
             game1: {
@@ -396,7 +396,7 @@ const GameLeaderboardInterface = () => {
                   </div>
                   <div className="avatar relative">
                     <div className="w-12 rounded-full">
-                      <img src={topScore.userId.picture} alt="avatar" />
+                      <img src={topScore.userId.image} alt="avatar" />
                     </div>
                   </div>
                   <div className="ml-4 flex items-center">
