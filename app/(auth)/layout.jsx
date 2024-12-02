@@ -32,23 +32,27 @@ const Layout = ({ children }) => {
             </div>
           </div>
           <div className="flex flex-1 items-center justify-center bg-orange-200">
-            <Image
-              src="/images/jawara/jawara-logo.png"
-              alt="Jawara Logo"
-              width={550}
-              height={550}
-            />
+            <Link href="/">
+              <Image
+                src="/images/jawara/jawara-logo.png"
+                alt="Jawara Logo"
+                width={550}
+                height={550}
+              />
+            </Link>
           </div>
         </>
       ) : (
         <>
           <div className="flex items-center justify-center bg-orange-200">
-            <Image
-              src="/images/jawara/jawara-logo.png"
-              alt="Jawara Logo"
-              width={200}
-              height={200}
-            />
+            <Link href="/">
+              <Image
+                src="/images/jawara/jawara-logo.png"
+                alt="Jawara Logo"
+                width={200}
+                height={200}
+              />
+            </Link>
           </div>
           <div className="flex grow flex-wrap items-center justify-center bg-white py-4 text-black">
             <div className="flex w-full flex-wrap justify-center text-center">
