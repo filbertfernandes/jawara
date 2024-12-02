@@ -17,7 +17,7 @@ const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
                     : "border-2 border-orange-500 bg-white/50 text-orange-500"
                 }
                 hover:text-white hover:bg-orange-500 hover:border-none
-                transition-all duration-300
+                transition-all duration-300 ease-in-out
             `}
       onClick={onClick}
     >

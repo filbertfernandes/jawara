@@ -25,7 +25,7 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
 
   return (
     <div
-      className={`dark-layout ${
+      className={`fullscreen-backdrop ${
         gameState === gameStates.GAME ? "pointer-events-none opacity-0" : ""
       }`}
     >

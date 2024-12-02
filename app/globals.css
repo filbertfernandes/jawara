@@ -12,8 +12,8 @@ body {
 }
 
 @layer utilities {
-  .dark-layout {
-    @apply font-bebas fixed flex justify-center left-0 top-0 w-full h-full pt-8 bg-white/50 backdrop-blur-md bg-repeat transition-all duration-1000 ease-in-out;
+  .fullscreen-backdrop {
+    @apply fixed left-0 top-0 flex size-full justify-center bg-white/50 bg-repeat pt-8 font-bebas backdrop-blur-md transition-all duration-1000 ease-in-out;
   }
 
   .h1-bold {
@@ -29,7 +29,7 @@ body {
   }
 
   .btn-template {
-    @apply flex cursor-pointer items-center justify-center rounded-full py-1 text-center font-bold text-center;
+    @apply flex cursor-pointer items-center justify-center rounded-full py-1 text-center font-bold transition-all duration-200 ease-in-out;
   }
 }
 

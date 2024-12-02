@@ -287,7 +287,7 @@ const leaderboard = {
 
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
-    className={`flex cursor-pointer items-center text-center capitalize hover:border-b-4 hover:border-white ${
+    className={`flex cursor-pointer items-center text-center capitalize transition-all duration-100 ease-in-out hover:border-b-4 hover:border-white ${
       gameMode === activeGameMode ? "border-b-4 border-white" : ""
     }`}
     onClick={() => onClick(gameMode)}

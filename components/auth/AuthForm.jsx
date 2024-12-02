@@ -89,7 +89,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             Don&apos;t have an account?{" "}
             <Link
               href={ROUTES.SIGN_UP}
-              className="font-bold text-orange-500 hover:text-orange-600"
+              className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
               Sign Up
             </Link>
@@ -99,7 +99,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             Already have an account?{" "}
             <Link
               href={ROUTES.SIGN_IN}
-              className="font-bold text-orange-500 hover:text-orange-600"
+              className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
               Sign In
             </Link>
