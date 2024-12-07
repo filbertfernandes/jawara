@@ -1,5 +1,5 @@
-import { create } from "zustand"
-import { subscribeWithSelector } from "zustand/middleware"
+import { create } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
 
 export const phases = {
   FREE: "FREE",
@@ -7,7 +7,7 @@ export const phases = {
   SECOND_GAME: "SECOND_GAME",
   THIRD_GAME: "THIRD_GAME",
   FOURTH_GAME: "FOURTH_GAME",
-}
+};
 
 export const gameStates = {
   MENU: "MENU",
@@ -15,41 +15,50 @@ export const gameStates = {
   MATERIAL: "MATERIAL",
   GAME: "GAME",
   GAME_OVER: "GAME_OVER",
-}
+};
 
 export const useGame = create(
   subscribeWithSelector((set) => {
     return {
       // DEFAULT PHASE
+      isMusicMuted: false,
       phase: phases.FREE,
       gameState: gameStates.MENU,
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },
 
+      // TOGGLE MUSIC
+      toggleMusic: () => {
+        set((state) => {
+          const isMusicMuted = !state.isMusicMuted;
+          return { isMusicMuted };
+        });
+      },
+
       // CHANGE PHASES METHODS
       changePhase: (phase) => {
         set(() => {
-          return { phase }
-        })
+          return { phase };
+        });
       },
 
       setCanChangePhase: (condition, phase) => {
         set(() => ({
           canChangePhase: { condition, phase },
-        }))
+        }));
       },
 
       setCanPressEnter: (condition) => {
         set(() => {
-          return { canPressEnter: condition }
-        })
+          return { canPressEnter: condition };
+        });
       },
 
       // CHANGE GAME STATE METHOD
       changeGameState: (gameState) => {
         set(() => {
-          return { gameState }
-        })
+          return { gameState };
+        });
       },
 
       // PLAYER STATE
@@ -57,8 +66,8 @@ export const useGame = create(
       setPlayerState: (playerState) => {
         set({
           playerState,
-        })
+        });
       },
-    }
+    };
   })
-)
+);

@@ -1,21 +1,29 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-// PHASES
-import { phases } from "./useGame.jsx"
+import { phases, useGame } from "./useGame.jsx";
 
-// SOUND MANAGER
-import { SoundManager } from "@/lib/SoundManager.jsx"
+import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function useBackgroundMusic(phase) {
+  const { isMusicMuted } = useGame((state) => ({
+    isMusicMuted: state.isMusicMuted,
+  }));
+
   useEffect(() => {
-    if (phase === phases.FREE) {
-      SoundManager.stopBackgroundMusic("gamePhaseBackground")
-      SoundManager.startBackgroundMusic("freePhaseBackground")
-      return () => SoundManager.stopBackgroundMusic("freePhaseBackground")
-    } else {
-      SoundManager.stopBackgroundMusic("freePhaseBackground")
-      SoundManager.startBackgroundMusic("gamePhaseBackground")
-      return () => SoundManager.stopBackgroundMusic("gamePhaseBackground")
+    if (isMusicMuted) {
+      SoundManager.stopBackgroundMusic("gamePhaseBackground");
+      SoundManager.stopBackgroundMusic("freePhaseBackground");
+      return;
     }
-  }, [phase])
+
+    if (phase === phases.FREE) {
+      SoundManager.stopBackgroundMusic("gamePhaseBackground");
+      SoundManager.startBackgroundMusic("freePhaseBackground");
+      return () => SoundManager.stopBackgroundMusic("freePhaseBackground");
+    } else {
+      SoundManager.stopBackgroundMusic("freePhaseBackground");
+      SoundManager.startBackgroundMusic("gamePhaseBackground");
+      return () => SoundManager.stopBackgroundMusic("gamePhaseBackground");
+    }
+  }, [phase, isMusicMuted]);
 }

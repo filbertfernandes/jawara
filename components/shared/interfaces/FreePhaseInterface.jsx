@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useCallback } from "react";
+import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
@@ -33,12 +34,16 @@ export default function FreePhaseInterface() {
     setCanChangePhase,
     canPressEnter,
     setCanPressEnter,
+    toggleMusic,
+    isMusicMuted,
   } = useGame((state) => ({
     changePhase: state.changePhase,
     canChangePhase: state.canChangePhase,
     setCanChangePhase: state.setCanChangePhase,
     canPressEnter: state.canPressEnter,
     setCanPressEnter: state.setCanPressEnter,
+    toggleMusic: state.toggleMusic,
+    isMusicMuted: state.isMusicMuted,
   }));
 
   // Memoized callback to prevent unnecessary re-renders
@@ -53,7 +58,14 @@ export default function FreePhaseInterface() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 mb-2 flex w-full justify-end py-2 pe-4 font-bebas text-3xl text-white lg:text-4xl">
+      <div className="absolute left-0 top-0 flex w-full justify-between px-2 pt-1 font-bebas text-3xl text-white lg:text-4xl">
+        <div
+          className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
+          onClick={toggleMusic}
+        >
+          {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
+        </div>
+
         {data !== null ? (
           <div onClick={handleSignOut} className="cursor-pointer">
             Sign Out
