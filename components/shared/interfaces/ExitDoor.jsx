@@ -12,7 +12,7 @@ const ExitDoor = () => {
     <div className="absolute left-0 top-0 flex h-full cursor-pointer items-center p-2 text-center font-bebas text-3xl md:p-4 md:text-4xl lg:text-6xl">
       <div>
         <GiExitDoor
-          className="cursor-pointer text-white hover:text-orange-500"
+          className="cursor-pointer text-white transition-all duration-100 ease-in-out hover:text-orange-500"
           onClick={() => {
             SoundManager.playSound("buttonClick");
             changeGameState(gameStates.MENU);

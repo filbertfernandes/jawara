@@ -387,7 +387,7 @@ const GameLeaderboardInterface = () => {
           <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
             {leaderboard.result.topScores.map((topScore, index) => (
               <li
-                key={topScore._id}
+                key={index}
                 className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
               >
                 <div className="flex">
