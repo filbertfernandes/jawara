@@ -6,7 +6,7 @@ const UserSchema = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String },
-    image: { type: String, required: true },
+    image: { type: String },
     scores: {
       game1: {
         ngoko: {
