@@ -23,7 +23,7 @@ const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
 });
 
 export default function App() {
-  const { data } = useSession();
+  // const { data } = useSession();
 
   // GAME PHASE
   const { phase } = useGame((state) => ({
