@@ -8,7 +8,6 @@ import SocialAuthForm from "@/components/auth/SocialAuthForm";
 
 const Layout = ({ children }) => {
   const isMediumDevice = useMediaQuery("only screen and (min-width : 768px)");
-  console.log(isMediumDevice);
 
   return (
     <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
