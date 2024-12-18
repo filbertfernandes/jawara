@@ -1,6 +1,7 @@
 "use client";
 
 import AuthForm from "@/components/auth/AuthForm";
+import { signUpWithCredentials } from "@/lib/actions/auth.action";
 import { SignUpSchema } from "@/lib/validations";
 
 export default function Page() {
@@ -15,7 +16,7 @@ export default function Page() {
         formType="SIGN_UP"
         schema={SignUpSchema}
         defaultValues={{ email: "", password: "", name: "", username: "" }}
-        onSubmit={(data) => Promise.resolve({ success: true, data })}
+        onSubmit={signUpWithCredentials}
       />
     </>
   );

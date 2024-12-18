@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { BiSolidLock } from "react-icons/bi";
 import { MdEmail, MdPerson } from "react-icons/md";
@@ -16,8 +17,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
 
 const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
+  const router = useRouter();
+
   // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(schema),
@@ -25,8 +29,26 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
   });
 
   // 2. Define a submit handler.
-  const handleSubmit = async () => {
-    // TODO: Authenticate User
+  const handleSubmit = async (data) => {
+    const result = await onSubmit(data);
+
+    if (result?.success) {
+      toast({
+        title: "Success",
+        description:
+          formType === "SIGN_IN"
+            ? "Signed in successfully"
+            : "Signed up successfully",
+      });
+
+      router.push(ROUTES.HOME);
+    } else {
+      toast({
+        title: `Error ${result?.status}`,
+        description: result?.error?.message,
+        variant: "destructive",
+      });
+    }
   };
 
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
