@@ -8,8 +8,9 @@ import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
   const { data } = useSession();
+  const userId = data?.user?.id;
 
-  console.log("Session data :", data);
+  console.log("userId = ", userId, " data = ", data);
 
   const handleSignOut = async () => {
     try {
@@ -66,7 +67,7 @@ export default function FreePhaseInterface() {
           {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
         </div>
 
-        {data !== null ? (
+        {userId ? (
           <div onClick={handleSignOut} className="cursor-pointer">
             Sign Out
           </div>
