@@ -12,6 +12,10 @@ body {
 }
 
 @layer utilities {
+  .fullscreen-white {
+    @apply fixed left-0 top-0 flex size-full flex-col justify-center bg-white p-4;
+  }
+
   .fullscreen-backdrop {
     @apply fixed left-0 top-0 flex size-full justify-center bg-white/50 bg-repeat pt-8 font-bebas backdrop-blur-md transition-all duration-1000 ease-in-out;
   }

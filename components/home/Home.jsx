@@ -5,6 +5,8 @@ import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 
+import { TranslationInterface } from "./exercise/translation/TranslationInterface";
+
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
 import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface";
@@ -50,6 +52,7 @@ export default function Home() {
   // INTERFACES MAPPING
   const gameInterfaces = {
     [phases.FREE]: <FreePhaseInterface />,
+    [phases.TRANSLATION]: <TranslationInterface />,
     [phases.FIRST_GAME]: <FirstGameInterface />,
     [phases.SECOND_GAME]: <SecondGameInterface />,
     [phases.THIRD_GAME]: <ThirdGameInterface />,

@@ -3,6 +3,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export const phases = {
   FREE: "FREE",
+  TRANSLATION: "TRANSLATION",
   FIRST_GAME: "FIRST_GAME",
   SECOND_GAME: "SECOND_GAME",
   THIRD_GAME: "THIRD_GAME",

@@ -2,8 +2,9 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
+import { RiRobot2Fill } from "react-icons/ri";
 
-import { useGame } from "@/hooks/useGame.jsx";
+import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
@@ -71,12 +72,20 @@ export default function FreePhaseInterface() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 flex w-full justify-between px-2 pt-1 font-bebas text-3xl text-white lg:text-4xl">
-        <div
-          className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
-          onClick={toggleMusic}
-        >
-          {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
+      <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
+        <div className="flex gap-4">
+          <div
+            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
+            onClick={toggleMusic}
+          >
+            {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
+          </div>
+          <div
+            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
+            onClick={() => changePhase(phases.TRANSLATION)}
+          >
+            <RiRobot2Fill />
+          </div>
         </div>
 
         {userId ? (
