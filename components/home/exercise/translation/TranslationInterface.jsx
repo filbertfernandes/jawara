@@ -64,16 +64,18 @@ export const TranslationInterface = () => {
       </div>
 
       {/* Sentence Section */}
-      <div className="flex h-48 w-full sm:h-60">
-        <Image
-          src="/images/character/jawara-ai.png"
-          alt="Jawara AI Character"
-          width={175}
-          height={175}
-          className="h-48 w-auto sm:h-60"
-        />
-        <div className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48">
-          {sentence.english}
+      <div className="flex w-full justify-center">
+        <div className="flex h-48 w-full sm:h-60 lg:w-3/4">
+          <Image
+            src="/images/character/jawara-ai.png"
+            alt="Jawara AI Character"
+            width={175}
+            height={175}
+            className="h-48 w-auto sm:h-60"
+          />
+          <div className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48">
+            {sentence.english}
+          </div>
         </div>
       </div>
 
