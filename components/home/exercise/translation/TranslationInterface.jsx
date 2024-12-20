@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 
+import { phases, useGame } from "@/hooks/useGame";
+
 const Button = ({ text, isSelected }) => (
   <div
     className={`flex h-8 cursor-pointer items-center justify-center rounded-xl border-2 p-1 text-center text-sm font-bold ${
@@ -41,11 +43,18 @@ export const TranslationInterface = () => {
     { text: "esuk", isSelected: false },
   ];
 
+  const { changePhase } = useGame((state) => ({
+    changePhase: state.changePhase,
+  }));
+
   return (
     <div className="fullscreen-white translate-y-0 font-questrial text-black transition-transform duration-500 ease-in-out">
       {/* Header */}
       <div className="mb-10 flex h-8 w-full items-center justify-between text-gray-500">
-        <IoMdClose className="cursor-pointer text-4xl" />
+        <IoMdClose
+          className="cursor-pointer text-4xl"
+          onClick={() => changePhase(phases.FREE)}
+        />
         <div>Correct Answers = {correctAnswers}</div>
       </div>
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
-import { RiRobot2Fill } from "react-icons/ri";
+import { SlSpeech } from "react-icons/sl";
 
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
@@ -81,10 +81,10 @@ export default function FreePhaseInterface() {
             {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
           </div>
           <div
-            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
+            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12 lg:text-3xl"
             onClick={() => changePhase(phases.TRANSLATION)}
           >
-            <RiRobot2Fill />
+            <SlSpeech />
           </div>
         </div>
 
