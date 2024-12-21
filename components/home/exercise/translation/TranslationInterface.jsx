@@ -1,51 +1,130 @@
 import Image from "next/image";
-import { IoMdClose } from "react-icons/io";
+import { useRef, useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { IoMdClose, IoMdCloseCircle } from "react-icons/io";
 
 import { phases, useGame } from "@/hooks/useGame";
 
-const Button = ({ text, isSelected }) => (
+const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
   <div
     className={`flex h-8 cursor-pointer items-center justify-center rounded-xl border-2 p-1 text-center text-sm font-bold sm:p-2 sm:text-2xl ${
-      isSelected
+      isSelected & !isAnswer
         ? "cursor-not-allowed bg-gray-500 text-gray-500"
         : "cursor-pointer bg-white transition-all duration-200 ease-in-out hover:bg-gray-200"
     }`}
+    onClick={() => onClick(id, word, isSelected)}
   >
-    {text}
+    {word}
   </div>
 );
 
-export const TranslationInterface = () => {
-  const correctAnswers = 0;
-  const sentence = {
-    indonesian:
-      "Aku biasanya minum teh dengan roti dan membaca koran di teras bersama anjingku setiap pagi.",
-    english:
-      "I usually drink tea with bread and read the newspaper on the porch with my dog every morning.",
-    javanese:
-      "Aku biasane ngeteh karo roti lan maca koran ing teras bareng asuku saben esuk.",
-  };
+const shuffleArray = (arr) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+  }
+  return arr;
+};
 
-  const buttonTexts = [
-    { text: "Aku", isSelected: true },
-    { text: "biasane", isSelected: false },
-    { text: "ngeteh", isSelected: true },
-    { text: "karo", isSelected: false },
-    { text: "roti", isSelected: false },
-    { text: "lan", isSelected: false },
-    { text: "maca", isSelected: false },
-    { text: "koran", isSelected: true },
-    { text: "ing", isSelected: true },
-    { text: "teras", isSelected: true },
-    { text: "bareng", isSelected: false },
-    { text: "asuku", isSelected: false },
-    { text: "saben", isSelected: false },
-    { text: "esuk", isSelected: false },
-  ];
+export const TranslationInterface = () => {
+  const [isGeneratingSentence, setIsGeneratingSentence] = useState(false);
+  const [sentence, setSentence] = useState(null);
+  const [words, setWords] = useState([]);
+  const [wordsAnswer, setWordsAnswer] = useState([]);
+  const [isCheckingAnswer, setIsCheckingAnswer] = useState(false);
+  const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
+  const [isTrue, setIsTrue] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [explanation, setExplanation] = useState("");
+
+  const sentenceBox = useRef();
+
+  const correctAnswers = 0;
 
   const { changePhase } = useGame((state) => ({
     changePhase: state.changePhase,
   }));
+
+  const generateSentence = async () => {
+    setIsGeneratingSentence(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/ai/generate-sentence`,
+        { method: "POST" }
+      );
+
+      const aiAnswer = await response.json();
+      const sentenceObject = JSON.parse(aiAnswer.reply);
+
+      if (sentenceBox.current) {
+        sentenceBox.current.innerText = sentenceObject.english;
+
+        setSentence(sentenceObject);
+
+        const tempWords = shuffleArray(
+          sentenceObject.javanese.split(" ").map((word, index) => ({
+            id: index,
+            word,
+            isSelected: false,
+          }))
+        );
+        setWords(tempWords);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsGeneratingSentence(false);
+      setIsFeedbackVisible(false);
+      setWordsAnswer([]);
+    }
+  };
+
+  const checkAnswer = async () => {
+    setIsCheckingAnswer(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/ai/check-answer`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            javanese: sentence.javanese,
+            english: sentence.english,
+            indonesian: sentence.indonesian,
+            userAnswer: wordsAnswer.map((item) => item.word).join(" "),
+          }),
+        }
+      );
+
+      const aiAnswer = await response.json();
+      const { isTrue, feedback, explanation } = JSON.parse(aiAnswer.reply);
+
+      setIsTrue(isTrue);
+      setFeedback(feedback);
+      setExplanation(explanation);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsCheckingAnswer(false);
+      setIsFeedbackVisible(true);
+    }
+  };
+
+  const handleWordClick = (id, word, isSelected) => {
+    if (isSelected) {
+      // Remove the word object from wordsAnswer if already selected
+      setWordsAnswer(wordsAnswer.filter((item) => item.id !== id));
+    } else {
+      // Add the word object to wordsAnswer if not selected
+      setWordsAnswer([...wordsAnswer, { id, word }]);
+    }
+
+    // Update the isSelected state in words by id
+    setWords(
+      words.map((w) => (w.id === id ? { ...w, isSelected: !isSelected } : w))
+    );
+  };
 
   return (
     <div className="fullscreen-white translate-y-0 font-questrial text-black transition-transform duration-500 ease-in-out sm:text-2xl">
@@ -73,37 +152,80 @@ export const TranslationInterface = () => {
             height={175}
             className="h-48 w-auto sm:h-60"
           />
-          <div className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48">
-            {sentence.english}
-          </div>
+          <div
+            ref={sentenceBox}
+            className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48"
+          ></div>
         </div>
       </div>
 
       {/* Answer Options */}
       <div className="flex h-36 w-full flex-wrap gap-2 border-y-2 py-2 sm:gap-4 lg:gap-6">
-        {buttonTexts
-          .filter((button) => button.isSelected)
-          .map((button, index) => (
-            <Button
-              key={index}
-              text={button.text}
-              isSelected={!button.isSelected}
-            />
-          ))}
-      </div>
-      <div className="flex h-36 w-full flex-wrap gap-2 py-2 sm:gap-4 lg:gap-6">
-        {buttonTexts.map((button, index) => (
+        {wordsAnswer.map((word, index) => (
           <Button
             key={index}
-            text={button.text}
-            isSelected={button.isSelected}
+            id={word.id}
+            word={word.word}
+            isSelected={true}
+            isAnswer={true}
+            onClick={handleWordClick}
+          />
+        ))}
+      </div>
+      <div className="flex h-36 w-full flex-wrap gap-2 py-2 sm:gap-4 lg:gap-6">
+        {words.map((word, index) => (
+          <Button
+            key={word.id}
+            id={word.id}
+            word={word.word}
+            isSelected={word.isSelected}
+            onClick={handleWordClick}
           />
         ))}
       </div>
 
       {/* Check Button */}
-      <div className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10">
-        Check
+      <div
+        className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+        onClick={sentence ? checkAnswer : generateSentence}
+      >
+        {isCheckingAnswer
+          ? "Checking....."
+          : sentence
+          ? "Check"
+          : isGeneratingSentence
+          ? "Generating....."
+          : "Generate Sentence"}
+      </div>
+
+      <div
+        className={`
+          absolute bottom-0 left-0 z-10 flex justify-center 
+          h-1/4 w-full flex-wrap p-2 
+          transition-transform duration-500 ease-in-out
+          ${isFeedbackVisible ? "translate-y-0" : "translate-y-full"}
+          ${isTrue ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}
+        `}
+      >
+        <div className="flex h-8 w-full items-center">
+          {isTrue ? (
+            <FaCheckCircle className="text-3xl" />
+          ) : (
+            <IoMdCloseCircle className="text-3xl" />
+          )}
+          <h5 className="ml-2 text-2xl font-bold">{feedback}</h5>
+        </div>
+        <div className="text-xs">{explanation}</div>
+        <div
+          className={`btn-template flex h-8 w-1/2 items-center justify-center text-white ${
+            isTrue
+              ? "bg-green-700 hover:bg-green-800"
+              : "bg-red-700 hover:bg-red-800"
+          }`}
+          onClick={generateSentence}
+        >
+          {isGeneratingSentence ? "Generating....." : "Generate Sentence"}
+        </div>
       </div>
     </div>
   );

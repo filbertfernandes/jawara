@@ -1,0 +1,50 @@
+import { NextResponse } from "next/server";
+import OpenAI from "openai";
+
+import handleError from "@/lib/handlers/error";
+
+export async function POST(request) {
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const { javanese, english, indonesian, userAnswer } = await request.json();
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      store: true,
+      messages: [
+        {
+          role: "system",
+          content: `
+          You are a very helpful Javanese language teacher, you are friendly and good at explain the student. 
+          Now you're giving your student a task, you provide an english / indonesian sentence, and you tell your student to translate the sentence into Javanese language.
+          Here is the sentence that you gave:
+          "javanese": "${javanese}", "english": "${english}", "indonesian": "${indonesian}"
+          The student answer should match the "javanese" one to be correct.
+        `,
+        },
+        {
+          role: "user",
+          content: `
+          You gave the student this sentence: "${english}"
+          Here is your student javanese translation answer: "${userAnswer}" 
+          The correct answer should be: "${javanese}"
+          You should reply the student with this json format (but don't make it into a code, just a plain text but in json):
+          { isTrue: boolean, "feedback": ", "explanation": "" }
+           isTrue will be true if correct, and false if wrong. Also if the student give a blank answer "", it should be wrong.
+           The "feedback" is like an appreciation, if student is correct, could be "Awesome!", "Amazing!", "Nice job!" or anything in your mind. If student is wrong, could be "Don't give up!", "Try again!", or anything in your mind.
+           The "explanation" is your explanation of the translation.
+          `,
+        },
+      ],
+    });
+
+    const reply = response.choices[0].message.content;
+
+    return NextResponse.json({ reply });
+  } catch (error) {
+    return handleError(error, "api");
+  }
+}
