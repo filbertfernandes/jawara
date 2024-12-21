@@ -200,10 +200,10 @@ export const TranslationInterface = () => {
 
       <div
         className={`
-          absolute bottom-0 left-0 z-10 flex flex-col gap-2 justify-center items-center
+          absolute bottom-0 left-0 z-10 flex flex-col gap-4 justify-center items-center
           h-1/4 w-full flex-wrap p-2
           transition-transform duration-500 ease-in-out
-          sm:px-12 sm:py-6 sm:gap-4 md:h-[30%] md:gap-6 lg:px-32
+          sm:px-12 sm:py-6 md:h-[30%] md:gap-6 lg:px-32
           ${isFeedbackVisible ? "translate-y-0" : "translate-y-full"}
           ${isTrue ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}
         `}
