@@ -82,7 +82,10 @@ export default function FreePhaseInterface() {
           </div>
           <div
             className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12 lg:text-3xl"
-            onClick={() => changePhase(phases.TRANSLATION)}
+            onClick={() => {
+              SoundManager.playSound("buttonClick");
+              changePhase(phases.TRANSLATION);
+            }}
           >
             <SlSpeech />
           </div>

@@ -4,6 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { IoMdClose, IoMdCloseCircle } from "react-icons/io";
 
 import { phases, useGame } from "@/hooks/useGame";
+import { SoundManager } from "@/lib/SoundManager";
 
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
   <div
@@ -112,6 +113,8 @@ export const TranslationInterface = () => {
   };
 
   const handleWordClick = (id, word, isSelected) => {
+    SoundManager.playSound("buttonClick");
+
     if (isSelected) {
       // Remove the word object from wordsAnswer if already selected
       setWordsAnswer(wordsAnswer.filter((item) => item.id !== id));
