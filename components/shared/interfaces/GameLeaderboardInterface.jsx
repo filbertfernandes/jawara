@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame";
 import { getAllScores } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const LanguageCategory = ({ gameMode, activeGameMode, onClick }) => (
   <div
@@ -114,7 +115,7 @@ const GameLeaderboardInterface = () => {
                     {index + 1}
                   </div>
                   <div className="relative">
-                    <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
+                    <Avatar className="size-10 sm:size-12">
                       {topScore.userId.image ? (
                         <Image
                           src={topScore.userId.image}
@@ -125,7 +126,7 @@ const GameLeaderboardInterface = () => {
                           quality={100}
                         />
                       ) : (
-                        <AvatarFallback className="bg-white font-bold tracking-wider text-black text-2xl sm:text-3xl">
+                        <AvatarFallback className="bg-white text-2xl font-bold tracking-wider text-black sm:text-3xl">
                           {topScore.userId.name
                             .split(" ")
                             .map((word) => word[0])
