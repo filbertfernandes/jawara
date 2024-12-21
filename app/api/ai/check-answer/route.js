@@ -18,7 +18,7 @@ export async function POST(request) {
         {
           role: "system",
           content: `
-          You are a very helpful Javanese language teacher, you are friendly and good at explain the student. 
+          You are a very helpful Javanese language teacher, you are friendly and good at explain the student.
           Now you're giving your student a task, you provide an english / indonesian sentence, and you tell your student to translate the sentence into Javanese language.
           Here is the sentence that you gave:
           "javanese": "${javanese}", "english": "${english}", "indonesian": "${indonesian}"
@@ -29,10 +29,10 @@ export async function POST(request) {
           role: "user",
           content: `
           You gave the student this sentence: "${english}"
-          Here is your student javanese translation answer: "${userAnswer}" 
+          Here is your student javanese translation answer: "${userAnswer}"
           The correct answer should be: "${javanese}"
           You should reply the student with this json format (but don't make it into a code, just a plain text but in json):
-          { isTrue: boolean, "feedback": ", "explanation": "" }
+          { isTrue: boolean, "feedback": "", "explanation": "" }
            isTrue will be true if correct, and false if wrong. Also if the student give a blank answer "", it should be wrong.
            The "feedback" is like an appreciation, if student is correct, could be "Awesome!", "Amazing!", "Nice job!" or anything in your mind. If student is wrong, could be "Don't give up!", "Try again!", or anything in your mind.
            The "explanation" is your explanation of the translation.
@@ -42,6 +42,7 @@ export async function POST(request) {
     });
 
     const reply = response.choices[0].message.content;
+    // const reply = `{ "isTrue": true, "feedback": "Amazing!", "explanation": "Is this the real life? Is this just fantasy? Caught in a landslide no escape from reality. Open your eyes, look to the skies and see, I'm just a poor boy i need no sympathy. Because i'm easy come, easy go, little high, little low. Anyway the wind blows doesn't really matter" }`; // TO BE DELETED
 
     return NextResponse.json({ reply });
   } catch (error) {
