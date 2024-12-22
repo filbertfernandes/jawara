@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+import { useCallback } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import { SlSpeech } from "react-icons/sl";
 
@@ -8,23 +8,6 @@ import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
-  const { data: session, status, update } = useSession();
-  const [userId, setUserId] = useState(session?.user?.id || null);
-
-  useEffect(() => {
-    const updateSession = async () => {
-      await update();
-    };
-
-    updateSession();
-  }, []);
-
-  useEffect(() => {
-    if (status === "authenticated" && session?.user?.id) {
-      setUserId(session.user.id);
-    }
-  }, [status, session]);
-
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -43,6 +26,7 @@ export default function FreePhaseInterface() {
   };
 
   const {
+    userId,
     changePhase,
     canChangePhase,
     setCanChangePhase,
@@ -51,6 +35,7 @@ export default function FreePhaseInterface() {
     toggleMusic,
     isMusicMuted,
   } = useGame((state) => ({
+    userId: state.userId,
     changePhase: state.changePhase,
     canChangePhase: state.canChangePhase,
     setCanChangePhase: state.setCanChangePhase,

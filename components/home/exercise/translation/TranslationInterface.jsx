@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdClose, IoMdCloseCircle } from "react-icons/io";
@@ -42,7 +43,8 @@ export const TranslationInterface = () => {
 
   const correctAnswers = 0;
 
-  const { changePhase } = useGame((state) => ({
+  const { userId, changePhase } = useGame((state) => ({
+    userId: state.userId,
     changePhase: state.changePhase,
   }));
 
@@ -137,12 +139,15 @@ export const TranslationInterface = () => {
           className="cursor-pointer text-4xl sm:text-5xl"
           onClick={() => changePhase(phases.FREE)}
         />
-        <div>Correct Answers = {correctAnswers}</div>
+        <div>Correct: {correctAnswers}</div>
       </div>
 
       {/* Instruction */}
-      <div className="mb-6 flex h-8 w-full items-center text-xl font-bold sm:mb-16 sm:text-3xl lg:mb-6">
-        Translate this sentence
+      <div className="mb-6 flex h-8 w-full items-center justify-between sm:mb-16 lg:mb-6">
+        <div className="text-xl font-bold sm:text-3xl">
+          Translate this sentence
+        </div>
+        <div className="text-gray-500">Daily Limit: 10</div>
       </div>
 
       {/* Sentence Section */}
@@ -158,7 +163,10 @@ export const TranslationInterface = () => {
           <div
             ref={sentenceBox}
             className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48"
-          ></div>
+          >
+            Hi! Welcome to the Translate Javanese exercise. Click &apos;Generate
+            Sentence&apos; to start. You have 10 tries per day!
+          </div>
         </div>
       </div>
 
@@ -188,17 +196,28 @@ export const TranslationInterface = () => {
       </div>
 
       {/* Check Button */}
-      <div
-        className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
-        onClick={sentence ? checkAnswer : generateSentence}
-      >
-        {isCheckingAnswer
-          ? "Checking....."
-          : sentence
-          ? "Check"
-          : isGeneratingSentence
-          ? "Generating....."
-          : "Generate Sentence"}
+      <div>
+        {userId ? (
+          <div
+            className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+            onClick={sentence ? checkAnswer : generateSentence}
+          >
+            {isCheckingAnswer
+              ? "Checking....."
+              : sentence
+              ? "Check"
+              : isGeneratingSentence
+              ? "Generating....."
+              : "Generate Sentence"}
+          </div>
+        ) : (
+          <Link
+            href="/sign-in"
+            className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+          >
+            Sign In to Generate Sentence
+          </Link>
+        )}
       </div>
 
       <div
@@ -219,10 +238,10 @@ export const TranslationInterface = () => {
           )}
           <h5 className="ml-2 text-2xl font-bold sm:text-4xl">{feedback}</h5>
         </div>
-        <div className="text-xs w-full sm:text-lg md:text-xl">
+        <div className="w-full text-xs sm:text-lg md:text-xl">
           {explanation}
         </div>
-        <div className="flex justify-center w-full">
+        <div className="flex w-full justify-center">
           <div
             className={`btn-template flex h-8 w-1/2 items-center justify-center text-white ${
               isTrue

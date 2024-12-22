@@ -22,11 +22,19 @@ export const useGame = create(
   subscribeWithSelector((set) => {
     return {
       // DEFAULT PHASE
+      userId: null,
       isMusicMuted: false,
       phase: phases.FREE,
       gameState: gameStates.MENU,
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },
+
+      // USER SESSION
+      setUserId: (userId) => {
+        set(() => {
+          return { userId };
+        });
+      },
 
       // TOGGLE MUSIC
       toggleMusic: () => {

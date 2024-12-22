@@ -3,7 +3,8 @@
 import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect, useMemo, useState } from "react";
 
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
 
@@ -23,10 +24,29 @@ const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
 });
 
 export default function Home() {
-  // GAME PHASE
-  const { phase } = useGame((state) => ({
+  const { setUserId, phase } = useGame((state) => ({
+    setUserId: state.setUserId,
     phase: state.phase,
   }));
+
+  // SET USER SESSION
+  const { data: session, status, update } = useSession();
+
+  useEffect(() => {
+    const updateSession = async () => {
+      await update();
+    };
+
+    updateSession();
+  }, []);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.id) {
+      setUserId(session.user.id);
+    } else {
+      setUserId(null);
+    }
+  }, [status, session]);
 
   // KEYBOARD
   const map = useMemo(

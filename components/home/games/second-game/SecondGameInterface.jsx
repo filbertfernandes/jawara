@@ -1,5 +1,4 @@
 import { addEffect } from "@react-three/fiber";
-import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 
 import { words } from "./stores/constants.js";
@@ -14,11 +13,8 @@ import { updateScore } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const SecondGameInterface = () => {
-  const { data: session } = useSession();
-  const userId = session?.user?.id || null;
-
-  // GAME STATE
-  const { gameState } = useGame((state) => ({
+  const { userId, gameState } = useGame((state) => ({
+    userId: state.userId,
     gameState: state.gameState,
   }));
 
