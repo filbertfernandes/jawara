@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useCallback } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import { SlSpeech } from "react-icons/sl";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
@@ -26,7 +28,7 @@ export default function FreePhaseInterface() {
   };
 
   const {
-    userId,
+    user,
     changePhase,
     canChangePhase,
     setCanChangePhase,
@@ -35,7 +37,7 @@ export default function FreePhaseInterface() {
     toggleMusic,
     isMusicMuted,
   } = useGame((state) => ({
-    userId: state.userId,
+    user: state.user,
     changePhase: state.changePhase,
     canChangePhase: state.canChangePhase,
     setCanChangePhase: state.setCanChangePhase,
@@ -76,10 +78,30 @@ export default function FreePhaseInterface() {
           </div>
         </div>
 
-        {userId ? (
-          <div onClick={handleSignOut} className="cursor-pointer">
-            Sign Out
-          </div>
+        {user ? (
+          <Link href="/profile/1">
+            <Avatar className="size-10 sm:size-12">
+              {user.data.image ? (
+                <Image
+                  src={user.data.image}
+                  alt={user.data.username}
+                  className="object-cover"
+                  width={36}
+                  height={36}
+                  quality={100}
+                />
+              ) : (
+                <AvatarFallback className="border border-orange-500 bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
+                  {user.data.name
+                    .split(" ")
+                    .map((word) => word[0])
+                    .join("")
+                    .toUpperCase()
+                    .slice(0, 2)}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </Link>
         ) : (
           <Link href="/sign-in">
             <div>Sign In</div>

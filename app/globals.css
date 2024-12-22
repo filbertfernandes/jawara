@@ -20,6 +20,10 @@ body {
     @apply fixed left-0 top-0 flex size-full justify-center bg-orange-100 p-4 sm:p-14 lg:px-32 xl:px-64;
   }
 
+  .fullscreen-black-transparent {
+    @apply fixed left-0 top-0 flex size-full justify-center bg-black/80 p-4 sm:p-14 lg:px-32 xl:px-64;
+  }
+
   .fullscreen-backdrop {
     @apply fixed left-0 top-0 flex size-full justify-center bg-white/50 bg-repeat pt-8 font-bebas backdrop-blur-md transition-all duration-1000 ease-in-out;
   }

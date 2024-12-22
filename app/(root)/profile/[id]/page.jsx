@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
@@ -8,12 +10,178 @@ import { MdOutlinePets } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
+const awardsData = [
+  {
+    src: "/images/awards/curriculum-completion.jpg",
+    description:
+      "Complete the entire curriculum to master key language concepts.",
+  },
+  {
+    src: "/images/awards/top-3.jpg",
+    description: "Achieve a top 3 position in the Vocabulary Game.",
+  },
+  {
+    src: "/images/awards/top-10.jpg",
+    description: "Achieve a top 10 position in the Vocabulary Game.",
+  },
+  {
+    src: "/images/awards/top-50.jpg",
+    description: "Achieve a top 50 position in the Vocabulary Game.",
+  },
+  {
+    src: "/images/awards/top-100.jpg",
+    description: "Achieve a top 100 position in the Vocabulary Game.",
+  },
+  {
+    src: "/images/awards/correct-translations-1000.jpg",
+    description: "Achieve 1,000 correct translations.",
+  },
+  {
+    src: "/images/awards/correct-translations-500.jpg",
+    description: "Achieve 500 correct translations.",
+  },
+  {
+    src: "/images/awards/correct-translations-250.jpg",
+    description: "Achieve 250 correct translations.",
+  },
+  {
+    src: "/images/awards/correct-translations-100.jpg",
+    description: "Achieve 100 correct translations.",
+  },
+  {
+    src: "/images/awards/correct-translations-25.jpg",
+    description: "Achieve 25 correct translations.",
+  },
+  {
+    src: "/images/awards/correct-translations-1.jpg",
+    description: "Achieve your first correct translation.",
+  },
+  {
+    src: "/images/awards/first-time-body-parts.jpg",
+    description: "Complete the Body Parts Vocabulary Game for the first time.",
+  },
+  {
+    src: "/images/awards/first-time-colors.jpg",
+    description: "Complete the Colors Vocabulary Game for the first time.",
+  },
+  {
+    src: "/images/awards/first-time-numbers.jpg",
+    description: "Complete the Numbers Vocabulary Game for the first time.",
+  },
+  {
+    src: "/images/awards/first-time-animals.jpg",
+    description: "Complete the Animals Vocabulary Game for the first time.",
+  },
+];
+
+const scoresData = [
+  {
+    category: "Body Parts",
+    icon: <IoBody />,
+    scores: { Ngoko: 0, "Krama Madya": 0, "Krama Alus": 0 },
+  },
+  {
+    category: "Colors",
+    icon: <IoColorPalette />,
+    scores: { Ngoko: 0, "Krama Madya": 0, "Krama Alus": 0 },
+  },
+  {
+    category: "Numbers",
+    icon: <GoNumber />,
+    scores: { Ngoko: 0, "Krama Madya": 0, "Krama Alus": 0 },
+  },
+  {
+    category: "Animals",
+    icon: <MdOutlinePets />,
+    scores: { Ngoko: 0, "Krama Madya": 0, "Krama Alus": 0 },
+  },
+];
+
+const AwardOverlay = ({ image, description, onClose }) => (
+  <div className="fullscreen-black-transparent flex-col items-center justify-center gap-4">
+    <div className="relative flex flex-col items-center">
+      <button
+        className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-white sm:text-4xl"
+        onClick={onClose}
+      >
+        <IoMdClose />
+      </button>
+      <Image
+        src={image}
+        alt="Selected Award"
+        width={300}
+        height={300}
+        className="rounded-xl"
+      />
+    </div>
+    <p className="w-3/4 text-center text-base sm:text-lg lg:text-xl">
+      {description}
+    </p>
+  </div>
+);
+
+const AwardGallery = ({ awards, onAwardClick }) => (
+  <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:px-6 lg:py-8">
+    <h2 className="h2-bold mb-3 w-full text-center">Awards</h2>
+    <div className="flex flex-wrap justify-center gap-6">
+      {awards.map((award, idx) => (
+        <Image
+          key={idx}
+          src={award.src}
+          alt="Award"
+          width={125}
+          height={125}
+          className="cursor-pointer rounded-xl lg:size-[150px]"
+          onClick={() => onAwardClick(award.src, award.description)}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+const ScoreTable = ({ scores }) => (
+  <div className="mb-8 flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-6 py-4 text-center lg:px-10 lg:py-8">
+    <h2 className="h2-bold mb-3 w-full text-center">Vocabulary Scores</h2>
+    {scores.map((item, idx) => (
+      <div
+        key={idx}
+        className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4"
+      >
+        <h3 className="h5-bold">{item.category}</h3>
+        <div className="ml-1 text-2xl lg:text-4xl">{item.icon}</div>
+        {Object.entries(item.scores).map(([key, value], i) => (
+          <div key={i} className="mt-1 flex w-full justify-between">
+            <h6 className="text-base sm:text-lg lg:text-xl">{key}</h6>
+            <h6 className="text-base sm:text-lg lg:text-xl">{value}</h6>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+);
+
 export default function Page({ params }) {
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageDescription, setSelectedImageDescription] =
+    useState(null);
+
+  const handleAwardClick = (image, description) => {
+    setSelectedImage(image);
+    setSelectedImageDescription(description);
+    setShowOverlay(true);
+  };
+
+  const handleCloseOverlay = () => {
+    setShowOverlay(false);
+    setSelectedImage(null);
+  };
+
   return (
     <div className="fullscreen-orange-100 flex-wrap gap-6 overflow-scroll font-questrial font-bold text-white">
       <Link href="/">
         <div className="absolute left-4 top-4 cursor-pointer text-4xl text-black sm:text-5xl">
-          <IoMdClose className="cursor-pointer" />
+          <IoMdClose />
         </div>
       </Link>
 
@@ -29,191 +197,24 @@ export default function Page({ params }) {
         <h2 className="h2-bold">Filbert Fernandes Lienardy</h2>
       </div>
 
-      <div className="flex max-h-96 min-h-96 w-full flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:px-6 lg:py-8">
-        <h2 className="h2-bold mb-3 w-full text-center">Awards</h2>
-        <div className="flex w-full flex-wrap justify-center gap-6">
-          <Image
-            src="/images/awards/curriculum-completion.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/top-3.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/top-10.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/top-50.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/top-100.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-1000.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-500.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-250.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-100.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-25.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/correct-translations-1.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/first-time-body-parts.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/first-time-colors.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/first-time-numbers.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-          <Image
-            src="/images/awards/first-time-animals.jpg"
-            alt="Jawara Logo"
-            width={125}
-            height={125}
-            className="size-[125px] rounded-xl lg:size-[150px]"
-          />
-        </div>
-      </div>
+      {showOverlay && (
+        <AwardOverlay
+          image={selectedImage}
+          description={selectedImageDescription}
+          onClose={handleCloseOverlay}
+        />
+      )}
+
+      <AwardGallery awards={awardsData} onAwardClick={handleAwardClick} />
 
       <div className="flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
-        <h1 className="text-8xl">39</h1>
+        <h1 className="text-8xl">1139</h1>
         <p className="text-base sm:text-lg lg:text-xl">
           Total Correct Translations
         </p>
       </div>
 
-      <div className="mb-8 flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-6 py-4 text-center lg:px-10 lg:py-8">
-        <h2 className="h2-bold mb-3 w-full text-center">Vocabulary Scores</h2>
-        <div className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4">
-          <h3 className="h5-bold">Body Parts</h3>
-          <IoBody className="ml-1 text-2xl lg:text-4xl" />
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Ngoko</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Madya</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Alus</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-        </div>
-        <div className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4">
-          <h3 className="h5-bold">Colors</h3>
-          <IoColorPalette className="ml-1 text-2xl lg:text-4xl" />
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Ngoko</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Madya</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Alus</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-        </div>
-        <div className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4">
-          <h3 className="h5-bold">Numbers</h3>
-          <GoNumber className="ml-1 text-2xl lg:text-4xl" />
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Ngoko</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Madya</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Alus</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-        </div>
-        <div className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4">
-          <h3 className="h5-bold">Animals</h3>
-          <MdOutlinePets className="ml-1 text-2xl lg:text-4xl" />
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Ngoko</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Madya</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-          <div className="mt-1 flex w-full justify-between">
-            <h6 className="text-base sm:text-lg lg:text-xl">Krama Alus</h6>
-            <h6 className="text-base sm:text-lg lg:text-xl">0</h6>
-          </div>
-        </div>
-      </div>
+      <ScoreTable scores={scoresData} />
     </div>
   );
 }

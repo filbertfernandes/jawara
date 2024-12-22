@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -106,42 +107,44 @@ const GameLeaderboardInterface = () => {
         <div className="flex size-full justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-white sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
           <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
             {leaderboard.result.topScores.map((topScore, index) => (
-              <li
-                key={index}
-                className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
-              >
-                <div className="flex">
-                  <div className="flex w-5 items-center text-center sm:w-10">
-                    {index + 1}
+              <li key={index}>
+                <Link
+                  href="/profile/1"
+                  className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
+                >
+                  <div className="flex">
+                    <div className="flex w-5 items-center text-center sm:w-10">
+                      {index + 1}
+                    </div>
+                    <div className="relative">
+                      <Avatar className="size-10 sm:size-12">
+                        {topScore.userId.image ? (
+                          <Image
+                            src={topScore.userId.image}
+                            alt={topScore.userId.username}
+                            className="object-cover"
+                            width={36}
+                            height={36}
+                            quality={100}
+                          />
+                        ) : (
+                          <AvatarFallback className="bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
+                            {topScore.userId.name
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")
+                              .toUpperCase()
+                              .slice(0, 2)}
+                          </AvatarFallback>
+                        )}
+                      </Avatar>
+                    </div>
+                    <div className="ml-4 flex items-center">
+                      {topScore.userId.name}
+                    </div>
                   </div>
-                  <div className="relative">
-                    <Avatar className="size-10 sm:size-12">
-                      {topScore.userId.image ? (
-                        <Image
-                          src={topScore.userId.image}
-                          alt={topScore.userId.username}
-                          className="object-cover"
-                          width={36}
-                          height={36}
-                          quality={100}
-                        />
-                      ) : (
-                        <AvatarFallback className="bg-white font-sans text-2xl font-bold tracking-wider text-black sm:text-3xl">
-                          {topScore.userId.name
-                            .split(" ")
-                            .map((word) => word[0])
-                            .join("")
-                            .toUpperCase()
-                            .slice(0, 2)}
-                        </AvatarFallback>
-                      )}
-                    </Avatar>
-                  </div>
-                  <div className="ml-4 flex items-center">
-                    {topScore.userId.name}
-                  </div>
-                </div>
-                <div className="flex items-center">{topScore.score}</div>
+                  <div className="flex items-center">{topScore.score}</div>
+                </Link>
               </li>
             ))}
           </ul>
