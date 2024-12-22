@@ -13,7 +13,11 @@ body {
 
 @layer utilities {
   .fullscreen-white {
-    @apply fixed left-0 top-0 flex size-full flex-col justify-center bg-white p-4 sm:p-14 lg:px-32 xl:px-64;
+    @apply fixed left-0 top-0 flex size-full justify-center bg-white p-4 sm:p-14 lg:px-32 xl:px-64;
+  }
+
+  .fullscreen-orange-100 {
+    @apply fixed left-0 top-0 flex size-full justify-center bg-orange-100 p-4 sm:p-14 lg:px-32 xl:px-64;
   }
 
   .fullscreen-backdrop {
@@ -22,6 +26,14 @@ body {
 
   .h1-bold {
     @apply text-4xl font-bold lg:text-6xl;
+  }
+
+  .h2-bold {
+    @apply text-3xl font-bold lg:text-5xl;
+  }
+
+  .h3-bold {
+    @apply text-2xl font-bold lg:text-4xl;
   }
 
   .h5-bold {

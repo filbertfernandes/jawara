@@ -126,7 +126,7 @@ const GameLeaderboardInterface = () => {
                           quality={100}
                         />
                       ) : (
-                        <AvatarFallback className="bg-white text-2xl font-bold tracking-wider text-black sm:text-3xl">
+                        <AvatarFallback className="bg-white font-sans text-2xl font-bold tracking-wider text-black sm:text-3xl">
                           {topScore.userId.name
                             .split(" ")
                             .map((word) => word[0])
