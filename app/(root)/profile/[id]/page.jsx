@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { FaAward } from "react-icons/fa6";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";
+import { TbVocabulary } from "react-icons/tb";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -122,7 +124,10 @@ const AwardOverlay = ({ image, description, onClose }) => (
 
 const AwardGallery = ({ awards, onAwardClick }) => (
   <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:px-6 lg:py-8">
-    <h2 className="h2-bold mb-3 w-full text-center">Awards</h2>
+    <div className="mb-3 flex lg:mb-6">
+      <h2 className="h2-bold w-full text-center">Awards</h2>
+      <FaAward className="ml-2 text-3xl lg:text-5xl" />
+    </div>
     <div className="flex flex-wrap justify-center gap-6">
       {awards.map((award, idx) => (
         <Image
@@ -141,7 +146,10 @@ const AwardGallery = ({ awards, onAwardClick }) => (
 
 const ScoreTable = ({ scores }) => (
   <div className="mb-8 flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-6 py-4 text-center lg:px-10 lg:py-8">
-    <h2 className="h2-bold mb-3 w-full text-center">Vocabulary Scores</h2>
+    <div className="mb-3 flex lg:mb-6">
+      <h2 className="h2-bold w-full text-center">Vocabulary Scores</h2>
+      <TbVocabulary className="ml-2 text-3xl lg:text-5xl" />
+    </div>
     {scores.map((item, idx) => (
       <div
         key={idx}
