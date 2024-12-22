@@ -6,6 +6,7 @@ const UserSchema = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     image: { type: String },
+    totalCorrectTranslations: { type: Number, default: 0 },
     scores: {
       game1: {
         ngoko: {

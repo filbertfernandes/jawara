@@ -1,10 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdClose, IoMdCloseCircle } from "react-icons/io";
 
 import { phases, useGame } from "@/hooks/useGame";
+import {
+  getTranslationAttemptsLeft,
+  updateTranslationAttemptsLeft,
+} from "@/lib/actions/translation.action";
+import { incrementCorrectTranslations } from "@/lib/actions/user.action";
 import { SoundManager } from "@/lib/SoundManager";
 
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
@@ -29,6 +34,8 @@ const shuffleArray = (arr) => {
 };
 
 export const TranslationInterface = () => {
+  const [correctCount, setCorrectCount] = useState(0);
+  const [attempsLeft, setAttemptsLeft] = useState(0);
   const [isGeneratingSentence, setIsGeneratingSentence] = useState(false);
   const [sentence, setSentence] = useState(null);
   const [words, setWords] = useState([]);
@@ -41,17 +48,39 @@ export const TranslationInterface = () => {
 
   const sentenceBox = useRef();
 
-  const correctAnswers = 0;
-
-  const { userId, changePhase } = useGame((state) => ({
-    userId: state.userId,
+  const { user, changePhase } = useGame((state) => ({
+    user: state.user,
     changePhase: state.changePhase,
   }));
+
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchAttemptsLeft = async () => {
+      try {
+        const { attemptsLeft } = await getTranslationAttemptsLeft({
+          userId: user.data._id,
+        });
+
+        setAttemptsLeft(attemptsLeft);
+        setCorrectCount(user.data.totalCorrectTranslations);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchAttemptsLeft();
+  }, []);
 
   const generateSentence = async () => {
     setIsGeneratingSentence(true);
 
     try {
+      const { attemptsLeft } = await updateTranslationAttemptsLeft({
+        userId: user.data._id,
+      });
+      setAttemptsLeft(attemptsLeft);
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/ai/generate-sentence`,
         { method: "POST" }
@@ -106,6 +135,11 @@ export const TranslationInterface = () => {
       setIsTrue(isTrue);
       setFeedback(feedback);
       setExplanation(explanation);
+
+      if (isTrue) {
+        setCorrectCount(correctCount + 1);
+        await incrementCorrectTranslations(user.data._id);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -139,7 +173,7 @@ export const TranslationInterface = () => {
           className="cursor-pointer text-4xl sm:text-5xl"
           onClick={() => changePhase(phases.FREE)}
         />
-        <div>Correct: {correctAnswers}</div>
+        <div>Correct: {correctCount}</div>
       </div>
 
       {/* Instruction */}
@@ -147,7 +181,9 @@ export const TranslationInterface = () => {
         <div className="text-xl font-bold sm:text-3xl">
           Translate this sentence
         </div>
-        <div className="text-gray-500">Daily Limit: 10</div>
+        <div className="text-gray-500">
+          Daily Limit: {user ? attempsLeft : "10"}
+        </div>
       </div>
 
       {/* Sentence Section */}
@@ -197,7 +233,7 @@ export const TranslationInterface = () => {
 
       {/* Check Button */}
       <div>
-        {userId ? (
+        {user ? (
           <div
             className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
             onClick={sentence ? checkAnswer : generateSentence}
@@ -223,9 +259,9 @@ export const TranslationInterface = () => {
       <div
         className={`
           absolute bottom-0 left-0 z-10 flex flex-col gap-4 justify-center items-center
-          h-1/4 w-full flex-wrap p-2
+          h-[35%] w-full flex-wrap p-2
           transition-transform duration-500 ease-in-out
-          sm:px-12 sm:py-6 md:h-[30%] md:gap-6 lg:px-32
+          sm:px-12 sm:py-6 md:gap-6 lg:px-32
           ${isFeedbackVisible ? "translate-y-0" : "translate-y-full"}
           ${isTrue ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"}
         `}

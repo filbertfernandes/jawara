@@ -35,7 +35,7 @@ export async function POST(request) {
           { isTrue: boolean, "feedback": "", "explanation": "" }
            isTrue will be true if correct, and false if wrong. Also if the student give a blank answer "", it should be wrong.
            The "feedback" is like an appreciation, if student is correct, could be "Awesome!", "Amazing!", "Nice job!" or anything in your mind. If student is wrong, could be "Don't give up!", "Try again!", or anything in your mind.
-           The "explanation" is your explanation of the translation.
+           The "explanation" is your explanation of the translation. Explain it by first tell the right sentence (if incorrect), and then breakdown the Javanese sentence. You don't have to tell the user the English sentence because user already know that, focus explaining the Javanese sentence. If user is correct, just breakdown, don't have to tell the right sentence.
           `,
         },
       ],

@@ -16,6 +16,7 @@ import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGame
 import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
+import { api } from "@/lib/api";
 import { Controls } from "@/utils/constants.js";
 
 // Dynamically import Joystick with SSR disabled
@@ -24,8 +25,9 @@ const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
 });
 
 export default function Home() {
-  const { setUserId, phase } = useGame((state) => ({
+  const { setUserId, setUser, phase } = useGame((state) => ({
     setUserId: state.setUserId,
+    setUser: state.setUser,
     phase: state.phase,
   }));
 
@@ -41,11 +43,22 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (status === "authenticated" && session?.user?.id) {
-      setUserId(session.user.id);
-    } else {
-      setUserId(null);
-    }
+    const getUser = async () => {
+      return await api.users.getById(session.user.id);
+    };
+
+    const fetchAndSetUser = async () => {
+      if (status === "authenticated" && session?.user?.id) {
+        setUserId(session.user.id);
+
+        const user = await getUser();
+        setUser(user);
+      } else {
+        setUserId(null);
+      }
+    };
+
+    fetchAndSetUser();
   }, [status, session]);
 
   // KEYBOARD

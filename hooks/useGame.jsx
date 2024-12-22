@@ -23,6 +23,7 @@ export const useGame = create(
     return {
       // DEFAULT PHASE
       userId: null,
+      user: null,
       isMusicMuted: false,
       phase: phases.FREE,
       gameState: gameStates.MENU,
@@ -33,6 +34,12 @@ export const useGame = create(
       setUserId: (userId) => {
         set(() => {
           return { userId };
+        });
+      },
+
+      setUser: (user) => {
+        set(() => {
+          return { user };
         });
       },
 
