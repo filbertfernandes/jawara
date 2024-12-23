@@ -17,7 +17,7 @@ body {
   }
 
   .fullscreen-orange-100 {
-    @apply fixed left-0 top-0 flex size-full justify-center bg-orange-100 p-4 sm:p-14 lg:px-32 xl:px-64;
+    @apply left-0 top-0 flex size-full justify-center bg-orange-100 p-4 sm:p-14 lg:px-32 xl:px-64;
   }
 
   .fullscreen-black-transparent {

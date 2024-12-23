@@ -109,7 +109,7 @@ const GameLeaderboardInterface = () => {
             {leaderboard.result.topScores.map((topScore, index) => (
               <li key={index}>
                 <Link
-                  href="/profile/1"
+                  href={`/profile/${topScore.userId._id}`}
                   className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
                 >
                   <div className="flex">
@@ -123,8 +123,8 @@ const GameLeaderboardInterface = () => {
                             src={topScore.userId.image}
                             alt={topScore.userId.username}
                             className="object-cover"
-                            width={36}
-                            height={36}
+                            width={50}
+                            height={50}
                             quality={100}
                           />
                         ) : (

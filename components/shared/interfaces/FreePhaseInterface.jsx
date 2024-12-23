@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import { useCallback } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import { SlSpeech } from "react-icons/sl";
@@ -10,23 +9,6 @@ import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.log(error);
-
-      toast({
-        title: "Sign-out Failed",
-        description:
-          error instanceof Error
-            ? error.message
-            : "An error occured during sign-out",
-        variant: "destructive",
-      });
-    }
-  };
-
   const {
     user,
     changePhase,
@@ -79,15 +61,14 @@ export default function FreePhaseInterface() {
         </div>
 
         {user ? (
-          <Link href="/profile/1">
+          <Link href={`/profile/${user.data._id}`}>
             <Avatar className="size-10 sm:size-12">
               {user.data.image ? (
                 <Image
                   src={user.data.image}
                   alt={user.data.username}
-                  className="object-cover"
-                  width={36}
-                  height={36}
+                  width={50}
+                  height={50}
                   quality={100}
                 />
               ) : (

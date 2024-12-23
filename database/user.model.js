@@ -50,6 +50,20 @@ const UserSchema = new Schema(
           default: 0,
         },
       },
+      game4: {
+        ngoko: {
+          type: Number,
+          default: 0,
+        },
+        madya: {
+          type: Number,
+          default: 0,
+        },
+        alus: {
+          type: Number,
+          default: 0,
+        },
+      },
     },
   },
   { timestamps: true }
