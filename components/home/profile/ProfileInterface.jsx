@@ -109,9 +109,9 @@ const AwardOverlay = ({ image, description, onClose }) => (
       <Image
         src={image}
         alt="Selected Award"
-        width={300}
-        height={300}
-        className="rounded-xl"
+        width={500}
+        height={500}
+        className="size-[300px] rounded-xl lg:size-[400px]"
       />
     </div>
     <p className="w-3/4 text-center text-base sm:text-lg lg:text-xl">
@@ -121,7 +121,7 @@ const AwardOverlay = ({ image, description, onClose }) => (
 );
 
 const AwardGallery = ({ awards, onAwardClick }) => (
-  <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:px-6 lg:py-8">
+  <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:max-h-[500px] lg:min-h-[500px] lg:px-6 lg:py-8">
     <div className="mb-3 flex lg:mb-6">
       <h2 className="h2-bold w-full text-center">Awards</h2>
       <FaAward className="ml-2 text-3xl lg:text-5xl" />
@@ -132,9 +132,10 @@ const AwardGallery = ({ awards, onAwardClick }) => (
           key={idx}
           src={award.src}
           alt="Award"
-          width={125}
-          height={125}
-          className="cursor-pointer rounded-xl lg:size-[150px]"
+          width={500}
+          height={500}
+          className="size-[125px] cursor-pointer rounded-xl lg:size-[200px]"
+          quality={100}
           onClick={() => onAwardClick(award.src, award.description)}
         />
       ))}
