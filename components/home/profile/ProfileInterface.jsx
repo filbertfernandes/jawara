@@ -215,10 +215,10 @@ export default function ProfileInterface({ profileUser, sessionUser }) {
 
       <div className="flex w-full justify-center">
         <Avatar className="size-32 font-sans">
-          {profileUser.data.image ? (
+          {profileUser.data?.image ? (
             <Image
-              src={profileUser.data.image}
-              alt={profileUser.data.username}
+              src={profileUser.data?.image}
+              alt={profileUser.data?.username}
               width={200}
               height={200}
               quality={100}
@@ -232,7 +232,7 @@ export default function ProfileInterface({ profileUser, sessionUser }) {
       </div>
 
       <div className="flex h-auto w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
-        <h2 className="h2-bold">{profileUser.data.name}</h2>
+        <h2 className="h2-bold">{profileUser.data?.name}</h2>
       </div>
 
       {showOverlay && (
@@ -247,16 +247,16 @@ export default function ProfileInterface({ profileUser, sessionUser }) {
 
       <div className="flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
         <h1 className="text-8xl">
-          {profileUser.data.totalCorrectTranslations}
+          {profileUser.data?.totalCorrectTranslations}
         </h1>
         <p className="text-base sm:text-lg lg:text-xl">
           Total Correct Translations
         </p>
       </div>
-      {console.log(profileUser.data.scores)}
-      <ScoreTable scores={profileUser.data.scores} />
 
-      {sessionUser && profileUser.data._id === sessionUser.user.id && (
+      <ScoreTable scores={profileUser.data?.scores} />
+
+      {sessionUser && profileUser.data?._id === sessionUser.user.id && (
         <div className="-my-8 mb-8 flex h-auto w-full items-center justify-end">
           <div
             className="flex w-32 cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center text-base sm:text-lg lg:text-xl"

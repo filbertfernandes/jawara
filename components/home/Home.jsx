@@ -55,6 +55,7 @@ export default function Home() {
         setUser(user);
       } else {
         setUserId(null);
+        setUser(null);
       }
     };
 

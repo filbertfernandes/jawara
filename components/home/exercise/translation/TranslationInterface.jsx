@@ -259,7 +259,7 @@ export const TranslationInterface = () => {
       <div
         className={`
           absolute bottom-0 left-0 z-10 flex flex-col gap-4 justify-center items-center
-          h-[35%] w-full flex-wrap p-2
+          min-h-1/4 h-auto w-full flex-wrap p-2
           transition-transform duration-500 ease-in-out
           sm:px-12 sm:py-6 md:gap-6 lg:px-32
           ${isFeedbackVisible ? "translate-y-0" : "translate-y-full"}
@@ -274,7 +274,7 @@ export const TranslationInterface = () => {
           )}
           <h5 className="ml-2 text-2xl font-bold sm:text-4xl">{feedback}</h5>
         </div>
-        <div className="w-full text-xs sm:text-lg md:text-xl">
+        <div className="w-full text-sm sm:text-lg md:text-xl">
           {explanation}
         </div>
         <div className="flex w-full justify-center">
