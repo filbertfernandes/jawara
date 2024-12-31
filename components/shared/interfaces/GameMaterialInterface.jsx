@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect, useState, useCallback } from "react";
 import { PiSpeakerHighBold } from "react-icons/pi";
 
@@ -53,10 +54,12 @@ const GameMaterialInterface = ({ words }) => {
             ) : word.type === "numbers" ? (
               ""
             ) : (
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/002/388/394/non_2x/funny-child-showing-human-body-parts-vector.jpg"
+              <Image
+                src={word.image}
                 alt="material-image"
-                className="h-full w-[45%] object-cover sm:w-[50%]"
+                width={500}
+                height={500}
+                className="h-full w-[45%] object-cover sm:w-1/2"
                 loading="lazy" // Lazy load image for performance
               />
             )}
