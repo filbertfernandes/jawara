@@ -6,4 +6,4 @@ export const Controls = {
   right: "right",
   jump: "jump",
   enter: "enter",
-}
+};

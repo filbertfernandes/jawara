@@ -1,4 +1,5 @@
-import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
+import { Sparkles, useGLTF } from "@react-three/drei";
+import { Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 
 import Lights from "../shared/environment/Lights.jsx";
@@ -8,7 +9,6 @@ import SecondGame from "./games/second-game/SecondGame.jsx";
 import ThirdGame from "./games/third-game/ThirdGame.jsx";
 import Football from "../shared/environment/Football.jsx";
 import GamePortal from "../shared/environment/GamePortal.jsx";
-import World from "../shared/environment/World.jsx";
 import PlayerController from "../shared/player/PlayerController.jsx";
 
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
@@ -30,42 +30,64 @@ export default function Experience({ joystickInput }) {
   };
 
   const portals = [
-    { phase: phases.FIRST_GAME, position: [-6, 0.5, 8], game: "Body\nParts" },
-    { phase: phases.SECOND_GAME, position: [-2, 0.5, 8], game: "Colors" },
-    { phase: phases.THIRD_GAME, position: [2, 0.5, 8], game: "Numbers" },
-    { phase: phases.FOURTH_GAME, position: [6, 0.5, 8], game: "Animals" },
+    { phase: phases.FIRST_GAME, position: [10, 0.5, 4], game: "Body\nParts" },
+    { phase: phases.SECOND_GAME, position: [14, 0.5, 4], game: "Colors" },
+    { phase: phases.THIRD_GAME, position: [8, 0.5, 0], game: "Numbers" },
+    { phase: phases.FOURTH_GAME, position: [12, 0.5, 0], game: "Animals" },
   ];
+
+  // WORLD
+  const worldModel = useGLTF("./models/environment/world.glb");
+  const worldNoPhysicModel = useGLTF(
+    "./models/environment/world-no-physic-environment.glb"
+  );
 
   return (
     <>
-      {/* PERF */}
+      {/* Perf */}
       {/* <Perf position="bottom-right" /> */}
 
-      {/* BACKGROUND COLOR */}
-      <color args={["#ccf2fc"]} attach="background" />
+      {/* Background Color (ccf2fc, ffbe8b, 000a24) */}
+      <color args={["#000a24"]} attach="background" />
 
-      {/* LIGHTS */}
+      {/* Lights */}
       <Lights />
 
-      <Physics debug={false}>
-        {/* FIXED RIGID BODIES */}
-        <RigidBody type="fixed">
-          {/* FLOOR */}
-          <mesh position={[0, -0.1, 0]} scale={[200, 0.2, 400]} receiveShadow>
-            <boxGeometry />
-            <meshStandardMaterial color="#89CB1F" />
-          </mesh>
+      {/* Sparkles */}
+      <Sparkles
+        size={10}
+        scale={[9, 3.5, 9]}
+        position={[18, 2.5, 22]}
+        speed={0.2}
+        count={30}
+      />
 
-          {/* INVISIBLE COLLIDER */}
-          <CuboidCollider args={[0.1, 0.75, 22]} position={[-9.7, 0.75, 0]} />
-          <CuboidCollider args={[0.1, 0.75, 22]} position={[10.45, 0.75, 0]} />
-          <CuboidCollider args={[10, 0.75, 0.1]} position={[0, 0.75, -18.8]} />
-          <CuboidCollider args={[10, 0.75, 0.1]} position={[0, 0.75, 18.8]} />
+      <Sparkles
+        size={10}
+        scale={[9, 4, 60]}
+        position={[-20, 3, 0]}
+        speed={0.2}
+        count={60}
+      />
+
+      <Sparkles
+        size={10}
+        scale={[40, 4, 6]}
+        position={[0, 3, -28]}
+        speed={0.2}
+        count={60}
+      />
+
+      {/* World No Physic */}
+      <primitive object={worldNoPhysicModel.scene} scale={3.2} />
+
+      <Physics debug={false}>
+        {/* World */}
+        <RigidBody type="fixed" colliders="trimesh">
+          <primitive object={worldModel.scene} scale={3.2} />
         </RigidBody>
 
-        {/* ENVIRONMENT */}
-        <World scale={0.55} position={[0, -0.4, 0]} />
-
+        {/* Game Portals */}
         {phase === phases.FREE &&
           portals.map(({ phase, position, game }) => (
             <GamePortal
@@ -79,7 +101,7 @@ export default function Experience({ joystickInput }) {
         {/* Soccer Ball */}
         <RigidBody
           colliders="ball"
-          position={[0, 10, 10]}
+          position={[0, 10, 0]}
           restitution={0.65}
           friction={1.5}
           onCollisionEnter={() =>
@@ -88,12 +110,11 @@ export default function Experience({ joystickInput }) {
         >
           <Football scale={0.25} />
         </RigidBody>
-        {/* END ENVIRONEMT */}
 
-        {/* PLAYER */}
+        {/* Player */}
         <PlayerController joystickInput={joystickInput} />
 
-        {/* PHASES */}
+        {/* Phases */}
         {gamePhaseComponentMap[phase]}
       </Physics>
     </>
