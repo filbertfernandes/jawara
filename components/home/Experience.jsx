@@ -1,5 +1,5 @@
 import { Sparkles, useGLTF } from "@react-three/drei";
-import { Physics, RigidBody } from "@react-three/rapier";
+import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 
 import Lights from "../shared/environment/Lights.jsx";
@@ -55,33 +55,58 @@ export default function Experience({ joystickInput }) {
 
       {/* Sparkles */}
       <Sparkles
-        size={10}
+        size={8}
         scale={[9, 3.5, 9]}
         position={[18, 2.5, 22]}
-        speed={0.2}
+        speed={0.3}
         count={30}
       />
 
       <Sparkles
-        size={10}
-        scale={[9, 4, 60]}
-        position={[-20, 3, 0]}
-        speed={0.2}
-        count={60}
+        size={8}
+        scale={[9, 4, 55]}
+        position={[-20, 3, -5]}
+        speed={0.3}
+        count={30}
       />
 
       <Sparkles
-        size={10}
+        size={8}
         scale={[40, 4, 6]}
         position={[0, 3, -28]}
-        speed={0.2}
-        count={60}
+        speed={0.3}
+        count={30}
       />
 
       {/* World No Physic */}
       <primitive object={worldNoPhysicModel.scene} scale={3.2} />
 
       <Physics debug={false}>
+        {/* Invisible Colliders */}
+        <RigidBody type="fixed">
+          <CuboidCollider
+            args={[15.86, 1.35, 0.16]}
+            position={[-0.6, 0, -23.4]}
+          />
+          <CuboidCollider
+            args={[0.16, 1.35, 17.1]}
+            position={[-16.25, 0, -6.5]}
+          />
+          <CuboidCollider
+            args={[7.43, 1.35, 0.16]}
+            position={[-9.07, 0, 10.5]}
+          />
+          <CuboidCollider args={[3.8, 1.35, 0.16]} position={[-5.4, 0, 17.7]} />
+          <CuboidCollider args={[7.4, 1.35, 0.16]} position={[-1.8, 0, 22.5]} />
+          <CuboidCollider args={[0.16, 1.35, 3.7]} position={[-1.8, 0, 14]} />
+          <CuboidCollider args={[0.16, 1.35, 6]} position={[5.45, 0, 16.5]} />
+          <CuboidCollider args={[6.2, 1.35, 0.16]} position={[11.5, 0, 10.5]} />
+          <CuboidCollider
+            args={[0.16, 1.35, 17.1]}
+            position={[17.55, 0, -6.5]}
+          />
+        </RigidBody>
+
         {/* World */}
         <RigidBody type="fixed" colliders="trimesh">
           <primitive object={worldModel.scene} scale={3.2} />
@@ -101,7 +126,7 @@ export default function Experience({ joystickInput }) {
         {/* Soccer Ball */}
         <RigidBody
           colliders="ball"
-          position={[0, 10, 0]}
+          position={[0, 10, -10]}
           restitution={0.65}
           friction={1.5}
           onCollisionEnter={() =>
