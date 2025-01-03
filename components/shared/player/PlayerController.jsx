@@ -14,7 +14,7 @@ const JUMP_FORCE = 2;
 const MOVEMENT_SPEED = 0.6;
 const MAX_VEL = 3;
 const RUN_VEL = 2;
-const PLAYER_INITIAL_POSITION = { x: -15, y: 0.5, z: 25 };
+const PLAYER_INITIAL_POSITION = { x: 2, y: 0.5, z: 18 };
 
 const debounce = (func, delay) => {
   let timer;
@@ -54,7 +54,10 @@ export default function PlayerController({ joystickInput }) {
     rigidBody.current.setTranslation({
       x: PLAYER_INITIAL_POSITION.x,
       y: PLAYER_INITIAL_POSITION.y,
-      z: PLAYER_INITIAL_POSITION.z,
+      z:
+        phase === phases.FREE
+          ? PLAYER_INITIAL_POSITION.z
+          : PLAYER_INITIAL_POSITION.z - 10,
     });
     rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
     rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 });

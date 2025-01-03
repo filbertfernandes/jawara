@@ -43,7 +43,7 @@ export default function Marble() {
     const ray = new rapier.Ray(origin, direction);
     const hit = world.castRay(ray, 10, true);
 
-    if (hit.toi < 0.417)
+    if (hit.toi < 0.641)
       marbleBody.current.applyImpulse({ x: 0, y: 0.8, z: 0 });
   };
 

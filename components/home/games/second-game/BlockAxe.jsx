@@ -34,7 +34,7 @@ export default function BlockAxe({ coloredBlock, index }) {
     obstacle.current.setNextKinematicTranslation({
       x,
       y: 0.5,
-      z: -6 - index * 3,
+      z: -10 - index * 3,
     });
   });
 
@@ -42,7 +42,7 @@ export default function BlockAxe({ coloredBlock, index }) {
     <RigidBody
       ref={obstacle}
       type="kinematicPosition"
-      position={[0, 0.5, -6 - index * 3]}
+      position={[0, 0.5, -10 - index * 3]}
       restitution={0.2}
       friction={0}
       onCollisionEnter={(other) => {

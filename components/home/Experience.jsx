@@ -1,6 +1,7 @@
 import { Sparkles, useGLTF } from "@react-three/drei";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
+import { useEffect } from "react";
 
 import Lights from "../shared/environment/Lights.jsx";
 import FirstGame from "./games/first-game/FirstGame.jsx";
@@ -12,13 +13,32 @@ import GamePortal from "../shared/environment/GamePortal.jsx";
 import PlayerController from "../shared/player/PlayerController.jsx";
 
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
-import { phases, useGame } from "@/hooks/useGame.jsx";
+import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Experience({ joystickInput }) {
-  const { phase } = useGame((state) => ({
+  const { phase, sky, setSky } = useGame((state) => ({
     phase: state.phase,
+    sky: state.sky,
+    setSky: state.setSky,
   }));
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 7 && currentHour < 16) {
+      // Day (6am - 3:59pm)
+      setSky(skies.DAY);
+    } else if (
+      (currentHour >= 16 && currentHour < 19) || // Dawn (4pm - 18.59pm)
+      (currentHour >= 4 && currentHour < 7) // Dawn (4am - 6.59am)
+    ) {
+      setSky(skies.DAWN);
+    } else {
+      // Night
+      setSky(skies.NIGHT);
+    }
+  }, []);
 
   useBackgroundMusic(phase);
 
@@ -48,39 +68,54 @@ export default function Experience({ joystickInput }) {
       {/* <Perf position="bottom-right" /> */}
 
       {/* Background Color (ccf2fc, ffbe8b, 000a24) */}
-      <color args={["#000a24"]} attach="background" />
+      <color
+        args={[
+          `${
+            sky === skies.DAY
+              ? "#ccf2fc"
+              : sky === skies.DAWN
+              ? "#ffbe8b"
+              : "#000a24"
+          }`,
+        ]}
+        attach="background"
+      />
 
       {/* Lights */}
       <Lights />
 
       {/* Sparkles */}
-      <Sparkles
-        size={8}
-        scale={[9, 3.5, 9]}
-        position={[18, 2.5, 22]}
-        speed={0.3}
-        count={30}
-      />
-
-      <Sparkles
-        size={8}
-        scale={[9, 4, 55]}
-        position={[-20, 3, -5]}
-        speed={0.3}
-        count={30}
-      />
-
-      <Sparkles
-        size={8}
-        scale={[40, 4, 6]}
-        position={[0, 3, -28]}
-        speed={0.3}
-        count={30}
-      />
+      {sky === skies.NIGHT && (
+        <>
+          <Sparkles
+            size={10}
+            scale={[8, 3.5, 8]}
+            position={[18, 2.5, 22]}
+            speed={1}
+            count={30}
+            color="#ffff00"
+          />
+          <Sparkles
+            size={10}
+            scale={[12, 4, 55]}
+            position={[-22, 3, -5]}
+            speed={1}
+            count={30}
+            color="#ffff00"
+          />
+          <Sparkles
+            size={10}
+            scale={[40, 4, 6]}
+            position={[0, 3, -28]}
+            speed={1}
+            count={30}
+            color="#ffff00"
+          />
+        </>
+      )}
 
       {/* World No Physic */}
       <primitive object={worldNoPhysicModel.scene} scale={3.2} />
-
       <Physics debug={false}>
         {/* Invisible Colliders */}
         <RigidBody type="fixed">

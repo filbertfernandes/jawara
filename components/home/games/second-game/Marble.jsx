@@ -9,7 +9,7 @@ import { useSecondGame } from "./stores/useSecondGame";
 import { useGame, gameStates } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 4);
+const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 0);
 const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3;
 
 export default function Marble() {
@@ -57,7 +57,7 @@ export default function Marble() {
     const ray = new rapier.Ray(origin, direction);
     const hit = world.castRay(ray, 10, true);
 
-    if (hit.toi < 0.417)
+    if (hit.toi < 0.641)
       marbleBody.current.applyImpulse({ x: 0, y: 0.7, z: 0 });
   };
 

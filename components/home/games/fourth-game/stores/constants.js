@@ -268,25 +268,4 @@ export const positions = [
   {
     position: [8, 0, 0],
   },
-  {
-    position: [-4, 0, 0],
-  },
-  {
-    position: [-8, 0, 0],
-  },
-  {
-    position: [4, 0, 5],
-  },
-  {
-    position: [8, 0, 5],
-  },
-  {
-    position: [0, 0, 5],
-  },
-  {
-    position: [-4, 0, 5],
-  },
-  {
-    position: [-8, 0, 5],
-  },
 ];

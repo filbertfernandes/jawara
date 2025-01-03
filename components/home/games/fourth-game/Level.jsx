@@ -79,10 +79,11 @@ const Level = () => {
               colliders={false}
               scale={1}
               enabledRotations={[false, false, false]}
-              position={s.position}
-              position-y={
-                s.word.rigidPositionY ? s.word.rigidPositionY : s.position[1]
-              }
+              position={[
+                s.position[0],
+                s.word.rigidPositionY ? s.word.rigidPositionY : s.position[1],
+                s.position[2],
+              ]}
               rotation-y={Math.PI * Math.random()}
             >
               <CuboidCollider

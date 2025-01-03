@@ -18,6 +18,12 @@ export const gameStates = {
   GAME_OVER: "GAME_OVER",
 };
 
+export const skies = {
+  DAY: "day",
+  DAWN: "dawn",
+  NIGHT: "night",
+};
+
 export const useGame = create(
   subscribeWithSelector((set) => {
     return {
@@ -29,6 +35,7 @@ export const useGame = create(
       gameState: gameStates.MENU,
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },
+      sky: null,
 
       // USER SESSION
       setUserId: (userId) => {
@@ -82,6 +89,13 @@ export const useGame = create(
       setPlayerState: (playerState) => {
         set({
           playerState,
+        });
+      },
+
+      // SKIES
+      setSky: (sky) => {
+        set(() => {
+          return { sky };
         });
       },
     };
