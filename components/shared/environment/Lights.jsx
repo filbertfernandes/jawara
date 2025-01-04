@@ -10,7 +10,7 @@ export default function Lights() {
       <directionalLight
         castShadow
         position={[7.5, 7.5, 1]}
-        intensity={sky === skies.DAY ? 2 : sky === skies.DAWN ? 1 : 0.7}
+        intensity={sky === skies.DAY ? 2.5 : sky === skies.DAWN ? 1 : 0.7}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
         shadow-camera-far={20}
@@ -20,7 +20,9 @@ export default function Lights() {
         shadow-camera-left={-20}
       />
 
-      <ambientLight intensity={sky === skies.DAY ? 1 : 0.7} />
+      <ambientLight
+        intensity={sky === skies.DAY ? 1.2 : sky === skies.DAWN ? 0.8 : 0.7}
+      />
     </>
   );
 }
