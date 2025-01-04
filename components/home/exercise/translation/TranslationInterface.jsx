@@ -65,9 +65,9 @@ export const TranslationInterface = () => {
           userId,
         });
 
-        const { totalCorrectTranslations } = await getTotalCorrectTranslations({
-          userId,
-        });
+        const { totalCorrectTranslations } = await getTotalCorrectTranslations(
+          userId
+        );
 
         setAttemptsLeft(attemptsLeft);
         setCorrectCount(totalCorrectTranslations);
