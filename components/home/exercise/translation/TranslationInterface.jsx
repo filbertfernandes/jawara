@@ -184,9 +184,15 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2">
           <div>Correct:</div>
           <div>
-            {userId
-              ? correctCount || <LoadingSpinner className="animate-spin" />
-              : "0"}
+            {userId ? (
+              correctCount !== null ? (
+                correctCount
+              ) : (
+                <LoadingSpinner className="animate-spin" />
+              )
+            ) : (
+              "0"
+            )}
           </div>
         </div>
       </div>
@@ -199,9 +205,15 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2 text-gray-500">
           <div>Daily Limit:</div>
           <div>
-            {userId
-              ? attempsLeft || <LoadingSpinner className="animate-spin" />
-              : "10"}
+            {userId ? (
+              attempsLeft !== null ? (
+                attempsLeft
+              ) : (
+                <LoadingSpinner className="animate-spin" />
+              )
+            ) : (
+              "10"
+            )}
           </div>
         </div>
       </div>
