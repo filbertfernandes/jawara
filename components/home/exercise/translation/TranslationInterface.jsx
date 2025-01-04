@@ -266,22 +266,28 @@ export const TranslationInterface = () => {
       {/* Check Button */}
       <div>
         {userId ? (
-          attempsLeft > 0 ? (
-            <div
-              className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
-              onClick={sentence ? checkAnswer : generateSentence}
-            >
-              {isCheckingAnswer
-                ? "Checking....."
-                : sentence
-                ? "Check"
-                : isGeneratingSentence
-                ? "Generating....."
-                : "Generate Sentence"}
-            </div>
+          attempsLeft ? (
+            attempsLeft > 0 ? (
+              <div
+                className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+                onClick={sentence ? checkAnswer : generateSentence}
+              >
+                {isCheckingAnswer
+                  ? "Checking....."
+                  : sentence
+                  ? "Check"
+                  : isGeneratingSentence
+                  ? "Generating....."
+                  : "Generate Sentence"}
+              </div>
+            ) : (
+              <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
+                Daily limit reached 🙂
+              </div>
+            )
           ) : (
-            <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white transition-all duration-200 ease-in-out sm:mt-20 sm:text-3xl lg:mt-10">
-              Daily limit reached 🙂
+            <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
+              Loading.....
             </div>
           )
         ) : (
