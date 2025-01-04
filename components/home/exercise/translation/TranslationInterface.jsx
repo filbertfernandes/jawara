@@ -9,7 +9,10 @@ import {
   getTranslationAttemptsLeft,
   updateTranslationAttemptsLeft,
 } from "@/lib/actions/translation.action";
-import { incrementCorrectTranslations } from "@/lib/actions/user.action";
+import {
+  getTotalCorrectTranslations,
+  incrementCorrectTranslations,
+} from "@/lib/actions/user.action";
 import { SoundManager } from "@/lib/SoundManager";
 
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
@@ -48,22 +51,26 @@ export const TranslationInterface = () => {
 
   const sentenceBox = useRef();
 
-  const { user, changePhase } = useGame((state) => ({
-    user: state.user,
+  const { userId, changePhase } = useGame((state) => ({
+    userId: state.userId,
     changePhase: state.changePhase,
   }));
 
   useEffect(() => {
-    if (!user) return;
+    if (!userId) return;
 
     const fetchAttemptsLeft = async () => {
       try {
         const { attemptsLeft } = await getTranslationAttemptsLeft({
-          userId: user.data._id,
+          userId,
+        });
+
+        const { totalCorrectTranslations } = await getTotalCorrectTranslations({
+          userId,
         });
 
         setAttemptsLeft(attemptsLeft);
-        setCorrectCount(user.data.totalCorrectTranslations);
+        setCorrectCount(totalCorrectTranslations);
       } catch (error) {
         console.log(error);
       }
@@ -77,7 +84,7 @@ export const TranslationInterface = () => {
 
     try {
       const { attemptsLeft } = await updateTranslationAttemptsLeft({
-        userId: user.data._id,
+        userId,
       });
       setAttemptsLeft(attemptsLeft);
 
@@ -138,7 +145,7 @@ export const TranslationInterface = () => {
 
       if (isTrue) {
         setCorrectCount(correctCount + 1);
-        await incrementCorrectTranslations(user.data._id);
+        await incrementCorrectTranslations(userId);
       }
     } catch (error) {
       console.log(error);
@@ -182,7 +189,7 @@ export const TranslationInterface = () => {
           Translate this sentence
         </div>
         <div className="text-gray-500">
-          Daily Limit: {user ? attempsLeft : "10"}
+          Daily Limit: {userId ? attempsLeft : "10"}
         </div>
       </div>
 
@@ -233,7 +240,7 @@ export const TranslationInterface = () => {
 
       {/* Check Button */}
       <div>
-        {user ? (
+        {userId ? (
           <div
             className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
             onClick={sentence ? checkAnswer : generateSentence}

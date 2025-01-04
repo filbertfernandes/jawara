@@ -42,7 +42,7 @@ export async function POST(request) {
     // });
 
     // const reply = response.choices[0].message.content;
-    const reply = `{ "isTrue": true, "feedback": "Amazing!", "explanation": "Is this the real life? Is this just fantasy? Caught in a landslide no escape from reality. Open your eyes, look to the skies and see, I'm just a poor boy i need no sympathy. Because i'm easy come, easy go, little high, little low. Anyway the wind blows doesn't really matter to me, to me.. Mama just killed a man, put a gun againts his head, pulled my trigger now he's dead, mama life had just begun, but now I've gone and thrown it all away." }`; // TO BE DELETED
+    const reply = `{ "isTrue": true, "feedback": "Amazing!", "explanation": "Is this the real life? Is this just fantasy? Caught in a landslide no escape from reality. Open your eyes, look up to the skies and see, I'm just a poor boy i need no sympathy. Because i'm easy come, easy go, little high, little low. Anyway the wind blows doesn't really matter to me, to me.. Mama just killed a man, put a gun againts his head, pulled my trigger now he's dead, mama life had just begun, but now I've gone and thrown it all away." }`; // TO BE DELETED
 
     return NextResponse.json({ reply });
   } catch (error) {
