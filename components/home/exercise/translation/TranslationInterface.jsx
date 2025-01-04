@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdClose, IoMdCloseCircle } from "react-icons/io";
 
+import LoadingSpinner from "@/components/ui/loadingSpinner";
 import { phases, useGame } from "@/hooks/useGame";
 import {
   getTranslationAttemptsLeft,
@@ -37,8 +38,8 @@ const shuffleArray = (arr) => {
 };
 
 export const TranslationInterface = () => {
-  const [correctCount, setCorrectCount] = useState(0);
-  const [attempsLeft, setAttemptsLeft] = useState(0);
+  const [correctCount, setCorrectCount] = useState(null);
+  const [attempsLeft, setAttemptsLeft] = useState(null);
   const [isGeneratingSentence, setIsGeneratingSentence] = useState(false);
   const [sentence, setSentence] = useState(null);
   const [words, setWords] = useState([]);
@@ -180,7 +181,14 @@ export const TranslationInterface = () => {
           className="cursor-pointer text-4xl sm:text-5xl"
           onClick={() => changePhase(phases.FREE)}
         />
-        <div>Correct: {correctCount}</div>
+        <div className="flex items-center gap-2">
+          <div>Correct:</div>
+          <div>
+            {userId
+              ? correctCount || <LoadingSpinner className="animate-spin" />
+              : "0"}
+          </div>
+        </div>
       </div>
 
       {/* Instruction */}
@@ -188,8 +196,13 @@ export const TranslationInterface = () => {
         <div className="text-xl font-bold sm:text-3xl">
           Translate this sentence
         </div>
-        <div className="text-gray-500">
-          Daily Limit: {userId ? attempsLeft : "10"}
+        <div className="flex items-center gap-2 text-gray-500">
+          <div>Daily Limit:</div>
+          <div>
+            {userId
+              ? attempsLeft || <LoadingSpinner className="animate-spin" />
+              : "10"}
+          </div>
         </div>
       </div>
 
