@@ -8,6 +8,7 @@ import FirstGame from "./games/first-game/FirstGame.jsx";
 import FourthGame from "./games/fourth-game/FourthGame.jsx";
 import SecondGame from "./games/second-game/SecondGame.jsx";
 import ThirdGame from "./games/third-game/ThirdGame.jsx";
+import Book from "../shared/environment/Book.jsx";
 import Football from "../shared/environment/Football.jsx";
 import GamePortal from "../shared/environment/GamePortal.jsx";
 import PlayerController from "../shared/player/PlayerController.jsx";
@@ -68,7 +69,6 @@ export default function Experience({ joystickInput }) {
   const worldNoPhysicModel = useGLTF(
     "./models/environment/world-no-physic-environment.glb"
   );
-  const book = useGLTF("./models/environment/book.glb");
 
   return (
     <>
@@ -185,9 +185,7 @@ export default function Experience({ joystickInput }) {
         </RigidBody>
 
         {/* Book */}
-        <RigidBody colliders="cuboid" density={7} restitution={0}>
-          <primitive object={book.scene} scale={3.2} />
-        </RigidBody>
+        <Book />
 
         {/* Player */}
         <PlayerController joystickInput={joystickInput} />
