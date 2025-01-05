@@ -57,7 +57,14 @@ export default function Experience({ joystickInput }) {
   ];
 
   // WORLD
-  const worldModel = useGLTF("./models/environment/world.glb");
+  const worldFloorModel = useGLTF(
+    `./models/environment/${
+      sky === skies.NIGHT ? "world-floor-night" : "world-floor"
+    }.glb`
+  );
+  const worldPhysicModel = useGLTF(
+    "./models/environment/world-physic-environment.glb"
+  );
   const worldNoPhysicModel = useGLTF(
     "./models/environment/world-no-physic-environment.glb"
   );
@@ -116,6 +123,7 @@ export default function Experience({ joystickInput }) {
 
       {/* World No Physic */}
       <primitive object={worldNoPhysicModel.scene} scale={3.2} />
+
       <Physics debug={false}>
         {/* Invisible Colliders */}
         <RigidBody type="fixed">
@@ -142,9 +150,13 @@ export default function Experience({ joystickInput }) {
           />
         </RigidBody>
 
-        {/* World */}
+        {/* World Physic */}
+        <RigidBody type="fixed" colliders="cuboid">
+          <primitive object={worldFloorModel.scene} scale={3.2} />
+        </RigidBody>
+
         <RigidBody type="fixed" colliders="trimesh">
-          <primitive object={worldModel.scene} scale={3.2} />
+          <primitive object={worldPhysicModel.scene} scale={3.2} />
         </RigidBody>
 
         {/* Game Portals */}
