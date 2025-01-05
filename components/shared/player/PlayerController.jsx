@@ -153,7 +153,7 @@ export default function PlayerController({ joystickInput }) {
       new THREE.Vector3()
     );
     state.camera.position.x = playerWorldPosition.x;
-    state.camera.position.y = 3;
+    state.camera.position.y = playerWorldPosition.y + 3;
     state.camera.position.z = playerWorldPosition.z + 5.5;
 
     const targetLookAt = new THREE.Vector3(

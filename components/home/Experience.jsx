@@ -68,6 +68,7 @@ export default function Experience({ joystickInput }) {
   const worldNoPhysicModel = useGLTF(
     "./models/environment/world-no-physic-environment.glb"
   );
+  const book = useGLTF("./models/environment/book.glb");
 
   return (
     <>
@@ -181,6 +182,11 @@ export default function Experience({ joystickInput }) {
           }
         >
           <Football scale={0.25} />
+        </RigidBody>
+
+        {/* Book */}
+        <RigidBody colliders="cuboid" density={7} restitution={0}>
+          <primitive object={book.scene} scale={3.2} />
         </RigidBody>
 
         {/* Player */}
