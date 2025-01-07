@@ -1,10 +1,12 @@
 import { Edges, Outlines, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 const Book = () => {
   const { nodes, materials } = useGLTF("./models/environment/book.glb");
   const [hovered, setHovered] = useState(false);
+  const router = useRouter();
 
   const handlePointerOver = () => {
     document.body.style.cursor = "pointer";
@@ -17,8 +19,7 @@ const Book = () => {
   };
 
   const handleClick = () => {
-    alert("You clicked the book!");
-    // Add your logic here (e.g., navigate, show modal, etc.)
+    router.push("/curriculum");
   };
 
   return (
