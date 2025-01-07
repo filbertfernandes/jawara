@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaAward } from "react-icons/fa6";
+import { GiExitDoor } from "react-icons/gi";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
@@ -208,8 +209,8 @@ export default function ProfileInterface({ profileUser, sessionUser }) {
   return (
     <div className="fullscreen-orange-100 flex-wrap gap-6 overflow-scroll font-questrial font-bold text-white">
       <Link href="/">
-        <div className="absolute left-4 top-4 cursor-pointer text-4xl text-black sm:text-5xl">
-          <IoMdClose />
+        <div className="absolute left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
+          <GiExitDoor />
         </div>
       </Link>
 
