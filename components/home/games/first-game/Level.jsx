@@ -82,18 +82,6 @@ export default function Level({ characterBody }) {
     }
   };
 
-  const handleNumberHover = (index) => {
-    const newInputBoxes = [...inputBoxes];
-    newInputBoxes[index].visible = true;
-    setInputBoxes(newInputBoxes);
-  };
-
-  const handleNumberClick = (index) => {
-    const newInputBoxes = [...inputBoxes];
-    newInputBoxes[index].visible = !newInputBoxes[index].visible;
-    setInputBoxes(newInputBoxes);
-  };
-
   return (
     <>
       {/* HTML */}
@@ -107,15 +95,11 @@ export default function Level({ characterBody }) {
             distanceFactor={1.2}
             occlude={[characterBody]}
           >
-            <div
-              className={`number ${box.isCorrect ? "number-green" : ""}`}
-              onMouseEnter={() => handleNumberHover(index)}
-              onClick={() => handleNumberClick(index)}
-            >
+            <div className={`number ${box.isCorrect ? "number-green" : ""}`}>
               {index + 1}
             </div>
             <div
-              className={`input-box ${box.visible ? "visible" : ""} ${
+              className={`input-box visible ${
                 box.isCorrect ? "input-box-green" : ""
               }`}
             >
