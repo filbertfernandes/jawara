@@ -14,10 +14,10 @@ import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthG
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx";
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
 import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx";
+import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { api } from "@/lib/api";
-import { Controls } from "@/utils/constants.js";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
@@ -65,12 +65,12 @@ export default function Home() {
   // KEYBOARD
   const map = useMemo(
     () => [
-      { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
-      { name: Controls.back, keys: ["ArrowDown", "KeyS"] },
-      { name: Controls.left, keys: ["ArrowLeft", "KeyA"] },
-      { name: Controls.right, keys: ["ArrowRight", "KeyD"] },
-      { name: Controls.jump, keys: ["Space"] },
-      { name: Controls.enter, keys: ["Enter"] },
+      { name: controls.FORWARD, keys: ["ArrowUp", "KeyW"] },
+      { name: controls.BACK, keys: ["ArrowDown", "KeyS"] },
+      { name: controls.LEFT, keys: ["ArrowLeft", "KeyA"] },
+      { name: controls.RIGHT, keys: ["ArrowRight", "KeyD"] },
+      { name: controls.JUMP, keys: ["Space"] },
+      { name: controls.ENTER, keys: ["Enter"] },
     ],
     []
   );

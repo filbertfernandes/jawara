@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
-import ROUTES from "@/constants/routes";
+import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
 export default function SocialAuthForm() {
   const handleSignIn = async (provider) => {
     try {
       await signIn(provider, {
-        callbackUrl: ROUTES.HOME,
+        callbackUrl: routes.HOME,
         redirect: false,
       });
     } catch (error) {

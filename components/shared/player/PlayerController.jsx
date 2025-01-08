@@ -6,9 +6,9 @@ import * as THREE from "three";
 
 import Player from "./Player.jsx";
 
+import controls from "@/constants/controls.js";
 import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
-import { Controls } from "@/utils/constants.js";
 
 const JUMP_FORCE = 2;
 const MOVEMENT_SPEED = 0.6;
@@ -38,12 +38,12 @@ export default function PlayerController({ joystickInput }) {
     })
   );
 
-  const jumpPressed = useKeyboardControls((state) => state[Controls.jump]);
-  const leftPressed = useKeyboardControls((state) => state[Controls.left]);
-  const rightPressed = useKeyboardControls((state) => state[Controls.right]);
-  const backPressed = useKeyboardControls((state) => state[Controls.back]);
+  const jumpPressed = useKeyboardControls((state) => state[controls.JUMP]);
+  const leftPressed = useKeyboardControls((state) => state[controls.LEFT]);
+  const rightPressed = useKeyboardControls((state) => state[controls.RIGHT]);
+  const backPressed = useKeyboardControls((state) => state[controls.BACK]);
   const forwardPressed = useKeyboardControls(
-    (state) => state[Controls.forward]
+    (state) => state[controls.FORWARD]
   );
 
   const rigidBody = useRef();

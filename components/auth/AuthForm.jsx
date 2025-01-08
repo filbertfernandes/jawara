@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import ROUTES from "@/constants/routes";
+import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
 const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
@@ -41,7 +41,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             : "Signed up successfully",
       });
 
-      router.push(ROUTES.HOME);
+      router.push(routes.HOME);
     } else {
       toast({
         title: `Error ${result?.status}`,
@@ -110,7 +110,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
           <p className="w-full">
             Don&apos;t have an account?{" "}
             <Link
-              href={ROUTES.SIGN_UP}
+              href={routes.SIGN_UP}
               className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
               Sign Up
@@ -120,7 +120,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
           <p className="w-full">
             Already have an account?{" "}
             <Link
-              href={ROUTES.SIGN_IN}
+              href={routes.SIGN_IN}
               className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
               Sign In
