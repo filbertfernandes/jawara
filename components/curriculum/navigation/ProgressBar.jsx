@@ -22,7 +22,7 @@ const ProgressBar = ({ title, first, completed, active }) => {
         )}
       </div>
       <div className="flex w-1/2">
-        <h5 className="h5-bold">{title}</h5>
+        <h5 className="text-xl font-bold lg:text-2xl">{title}</h5>
       </div>
     </div>
   );

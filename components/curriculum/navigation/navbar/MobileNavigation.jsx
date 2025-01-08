@@ -14,9 +14,8 @@ import {
 } from "@/components/ui/sheet";
 
 const MobileNavigation = ({ chapter }) => {
-  console.log(chapter);
   return (
-    <div className="left-0 top-0 size-full bg-white p-4 font-questrial sm:p-14">
+    <div className="left-0 top-0 p-4 sm:p-14 md:hidden">
       <Sheet>
         <SheetTrigger>
           <RxHamburgerMenu className="text-3xl text-black" />
@@ -32,11 +31,11 @@ const MobileNavigation = ({ chapter }) => {
               </div>
               <div className="h3-bold">{chapter.title}</div>
             </SheetTitle>
-            <div>
+            <SheetClose>
               <ProgressBar title="Pre-Test" first completed />
               <ProgressBar title="Material" active />
               <ProgressBar title="Post-Test" />
-            </div>
+            </SheetClose>
           </SheetHeader>
         </SheetContent>
       </Sheet>
