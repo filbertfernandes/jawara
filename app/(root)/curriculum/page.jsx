@@ -21,7 +21,7 @@ const page = () => {
           </h1>
           <p className="w-full text-center text-sm text-gray-500 sm:w-3/4 md:w-1/2 lg:text-lg">
             Explore each chapter filled with engaging lessons, quizzes, and
-            activities designed to help you master Javanese. Let's take the
+            activities designed to help you master Javanese. Let&apos;s take the
             first step together and begin your learning adventure!
           </p>
         </div>
