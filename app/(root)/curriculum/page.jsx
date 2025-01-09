@@ -13,6 +13,19 @@ const page = () => {
             <GiExitDoor />
           </div>
         </Link>
+
+        <div className="mb-4 mt-10 flex w-full flex-wrap justify-center gap-2">
+          <h1 className="h1-bold w-full text-center text-black">
+            Welcome to <span className="text-orange-500">Jawara</span>{" "}
+            Curriculum!
+          </h1>
+          <p className="w-full text-center text-sm text-gray-500 sm:w-3/4 md:w-1/2 lg:text-lg">
+            Explore each chapter filled with engaging lessons, quizzes, and
+            activities designed to help you master Javanese. Let's take the
+            first step together and begin your learning adventure!
+          </p>
+        </div>
+
         {chapters.map((chapter) => (
           <div
             key={chapter.id}
