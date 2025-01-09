@@ -1,16 +1,16 @@
 const chapters = [
   {
     id: 1,
-    image: "",
     title: "Kenalan",
     description:
       "Master basic Javanese greetings, introductions, and simple conversation starters!",
     order: 1,
-    contents: [
+    phases: [
+      { name: "Pretest" },
       { name: "Number", pdfPath: "/ppt/number.pdf" },
       { name: "Color", pdfPath: "/ppt/color.pdf" },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "What is the Javanese word for 'Hello'?",
@@ -36,16 +36,16 @@ const chapters = [
   },
   {
     id: 2,
-    image: "",
     title: "Pitutur kang Becik",
     description:
       "Learn about good advice and wise sayings in Javanese culture.",
     order: 2,
-    contents: [
+    phases: [
+      { name: "Pretest" },
       { name: "Wisdom", pdfPath: "/ppt/wisdom.pdf" },
       { name: "Proverbs", pdfPath: "/ppt/proverbs.pdf" },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "What does 'Aja nganti nyangkruk' mean?",
@@ -71,16 +71,16 @@ const chapters = [
   },
   {
     id: 3,
-    image: "",
     title: "Budi Pekerti",
     description:
       "Learn about good manners and how to behave respectfully in Javanese culture.",
     order: 3,
-    contents: [
+    phases: [
+      { name: "Pretest" },
       { name: "Respect", pdfPath: "/ppt/respect.pdf" },
       { name: "Etiquette", pdfPath: "/ppt/etiquette.pdf" },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "How do you show respect in Javanese culture?",
@@ -106,15 +106,19 @@ const chapters = [
   },
   {
     id: 4,
-    image: "",
     title: "Perangane Awak",
     description: "Learn the Javanese vocabulary related to body parts.",
     order: 4,
-    contents: [
+    phases: [
+      { name: "Pretest" },
       { name: "Head and Neck", pdfPath: "/ppt/head-neck.pdf" },
-      { name: "Limbs and Hands", pdfPath: "/ppt/limbs-hands.pdf" },
+      {
+        type: "Content",
+        name: "Limbs and Hands",
+        pdfPath: "/ppt/limbs-hands.pdf",
+      },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "What is the Javanese word for 'Hand'?",
@@ -130,15 +134,19 @@ const chapters = [
   },
   {
     id: 5,
-    image: "",
     title: "Ayo, Dolanan",
     description: "Explore Javanese traditional games and fun activities.",
     order: 5,
-    contents: [
-      { name: "Traditional Games", pdfPath: "/ppt/traditional-games.pdf" },
+    phases: [
+      { name: "Pretest" },
+      {
+        type: "Content",
+        name: "Traditional Games",
+        pdfPath: "/ppt/traditional-games.pdf",
+      },
       { name: "Toys", pdfPath: "/ppt/toys.pdf" },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "Which of these is a traditional Javanese game?",
@@ -154,15 +162,19 @@ const chapters = [
   },
   {
     id: 6,
-    image: "",
     title: "Ndongeng Fabel",
     description: "Learn about Javanese fairy tales and storytelling.",
     order: 6,
-    contents: [
+    phases: [
+      { name: "Pretest" },
       { name: "Fairy Tales", pdfPath: "/ppt/fairy-tales.pdf" },
-      { name: "Storytelling", pdfPath: "/ppt/storytelling.pdf" },
+      {
+        type: "Content",
+        name: "Storytelling",
+        pdfPath: "/ppt/storytelling.pdf",
+      },
+      { name: "Posttest" },
     ],
-    contentsCount: 2,
     questions: [
       {
         question: "What is a common theme in Javanese fairy tales?",
