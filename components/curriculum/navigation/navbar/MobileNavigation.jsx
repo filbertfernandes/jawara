@@ -35,7 +35,7 @@ const MobileNavigation = ({ chapter }) => {
   const userChapterProgress = dummyUserChapterProgress;
 
   return (
-    <div className="left-0 top-0 p-4 sm:p-14 md:hidden">
+    <div className="absolute left-0 top-0 p-4 sm:p-14 md:hidden">
       <Sheet>
         <SheetTrigger>
           <RxHamburgerMenu className="text-3xl text-black" />
