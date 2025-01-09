@@ -32,6 +32,16 @@ const chapters = [
         ],
         correctAnswer: 2,
       },
+      {
+        question: "How do you say 'Good morning' in Javanese?",
+        options: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
+      },
     ],
   },
   {
