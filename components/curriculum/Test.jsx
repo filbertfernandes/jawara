@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
+import { useCurriculum } from "./stores/useCurriculum";
+
 import {
+  getUserProgress,
   incrementCompletedPhases,
   updatePretestScore,
 } from "@/lib/actions/userProgress.action";
 
-const Test = ({ questions, chapterId, userId }) => {
+const Test = ({ questions, chapterId, userProgress }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
@@ -15,6 +18,17 @@ const Test = ({ questions, chapterId, userId }) => {
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+
+  const { phase, changePhase } = useCurriculum((state) => ({
+    phase: state.phase,
+    changePhase: state.changePhase,
+  }));
+
+  useEffect(() => {
+    if (userProgress.preTestScore >= 0) {
+      setIsFinished(true);
+    }
+  }, []);
 
   const handleOptionClick = (index) => {
     // Update the userAnswers state at the current question index
@@ -43,18 +57,23 @@ const Test = ({ questions, chapterId, userId }) => {
       // Update pretest score
       await updatePretestScore(
         chapterId,
-        userId,
-        (correctCount / questions.length) * 10
-      ); // Example, assuming the score is out of 10
+        userProgress.userId,
+        (correctCount / questions.length) * 100
+      );
 
       // Increment completed phases
-      await incrementCompletedPhases(chapterId, userId);
+      await incrementCompletedPhases(chapterId, userProgress.userId);
 
       setShowOverlay(true);
       setIsFinished(true);
     } catch (error) {
       console.error("Error updating progress:", error);
     }
+  };
+
+  const handleCloseOverlay = () => {
+    changePhase(phase + 1);
+    setShowOverlay(false);
   };
 
   return (
@@ -139,7 +158,7 @@ const Test = ({ questions, chapterId, userId }) => {
         <div className="absolute flex items-center justify-center">
           <button
             className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-white sm:text-4xl"
-            onClick={() => setShowOverlay(false)}
+            onClick={handleCloseOverlay}
           >
             <IoMdClose />
           </button>

@@ -18,13 +18,13 @@ export default async function Page({ params }) {
   }
 
   // Create user progress if the user is logged in
-  await createUserProgress(id, sessionUser.user.id);
+  const userProgress = await createUserProgress(id, sessionUser.user.id);
 
   return (
     <div className="flex size-full min-h-screen overflow-scroll bg-white font-questrial">
-      <MobileNavigation chapter={chapter} userId={sessionUser.user.id} />
-      <Sidebar chapter={chapter} userId={sessionUser.user.id} />
-      <ChapterContent chapter={chapter} userId={sessionUser.user.id} />
+      <MobileNavigation chapter={chapter} userProgress={userProgress} />
+      <Sidebar chapter={chapter} userProgress={userProgress} />
+      <ChapterContent chapter={chapter} userProgress={userProgress} />
     </div>
   );
 }

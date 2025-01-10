@@ -9,7 +9,7 @@ import { useCurriculum } from "../stores/useCurriculum";
 
 import { getUserProgress } from "@/lib/actions/userProgress.action";
 
-const Sidebar = ({ chapter, userId }) => {
+const Sidebar = ({ chapter, userProgress }) => {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
@@ -21,8 +21,7 @@ const Sidebar = ({ chapter, userId }) => {
   useEffect(() => {
     const fetchUserProgress = async () => {
       try {
-        setLoading(true);
-        const result = await getUserProgress(chapter.id, userId); // Call server action
+        const result = await getUserProgress(chapter.id, userProgress.userId); // Call server action
 
         if (result.success) {
           setUserChapterProgress(result.data);
@@ -37,7 +36,7 @@ const Sidebar = ({ chapter, userId }) => {
     };
 
     fetchUserProgress();
-  }, [userId, chapter.id, phase]);
+  }, [userProgress, chapter.id, phase]);
 
   if (error) return <div>{error}</div>;
 
@@ -68,6 +67,9 @@ const Sidebar = ({ chapter, userId }) => {
               key={index}
               title={chapterPhase.name}
               first={index === 0}
+              completed={userProgress.completedPhases > index}
+              inProgress={userProgress.completedPhases === index}
+              active={phase === chapterPhase.name}
             />
           )
         )}

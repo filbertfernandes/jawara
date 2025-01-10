@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/sheet";
 import { getUserProgress } from "@/lib/actions/userProgress.action";
 
-const MobileNavigation = ({ chapter, userId }) => {
+const MobileNavigation = ({ chapter, userProgress }) => {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
@@ -30,8 +30,7 @@ const MobileNavigation = ({ chapter, userId }) => {
   useEffect(() => {
     const fetchUserProgress = async () => {
       try {
-        setLoading(true);
-        const result = await getUserProgress(chapter.id, userId); // Call the server action
+        const result = await getUserProgress(chapter.id, userProgress.userId); // Call the server action
 
         if (result.success) {
           setUserChapterProgress(result.data);
@@ -46,7 +45,7 @@ const MobileNavigation = ({ chapter, userId }) => {
     };
 
     fetchUserProgress();
-  }, [userId, chapter.id, phase]);
+  }, [userProgress, chapter.id, phase]);
 
   if (error) return <div>{error}</div>;
 
@@ -84,6 +83,9 @@ const MobileNavigation = ({ chapter, userId }) => {
                   key={index}
                   title={chapterPhase.name}
                   first={index === 0}
+                  completed={userProgress.completedPhases > index}
+                  inProgress={userProgress.completedPhases === index}
+                  active={phase === chapterPhase.name}
                 />
               )
             )}

@@ -5,7 +5,7 @@ import { useCurriculum } from "./stores/useCurriculum";
 import Content from "@/components/curriculum/Content";
 import Test from "@/components/curriculum/Test";
 
-export default function ChapterContent({ chapter, userId }) {
+export default function ChapterContent({ chapter, userProgress }) {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
@@ -17,7 +17,7 @@ export default function ChapterContent({ chapter, userId }) {
         <Test
           questions={chapter.questions}
           chapterId={chapter.id}
-          userId={userId}
+          userProgress={userProgress}
         />
       );
     } else {
