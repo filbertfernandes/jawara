@@ -1,28 +1,46 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { RiArrowLeftSLine } from "react-icons/ri";
 
 import ProgressBar from "./ProgressBar";
 import { useCurriculum } from "../stores/useCurriculum";
 
-const dummyUserChapterProgress = {
-  _id: "64b9fcd2a4c8e4108a8f2b78", // Example ObjectId as a string
-  userId: "64b9fcd2a4c8e4108a8f2b99", // Example ObjectId for the user
-  chapterId: 1, // Matches the id of the chapter in `chapters.json`
-  completedPhases: 1, // Number of completed phases, e.g., 1 for "Pretest" completed
-  preTestScore: 8, // Pre-test score out of 10
-  postTestScore: -1, // Post-test not completed yet, default is -1
-  preTestCompletedAt: "2025-01-08T10:00:00Z", // Example completion timestamp
-  postTestCompletedAt: null, // Not completed yet, so set to `null`
-};
+import { getUserProgress } from "@/lib/actions/userProgress.action";
 
-const Sidebar = ({ chapter }) => {
+const Sidebar = ({ chapter, userId }) => {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
 
-  const userChapterProgress = dummyUserChapterProgress;
+  const [userChapterProgress, setUserChapterProgress] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserProgress = async () => {
+      try {
+        setLoading(true);
+        const result = await getUserProgress(chapter.id, userId); // Call server action
+
+        if (result.success) {
+          setUserChapterProgress(result.data);
+        } else {
+          setError(result.message);
+        }
+      } catch (err) {
+        setError("An error occurred while fetching user progress.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserProgress();
+  }, [userId, chapter.id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <section className="min-h-screen w-2/5 bg-gray-50 py-4 text-black max-md:hidden sm:py-14 lg:w-[30%]">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -15,24 +16,40 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import { getUserProgress } from "@/lib/actions/userProgress.action";
 
-const dummyUserChapterProgress = {
-  _id: "64b9fcd2a4c8e4108a8f2b78",
-  userId: "64b9fcd2a4c8e4108a8f2b99",
-  chapterId: 1,
-  completedPhases: 1,
-  preTestScore: 8,
-  postTestScore: -1,
-  preTestCompletedAt: "2025-01-08T10:00:00Z",
-  postTestCompletedAt: null,
-};
-
-const MobileNavigation = ({ chapter }) => {
+const MobileNavigation = ({ chapter, userId }) => {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
 
-  const userChapterProgress = dummyUserChapterProgress;
+  const [userChapterProgress, setUserChapterProgress] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserProgress = async () => {
+      try {
+        setLoading(true);
+        const result = await getUserProgress(chapter.id, userId); // Call the server action
+
+        if (result.success) {
+          setUserChapterProgress(result.data);
+        } else {
+          setError(result.message);
+        }
+      } catch (err) {
+        setError("An error occurred while fetching user progress.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserProgress();
+  }, [userId, chapter.id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="absolute left-0 top-0 p-4 sm:p-14 md:hidden">
