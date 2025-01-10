@@ -10,6 +10,7 @@ import Test from "@/components/curriculum/Test";
 export default function ChapterContent({ chapter, userProgress }) {
   const { phase, changePhase } = useCurriculum((state) => ({
     phase: state.phase,
+    changePhase: state.changePhase,
   }));
 
   useEffect(() => {
