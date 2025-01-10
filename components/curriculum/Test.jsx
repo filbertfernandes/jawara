@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-const Test = ({ questions }) => {
+import {
+  incrementCompletedPhases,
+  updatePretestScore,
+} from "@/lib/actions/userProgress.action";
+
+const Test = ({ questions, chapterId, userId }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
@@ -14,17 +19,13 @@ const Test = ({ questions }) => {
   const handleOptionClick = (index) => {
     // Update the userAnswers state at the current question index
     setUserAnswers((prevAnswers) => {
-      // Create a copy of the previous answers to avoid direct mutation
       const newAnswers = [...prevAnswers];
-
-      // Set the answer for the current question (questionIndex)
       newAnswers[questionIndex] = index;
-
       return newAnswers;
     });
   };
 
-  const handleFinished = () => {
+  const handleFinished = async () => {
     setQuestionIndex(0);
 
     let correctCount = 0;
@@ -37,8 +38,23 @@ const Test = ({ questions }) => {
 
     setScore(correctCount / questions.length);
 
-    setShowOverlay(true);
-    setIsFinished(true);
+    // Call server actions after finishing the test
+    try {
+      // Update pretest score
+      await updatePretestScore(
+        chapterId,
+        userId,
+        (correctCount / questions.length) * 10
+      ); // Example, assuming the score is out of 10
+
+      // Increment completed phases
+      await incrementCompletedPhases(chapterId, userId);
+
+      setShowOverlay(true);
+      setIsFinished(true);
+    } catch (error) {
+      console.error("Error updating progress:", error);
+    }
   };
 
   return (

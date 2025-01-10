@@ -5,7 +5,7 @@ import { useCurriculum } from "./stores/useCurriculum";
 import Content from "@/components/curriculum/Content";
 import Test from "@/components/curriculum/Test";
 
-export default function ChapterContent({ chapter }) {
+export default function ChapterContent({ chapter, userId }) {
   const { phase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
@@ -14,7 +14,11 @@ export default function ChapterContent({ chapter }) {
   chapter.phases.forEach((chapterPhase, index) => {
     if (chapterPhase.name === "Pretest" || chapterPhase.name === "Posttest") {
       chapterPhasesMap[chapterPhase.name] = (
-        <Test questions={chapter.questions} />
+        <Test
+          questions={chapter.questions}
+          chapterId={chapter.id}
+          userId={userId}
+        />
       );
     } else {
       chapterPhasesMap[chapterPhase.name] = (

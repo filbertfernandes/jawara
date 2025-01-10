@@ -24,7 +24,7 @@ export default async function Page({ params }) {
     <div className="flex size-full min-h-screen overflow-scroll bg-white font-questrial">
       <MobileNavigation chapter={chapter} userId={sessionUser.user.id} />
       <Sidebar chapter={chapter} userId={sessionUser.user.id} />
-      <ChapterContent chapter={chapter} />
+      <ChapterContent chapter={chapter} userId={sessionUser.user.id} />
     </div>
   );
 }

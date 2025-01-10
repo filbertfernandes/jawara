@@ -46,7 +46,7 @@ const MobileNavigation = ({ chapter, userId }) => {
     };
 
     fetchUserProgress();
-  }, [userId, chapter.id]);
+  }, [userId, chapter.id, phase]);
 
   if (error) return <div>{error}</div>;
 
