@@ -9,11 +9,11 @@ import {
   updatePretestScore,
 } from "@/lib/actions/userProgress.action";
 
-const Test = ({ questions, chapterId, userProgress }) => {
+const Test = ({ chapter, userProgress }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
-    new Array(questions.length).fill(-1)
+    new Array(chapter.questions.length).fill(-1)
   );
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -44,25 +44,25 @@ const Test = ({ questions, chapterId, userProgress }) => {
 
     let correctCount = 0;
 
-    for (let i = 0; i < questions.length; i++) {
-      if (userAnswers[i] === questions[i].correctAnswer) {
+    for (let i = 0; i < chapter.questions.length; i++) {
+      if (userAnswers[i] === chapter.questions[i].correctAnswer) {
         correctCount++;
       }
     }
 
-    setScore(correctCount / questions.length);
+    setScore(correctCount / chapter.questions.length);
 
     // Call server actions after finishing the test
     try {
       // Update pretest score
       await updatePretestScore(
-        chapterId,
+        chapter.id,
         userProgress.userId,
-        (correctCount / questions.length) * 100
+        (correctCount / chapter.questions.length) * 100
       );
 
       // Increment completed phases
-      await incrementCompletedPhases(chapterId, userProgress.userId);
+      await incrementCompletedPhases(chapter.id, userProgress.userId);
 
       setShowOverlay(true);
       setIsFinished(true);
@@ -72,7 +72,7 @@ const Test = ({ questions, chapterId, userProgress }) => {
   };
 
   const handleCloseOverlay = () => {
-    changePhase(phase + 1);
+    changePhase(chapter.phases[1].name);
     setShowOverlay(false);
   };
 
@@ -111,13 +111,13 @@ const Test = ({ questions, chapterId, userProgress }) => {
       ) : (
         <div className="flex w-full flex-col items-center justify-center gap-6 px-4 sm:w-3/4 lg:w-2/3">
           <div className="text-center text-gray-500 sm:text-lg md:text-xl">
-            Question {questionIndex + 1} / {questions.length}
+            Question {questionIndex + 1} / {chapter.questions.length}
           </div>
           <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-white">
-            {questions[questionIndex].question}
+            {chapter.questions[questionIndex].question}
           </div>
           <div className="flex w-full flex-col items-center gap-2">
-            {questions[questionIndex].options.map((option, index) => (
+            {chapter.questions[questionIndex].options.map((option, index) => (
               <div
                 key={index}
                 className={`flex h-12 w-full cursor-pointer items-center justify-between rounded-lg border px-4 text-center shadow-sm shadow-black/30 hover:bg-gray-200 sm:text-lg md:text-xl ${
@@ -143,12 +143,12 @@ const Test = ({ questions, chapterId, userProgress }) => {
             <div
               className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-white"
               onClick={
-                questionIndex + 1 < questions.length
+                questionIndex + 1 < chapter.questions.length
                   ? () => setQuestionIndex(questionIndex + 1)
                   : () => handleFinished(false)
               }
             >
-              {questionIndex + 1 < questions.length ? "Next" : "Finish"}
+              {questionIndex + 1 < chapter.questions.length ? "Next" : "Finish"}
             </div>
           </div>
         </div>

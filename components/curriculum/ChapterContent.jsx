@@ -1,24 +1,26 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useCurriculum } from "./stores/useCurriculum";
 
 import Content from "@/components/curriculum/Content";
 import Test from "@/components/curriculum/Test";
 
 export default function ChapterContent({ chapter, userProgress }) {
-  const { phase } = useCurriculum((state) => ({
+  const { phase, changePhase } = useCurriculum((state) => ({
     phase: state.phase,
   }));
+
+  useEffect(() => {
+    changePhase("Pretest");
+  }, []);
 
   const chapterPhasesMap = {};
   chapter.phases.forEach((chapterPhase, index) => {
     if (chapterPhase.name === "Pretest" || chapterPhase.name === "Posttest") {
       chapterPhasesMap[chapterPhase.name] = (
-        <Test
-          questions={chapter.questions}
-          chapterId={chapter.id}
-          userProgress={userProgress}
-        />
+        <Test chapter={chapter} userProgress={userProgress} />
       );
     } else {
       chapterPhasesMap[chapterPhase.name] = (
