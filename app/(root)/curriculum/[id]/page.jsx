@@ -5,7 +5,7 @@ import ChapterContent from "@/components/curriculum/ChapterContent";
 import chapters from "@/components/curriculum/data/chapters";
 import MobileNavigation from "@/components/curriculum/navigation/navbar/MobileNavigation";
 import Sidebar from "@/components/curriculum/navigation/Sidebar";
-import { createUserProgress } from "@/server/actions/createUserProgressAction";
+import { createUserProgress } from "@/lib/actions/userProgress.action";
 
 export default async function Page({ params }) {
   const sessionUser = await auth();
