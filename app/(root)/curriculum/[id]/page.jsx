@@ -22,9 +22,9 @@ export default async function Page({ params }) {
 
   return (
     <div className="flex size-full min-h-screen overflow-scroll bg-white font-questrial">
-      <MobileNavigation chapter={chapter} userProgress={userProgress} />
-      <Sidebar chapter={chapter} userProgress={userProgress} />
-      <ChapterContent chapter={chapter} userProgress={userProgress} />
+      <MobileNavigation chapter={chapter} userProgress={userProgress.data} />
+      <Sidebar chapter={chapter} userProgress={userProgress.data} />
+      <ChapterContent chapter={chapter} userProgress={userProgress.data} />
     </div>
   );
 }
