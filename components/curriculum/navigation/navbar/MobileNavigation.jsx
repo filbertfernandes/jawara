@@ -48,7 +48,6 @@ const MobileNavigation = ({ chapter, userId }) => {
     fetchUserProgress();
   }, [userId, chapter.id]);
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -70,24 +69,24 @@ const MobileNavigation = ({ chapter, userId }) => {
             </SheetTitle>
           </SheetHeader>
           <SheetClose className="w-full">
-            {chapter.phases.map((chapterPhase, index) => {
-              const isFirst = index === 0;
-              const isCompleted = userChapterProgress.completedPhases > index;
-              const isInProgress =
-                userChapterProgress.completedPhases === index;
-              const isActive = phase === chapterPhase.name;
-
-              return (
+            {chapter.phases.map((chapterPhase, index) =>
+              !loading ? (
                 <ProgressBar
                   key={index}
                   title={chapterPhase.name}
-                  first={isFirst}
-                  completed={isCompleted}
-                  inProgress={isInProgress}
-                  active={isActive}
+                  first={index === 0}
+                  completed={userChapterProgress.completedPhases > index}
+                  inProgress={userChapterProgress.completedPhases === index}
+                  active={phase === chapterPhase.name}
                 />
-              );
-            })}
+              ) : (
+                <ProgressBar
+                  key={index}
+                  title={chapterPhase.name}
+                  first={index === 0}
+                />
+              )
+            )}
           </SheetClose>
         </SheetContent>
       </Sheet>
