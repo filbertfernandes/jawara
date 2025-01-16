@@ -13,16 +13,19 @@ import { FirstGameInterface } from "@/components/home/games/first-game/FirstGame
 import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthGameInterface";
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx";
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
-import FreePhaseInterface from "@/components/shared/interfaces/FreePhaseInterface.jsx";
+import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { api } from "@/lib/api";
 
 // Dynamically import Joystick with SSR disabled
-const Joystick = dynamic(() => import("@/components/shared/Joystick.jsx"), {
-  ssr: false,
-});
+const Joystick = dynamic(
+  () => import("@/components/home/shared/Joystick.jsx"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   const { setUserId, setUser, phase } = useGame((state) => ({

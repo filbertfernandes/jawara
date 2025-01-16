@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { words } from "./stores/constants.js";
 import { useSecondGame } from "./stores/useSecondGame.jsx";
 
-import ExitDoor from "@/components/shared/interfaces/ExitDoor.jsx";
-import GameMenuInterface from "@/components/shared/interfaces/GameMenuInterface.jsx";
-import ScorePlusInterface from "@/components/shared/interfaces/ScorePlusInterface.jsx";
+import ExitDoor from "@/components/home/shared/interfaces/ExitDoor.jsx";
+import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
+import ScorePlusInterface from "@/components/home/shared/interfaces/ScorePlusInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { updateScore } from "@/lib/actions/score.action";

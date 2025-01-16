@@ -3,15 +3,15 @@ import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { useEffect } from "react";
 
-import Lights from "../shared/environment/Lights.jsx";
+import Lights from "./shared/environment/Lights.jsx";
 import FirstGame from "./games/first-game/FirstGame.jsx";
 import FourthGame from "./games/fourth-game/FourthGame.jsx";
 import SecondGame from "./games/second-game/SecondGame.jsx";
 import ThirdGame from "./games/third-game/ThirdGame.jsx";
-import Book from "../shared/environment/Book.jsx";
-import Football from "../shared/environment/Football.jsx";
-import GamePortal from "../shared/environment/GamePortal.jsx";
-import PlayerController from "../shared/player/PlayerController.jsx";
+import Book from "./shared/environment/Book.jsx";
+import Football from "./shared/environment/Football.jsx";
+import GamePortal from "./shared/environment/GamePortal.jsx";
+import PlayerController from "./shared/player/PlayerController.jsx";
 
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
 import { phases, skies, useGame } from "@/hooks/useGame.jsx";
