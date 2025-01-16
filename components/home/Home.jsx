@@ -1,10 +1,10 @@
 "use client";
 
-import { KeyboardControls } from "@react-three/drei";
+import { Html, KeyboardControls, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
 
@@ -14,6 +14,7 @@ import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthG
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx";
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
 import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
+import constants from "@/constants/constants";
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
@@ -27,7 +28,30 @@ const Joystick = dynamic(
   }
 );
 
+const CanvasLoader = ({ progress }) => {
+  return (
+    <Html
+      as="div"
+      center
+      className="absolute left-0 top-0 z-[1000] flex h-screen w-screen flex-col items-center justify-center bg-orange-100"
+    >
+      <p className="h5-bold text-orange-500">
+        {progress !== 0 ? `${progress}%` : "Loading..."}
+      </p>
+      <div className="mt-6 h-4 w-1/4 overflow-hidden rounded-full bg-orange-500/20">
+        <div
+          style={{ width: `${progress}%` }}
+          className="h-full bg-orange-500 transition-all duration-300 ease-in-out"
+        ></div>
+      </div>
+    </Html>
+  );
+};
+
 export default function Home() {
+  const { loaded } = useProgress();
+  const progress = Math.round((loaded / constants.TOTAL_3D_OBJECT) * 100);
+
   const { setUserId, setUser, phase } = useGame((state) => ({
     setUserId: state.setUserId,
     setUser: state.setUser,
@@ -106,7 +130,9 @@ export default function Home() {
           far: 200,
         }}
       >
-        <Experience joystickInput={joystickInput} />
+        <Suspense fallback={<CanvasLoader progress={progress} />}>
+          <Experience joystickInput={joystickInput} />
+        </Suspense>
       </Canvas>
 
       {/* JOYSTICK */}

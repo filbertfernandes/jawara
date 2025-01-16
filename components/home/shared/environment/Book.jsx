@@ -1,26 +1,20 @@
 import { Edges, Outlines, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Book = () => {
   const { nodes, materials } = useGLTF("./models/environment/book.glb");
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
 
-  const handlePointerOver = () => {
-    document.body.style.cursor = "pointer";
-    setHovered(true);
-  };
-
-  const handlePointerOut = () => {
-    document.body.style.cursor = "default";
-    setHovered(false);
-  };
-
-  const handleClick = () => {
-    router.push("/curriculum");
-  };
+  // Handle cursor change with useEffect
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "default";
+    return () => {
+      document.body.style.cursor = "default";
+    };
+  }, [hovered]);
 
   return (
     <group dispose={null} scale={3.2}>
@@ -33,9 +27,9 @@ const Book = () => {
           <mesh
             geometry={nodes.Cube_1.geometry}
             material={materials["Material.001"]}
-            onPointerOver={handlePointerOver}
-            onPointerOut={handlePointerOut}
-            onClick={handleClick}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
+            onClick={() => router.push("/curriculum")}
           >
             {hovered && (
               <>
