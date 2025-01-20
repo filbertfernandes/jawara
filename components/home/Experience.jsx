@@ -129,24 +129,24 @@ export default function Experience({ joystickInput }) {
         {/* Invisible Colliders */}
         <RigidBody type="fixed">
           <CuboidCollider
-            args={[15.86, 1.35, 0.16]}
+            args={[15.86, 1.25, 0.16]}
             position={[-0.6, 0, -23.4]}
           />
           <CuboidCollider
-            args={[0.16, 1.35, 17.1]}
+            args={[0.16, 1.25, 17.1]}
             position={[-16.25, 0, -6.5]}
           />
           <CuboidCollider
-            args={[7.43, 1.35, 0.16]}
+            args={[7.43, 1.25, 0.16]}
             position={[-9.07, 0, 10.5]}
           />
-          <CuboidCollider args={[3.8, 1.35, 0.16]} position={[-5.4, 0, 17.7]} />
-          <CuboidCollider args={[7.4, 1.35, 0.16]} position={[-1.8, 0, 22.5]} />
-          <CuboidCollider args={[0.16, 1.35, 3.7]} position={[-1.8, 0, 14]} />
-          <CuboidCollider args={[0.16, 1.35, 6]} position={[5.45, 0, 16.5]} />
-          <CuboidCollider args={[6.2, 1.35, 0.16]} position={[11.5, 0, 10.5]} />
+          <CuboidCollider args={[3.8, 1.25, 0.16]} position={[-5.4, 0, 17.7]} />
+          <CuboidCollider args={[7.4, 1.25, 0.16]} position={[-1.8, 0, 22.5]} />
+          <CuboidCollider args={[0.16, 1.25, 3.7]} position={[-1.8, 0, 14]} />
+          <CuboidCollider args={[0.16, 1.25, 6]} position={[5.45, 0, 16.5]} />
+          <CuboidCollider args={[6.2, 1.25, 0.16]} position={[11.5, 0, 10.5]} />
           <CuboidCollider
-            args={[0.16, 1.35, 17.1]}
+            args={[0.16, 1.25, 17.1]}
             position={[17.55, 0, -6.5]}
           />
         </RigidBody>
@@ -181,7 +181,7 @@ export default function Experience({ joystickInput }) {
             SoundManager.playSoundAfterFinished("soccerBallImpact")
           }
         >
-          <Football scale={0.25} />
+          <Football scale={0.275} />
         </RigidBody>
 
         {/* Book */}

@@ -1,7 +1,7 @@
 import { Edges, Outlines, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useRouter } from "next/navigation";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Book = () => {
   const { nodes, materials } = useGLTF("./models/environment/book.glb");
