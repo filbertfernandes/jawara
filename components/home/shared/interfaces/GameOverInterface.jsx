@@ -31,7 +31,7 @@ const GameOverInterface = ({ score, startGame }) => {
   }, [changeGameState]);
 
   const handleKeyDown = (event) => {
-    if (event.key === " " || event.key === "Enter") {
+    if (event.code === "Space" || event.code === "Enter") {
       event.preventDefault(); // Prevent the default space key action
     }
   };
