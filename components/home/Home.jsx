@@ -136,12 +136,12 @@ export default function Home() {
       </Canvas>
 
       {/* JOYSTICK */}
-      {isMobile && phase === phases.FREE && (
+      {progress >= 100 && isMobile && phase === phases.FREE && (
         <Joystick onMove={handleJoystickMove} />
       )}
 
       {/* INTERFACES */}
-      {gameInterfaces[phase]}
+      {progress >= 100 && gameInterfaces[phase]}
     </KeyboardControls>
   );
 }
