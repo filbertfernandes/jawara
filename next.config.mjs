@@ -12,6 +12,14 @@ const nextConfig = {
       },
     ],
   },
-}
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        canvas: "./empty-module.js",
+      },
+    },
+  },
+  swcMinify: false,
+};
 
-export default nextConfig
+export default nextConfig;

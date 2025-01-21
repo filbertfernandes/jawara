@@ -1,26 +1,36 @@
-import React from "react";
+import { useState } from "react";
+
+import PdfComponent from "./PdfComponent";
+
+import routes from "@/constants/routes";
 
 const Content = ({ name, pdfPath }) => {
+  const [isStarted, setIsStarted] = useState(false);
+
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-black">
-      <>
-        <div className="text-center">
-          <div className="h5-bold mb-1">
-            Let&apos;s make learning fun and easy!
+    <>
+      {isStarted ? (
+        <PdfComponent pdfFile={`${routes.BASE_URL}/pdf/chapter-1.pdf`} />
+      ) : (
+        <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-black">
+          <div className="text-center">
+            <div className="h5-bold mb-1">
+              Let&apos;s make learning fun and easy!
+            </div>
+            <div className="text-sm text-gray-500 lg:text-xl">
+              Explore the core concepts of this chapter through easy-to-follow
+              slides.
+            </div>
           </div>
-          <div className="text-sm text-gray-500 lg:text-xl">
-            Explore the core concepts of this chapter through easy-to-follow
-            slides.
+          <div
+            className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+            onClick={() => setIsStarted(true)}
+          >
+            Start Learning
           </div>
         </div>
-        <div
-          className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
-          onClick={() => setIsStarted(true)}
-        >
-          Start Learning
-        </div>
-      </>
-    </div>
+      )}
+    </>
   );
 };
 

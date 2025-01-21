@@ -1,0 +1,68 @@
+import { useState, useEffect, useRef } from "react";
+import { IoMdDownload } from "react-icons/io";
+import { pdfjs, Document, Page } from "react-pdf";
+import "./stores/curriculum.css";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
+
+function PdfComponent({ pdfFile }) {
+  const [numPages, setNumPages] = useState();
+  const [parentWidth, setParentWidth] = useState(0);
+  const containerRef = useRef();
+
+  useEffect(() => {
+    // Update parent width on load and when the window resizes
+    const updateParentWidth = () => {
+      if (containerRef.current) {
+        setParentWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateParentWidth();
+    window.addEventListener("resize", updateParentWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateParentWidth);
+    };
+  }, []);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="flex size-full flex-col items-center overflow-y-auto py-16"
+    >
+      <div className="flex w-[95%] justify-end">
+        <a
+          href={pdfFile}
+          download="chapter-1.pdf"
+          className="btn-template mb-2 bg-orange-500 px-4 text-sm text-white hover:bg-orange-600"
+        >
+          <IoMdDownload className="mr-1" />
+          Download
+        </a>
+      </div>
+      <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+        {Array.apply(null, Array(numPages))
+          .map((x, i) => i + 1)
+          .map((page) => (
+            <Page
+              key={`page_${page}`}
+              pageNumber={page}
+              width={parentWidth * 0.95} // Set width to 75% of parent container
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          ))}
+      </Document>
+    </div>
+  );
+}
+
+export default PdfComponent;
