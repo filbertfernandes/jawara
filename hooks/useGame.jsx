@@ -28,7 +28,6 @@ export const useGame = create(
   subscribeWithSelector((set) => {
     return {
       // DEFAULT PHASE
-      userId: null,
       user: null,
       isMusicMuted: false,
       phase: phases.FREE,
@@ -38,12 +37,6 @@ export const useGame = create(
       sky: null,
 
       // USER SESSION
-      setUserId: (userId) => {
-        set(() => {
-          return { userId };
-        });
-      },
-
       setUser: (user) => {
         set(() => {
           return { user };

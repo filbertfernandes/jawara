@@ -13,8 +13,8 @@ import { updateScore } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const SecondGameInterface = () => {
-  const { userId, gameState } = useGame((state) => ({
-    userId: state.userId,
+  const { user, gameState } = useGame((state) => ({
+    user: state.user,
     gameState: state.gameState,
   }));
 
@@ -45,11 +45,11 @@ export const SecondGameInterface = () => {
   }));
 
   async function onFinish() {
-    if (!userId) return;
+    if (!user) return;
 
     try {
       await updateScore({
-        userId,
+        userId: user._id,
         game: "game2",
         gameMode: mode,
         score,

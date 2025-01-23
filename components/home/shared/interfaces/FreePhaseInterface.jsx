@@ -61,19 +61,19 @@ export default function FreePhaseInterface() {
         </div>
 
         {user ? (
-          <Link href={`/profile/${user.data?._id}`}>
+          <Link href={`/profile/${user._id}`}>
             <Avatar className="size-10 sm:size-12">
-              {user.data?.image ? (
+              {user.image ? (
                 <Image
-                  src={user.data?.image}
-                  alt={user.data?.username}
+                  src={user.image}
+                  alt={user.username}
                   width={50}
                   height={50}
                   quality={100}
                 />
               ) : (
                 <AvatarFallback className="border border-orange-500 bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
-                  {user.data?.name
+                  {user.name
                     .split(" ")
                     .map((word) => word[0])
                     .join("")

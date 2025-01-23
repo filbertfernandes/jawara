@@ -48,46 +48,20 @@ const CanvasLoader = ({ progress }) => {
   );
 };
 
-export default function Home() {
+export default function Home({ userSession }) {
   const { loaded } = useProgress();
   const progress = Math.round((loaded / constants.TOTAL_3D_OBJECT) * 100);
 
-  const { setUserId, setUser, phase } = useGame((state) => ({
-    setUserId: state.setUserId,
+  const { setUser, phase } = useGame((state) => ({
     setUser: state.setUser,
     phase: state.phase,
   }));
 
-  // SET USER SESSION
-  const { data: session, status, update } = useSession();
-
   useEffect(() => {
-    const updateSession = async () => {
-      await update();
-    };
-
-    updateSession();
+    if (userSession) {
+      setUser(userSession);
+    }
   }, []);
-
-  useEffect(() => {
-    const getUser = async () => {
-      return await api.users.getById(session.user.id);
-    };
-
-    const fetchAndSetUser = async () => {
-      if (status === "authenticated" && session?.user?.id) {
-        setUserId(session.user.id);
-
-        const user = await getUser();
-        setUser(user);
-      } else {
-        setUserId(null);
-        setUser(null);
-      }
-    };
-
-    fetchAndSetUser();
-  }, [status, session]);
 
   // KEYBOARD
   const map = useMemo(

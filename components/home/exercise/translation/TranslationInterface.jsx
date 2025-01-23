@@ -52,22 +52,20 @@ export const TranslationInterface = () => {
 
   const sentenceBox = useRef();
 
-  const { userId, changePhase } = useGame((state) => ({
-    userId: state.userId,
+  const { user, changePhase } = useGame((state) => ({
+    user: state.user,
     changePhase: state.changePhase,
   }));
 
   useEffect(() => {
-    if (!userId) return;
+    if (!user) return;
 
     const fetchAttemptsLeft = async () => {
       try {
-        const { attemptsLeft } = await getTranslationAttemptsLeft({
-          userId,
-        });
+        const { attemptsLeft } = await getTranslationAttemptsLeft(user._id);
 
         const { totalCorrectTranslations } = await getTotalCorrectTranslations(
-          userId
+          user._id
         );
 
         setAttemptsLeft(attemptsLeft);
@@ -84,9 +82,7 @@ export const TranslationInterface = () => {
     setIsGeneratingSentence(true);
 
     try {
-      const { attemptsLeft } = await updateTranslationAttemptsLeft({
-        userId,
-      });
+      const { attemptsLeft } = await updateTranslationAttemptsLeft(user._id);
       setAttemptsLeft(attemptsLeft);
 
       const response = await fetch(
@@ -146,7 +142,7 @@ export const TranslationInterface = () => {
 
       if (isTrue) {
         setCorrectCount(correctCount + 1);
-        await incrementCorrectTranslations(userId);
+        await incrementCorrectTranslations(user._id);
       }
     } catch (error) {
       console.log(error);
@@ -184,7 +180,7 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2">
           <div>Correct:</div>
           <div>
-            {userId ? (
+            {user ? (
               correctCount !== null ? (
                 correctCount
               ) : (
@@ -205,7 +201,7 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2 text-gray-500">
           <div>Daily Limit:</div>
           <div>
-            {userId ? (
+            {user ? (
               attempsLeft !== null ? (
                 attempsLeft
               ) : (
@@ -265,7 +261,7 @@ export const TranslationInterface = () => {
 
       {/* Check Button */}
       <div>
-        {userId ? (
+        {user ? (
           attempsLeft ? (
             attempsLeft > 0 ? (
               <div
