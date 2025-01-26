@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
 import { phases, useGame } from "@/hooks/useGame";
 import { getAllScores } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager";
@@ -104,52 +103,13 @@ const GameLeaderboardInterface = () => {
       </div>
 
       <div className="flex size-full justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-white sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
-        <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
-          {loading ? (
-            <div className="flex flex-col gap-4">
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex w-full items-center gap-2">
-                  <Skeleton className="h-10 w-8 sm:w-10" />
-                  <Skeleton className="size-12 rounded-full sm:size-14" />
-                  <Skeleton className="h-10 w-3/4 lg:w-[90%]" />
-                </div>
-                <Skeleton className="h-10 w-8 sm:w-10" />
-              </div>
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex w-full items-center gap-2">
-                  <Skeleton className="h-10 w-8 sm:w-10" />
-                  <Skeleton className="size-12 rounded-full sm:size-14" />
-                  <Skeleton className="h-10 w-3/4 lg:w-[90%]" />
-                </div>
-                <Skeleton className="h-10 w-8 sm:w-10" />
-              </div>
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex w-full items-center gap-2">
-                  <Skeleton className="h-10 w-8 sm:w-10" />
-                  <Skeleton className="size-12 rounded-full sm:size-14" />
-                  <Skeleton className="h-10 w-3/4 lg:w-[90%]" />
-                </div>
-                <Skeleton className="h-10 w-8 sm:w-10" />
-              </div>
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex w-full items-center gap-2">
-                  <Skeleton className="h-10 w-8 sm:w-10" />
-                  <Skeleton className="size-12 rounded-full sm:size-14" />
-                  <Skeleton className="h-10 w-3/4 lg:w-[90%]" />
-                </div>
-                <Skeleton className="h-10 w-8 sm:w-10" />
-              </div>
-              <div className="flex w-full items-center justify-between gap-2">
-                <div className="flex w-full items-center gap-2">
-                  <Skeleton className="h-10 w-8 sm:w-10" />
-                  <Skeleton className="size-12 rounded-full sm:size-14" />
-                  <Skeleton className="h-10 w-3/4 lg:w-[90%]" />
-                </div>
-                <Skeleton className="h-10 w-8 sm:w-10" />
-              </div>
-            </div>
-          ) : (
-            leaderboard.result.topScores.map((topScore, index) => (
+        {loading ? (
+          <ul className="flex size-full items-center justify-center text-2xl sm:text-3xl">
+            Loading.....
+          </ul>
+        ) : (
+          <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
+            {leaderboard.result.topScores.map((topScore, index) => (
               <li key={index}>
                 <Link
                   href={`/profile/${topScore.userId._id}`}
@@ -189,9 +149,9 @@ const GameLeaderboardInterface = () => {
                   <div className="flex items-center">{topScore.score}</div>
                 </Link>
               </li>
-            ))
-          )}
-        </ul>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

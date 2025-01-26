@@ -8,17 +8,17 @@ import Sidebar from "@/components/curriculum/navigation/Sidebar";
 import { createUserProgress } from "@/lib/actions/userProgress.action";
 
 export default async function Page({ params }) {
-  const sessionUser = await auth();
+  const session = await auth();
   const { id } = params;
   const chapter = chapters[id - 1];
 
   // Redirect to sign-in if user is not logged in
-  if (!sessionUser?.user?.id) {
+  if (!session) {
     redirect("/sign-in");
   }
 
   // Create user progress if the user is logged in
-  const userProgress = await createUserProgress(id, sessionUser.user.id);
+  const userProgress = await createUserProgress(id, session.user.id);
 
   return (
     <div className="flex size-full min-h-screen overflow-scroll bg-white font-questrial">
