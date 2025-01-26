@@ -12,6 +12,15 @@ const GameSelectButton = ({ label, onClick }) => (
   </button>
 );
 
+const OtherButton = ({ label, onClick }) => (
+  <button
+    className="btn-template w-28 border-2 border-orange-500 bg-white px-1 text-sm text-orange-500 hover:bg-orange-500 hover:text-white lg:w-52 lg:p-1.5 lg:text-3xl"
+    onClick={onClick}
+  >
+    {label}
+  </button>
+);
+
 const GameSelectInterface = ({ startGame, title }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -57,19 +66,28 @@ const GameSelectInterface = ({ startGame, title }) => {
     >
       <h1 className="h1-bold text-orange-500 drop-shadow-lg">{title}</h1>
 
-      <GameSelectButton
-        label="Ngoko"
-        onClick={() => handleButtonClick("ngoko")}
-      />
-      <GameSelectButton
-        label="Krama Madya"
-        onClick={() => handleButtonClick("madya")}
-      />
-      <GameSelectButton
-        label="Krama Alus"
-        onClick={() => handleButtonClick("alus")}
-      />
-      <GameSelectButton label="Back to Home" onClick={handleBackClick} />
+      <div className="flex gap-6">
+        <GameSelectButton
+          label="Ngoko"
+          onClick={() => handleButtonClick("ngoko")}
+        />
+        <GameSelectButton
+          label="Krama Madya"
+          onClick={() => handleButtonClick("madya")}
+        />
+        <GameSelectButton
+          label="Krama Alus"
+          onClick={() => handleButtonClick("alus")}
+        />
+      </div>
+
+      <div className="mt-10 flex gap-6">
+        <OtherButton
+          label="How To Play"
+          onClick={() => console.log("Pressed")}
+        />
+        <OtherButton label="Go Back" onClick={handleBackClick} />
+      </div>
     </div>
   );
 };

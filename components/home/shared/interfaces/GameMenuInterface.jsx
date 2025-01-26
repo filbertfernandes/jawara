@@ -1,16 +1,32 @@
+import { useEffect } from "react";
+
 import GameLeaderboardInterface from "./GameLeaderboardInterface.jsx";
 import GameMaterialInterface from "./GameMaterialInterface.jsx";
 import GameOverInterface from "./GameOverInterface.jsx";
 import GameSelectInterface from "./GameSelectInterface.jsx";
 import GameTabsInterface from "./GameTabsInterface.jsx";
 
-import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import { gameStates, phases, useGame } from "@/hooks/useGame.jsx";
 
 const GameMenuInterface = ({ startGame, title, words, score }) => {
-  // GAME STATE
-  const { gameState } = useGame((state) => ({
+  const { gameState, changePhase } = useGame((state) => ({
     gameState: state.gameState,
+    changePhase: state.changePhase,
   }));
+
+  // Handle Escape key
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        changePhase(phases.FREE);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const interfaceComponentMap = {
     [gameStates.MENU]: (

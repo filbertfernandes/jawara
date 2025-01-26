@@ -169,6 +169,19 @@ export const TranslationInterface = () => {
     );
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        changePhase(phases.FREE);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <div className="fullscreen-white translate-y-0 flex-col font-questrial text-black transition-transform duration-500 ease-in-out sm:text-2xl">
       {/* Header */}
