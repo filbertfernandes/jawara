@@ -15,66 +15,66 @@ import { TbVocabulary } from "react-icons/tb";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-const awardsData = [
+const achievementsData = [
   {
-    src: "/images/awards/curriculum-completion.jpg",
+    src: "/images/achievements/curriculum-completion.jpg",
     description:
       "Complete the entire curriculum to master key language concepts.",
   },
   {
-    src: "/images/awards/top-3.jpg",
+    src: "/images/achievements/top-3.jpg",
     description: "Achieve a top 3 position in the Vocabulary Game.",
   },
   {
-    src: "/images/awards/top-10.jpg",
+    src: "/images/achievements/top-10.jpg",
     description: "Achieve a top 10 position in the Vocabulary Game.",
   },
   {
-    src: "/images/awards/top-50.jpg",
+    src: "/images/achievements/top-50.jpg",
     description: "Achieve a top 50 position in the Vocabulary Game.",
   },
   {
-    src: "/images/awards/top-100.jpg",
+    src: "/images/achievements/top-100.jpg",
     description: "Achieve a top 100 position in the Vocabulary Game.",
   },
   {
-    src: "/images/awards/correct-translations-1000.jpg",
+    src: "/images/achievements/correct-translations-1000.jpg",
     description: "Achieve 1,000 correct translations.",
   },
   {
-    src: "/images/awards/correct-translations-500.jpg",
+    src: "/images/achievements/correct-translations-500.jpg",
     description: "Achieve 500 correct translations.",
   },
   {
-    src: "/images/awards/correct-translations-250.jpg",
+    src: "/images/achievements/correct-translations-250.jpg",
     description: "Achieve 250 correct translations.",
   },
   {
-    src: "/images/awards/correct-translations-100.jpg",
+    src: "/images/achievements/correct-translations-100.jpg",
     description: "Achieve 100 correct translations.",
   },
   {
-    src: "/images/awards/correct-translations-25.jpg",
+    src: "/images/achievements/correct-translations-25.jpg",
     description: "Achieve 25 correct translations.",
   },
   {
-    src: "/images/awards/correct-translations-1.jpg",
+    src: "/images/achievements/correct-translations-1.jpg",
     description: "Achieve your first correct translation.",
   },
   {
-    src: "/images/awards/first-time-body-parts.jpg",
+    src: "/images/achievements/first-time-body-parts.jpg",
     description: "Complete the Body Parts Vocabulary Game for the first time.",
   },
   {
-    src: "/images/awards/first-time-colors.jpg",
+    src: "/images/achievements/first-time-colors.jpg",
     description: "Complete the Colors Vocabulary Game for the first time.",
   },
   {
-    src: "/images/awards/first-time-numbers.jpg",
+    src: "/images/achievements/first-time-numbers.jpg",
     description: "Complete the Numbers Vocabulary Game for the first time.",
   },
   {
-    src: "/images/awards/first-time-animals.jpg",
+    src: "/images/achievements/first-time-animals.jpg",
     description: "Complete the Animals Vocabulary Game for the first time.",
   },
 ];
@@ -98,7 +98,7 @@ const scoresData = [
   },
 ];
 
-const AwardOverlay = ({ image, description, onClose }) => (
+const AchievementOverlay = ({ image, description, onClose }) => (
   <div className="fullscreen-black-transparent flex-col items-center justify-center gap-4">
     <div className="relative flex flex-col items-center">
       <button
@@ -109,7 +109,7 @@ const AwardOverlay = ({ image, description, onClose }) => (
       </button>
       <Image
         src={image}
-        alt="Selected Award"
+        alt="Selected Achievement"
         width={500}
         height={500}
         className="size-[300px] rounded-xl lg:size-[400px]"
@@ -121,23 +121,25 @@ const AwardOverlay = ({ image, description, onClose }) => (
   </div>
 );
 
-const AwardGallery = ({ awards, onAwardClick }) => (
+const AchievementGallery = ({ achievements, onAchievementClick }) => (
   <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:max-h-[500px] lg:min-h-[500px] lg:px-6 lg:py-8">
     <div className="mb-3 flex lg:mb-6">
-      <h2 className="h2-bold w-full text-center">Awards</h2>
+      <h2 className="h2-bold w-full text-center">Achievements</h2>
       <FaAward className="ml-2 text-3xl lg:text-5xl" />
     </div>
     <div className="flex flex-wrap justify-center gap-6">
-      {awards.map((award, idx) => (
+      {achievements.map((achievement, idx) => (
         <Image
           key={idx}
-          src={award.src}
-          alt="Award"
+          src={achievement.src}
+          alt="Achievement"
           width={500}
           height={500}
           className="size-[125px] cursor-pointer rounded-xl lg:size-[200px]"
           quality={100}
-          onClick={() => onAwardClick(award.src, award.description)}
+          onClick={() =>
+            onAchievementClick(achievement.src, achievement.description)
+          }
         />
       ))}
     </div>
@@ -178,7 +180,7 @@ export default function ProfileInterface({ profileUser, session }) {
   const [selectedImageDescription, setSelectedImageDescription] =
     useState(null);
 
-  const handleAwardClick = (image, description) => {
+  const handleAchievementClick = (image, description) => {
     setSelectedImage(image);
     setSelectedImageDescription(description);
     setShowOverlay(true);
@@ -237,14 +239,17 @@ export default function ProfileInterface({ profileUser, session }) {
       </div>
 
       {showOverlay && (
-        <AwardOverlay
+        <AchievementOverlay
           image={selectedImage}
           description={selectedImageDescription}
           onClose={handleCloseOverlay}
         />
       )}
 
-      <AwardGallery awards={awardsData} onAwardClick={handleAwardClick} />
+      <AchievementGallery
+        achievements={achievementsData}
+        onAchievementClick={handleAchievementClick}
+      />
 
       <div className="flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
         <h1 className="text-8xl">{profileUser.totalCorrectTranslations}</h1>
