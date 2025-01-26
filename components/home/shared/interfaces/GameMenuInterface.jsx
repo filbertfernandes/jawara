@@ -17,7 +17,11 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
   // Handle Escape key
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
+      if (
+        event.code === "Escape" &&
+        gameState !== gameStates.GAME &&
+        gameStates !== gameStates.GAME_OVER
+      ) {
         changePhase(phases.FREE);
       }
     };
@@ -26,7 +30,7 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [gameState]);
 
   const interfaceComponentMap = {
     [gameStates.MENU]: (
