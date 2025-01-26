@@ -18,7 +18,9 @@ export default async function Page({ params }) {
   }
 
   // Create user progress if the user is logged in
-  const userProgress = await createUserProgress(id, session.user.id);
+  const userProgress = JSON.parse(
+    JSON.stringify(await createUserProgress(id, session.user.id))
+  );
 
   return (
     <div className="flex size-full min-h-screen overflow-scroll bg-white font-questrial">
