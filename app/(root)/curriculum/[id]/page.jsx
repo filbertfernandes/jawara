@@ -9,7 +9,7 @@ import { createUserProgress } from "@/lib/actions/userProgress.action";
 
 export default async function Page({ params }) {
   const session = await auth();
-  const { id } = params;
+  const { id } = await params;
   const chapter = chapters[id - 1];
 
   // Redirect to sign-in if user is not logged in
