@@ -5,10 +5,11 @@ import { useCurriculum } from "./stores/useCurriculum";
 
 import {
   incrementCompletedPhases,
+  updatePosttestScore,
   updatePretestScore,
 } from "@/lib/actions/userProgress.action";
 
-const Test = ({ chapter }) => {
+const Test = ({ chapter, isPostTest = false }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
@@ -18,6 +19,7 @@ const Test = ({ chapter }) => {
   const [isFinished, setIsFinished] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRetry, setIsRetry] = useState(true);
 
   const { phase, changePhase, updatedUserProgress } = useCurriculum(
     (state) => ({
@@ -33,10 +35,20 @@ const Test = ({ chapter }) => {
 
     setIsLoading(false);
 
-    if (updatedUserProgress.preTestScore >= 0) {
-      setIsFinished(true);
+    const { preTestScore, postTestScore } = updatedUserProgress;
+
+    if (!isPostTest) {
+      setIsFinished(preTestScore >= 0);
     } else {
-      setIsFinished(false);
+      const isPostTestPassed =
+        updatedUserProgress.completedPhases === chapter.phases.length;
+      const isPostTestRetry =
+        postTestScore >= 0 &&
+        postTestScore < 70 &&
+        updatedUserProgress.completedPhases < chapter.phases.length;
+
+      setIsFinished(isPostTestPassed || isPostTestRetry);
+      setIsRetry(isPostTestRetry);
     }
   }, [updatedUserProgress]);
 
@@ -54,36 +66,80 @@ const Test = ({ chapter }) => {
 
     let correctCount = 0;
 
-    for (let i = 0; i < chapter.questions.length; i++) {
-      if (userAnswers[i] === chapter.questions[i].correctAnswer) {
+    // Calculate the correct answers and score
+    chapter.questions.forEach((question, index) => {
+      if (userAnswers[index] === question.correctAnswer) {
         correctCount++;
       }
+    });
+
+    const calculatedScore = (correctCount / chapter.questions.length) * 100;
+    setScore(calculatedScore);
+
+    const updateProgress = async (calculatedScore) => {
+      try {
+        if (!isPostTest) {
+          await updatePretestScore(
+            chapter.id,
+            updatedUserProgress.userId,
+            calculatedScore
+          );
+          await incrementCompletedPhases(
+            chapter.id,
+            updatedUserProgress.userId
+          );
+        } else {
+          if (updatedUserProgress.postTestScore < 0) {
+            await updatePosttestScore(
+              chapter.id,
+              updatedUserProgress.userId,
+              calculatedScore
+            );
+          }
+          if (
+            calculatedScore >= 70 ||
+            updatedUserProgress.completedPhases >= chapter.phases.length
+          ) {
+            await incrementCompletedPhases(
+              chapter.id,
+              updatedUserProgress.userId
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error updating progress:", error);
+      }
+    };
+
+    // Determine if retry is needed
+    if (
+      isPostTest &&
+      calculatedScore < 70 &&
+      updatedUserProgress.completedPhases < chapter.phases.length
+    ) {
+      setIsRetry(true);
+    } else {
+      setIsRetry(false);
     }
 
-    setScore(correctCount / chapter.questions.length);
+    await updateProgress(calculatedScore);
 
-    // Call server actions after finishing the test
-    try {
-      // Update pretest score
-      await updatePretestScore(
-        chapter.id,
-        updatedUserProgress.userId,
-        (correctCount / chapter.questions.length) * 100
-      );
-
-      // Increment completed phases
-      await incrementCompletedPhases(chapter.id, updatedUserProgress.userId);
-
-      setShowOverlay(true);
-      setIsFinished(true);
-    } catch (error) {
-      console.error("Error updating progress:", error);
-    }
+    setShowOverlay(true);
+    setIsFinished(true);
   };
 
   const handleCloseOverlay = () => {
-    changePhase(chapter.phases[1].name);
+    if (!isPostTest) {
+      changePhase(chapter.phases[1].name);
+    }
+
     setShowOverlay(false);
+  };
+
+  const handleRetry = () => {
+    setIsFinished(false);
+    setIsRetry(false);
+    setIsStarted(true);
   };
 
   return (
@@ -97,19 +153,39 @@ const Test = ({ chapter }) => {
           <div className="h5-bold mb-1">Loading.....</div>
         </div>
       ) : isFinished ? (
-        <div className="text-center">
-          <div className="h5-bold mb-1">
-            Nice, You&apos;ve finished the pre-test!
+        <>
+          <div className="text-center">
+            <div className="h5-bold mb-1">
+              {!isPostTest
+                ? "Nice, You've finished the pre-test!"
+                : isRetry
+                ? "Try again!"
+                : "Congratulations, You've finished this chapter!"}
+            </div>
+            <div className="text-sm text-gray-500 lg:text-xl">
+              {!isPostTest
+                ? "You can start continue learn the content."
+                : isRetry
+                ? "You should get 70 and higher score to complete this chapter."
+                : "You still can retry the test for exercise."}
+            </div>
           </div>
-          <div className="text-sm text-gray-500 lg:text-xl">
-            You can start continue learn the content
-          </div>
-        </div>
+          {isPostTest && (
+            <div
+              className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+              onClick={handleRetry}
+            >
+              Retry
+            </div>
+          )}
+        </>
       ) : !isStarted ? (
         <>
           <div className="text-center">
             <div className="h5-bold mb-1">
-              Let&apos;s see what you already know!
+              {!isPostTest
+                ? "Let&apos;s see what You already know!"
+                : "Let's see what You've learned!"}
             </div>
             <div className="text-sm text-gray-500 lg:text-xl">
               Your score is private and will not be shown to others.
@@ -119,7 +195,7 @@ const Test = ({ chapter }) => {
             className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
-            Start Pretest
+            {!isPostTest ? "Start Pretest" : "Start Posttest"}
           </div>
         </>
       ) : (
@@ -178,7 +254,7 @@ const Test = ({ chapter }) => {
           </button>
           <div className="flex size-52 flex-col flex-wrap items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 text-center text-white lg:size-64">
             <div className="mb-2 w-full text-2xl font-bold">Your Score</div>
-            <div className="text-6xl font-bold">{(score * 100).toFixed(0)}</div>
+            <div className="text-6xl font-bold">{score.toFixed(0)}</div>
           </div>
         </div>
       )}

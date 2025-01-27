@@ -62,7 +62,7 @@ const Content = ({ chapter, chapterPhase }) => {
               Awesome, You&apos;ve finished the {chapterPhase.name} material!
             </div>
             <div className="text-sm text-gray-500 lg:text-xl">
-              You still can learn again if you want
+              You still can learn again if you want.
             </div>
           </div>
           <div

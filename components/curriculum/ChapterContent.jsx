@@ -20,7 +20,9 @@ export default function ChapterContent({ chapter }) {
   const chapterPhasesMap = {};
   chapter.phases.forEach((chapterPhase, index) => {
     if (chapterPhase.name === "Pretest" || chapterPhase.name === "Posttest") {
-      chapterPhasesMap[chapterPhase.name] = <Test chapter={chapter} />;
+      chapterPhasesMap[chapterPhase.name] = (
+        <Test chapter={chapter} isPostTest={chapterPhase.name === "Posttest"} />
+      );
     } else {
       chapterPhasesMap[chapterPhase.name] = (
         <Content chapter={chapter} chapterPhase={chapterPhase} />
