@@ -6,10 +6,10 @@ const chapters = [
       "Master basic Javanese greetings, introductions, and simple conversation starters!",
     order: 1,
     phases: [
-      { name: "Pretest" },
-      { name: "Number", pdfPath: "/ppt/number.pdf" },
-      { name: "Color", pdfPath: "/ppt/color.pdf" },
-      { name: "Posttest" },
+      { id: 1, name: "Pretest" },
+      { id: 2, name: "Number", pdfFile: "chapter-1.pdf" },
+      { id: 3, name: "Color", pdfFile: "chapter-1.pdf" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {
@@ -51,10 +51,10 @@ const chapters = [
       "Learn about good advice and wise sayings in Javanese culture.",
     order: 2,
     phases: [
-      { name: "Pretest" },
-      { name: "Wisdom", pdfPath: "/ppt/wisdom.pdf" },
-      { name: "Proverbs", pdfPath: "/ppt/proverbs.pdf" },
-      { name: "Posttest" },
+      { id: 1, name: "Pretest" },
+      { id: 2, name: "Wisdom", pdfFile: "chapter-1.pdf" },
+      { id: 3, name: "Proverbs", pdfFile: "chapter-1.pdf" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {
@@ -86,10 +86,10 @@ const chapters = [
       "Learn about good manners and how to behave respectfully in Javanese culture.",
     order: 3,
     phases: [
-      { name: "Pretest" },
-      { name: "Respect", pdfPath: "/ppt/respect.pdf" },
-      { name: "Etiquette", pdfPath: "/ppt/etiquette.pdf" },
-      { name: "Posttest" },
+      { id: 1, name: "Pretest" },
+      { id: 2, name: "Respect", pdfFile: "chapter-1.pdf" },
+      { id: 3, name: "Etiquette", pdfFile: "chapter-1.pdf" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {
@@ -120,14 +120,14 @@ const chapters = [
     description: "Learn the Javanese vocabulary related to body parts.",
     order: 4,
     phases: [
-      { name: "Pretest" },
-      { name: "Head and Neck", pdfPath: "/ppt/head-neck.pdf" },
+      { id: 1, name: "Pretest" },
+      { id: 2, name: "Head and Neck", pdfFile: "chapter-1.pdf" },
       {
-        type: "Content",
+        id: 3,
         name: "Limbs and Hands",
-        pdfPath: "/ppt/limbs-hands.pdf",
+        pdfFile: "chapter-1.pdf",
       },
-      { name: "Posttest" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {
@@ -148,14 +148,14 @@ const chapters = [
     description: "Explore Javanese traditional games and fun activities.",
     order: 5,
     phases: [
-      { name: "Pretest" },
+      { id: 1, name: "Pretest" },
       {
-        type: "Content",
+        id: 2,
         name: "Traditional Games",
-        pdfPath: "/ppt/traditional-games.pdf",
+        pdfFile: "chapter-1.pdf",
       },
-      { name: "Toys", pdfPath: "/ppt/toys.pdf" },
-      { name: "Posttest" },
+      { id: 3, name: "Toys", pdfFile: "chapter-1.pdf" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {
@@ -176,14 +176,14 @@ const chapters = [
     description: "Learn about Javanese fairy tales and storytelling.",
     order: 6,
     phases: [
-      { name: "Pretest" },
-      { name: "Fairy Tales", pdfPath: "/ppt/fairy-tales.pdf" },
+      { id: 1, name: "Pretest" },
+      { id: 2, name: "Fairy Tales", pdfFile: "chapter-1.pdf" },
       {
-        type: "Content",
+        id: 3,
         name: "Storytelling",
-        pdfPath: "/ppt/storytelling.pdf",
+        pdfFile: "chapter-1.pdf",
       },
-      { name: "Posttest" },
+      { id: 4, name: "Posttest" },
     ],
     questions: [
       {

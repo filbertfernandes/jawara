@@ -4,12 +4,11 @@ import { IoMdClose } from "react-icons/io";
 import { useCurriculum } from "./stores/useCurriculum";
 
 import {
-  getUserProgress,
   incrementCompletedPhases,
   updatePretestScore,
 } from "@/lib/actions/userProgress.action";
 
-const Test = ({ chapter, userProgress }) => {
+const Test = ({ chapter }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
@@ -18,17 +17,28 @@ const Test = ({ chapter, userProgress }) => {
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { phase, changePhase } = useCurriculum((state) => ({
-    phase: state.phase,
-    changePhase: state.changePhase,
-  }));
+  const { phase, changePhase, updatedUserProgress } = useCurriculum(
+    (state) => ({
+      phase: state.phase,
+      changePhase: state.changePhase,
+      updatedUserProgress: state.updatedUserProgress,
+    })
+  );
 
   useEffect(() => {
-    if (userProgress.preTestScore >= 0) {
+    if (!updatedUserProgress || chapter.id !== updatedUserProgress?.chapterId)
+      return;
+
+    setIsLoading(false);
+
+    if (updatedUserProgress.preTestScore >= 0) {
       setIsFinished(true);
+    } else {
+      setIsFinished(false);
     }
-  }, []);
+  }, [updatedUserProgress]);
 
   const handleOptionClick = (index) => {
     // Update the userAnswers state at the current question index
@@ -57,12 +67,12 @@ const Test = ({ chapter, userProgress }) => {
       // Update pretest score
       await updatePretestScore(
         chapter.id,
-        userProgress.userId,
+        updatedUserProgress.userId,
         (correctCount / chapter.questions.length) * 100
       );
 
       // Increment completed phases
-      await incrementCompletedPhases(chapter.id, userProgress.userId);
+      await incrementCompletedPhases(chapter.id, updatedUserProgress.userId);
 
       setShowOverlay(true);
       setIsFinished(true);
@@ -82,7 +92,11 @@ const Test = ({ chapter, userProgress }) => {
         showOverlay ? "bg-black/80" : ""
       }`}
     >
-      {isFinished ? (
+      {isLoading ? (
+        <div className="text-center">
+          <div className="h5-bold mb-1">Loading.....</div>
+        </div>
+      ) : isFinished ? (
         <div className="text-center">
           <div className="h5-bold mb-1">
             Nice, You&apos;ve finished the pre-test!
@@ -145,7 +159,7 @@ const Test = ({ chapter, userProgress }) => {
               onClick={
                 questionIndex + 1 < chapter.questions.length
                   ? () => setQuestionIndex(questionIndex + 1)
-                  : () => handleFinished(false)
+                  : () => handleFinished()
               }
             >
               {questionIndex + 1 < chapter.questions.length ? "Next" : "Finish"}

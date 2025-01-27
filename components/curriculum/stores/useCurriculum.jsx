@@ -5,10 +5,17 @@ export const useCurriculum = create(
   subscribeWithSelector((set) => {
     return {
       phase: "Pretest",
+      updatedUserProgress: null,
 
       changePhase: (phase) => {
         set(() => {
           return { phase };
+        });
+      },
+
+      setUpdatedUserProgress: (updatedUserProgress) => {
+        set(() => {
+          return { updatedUserProgress };
         });
       },
     };

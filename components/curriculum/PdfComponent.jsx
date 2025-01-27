@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdDownload } from "react-icons/io";
 import { pdfjs, Document, Page } from "react-pdf";
+
 import "./stores/curriculum.css";
+
+import routes from "@/constants/routes";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
 ).toString();
 
-function PdfComponent({ pdfFile }) {
+function PdfComponent({ isFinished, chapterPhase, onFinish }) {
   const [numPages, setNumPages] = useState();
   const [parentWidth, setParentWidth] = useState(0);
   const containerRef = useRef();
@@ -36,31 +39,45 @@ function PdfComponent({ pdfFile }) {
   return (
     <div
       ref={containerRef}
-      className="flex size-full flex-col items-center overflow-y-auto py-16"
+      className="flex size-full flex-col items-center gap-4 overflow-y-auto py-16"
     >
       <div className="flex w-[95%] justify-end">
         <a
-          href={pdfFile}
+          href={`${routes.BASE_URL}/pdf/${chapterPhase.pdfFile}`}
           download="chapter-1.pdf"
-          className="btn-template mb-2 bg-orange-500 px-4 text-sm text-white hover:bg-orange-600"
+          className="btn-template bg-orange-500 px-4 text-sm text-white hover:bg-orange-600"
         >
           <IoMdDownload className="mr-1" />
           Download
         </a>
       </div>
-      <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document
+        file={`${routes.BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
         {Array.apply(null, Array(numPages))
           .map((x, i) => i + 1)
           .map((page) => (
             <Page
               key={`page_${page}`}
               pageNumber={page}
-              width={parentWidth * 0.95} // Set width to 75% of parent container
+              width={parentWidth * 0.95} // Set width to 95% of parent container
               renderTextLayer={false}
               renderAnnotationLayer={false}
             />
           ))}
       </Document>
+
+      {!isFinished && (
+        <div className="flex w-full justify-center">
+          <div
+            className="btn-template w-1/4 border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-white"
+            onClick={onFinish}
+          >
+            Finish
+          </div>
+        </div>
+      )}
     </div>
   );
 }

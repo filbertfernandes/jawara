@@ -19,35 +19,19 @@ import {
 import { getUserProgress } from "@/lib/actions/userProgress.action";
 
 const MobileNavigation = ({ chapter, userProgress }) => {
-  const { phase } = useCurriculum((state) => ({
+  const { phase, updatedUserProgress } = useCurriculum((state) => ({
     phase: state.phase,
+    updatedUserProgress: state.updatedUserProgress,
   }));
 
-  const [userChapterProgress, setUserChapterProgress] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserProgress = async () => {
-      try {
-        const result = await getUserProgress(chapter.id, userProgress.userId); // Call the server action
+    if (!updatedUserProgress || chapter.id !== updatedUserProgress?.chapterId)
+      return;
 
-        if (result.success) {
-          setUserChapterProgress(result.data);
-        } else {
-          setError(result.message);
-        }
-      } catch (err) {
-        setError("An error occurred while fetching user progress.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserProgress();
-  }, [userProgress, chapter.id, phase]);
-
-  if (error) return <div>{error}</div>;
+    setIsLoading(false);
+  }, [updatedUserProgress]);
 
   return (
     <div className="absolute left-0 top-0 p-4 sm:p-14 md:hidden">
@@ -69,13 +53,13 @@ const MobileNavigation = ({ chapter, userProgress }) => {
           </SheetHeader>
           <SheetClose className="w-full">
             {chapter.phases.map((chapterPhase, index) =>
-              !loading ? (
+              !isLoading ? (
                 <ProgressBar
                   key={index}
                   title={chapterPhase.name}
                   first={index === 0}
-                  completed={userChapterProgress.completedPhases > index}
-                  inProgress={userChapterProgress.completedPhases === index}
+                  completed={updatedUserProgress.completedPhases > index}
+                  inProgress={updatedUserProgress.completedPhases === index}
                   active={phase === chapterPhase.name}
                 />
               ) : (

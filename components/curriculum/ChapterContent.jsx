@@ -7,7 +7,7 @@ import { useCurriculum } from "./stores/useCurriculum";
 import Content from "@/components/curriculum/Content";
 import Test from "@/components/curriculum/Test";
 
-export default function ChapterContent({ chapter, userProgress }) {
+export default function ChapterContent({ chapter }) {
   const { phase, changePhase } = useCurriculum((state) => ({
     phase: state.phase,
     changePhase: state.changePhase,
@@ -20,12 +20,10 @@ export default function ChapterContent({ chapter, userProgress }) {
   const chapterPhasesMap = {};
   chapter.phases.forEach((chapterPhase, index) => {
     if (chapterPhase.name === "Pretest" || chapterPhase.name === "Posttest") {
-      chapterPhasesMap[chapterPhase.name] = (
-        <Test chapter={chapter} userProgress={userProgress} />
-      );
+      chapterPhasesMap[chapterPhase.name] = <Test chapter={chapter} />;
     } else {
       chapterPhasesMap[chapterPhase.name] = (
-        <Content name={chapterPhase.name} pdfPath={chapterPhase.pdfPath} />
+        <Content chapter={chapter} chapterPhase={chapterPhase} />
       );
     }
   });

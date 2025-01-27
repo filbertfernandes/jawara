@@ -10,21 +10,24 @@ import { useCurriculum } from "../stores/useCurriculum";
 import { getUserProgress } from "@/lib/actions/userProgress.action";
 
 const Sidebar = ({ chapter, userProgress }) => {
-  const { phase } = useCurriculum((state) => ({
-    phase: state.phase,
-  }));
+  const { phase, updatedUserProgress, setUpdatedUserProgress } = useCurriculum(
+    (state) => ({
+      phase: state.phase,
+      updatedUserProgress: state.updatedUserProgress,
+      setUpdatedUserProgress: state.setUpdatedUserProgress,
+    })
+  );
 
-  const [userChapterProgress, setUserChapterProgress] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUserProgress = async () => {
       try {
-        const result = await getUserProgress(chapter.id, userProgress.userId); // Call server action
+        const result = await getUserProgress(chapter.id, userProgress.userId);
 
         if (result.success) {
-          setUserChapterProgress(result.data);
+          setUpdatedUserProgress(result.data);
         } else {
           setError(result.message);
         }
@@ -58,8 +61,8 @@ const Sidebar = ({ chapter, userProgress }) => {
               key={index}
               title={chapterPhase.name}
               first={index === 0}
-              completed={userChapterProgress.completedPhases > index}
-              inProgress={userChapterProgress.completedPhases === index}
+              completed={updatedUserProgress.completedPhases > index}
+              inProgress={updatedUserProgress.completedPhases === index}
               active={phase === chapterPhase.name}
             />
           ) : (
