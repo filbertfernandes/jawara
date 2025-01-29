@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
+import { FaQuestion } from "react-icons/fa";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
-import { SlSpeech } from "react-icons/sl";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame.jsx";
@@ -44,19 +44,19 @@ export default function FreePhaseInterface() {
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
         <div className="flex gap-4">
           <div
-            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10"
             onClick={toggleMusic}
           >
             {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
           </div>
           <div
-            className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-12 lg:text-3xl"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 lg:text-3xl"
             onClick={() => {
               SoundManager.playSound("buttonClick");
-              changePhase(phases.TRANSLATION);
+              changePhase(phases.TUTORIAL);
             }}
           >
-            <SlSpeech />
+            <FaQuestion />
           </div>
         </div>
 

@@ -1,23 +1,52 @@
-import { useKeyboardControls, Edges, Outlines, Text } from "@react-three/drei";
+import {
+  useKeyboardControls,
+  Edges,
+  Outlines,
+  Text,
+  Decal,
+} from "@react-three/drei";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
-export default function GamePortal({ phase, portalPosition, game }) {
+export default function GamePortal({
+  phase,
+  textPosition,
+  portalPosition,
+  portalScale = [1.5, 2, 1.5],
+  portalColor = "rgb(249, 115, 22)",
+  portalImage = null,
+  game,
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "default";
+    return () => {
+      document.body.style.cursor = "default";
+    };
+  }, [hovered]);
+
   const portal = useRef();
 
   // GO TO GAMES CONTROL
   const [subscribeKeys] = useKeyboardControls();
 
-  const { changePhase, canChangePhase, setCanChangePhase, setCanPressEnter } =
-    useGame((state) => ({
-      changePhase: state.changePhase,
-      canChangePhase: state.canChangePhase,
-      setCanChangePhase: state.setCanChangePhase,
-      setCanPressEnter: state.setCanPressEnter,
-    }));
+  const {
+    changePhase,
+    canChangePhase,
+    setCanChangePhase,
+    canPressEnter,
+    setCanPressEnter,
+  } = useGame((state) => ({
+    changePhase: state.changePhase,
+    canChangePhase: state.canChangePhase,
+    setCanChangePhase: state.setCanChangePhase,
+    canPressEnter: state.canPressEnter,
+    setCanPressEnter: state.setCanPressEnter,
+  }));
 
   useEffect(() => {
     const unsubscribeEnter = subscribeKeys(
@@ -41,7 +70,7 @@ export default function GamePortal({ phase, portalPosition, game }) {
   return (
     <>
       <Text
-        position={[portalPosition[0], 0.75, portalPosition[2] + 0.76]}
+        position={textPosition}
         fontSize={0.45}
         color="white"
         font="./fonts/bebas-neue-v9-latin-regular.woff"
@@ -51,12 +80,51 @@ export default function GamePortal({ phase, portalPosition, game }) {
 
       {/* GAME PORTAL */}
       <RigidBody type="fixed">
-        <mesh ref={portal} position={portalPosition} scale={[1.5, 2, 1.5]}>
+        <mesh
+          ref={portal}
+          position={portalPosition}
+          scale={portalScale}
+          onPointerOver={() => {
+            if (!canChangePhase.condition || canChangePhase.phase === phase) {
+              setCanChangePhase(true, phase);
+              setHovered(true);
+            }
+          }}
+          onPointerOut={() => {
+            if (hovered) {
+              setHovered(false);
+              if (!canPressEnter) {
+                setCanChangePhase(false, "");
+              }
+            }
+          }}
+          onClick={() => {
+            if (hovered) {
+              SoundManager.playSound("buttonClick");
+              changePhase(phase);
+            }
+          }}
+        >
           <boxGeometry />
-          <meshStandardMaterial color="rgb(249, 115, 22)" />
+          <meshStandardMaterial color={portalColor} />
+
+          {portalImage && (
+            <Decal
+              position={[-0.299, 0.129, 0.15]} // Position of the decal
+              rotation={[0, 0, 0]} // Rotation of the decal (can be a vector or a degree in radians)
+              scale={[0.4, 0.74, 0.7]} // Scale of the decal
+            >
+              <meshBasicMaterial
+                map={portalImage}
+                polygonOffset
+                polygonOffsetFactor={-1} // The material should take precedence over the original
+              />
+            </Decal>
+          )}
 
           {/* WHITE BRIGHT EDGES */}
-          {canChangePhase.condition && canChangePhase.phase === phase && (
+          {((canChangePhase.condition && canChangePhase.phase === phase) ||
+            hovered) && (
             <>
               <Edges linewidth={5} threshold={15} color={[1000, 1000, 1000]} />
               <Outlines thickness={0.01} color={[1, 1, 1]} />
@@ -81,6 +149,7 @@ export default function GamePortal({ phase, portalPosition, game }) {
                 if (other.rigidBodyObject.name === "Player") {
                   setCanPressEnter(false);
                   setCanChangePhase(false, "");
+                  setHovered(false);
                 }
               }}
             />

@@ -1,4 +1,4 @@
-import { Sparkles, useGLTF } from "@react-three/drei";
+import { Sparkles, useGLTF, useTexture } from "@react-three/drei";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ import Football from "./shared/environment/Football.jsx";
 import GamePortal from "./shared/environment/GamePortal.jsx";
 import Lights from "./shared/environment/Lights.jsx";
 import PlayerController from "./shared/player/PlayerController.jsx";
+import Tutorial from "./tutorial/Tutorial.jsx";
 
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
 import { phases, skies, useGame } from "@/hooks/useGame.jsx";
@@ -48,13 +49,55 @@ export default function Experience({ joystickInput }) {
     [phases.SECOND_GAME]: <SecondGame />,
     [phases.THIRD_GAME]: <ThirdGame />,
     [phases.FOURTH_GAME]: <FourthGame />,
+    [phases.TUTORIAL]: <Tutorial />,
   };
 
   const portals = [
-    { phase: phases.FIRST_GAME, position: [10, 0.5, 4], game: "Body\nParts" },
-    { phase: phases.SECOND_GAME, position: [14, 0.5, 4], game: "Colors" },
-    { phase: phases.THIRD_GAME, position: [8, 0.5, 0], game: "Numbers" },
-    { phase: phases.FOURTH_GAME, position: [12, 0.5, 0], game: "Animals" },
+    {
+      phase: phases.FIRST_GAME,
+      scale: [1.5, 2, 1.5],
+      position: [10, 0.5, 4],
+      textPosition: [10, 0.75, 4 + 0.76],
+      color: "rgb(249, 115, 22)",
+      texture: null,
+      game: "Body\nParts",
+    },
+    {
+      phase: phases.SECOND_GAME,
+      scale: [1.5, 2, 1.5],
+      position: [14, 0.5, 4],
+      textPosition: [14, 0.75, 4 + 0.76],
+      color: "rgb(249, 115, 22)",
+      texture: null,
+      game: "Colors",
+    },
+    {
+      phase: phases.THIRD_GAME,
+      scale: [1.5, 2, 1.5],
+      position: [8, 0.5, 0],
+      textPosition: [8, 0.75, 0 + 0.76],
+      color: "rgb(249, 115, 22)",
+      texture: null,
+      game: "Numbers",
+    },
+    {
+      phase: phases.FOURTH_GAME,
+      scale: [1.5, 2, 1.5],
+      position: [12, 0.5, 0],
+      textPosition: [12, 0.75, 0 + 0.76],
+      color: "rgb(249, 115, 22)",
+      texture: null,
+      game: "Animals",
+    },
+    {
+      phase: phases.TRANSLATION,
+      scale: [4, 2, 1.5],
+      position: [2, 0.5, -15],
+      textPosition: [2 + 0.8, 0.75, -15 + 0.76],
+      color: "rgb(249, 115, 22)",
+      texture: useTexture("/images/character/jawara-ai.jpg"),
+      game: "Translation\nExercise",
+    },
   ];
 
   // WORLD
@@ -161,20 +204,34 @@ export default function Experience({ joystickInput }) {
         </RigidBody>
 
         {/* Game Portals */}
-        {phase === phases.FREE &&
-          portals.map(({ phase, position, game }) => (
-            <GamePortal
-              key={phase}
-              phase={phase}
-              portalPosition={position}
-              game={game}
-            />
-          ))}
+        {(phase === phases.FREE || phase === phases.TUTORIAL) &&
+          portals.map(
+            ({
+              phase,
+              scale,
+              textPosition,
+              position,
+              color,
+              texture,
+              game,
+            }) => (
+              <GamePortal
+                key={phase}
+                phase={phase}
+                textPosition={textPosition}
+                portalScale={scale}
+                portalPosition={position}
+                portalColor={color}
+                portalImage={texture}
+                game={game}
+              />
+            )
+          )}
 
         {/* Soccer Ball */}
         <RigidBody
           colliders="ball"
-          position={[0, 10, -10]}
+          position={[2, 10, 5]}
           restitution={0.65}
           friction={1.5}
           onCollisionEnter={() =>

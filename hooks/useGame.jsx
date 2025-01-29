@@ -8,6 +8,7 @@ export const phases = {
   SECOND_GAME: "SECOND_GAME",
   THIRD_GAME: "THIRD_GAME",
   FOURTH_GAME: "FOURTH_GAME",
+  TUTORIAL: "TUTORIAL",
 };
 
 export const gameStates = {
