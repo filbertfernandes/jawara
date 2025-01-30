@@ -8,11 +8,11 @@ import {
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 
-import { useGame } from "@/hooks/useGame.jsx";
+import { phases, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function GamePortal({
-  phase,
+  portalPhase,
   textPosition,
   portalPosition,
   portalScale = [1.5, 2, 1.5],
@@ -35,12 +35,14 @@ export default function GamePortal({
   const [subscribeKeys] = useKeyboardControls();
 
   const {
+    phase,
     changePhase,
     canChangePhase,
     setCanChangePhase,
     canPressEnter,
     setCanPressEnter,
   } = useGame((state) => ({
+    phase: state.phase,
     changePhase: state.changePhase,
     canChangePhase: state.canChangePhase,
     setCanChangePhase: state.setCanChangePhase,
@@ -85,8 +87,13 @@ export default function GamePortal({
           position={portalPosition}
           scale={portalScale}
           onPointerOver={() => {
-            if (!canChangePhase.condition || canChangePhase.phase === phase) {
-              setCanChangePhase(true, phase);
+            if (phase !== phases.FREE) return;
+
+            if (
+              !canChangePhase.condition ||
+              canChangePhase.phase === portalPhase
+            ) {
+              setCanChangePhase(true, portalPhase);
               setHovered(true);
             }
           }}
@@ -101,7 +108,7 @@ export default function GamePortal({
           onClick={() => {
             if (hovered) {
               SoundManager.playSound("buttonClick");
-              changePhase(phase);
+              changePhase(portalPhase);
             }
           }}
         >
@@ -123,13 +130,19 @@ export default function GamePortal({
           )}
 
           {/* WHITE BRIGHT EDGES */}
-          {((canChangePhase.condition && canChangePhase.phase === phase) ||
-            hovered) && (
-            <>
-              <Edges linewidth={5} threshold={15} color={[1000, 1000, 1000]} />
-              <Outlines thickness={0.01} color={[1, 1, 1]} />
-            </>
-          )}
+          {((canChangePhase.condition &&
+            canChangePhase.phase === portalPhase) ||
+            hovered) &&
+            phase === phases.FREE && (
+              <>
+                <Edges
+                  linewidth={5}
+                  threshold={15}
+                  color={[1000, 1000, 1000]}
+                />
+                <Outlines thickness={0.01} color={[1, 1, 1]} />
+              </>
+            )}
         </mesh>
 
         {/* SENSOR */}
@@ -142,7 +155,7 @@ export default function GamePortal({
               onIntersectionEnter={(other) => {
                 if (other.rigidBodyObject.name === "Player") {
                   setCanPressEnter(true);
-                  setCanChangePhase(true, phase);
+                  setCanChangePhase(true, portalPhase);
                 }
               }}
               onIntersectionExit={(other) => {
