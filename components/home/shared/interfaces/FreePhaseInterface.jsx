@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { FaQuestion } from "react-icons/fa";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
@@ -29,6 +30,8 @@ export default function FreePhaseInterface() {
     isMusicMuted: state.isMusicMuted,
   }));
 
+  const router = useRouter();
+
   // Memoized callback to prevent unnecessary re-renders
   const handleEnterButtonClick = useCallback(() => {
     if (canChangePhase.condition && canChangePhase.phase !== "") {
@@ -36,6 +39,9 @@ export default function FreePhaseInterface() {
       changePhase(canChangePhase.phase);
       setCanPressEnter(false);
       setCanChangePhase(false, "");
+    } else {
+      setCanPressEnter(false);
+      router.push("/curriculum");
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
