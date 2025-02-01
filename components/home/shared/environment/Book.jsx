@@ -49,8 +49,8 @@ const Book = () => {
         if (
           value &&
           canPressEnter &&
-          canChangePhase.condition &&
-          canChangePhase.phase !== ""
+          !canChangePhase.condition &&
+          canChangePhase.phase === ""
         ) {
           goToCurriculum();
         }
