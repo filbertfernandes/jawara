@@ -19,11 +19,14 @@ const Book = () => {
 
   const [subscribeKeys] = useKeyboardControls();
 
-  const { phase, setCanPressEnter, canPressEnter } = useGame((state) => ({
-    phase: state.phase,
-    canPressEnter: state.canPressEnter,
-    setCanPressEnter: state.setCanPressEnter,
-  }));
+  const { phase, setCanPressEnter, canPressEnter, canChangePhase } = useGame(
+    (state) => ({
+      phase: state.phase,
+      canPressEnter: state.canPressEnter,
+      setCanPressEnter: state.setCanPressEnter,
+      canChangePhase: state.canChangePhase,
+    })
+  );
 
   const goToCurriculum = () => {
     setCanPressEnter(false);
@@ -43,7 +46,12 @@ const Book = () => {
       (state) => state.enter,
 
       (value) => {
-        if (value && canPressEnter) {
+        if (
+          value &&
+          canPressEnter &&
+          canChangePhase.condition &&
+          canChangePhase.phase !== ""
+        ) {
           goToCurriculum();
         }
       }
