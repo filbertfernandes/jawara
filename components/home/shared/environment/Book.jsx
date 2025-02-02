@@ -73,8 +73,15 @@ const Book = () => {
           <mesh
             geometry={nodes.Cube_1.geometry}
             material={materials["Material.001"]}
-            onPointerOver={() => setHovered(true)}
-            onPointerOut={() => setHovered(false)}
+            onPointerOver={() => {
+              if (phase !== phases.FREE) return;
+              setHovered(true);
+            }}
+            onPointerOut={() => {
+              if (hovered) {
+                setHovered(false);
+              }
+            }}
             onClick={goToCurriculum}
           >
             {(hovered || isIntersect) && phase === phases.FREE && (
