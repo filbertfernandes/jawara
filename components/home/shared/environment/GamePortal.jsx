@@ -117,9 +117,9 @@ export default function GamePortal({
 
           {portalImage && (
             <Decal
-              position={[-0.299, 0.129, 0.15]} // Position of the decal
+              position={[-0.299, 0.1249, 0.15]} // Position of the decal
               rotation={[0, 0, 0]} // Rotation of the decal (can be a vector or a degree in radians)
-              scale={[0.4, 0.74, 0.7]} // Scale of the decal
+              scale={[0.4, 0.75, 0.7]} // Scale of the decal
             >
               <meshBasicMaterial
                 map={portalImage}

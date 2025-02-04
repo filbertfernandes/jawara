@@ -3,10 +3,10 @@
 import { Html, KeyboardControls, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
-import { useSession } from "next-auth/react";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
+import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
 
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
@@ -18,7 +18,6 @@ import constants from "@/constants/constants";
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
-import { api } from "@/lib/api";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(
@@ -92,6 +91,7 @@ export default function Home({ userSession }) {
     [phases.SECOND_GAME]: <SecondGameInterface />,
     [phases.THIRD_GAME]: <ThirdGameInterface />,
     [phases.FOURTH_GAME]: <FourthGameInterface />,
+    [phases.TUTORIAL]: <TutorialMenuInteface />,
   };
 
   return (

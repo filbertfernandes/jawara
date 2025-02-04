@@ -82,7 +82,10 @@ const Book = () => {
                 setHovered(false);
               }
             }}
-            onClick={goToCurriculum}
+            onClick={() => {
+              if (phase !== phases.FREE) return;
+              goToCurriculum();
+            }}
           >
             {(hovered || isIntersect) && phase === phases.FREE && (
               <>
