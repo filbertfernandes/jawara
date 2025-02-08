@@ -4,8 +4,6 @@ import { GiExitDoor } from "react-icons/gi";
 import { modelsData, musicData, soundEffectsData } from "../stores/data";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
-import { skies, useGame } from "@/hooks/useGame";
-
 const List = ({ title, data }) => (
   <div className="flex w-full flex-col">
     <h5 className="h5-bold">{title}</h5>
@@ -31,10 +29,6 @@ const CreditsInterface = () => {
     setTutorialState: state.setTutorialState,
   }));
 
-  const { sky } = useGame((state) => ({
-    sky: state.sky,
-  }));
-
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -45,11 +39,7 @@ const CreditsInterface = () => {
     <>
       <div className="fullscreen-backdrop pb-8">
         <div
-          className={`absolute left-4 top-4 cursor-pointer text-3xl transition-all duration-200 ease-in-out sm:text-4xl ${
-            sky === skies.NIGHT
-              ? "text-white hover:text-gray-200"
-              : "text-gray-500 hover:text-gray-600"
-          }`}
+          className="absolute left-4 top-4 cursor-pointer text-3xl text-white transition-all duration-200 ease-in-out hover:text-gray-200 sm:text-4xl"
           onClick={() => setTutorialState(tutorialStates.MENU)}
         >
           <GiExitDoor />

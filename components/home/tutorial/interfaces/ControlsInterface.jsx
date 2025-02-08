@@ -7,25 +7,12 @@ import {
 } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
 
+import ControlButton from "../../shared/interfaces/ControlButton";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
-
-import { skies, useGame } from "@/hooks/useGame";
-
-const ControlButton = ({ children, className = "" }) => (
-  <div
-    className={`btn btn-square btn-sm bg-gray-800 text-lg text-white lg:btn-md lg:text-2xl ${className}`}
-  >
-    {children}
-  </div>
-);
 
 const ControlsInterface = () => {
   const { setTutorialState } = useTutorial((state) => ({
     setTutorialState: state.setTutorialState,
-  }));
-
-  const { sky } = useGame((state) => ({
-    sky: state.sky,
   }));
 
   const [isVisible, setIsVisible] = useState(false);
@@ -37,11 +24,7 @@ const ControlsInterface = () => {
   return (
     <div className="fullscreen-backdrop pb-8">
       <div
-        className={`absolute left-4 top-4 cursor-pointer text-3xl transition-all duration-200 ease-in-out sm:text-4xl ${
-          sky === skies.NIGHT
-            ? "text-white hover:text-gray-200"
-            : "text-gray-500 hover:text-gray-600"
-        }`}
+        className="absolute left-4 top-4 cursor-pointer text-3xl text-white transition-all duration-200 ease-in-out hover:text-gray-200 sm:text-4xl"
         onClick={() => setTutorialState(tutorialStates.MENU)}
       >
         <GiExitDoor />
