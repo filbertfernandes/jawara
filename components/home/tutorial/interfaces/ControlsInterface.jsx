@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   FaArrowUp,
   FaArrowDown,
@@ -27,6 +28,12 @@ const ControlsInterface = () => {
     sky: state.sky,
   }));
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <div className="fullscreen-backdrop pb-8">
       <div
@@ -39,7 +46,11 @@ const ControlsInterface = () => {
       >
         <GiExitDoor />
       </div>
-      <div className="flex size-full flex-col items-center justify-center gap-12 lg:gap-20">
+      <div
+        className={`flex size-full flex-col items-center justify-center gap-12 lg:gap-20 ${
+          isVisible ? "animate-bounceIn" : "opacity-0"
+        }`}
+      >
         <div className="h1-bold text-orange-500">Controls</div>
         <div className="flex flex-col gap-2">
           <div className="h3-bold text-center text-gray-600">Move</div>

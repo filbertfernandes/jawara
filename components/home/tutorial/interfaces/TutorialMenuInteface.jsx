@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import ControlsInterface from "./ControlsInterface";
 import CreditsInterface from "./CreditsInterface";
@@ -23,15 +23,16 @@ const Button = ({ text, onClick, isOutlined = false }) => {
 };
 
 const TutorialMenuInterface = () => {
-  const { changePhase, gameState } = useGame((state) => ({
+  const { changePhase } = useGame((state) => ({
     changePhase: state.changePhase,
-    gameState: state.gameState,
   }));
 
   const { tutorialState, setTutorialState } = useTutorial((state) => ({
     tutorialState: state.tutorialState,
     setTutorialState: state.setTutorialState,
   }));
+
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -41,15 +42,21 @@ const TutorialMenuInterface = () => {
       }
     };
 
+    setIsVisible(true);
+
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [gameState]);
+  }, []);
 
   return tutorialState === tutorialStates.MENU ? (
     <div className="fullscreen-backdrop">
-      <div className="flex h-[90%] w-full flex-col items-center justify-center gap-6">
+      <div
+        className={`flex h-[90%] w-full flex-col items-center justify-center gap-6 ${
+          isVisible ? "animate-bounceIn" : "opacity-0"
+        }`}
+      >
         <Button
           text="Guide"
           onClick={() => setTutorialState(tutorialStates.GUIDE)}

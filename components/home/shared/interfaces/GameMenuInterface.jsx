@@ -5,6 +5,7 @@ import GameMaterialInterface from "./GameMaterialInterface.jsx";
 import GameOverInterface from "./GameOverInterface.jsx";
 import GameSelectInterface from "./GameSelectInterface.jsx";
 import GameTabsInterface from "./GameTabsInterface.jsx";
+import GameTutorialInterface from "./GameTutorialInterface.jsx";
 
 import { gameStates, phases, useGame } from "@/hooks/useGame.jsx";
 
@@ -38,6 +39,7 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
     ),
     [gameStates.LEADERBOARD]: <GameLeaderboardInterface />,
     [gameStates.MATERIAL]: <GameMaterialInterface words={words} />,
+    [gameStates.GAME_TUTORIAL]: <GameTutorialInterface />,
     [gameStates.GAME_OVER]: (
       <GameOverInterface score={score} startGame={startGame} />
     ),
