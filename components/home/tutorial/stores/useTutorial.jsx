@@ -6,6 +6,7 @@ import { SoundManager } from "@/lib/SoundManager";
 export const tutorialStates = {
   MENU: "MENU",
   GUIDE: "GUIDE",
+  CONTROLS: "CONTROLS",
   CREDITS: "CREDITS",
 };
 

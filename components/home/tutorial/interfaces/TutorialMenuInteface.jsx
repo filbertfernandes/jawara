@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import ControlsInterface from "./ControlsInterface";
 import CreditsInterface from "./CreditsInterface";
 import GuideInterface from "./GuideInterface";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
@@ -54,6 +55,10 @@ const TutorialMenuInterface = () => {
           onClick={() => setTutorialState(tutorialStates.GUIDE)}
         />
         <Button
+          text="CONTROLS"
+          onClick={() => setTutorialState(tutorialStates.CONTROLS)}
+        />
+        <Button
           text="Credits"
           onClick={() => setTutorialState(tutorialStates.CREDITS)}
         />
@@ -67,6 +72,10 @@ const TutorialMenuInterface = () => {
   ) : tutorialState === tutorialStates.GUIDE ? (
     <>
       <GuideInterface />
+    </>
+  ) : tutorialState === tutorialStates.CONTROLS ? (
+    <>
+      <ControlsInterface />
     </>
   ) : (
     <>
