@@ -35,7 +35,6 @@ export default function FreePhaseInterface() {
   // Memoized callback to prevent unnecessary re-renders
   const handleEnterButtonClick = useCallback(() => {
     if (canChangePhase.condition && canChangePhase.phase !== "") {
-      SoundManager.playSound("buttonClick");
       changePhase(canChangePhase.phase);
       setCanPressEnter(false);
       setCanChangePhase(false, "");
@@ -58,7 +57,6 @@ export default function FreePhaseInterface() {
           <div
             className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 lg:text-3xl"
             onClick={() => {
-              SoundManager.playSound("buttonClick");
               changePhase(phases.TUTORIAL);
             }}
           >

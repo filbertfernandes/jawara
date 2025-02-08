@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import CreditsInterface from "./CreditsInterface";
 import GuideInterface from "./GuideInterface";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
@@ -68,9 +69,9 @@ const TutorialMenuInterface = () => {
       <GuideInterface />
     </>
   ) : (
-    <div className="fullscreen-backdrop">
-      <div>CREDITS</div>
-    </div>
+    <>
+      <CreditsInterface />
+    </>
   );
 };
 

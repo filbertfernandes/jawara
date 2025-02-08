@@ -29,15 +29,15 @@ export default function Experience({ joystickInput }) {
     const currentHour = new Date().getHours();
 
     if (currentHour >= 7 && currentHour < 16) {
-      // Day (6am - 3:59pm)
+      // Day (07.00 - 15.59)
       setSky(skies.DAY);
     } else if (
-      (currentHour >= 16 && currentHour < 19) || // Dawn (4pm - 18.59pm)
-      (currentHour >= 4 && currentHour < 7) // Dawn (4am - 6.59am)
+      (currentHour >= 16 && currentHour < 19) || // Dawn (16.00 - 18.59)
+      (currentHour >= 4 && currentHour < 7) // Dawn (04.00 - 06.59)
     ) {
       setSky(skies.DAWN);
     } else {
-      // Night
+      // Night (19.00 - 03.59)
       setSky(skies.NIGHT);
     }
   }, []);

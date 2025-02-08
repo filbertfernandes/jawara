@@ -40,7 +40,6 @@ const GameTabsInterface = () => {
 
   // Button click handlers
   const handleTabButtonClick = useCallback((gameState) => {
-    SoundManager.playSound("buttonClick");
     changeGameState(gameState);
   });
 

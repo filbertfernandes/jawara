@@ -1,4 +1,4 @@
-const data = [
+export const guideData = [
   {
     information: "Curriculum",
     description: "Click this book or walk closer\nto enter curriculum lessons!",
@@ -43,4 +43,146 @@ const data = [
   },
 ];
 
-export default data;
+export const modelsData = [
+  {
+    name: "Putu - Sad Ripu",
+    author: "Dewa Martika",
+    url: "https://skfb.ly/6Xpr9",
+  },
+  {
+    name: "Football",
+    author: "Safat_Rules",
+    url: "https://skfb.ly/oLFEv",
+  },
+  {
+    name: "Stylize Tree Lowpoly",
+    author: "uday",
+    url: "https://skfb.ly/oDYXM",
+  },
+  {
+    name: "Leafy Tree - Low poly",
+    author: "lightguard",
+    url: "https://skfb.ly/6XqCK",
+  },
+  {
+    name: "Low Poly Grass Pack",
+    author: "Anskar",
+    url: "https://skfb.ly/6SGGt",
+  },
+  {
+    name: "Low Poly Flowers",
+    author: "InnocentBaraka",
+    url: "https://skfb.ly/6YBWw",
+  },
+  {
+    name: "Farm Cow Animated Dairy cattle",
+    author: "Rukh3D",
+    url: "https://sketchfab.com/3d-models/farm-cow-animated-dairy-cattle-0e780cb5ab6d457198ded7d4e191a03e",
+  },
+  {
+    name: "Chicken - rigged",
+    author: "Maf'j Alvarez",
+    url: "https://sketchfab.com/3d-models/chicken-rigged-6e3b93c078114c52bfe4cfa08b9843eb",
+  },
+  {
+    name: "Pig",
+    author: "Nicole Harris",
+    url: "https://sketchfab.com/3d-models/pig-83358848ab0b4b7c8cbbe9d6b0860468",
+  },
+  {
+    name: "Lion",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/lion-66be3258e2d64f32af2b73b2ecd47637",
+  },
+  {
+    name: "Labrador Dog",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/labrador-dog-1f56cfbab07e4fe49b5d9e521c82073a",
+  },
+  {
+    name: "Bicolor Cat",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/bicolor-cat-e623a618ca344a8393d7ba4d63ec23cf",
+  },
+  {
+    name: "Horse",
+    author: "Paleo Modelist",
+    url: "https://sketchfab.com/3d-models/horse-6b16309d6dfc4ed1978e1748ebcf4530",
+  },
+  {
+    name: "Field Mouse",
+    author: "Mewn",
+    url: "https://sketchfab.com/3d-models/field-mouse-f201c715687141378159e4ba1285c9f7#download",
+  },
+  {
+    name: "Duck Animation",
+    author: "icekic",
+    url: "https://sketchfab.com/3d-models/duck-animation-4a95a539dab94eaf9314a93ddb743f4e#download",
+  },
+  {
+    name: "African Elephant",
+    author: "Joseph.AD",
+    url: "https://sketchfab.com/3d-models/african-elephant-facb060916534e7eae8e6a5a8056185f",
+  },
+  {
+    name: "Giraffe+motions",
+    author: "Kapi777",
+    url: "https://sketchfab.com/3d-models/giraffemotions-20a57636ec0c44c996e7f36313792cea",
+  },
+  {
+    name: "Sheep",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/sheep-08b05ae799d947f1a68c49b2d661eb53",
+  },
+  {
+    name: "Rabbit",
+    author: "Paleo Modelist",
+    url: "https://sketchfab.com/3d-models/rabbit-ce07bc73ca66435680e227767725f3f8",
+  },
+  {
+    name: "Deer Idle",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/deer-idle-c80f3de2e24542e1a8e578f832c6211c",
+  },
+  {
+    name: "Frog",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/frog-ebce6aa962db491d87619a6a31a7af99",
+  },
+  {
+    name: "African Buffalo",
+    author: "kenchoo",
+    url: "https://sketchfab.com/3d-models/african-buffalo-10430df80e6446f2a77cb0ba93ed5cd1",
+  },
+];
+
+export const musicData = [
+  {
+    name: "Grassy Plains",
+    author: "Darren-Curtis",
+    url: "https://www.youtube.com/watch?v=0vpEQn2CuaQ",
+  },
+  {
+    name: "Childhood Friend",
+    author: "Arthur Vyncke",
+    url: "https://www.youtube.com/watch?v=A0sxKRakqUA",
+  },
+];
+
+export const soundEffectsData = [
+  {
+    name: "50 Menu Interface SFX",
+    author: "ColorAlpha",
+    url: "https://coloralpha.itch.io/50-menu-interface-sfx",
+  },
+  {
+    name: "Footstep Sounds",
+    author: "OwlishMedia",
+    url: "https://opengameart.org/content/footstep-sounds",
+  },
+  {
+    name: "Free Ball Sound Effects",
+    author: "Mixkit",
+    url: "https://mixkit.co/free-sound-effects/ball/",
+  },
+];

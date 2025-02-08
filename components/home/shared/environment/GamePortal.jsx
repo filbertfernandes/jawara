@@ -56,7 +56,6 @@ export default function GamePortal({
 
       (value) => {
         if (value && canChangePhase.condition && canChangePhase.phase !== "") {
-          SoundManager.playSound("buttonClick");
           changePhase(canChangePhase.phase);
           setCanPressEnter(false);
           setCanChangePhase(false, "");
@@ -107,7 +106,6 @@ export default function GamePortal({
           }}
           onClick={() => {
             if (hovered) {
-              SoundManager.playSound("buttonClick");
               changePhase(portalPhase);
             }
           }}

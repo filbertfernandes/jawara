@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
+import { SoundManager } from "@/lib/SoundManager";
+
 export const phases = {
   FREE: "FREE",
   TRANSLATION: "TRANSLATION",
@@ -55,6 +57,7 @@ export const useGame = create(
       // CHANGE PHASES METHODS
       changePhase: (phase) => {
         set(() => {
+          SoundManager.playSound("buttonClick");
           return { phase };
         });
       },
@@ -74,6 +77,7 @@ export const useGame = create(
       // CHANGE GAME STATE METHOD
       changeGameState: (gameState) => {
         set(() => {
+          SoundManager.playSound("buttonClick");
           return { gameState };
         });
       },

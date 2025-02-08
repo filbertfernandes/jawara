@@ -3,7 +3,7 @@ import { useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect } from "react";
 
-import data from "./stores/data";
+import { guideData } from "./stores/data";
 import { useTutorial } from "./stores/useTutorial";
 import { controlsRef } from "./Tutorial"; // Import the global reference
 
@@ -19,16 +19,16 @@ const Guide = () => {
       const tl = gsap.timeline({ ease: "power3.inOut" });
 
       tl.to(controlsRef.current.target, {
-        x: data[guideIndex].cameraTargetPosition.x,
-        y: data[guideIndex].cameraTargetPosition.y,
-        z: data[guideIndex].cameraTargetPosition.z,
+        x: guideData[guideIndex].cameraTargetPosition.x,
+        y: guideData[guideIndex].cameraTargetPosition.y,
+        z: guideData[guideIndex].cameraTargetPosition.z,
         duration: 2.3,
       }).to(
         camera.position,
         {
-          x: data[guideIndex].cameraPosition.x,
-          y: data[guideIndex].cameraPosition.y,
-          z: data[guideIndex].cameraPosition.z,
+          x: guideData[guideIndex].cameraPosition.x,
+          y: guideData[guideIndex].cameraPosition.y,
+          z: guideData[guideIndex].cameraPosition.z,
           duration: 2.3,
         },
         0
@@ -40,7 +40,7 @@ const Guide = () => {
 
   return (
     <>
-      {data.map((item) => (
+      {guideData.map((item) => (
         <Float
           key={item.information}
           floatIntensity={0.1}

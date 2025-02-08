@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
+import { SoundManager } from "@/lib/SoundManager";
+
 export const tutorialStates = {
   MENU: "MENU",
   GUIDE: "GUIDE",
@@ -16,6 +18,7 @@ export const useTutorial = create(
 
       setTutorialState: (tutorialState) => {
         set(() => {
+          SoundManager.playSound("buttonClick");
           return { tutorialState };
         });
       },

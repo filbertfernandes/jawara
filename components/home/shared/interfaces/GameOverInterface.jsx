@@ -20,13 +20,11 @@ const GameOverInterface = ({ score, startGame }) => {
 
   // Memoized button click handlers
   const handleRetry = useCallback(() => {
-    SoundManager.playSound("buttonClick");
     changeGameState(gameStates.GAME);
     startGame({ mode: "" });
   }, [changeGameState, startGame]);
 
   const handleBackToMenu = useCallback(() => {
-    SoundManager.playSound("buttonClick");
     changeGameState(gameStates.MENU);
   }, [changeGameState]);
 

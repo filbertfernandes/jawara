@@ -38,7 +38,6 @@ const GameSelectInterface = ({ startGame, title }) => {
   // Memoized button click handlers
   const handleButtonClick = useCallback(
     (mode) => {
-      SoundManager.playSound("buttonClick");
       changeGameState(gameStates.GAME);
       startGame({ mode });
     },
@@ -46,7 +45,6 @@ const GameSelectInterface = ({ startGame, title }) => {
   );
 
   const handleBackClick = useCallback(() => {
-    SoundManager.playSound("buttonClick");
     changeGameState(gameStates.MENU);
     changePhase(phases.FREE);
   }, [changeGameState, changePhase]);
