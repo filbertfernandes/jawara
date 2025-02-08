@@ -37,7 +37,7 @@ const CreditsInterface = () => {
 
   return (
     <>
-      <div className="fullscreen-backdrop pb-8">
+      <div className="fullscreen-backdrop">
         <div
           className="absolute left-4 top-4 cursor-pointer text-3xl text-white transition-all duration-200 ease-in-out hover:text-gray-200 sm:text-4xl"
           onClick={() => setTutorialState(tutorialStates.MENU)}
@@ -49,7 +49,7 @@ const CreditsInterface = () => {
             isVisible ? "animate-bounceIn" : "opacity-0"
           }`}
         >
-          <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl bg-gradient-to-r from-orange-500 to-orange-700 p-4 text-white lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
+          <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl p-4 text-white lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
             <div className="h1-bold">Special Thanks To</div>
 
             {/* Reusable list components */}
