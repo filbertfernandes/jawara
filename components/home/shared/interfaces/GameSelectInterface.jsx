@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { useGame, phases, gameStates } from "@/hooks/useGame.jsx";
-import { SoundManager } from "@/lib/SoundManager.jsx";
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
@@ -64,28 +63,19 @@ const GameSelectInterface = ({ startGame, title }) => {
     >
       <h1 className="h1-bold text-orange-500 drop-shadow-lg">{title}</h1>
 
-      <div className="flex gap-6">
-        <GameSelectButton
-          label="Ngoko"
-          onClick={() => handleButtonClick("ngoko")}
-        />
-        <GameSelectButton
-          label="Krama Madya"
-          onClick={() => handleButtonClick("madya")}
-        />
-        <GameSelectButton
-          label="Krama Alus"
-          onClick={() => handleButtonClick("alus")}
-        />
-      </div>
-
-      <div className="mt-10 flex gap-6">
-        <OtherButton
-          label="How To Play"
-          onClick={() => console.log("Pressed")}
-        />
-        <OtherButton label="Go Back" onClick={handleBackClick} />
-      </div>
+      <GameSelectButton
+        label="Ngoko"
+        onClick={() => handleButtonClick("ngoko")}
+      />
+      <GameSelectButton
+        label="Krama Madya"
+        onClick={() => handleButtonClick("madya")}
+      />
+      <GameSelectButton
+        label="Krama Alus"
+        onClick={() => handleButtonClick("alus")}
+      />
+      <OtherButton label="Go Back" onClick={handleBackClick} />
     </div>
   );
 };

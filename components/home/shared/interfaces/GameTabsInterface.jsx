@@ -1,10 +1,9 @@
 import { useCallback } from "react";
-import { FaBook } from "react-icons/fa";
+import { FaBook, FaQuestion } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
 import { IoGameController } from "react-icons/io5";
 
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
-import { SoundManager } from "@/lib/SoundManager.jsx";
 
 const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
   return (
@@ -37,6 +36,7 @@ const GameTabsInterface = () => {
   const isMenuActive = gameState === gameStates.MENU;
   const isLeaderboardActive = gameState === gameStates.LEADERBOARD;
   const isMaterialActive = gameState === gameStates.MATERIAL;
+  const isTutorialActive = gameState === gameStates.GAME_TUTORIAL;
 
   // Button click handlers
   const handleTabButtonClick = useCallback((gameState) => {
@@ -59,6 +59,11 @@ const GameTabsInterface = () => {
         icon={FaBook}
         isActive={isMaterialActive}
         onClick={() => handleTabButtonClick(gameStates.MATERIAL)}
+      />
+      <GameTabButton
+        icon={FaQuestion}
+        isActive={isTutorialActive}
+        onClick={() => handleTabButtonClick(gameStates.GAME_TUTORIAL)}
       />
     </div>
   );

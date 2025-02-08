@@ -9,7 +9,6 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 
 import { phases, useGame } from "@/hooks/useGame.jsx";
-import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function GamePortal({
   portalPhase,

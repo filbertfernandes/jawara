@@ -1,7 +1,6 @@
 import { GiExitDoor } from "react-icons/gi";
 
 import { gameStates, useGame } from "@/hooks/useGame";
-import { SoundManager } from "@/lib/SoundManager";
 
 const ExitDoor = () => {
   const { changeGameState } = useGame((state) => ({

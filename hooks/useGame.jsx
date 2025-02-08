@@ -19,6 +19,7 @@ export const gameStates = {
   MATERIAL: "MATERIAL",
   GAME: "GAME",
   GAME_OVER: "GAME_OVER",
+  GAME_TUTORIAL: "GAME_TUTORIAL",
 };
 
 export const skies = {

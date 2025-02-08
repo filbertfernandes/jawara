@@ -4,8 +4,6 @@ import { GiExitDoor } from "react-icons/gi";
 
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
-import { SoundManager } from "@/lib/SoundManager";
-
 const GuideInterface = () => {
   const {
     resetGuideIndex,

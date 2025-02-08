@@ -7,7 +7,6 @@ import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame.jsx";
-import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function FreePhaseInterface() {
   const {
