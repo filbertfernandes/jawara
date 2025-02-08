@@ -82,7 +82,7 @@ const GameLeaderboardInterface = () => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold text-orange-500 drop-shadow-lg">Leaderboard</h1>
+      <h1 className="h1-bold text-white drop-shadow-lg">Leaderboard</h1>
 
       <div className="flex h-10 w-[90%] justify-between rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 px-4 text-white sm:w-[70%] sm:text-lg md:text-xl lg:w-1/2 lg:text-2xl">
         <LanguageCategory

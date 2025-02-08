@@ -38,7 +38,7 @@ const GameMaterialInterface = ({ words }) => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold text-orange-500 drop-shadow-lg">Material</h1>
+      <h1 className="h1-bold text-white drop-shadow-lg">Material</h1>
 
       <div className="mt-4 flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
         {words.map((word, index) => (

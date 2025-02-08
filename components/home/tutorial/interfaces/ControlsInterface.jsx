@@ -51,15 +51,15 @@ const ControlsInterface = () => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <div className="h1-bold text-orange-500">Controls</div>
+        <div className="h1-bold text-white">Controls</div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-gray-600">Move</div>
+          <div className="h3-bold text-center text-white">Move</div>
           <div className="flex items-center gap-1">
             <ControlButton>A</ControlButton>
             <ControlButton>W</ControlButton>
             <ControlButton>S</ControlButton>
             <ControlButton>D</ControlButton>
-            <div className="h5-bold mx-3 text-center text-gray-600">Or</div>
+            <div className="h5-bold mx-3 text-center text-white">Or</div>
             <ControlButton>
               <FaArrowLeft />
             </ControlButton>
@@ -75,7 +75,7 @@ const ControlsInterface = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-gray-600">Jump</div>
+          <div className="h3-bold text-center text-white">Jump</div>
           <ControlButton className="w-36 lg:w-60">Space</ControlButton>
         </div>
       </div>

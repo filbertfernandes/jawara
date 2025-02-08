@@ -61,7 +61,7 @@ const GameSelectInterface = ({ startGame, title }) => {
       }`}
       onKeyDown={handleKeyDown}
     >
-      <h1 className="h1-bold text-orange-500 drop-shadow-lg">{title}</h1>
+      <h1 className="h1-bold text-white drop-shadow-lg">{title}</h1>
 
       <GameSelectButton
         label="Ngoko"
