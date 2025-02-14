@@ -1,6 +1,8 @@
 import { Bebas_Neue, Questrial } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,12 +30,17 @@ export const metadata = {
 const RootLayout = async ({ children }) => {
   const session = await auth();
 
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <SessionProvider session={session}>
         <body className={`${questrial.variable} ${bebas.variable}`}>
-          {children}
-          <Toaster />
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            <Toaster />
+          </NextIntlClientProvider>
         </body>
       </SessionProvider>
     </html>
