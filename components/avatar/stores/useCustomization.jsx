@@ -2,6 +2,7 @@ import { MeshStandardMaterial } from "three";
 import { randInt } from "three/src/math/MathUtils.js";
 import { create } from "zustand";
 
+import { cameraPlacements } from "./cameraPlacements";
 import { customizationAssets } from "./customizationAssets";
 import { customizationGroups } from "./customizationGroups";
 import { customizationPalettes } from "./customizationPalettes";
@@ -10,6 +11,7 @@ export const useCustomization = create((set, get) => ({
   categories: [],
   currentCategory: null,
   assets: [],
+  lockedGroups: {},
   skin: new MeshStandardMaterial({
     color: 0xe1b899,
     roughness: 1,
@@ -41,15 +43,21 @@ export const useCustomization = create((set, get) => ({
   fetchCategories: () => {
     const categories = customizationGroups;
     const assets = customizationAssets;
-    const colorPalettes = customizationPalettes;
     const customization = {};
 
     categories.forEach((category) => {
       category.assets = assets.filter((asset) => asset.groupId === category.id);
 
       if (category.colorPaletteName) {
-        category.colorPalette = colorPalettes.find(
+        category.colorPalette = customizationPalettes.find(
           (colorPalette) => colorPalette.name === category.colorPaletteName
+        );
+      }
+
+      if (category.cameraPlacementName) {
+        category.cameraPlacement = cameraPlacements.find(
+          (cameraPlacement) =>
+            cameraPlacement.name === category.cameraPlacementName
         );
       }
 
@@ -65,11 +73,12 @@ export const useCustomization = create((set, get) => ({
     });
 
     set({ categories, currentCategory: categories[0], assets, customization });
+    get().applyLockedAssets();
   },
 
   setCurrentCategory: (category) => set({ currentCategory: category }),
 
-  changeAsset: (category, asset) =>
+  changeAsset: (category, asset) => {
     set((state) => ({
       customization: {
         ...state.customization,
@@ -78,7 +87,9 @@ export const useCustomization = create((set, get) => ({
           asset,
         },
       },
-    })),
+    }));
+    get().applyLockedAssets();
+  },
 
   randomize: () => {
     const customization = {};
@@ -102,5 +113,34 @@ export const useCustomization = create((set, get) => ({
       }
     });
     set({ customization });
+    get().applyLockedAssets();
+  },
+
+  applyLockedAssets: () => {
+    const customization = get().customization;
+    const categories = get().categories;
+    const lockedGroups = {};
+
+    Object.values(customization).forEach((category) => {
+      if (category.asset?.lockedGroups) {
+        category.asset.lockedGroups.forEach((group) => {
+          const categoryName = categories.find(
+            (category) => category.id === group
+          ).name;
+          if (!lockedGroups[categoryName]) {
+            lockedGroups[categoryName] = [];
+          }
+          const lockingAssetCategoryName = categories.find(
+            (cat) => cat.id === category.asset.groupId
+          ).name;
+          lockedGroups[categoryName].push({
+            name: category.asset.name,
+            categoryName: lockingAssetCategoryName,
+          });
+        });
+      }
+    });
+
+    set({ lockedGroups });
   },
 }));

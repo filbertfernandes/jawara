@@ -2,6 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 
+import { DEFAULT_CAMERA_POSITION } from "./CameraManager";
 import Experience from "./Experience";
 import UI from "./UI";
 
@@ -11,7 +12,7 @@ const Customization = () => {
       <UI />
       <Canvas
         camera={{
-          position: [-1, 1, 5],
+          position: DEFAULT_CAMERA_POSITION,
           fov: 45,
         }}
         shadows

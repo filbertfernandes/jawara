@@ -6,6 +6,7 @@ export const customizationGroups = [
     startingAsset: "Head_01",
     colorPaletteName: "Skin",
     removable: false,
+    cameraPlacementName: "Head",
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ export const customizationGroups = [
     startingAsset: "Hair_01",
     colorPaletteName: "Hair",
     removable: true,
+    cameraPlacementName: "Hair",
   },
   {
     id: "3",
@@ -22,6 +24,7 @@ export const customizationGroups = [
     startingAsset: "Eyes_01",
     colorPaletteName: null,
     removable: false,
+    cameraPlacementName: "Head",
   },
   {
     id: "4",
@@ -30,14 +33,16 @@ export const customizationGroups = [
     startingAsset: "Eyebrow_01",
     colorPaletteName: "Hair",
     removable: false,
+    cameraPlacementName: "Head",
   },
   {
     id: "5",
     name: "Nose",
     position: 5,
     startingAsset: "Nose_01",
-    colorPaletteName: "Skin",
+    colorPaletteName: null,
     removable: false,
+    cameraPlacementName: "Head",
   },
   {
     id: "6",
@@ -46,14 +51,16 @@ export const customizationGroups = [
     startingAsset: null,
     colorPaletteName: "Hair",
     removable: true,
+    cameraPlacementName: "Head",
   },
   {
     id: "7",
     name: "Glasses",
     position: 7,
     startingAsset: null,
-    colorPaletteName: null,
+    colorPaletteName: "Clothes",
     removable: true,
+    cameraPlacementName: "Head",
   },
   {
     id: "8",
@@ -62,6 +69,7 @@ export const customizationGroups = [
     startingAsset: null,
     colorPaletteName: null,
     removable: true,
+    cameraPlacementName: "Hair",
   },
   {
     id: "9",
@@ -70,6 +78,7 @@ export const customizationGroups = [
     startingAsset: "Top_01",
     colorPaletteName: "Clothes",
     removable: false,
+    cameraPlacementName: "Top",
   },
   {
     id: "10",
@@ -78,6 +87,7 @@ export const customizationGroups = [
     startingAsset: "Bottom_01",
     colorPaletteName: "Clothes",
     removable: false,
+    cameraPlacementName: "Bottom",
   },
   {
     id: "11",
@@ -86,6 +96,7 @@ export const customizationGroups = [
     startingAsset: "Shoes_01",
     colorPaletteName: "Clothes",
     removable: true,
+    cameraPlacementName: "Bottom",
   },
   {
     id: "12",
@@ -94,5 +105,6 @@ export const customizationGroups = [
     startingAsset: null,
     colorPaletteName: null,
     removable: true,
+    cameraPlacementName: null,
   },
 ];

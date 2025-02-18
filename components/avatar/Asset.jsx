@@ -6,11 +6,13 @@ import { useCustomization } from "./stores/useCustomization";
 const Asset = ({ categoryName, url, skeleton }) => {
   const { scene } = useGLTF(url);
 
-  const customization = useCustomization((state) => state.customization);
+  const { customization, lockedGroups, skin } = useCustomization((state) => ({
+    customization: state.customization,
+    lockedGroups: state.lockedGroups,
+    skin: state.skin,
+  }));
 
   const assetColor = customization[categoryName].color;
-
-  const skin = useCustomization((state) => state.skin);
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -31,11 +33,17 @@ const Asset = ({ categoryName, url, skeleton }) => {
           material: child.material.name.includes("Skin_")
             ? skin
             : child.material,
+          morphTargetDictionary: child.morphTargetDictionary,
+          morphTargetInfluences: child.morphTargetInfluences,
         });
       }
     });
     return items;
   }, [scene]);
+
+  if (lockedGroups[categoryName]) {
+    return null;
+  }
 
   return attachedItems.map((item, index) => (
     <skinnedMesh
@@ -43,6 +51,8 @@ const Asset = ({ categoryName, url, skeleton }) => {
       geometry={item.geometry}
       material={item.material}
       skeleton={skeleton}
+      morphTargetDictionary={item.morphTargetDictionary}
+      morphTargetInfluences={item.morphTargetInfluences}
       castShadow
       receiveShadow
     />

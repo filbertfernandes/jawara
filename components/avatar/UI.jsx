@@ -12,6 +12,7 @@ const AssetBox = () => {
     setCurrentCategory,
     changeAsset,
     customization,
+    lockedGroups,
   } = useCustomization();
 
   useEffect(() => {
@@ -28,22 +29,30 @@ const AssetBox = () => {
             className={`shrink-0 border-b font-medium transition-colors duration-200 ${
               currentCategory.name === category.name
                 ? "border-b-white text-white shadow-purple-100"
-                : "border-b-transparent text-gray-400 hover:text-gray-500"
+                : "border-b-transparent text-gray-200 hover:text-gray-100"
             }`}
           >
             {category.name}
           </button>
         ))}
       </div>
+      {lockedGroups[currentCategory?.name] && (
+        <p className="px-6 text-red-400">
+          Asset is hidden by{" "}
+          {lockedGroups[currentCategory.name]
+            .map((asset) => `${asset.name} (${asset.categoryName})`)
+            .join(", ")}
+        </p>
+      )}
       <div className="flex flex-wrap gap-2 px-6">
         {currentCategory?.removable && (
           <button
             onClick={() => changeAsset(currentCategory.name, null)}
-            className={`w-20 h-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300
+            className={`w-20 h-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
               ${
                 !customization[currentCategory.name].asset
-                  ? "border-white opacity-100"
-                  : "border-transparent opacity-80"
+                  ? "border-white from-white/20 to-white/30"
+                  : "border-black from-black/70 to-black/20"
               }`}
           >
             <div className="flex size-full items-center justify-center bg-black/40 text-white">
@@ -68,11 +77,11 @@ const AssetBox = () => {
           <button
             key={asset.name}
             onClick={() => changeAsset(currentCategory.name, asset)}
-            className={`size-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300
+            className={`size-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
               ${
                 customization[currentCategory.name]?.asset?.name === asset.name
-                  ? "border-white opacity-100"
-                  : "border-transparent opacity-80"
+                  ? "border-white from-white/20 to-white/30"
+                  : "border-black from-black/70 to-black/20"
               }`}
           >
             <Image
