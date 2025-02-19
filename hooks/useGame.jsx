@@ -84,7 +84,7 @@ export const useGame = create(
       },
 
       // PLAYER STATE
-      playerState: "Idle",
+      playerState: "idle",
       setPlayerState: (playerState) => {
         set({
           playerState,

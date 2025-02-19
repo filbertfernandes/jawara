@@ -89,22 +89,22 @@ export default function PlayerController({ joystickInput }) {
     if (rightPressed && linvel.x < MAX_VEL) {
       impulse.x += MOVEMENT_SPEED;
       changeRotation = true;
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
+      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
     }
     if (leftPressed && linvel.x > -MAX_VEL) {
       impulse.x -= MOVEMENT_SPEED;
       changeRotation = true;
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
+      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
     }
     if (backPressed && linvel.z < MAX_VEL) {
       impulse.z += MOVEMENT_SPEED;
       changeRotation = true;
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
+      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
     }
     if (forwardPressed && linvel.z > -MAX_VEL) {
       impulse.z -= MOVEMENT_SPEED;
       changeRotation = true;
-      if (isOnFloor.current && playerState !== "Idle") playFootstepSound();
+      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
     }
 
     // Joystick Controls
@@ -130,12 +130,12 @@ export default function PlayerController({ joystickInput }) {
     rigidBody.current.applyImpulse(impulse, true);
 
     if (Math.abs(linvel.x) > RUN_VEL || Math.abs(linvel.z) > RUN_VEL) {
-      if (playerState !== "Run") {
-        setPlayerState("Run");
+      if (playerState !== "run") {
+        setPlayerState("run");
       }
     } else {
-      if (playerState !== "Idle") {
-        setPlayerState("Idle");
+      if (playerState !== "idle") {
+        setPlayerState("idle");
       }
     }
 
@@ -184,7 +184,7 @@ export default function PlayerController({ joystickInput }) {
       >
         <CapsuleCollider args={[1.15, 0.65]} position={[0, 1.8, 0]} />
         <group ref={player}>
-          <Player scale={0.4} />
+          <Player />
         </group>
       </RigidBody>
     </group>
