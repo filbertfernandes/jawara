@@ -44,11 +44,11 @@ const AssetBox = () => {
             .join(", ")}
         </p>
       )}
-      <div className="flex flex-wrap gap-2 px-6">
+      <div className="flex gap-2 overflow-x-auto px-6">
         {currentCategory?.removable && (
           <button
             onClick={() => changeAsset(currentCategory.name, null)}
-            className={`w-20 h-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
+            className={`size-20 flex-shrink-0 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
               ${
                 !customization[currentCategory.name].asset
                   ? "border-white from-white/20 to-white/30"
@@ -77,7 +77,7 @@ const AssetBox = () => {
           <button
             key={asset.name}
             onClick={() => changeAsset(currentCategory.name, asset)}
-            className={`size-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
+            className={`size-20 flex-shrink-0 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 bg-gradient-to-tr
               ${
                 customization[currentCategory.name]?.asset?.name === asset.name
                   ? "border-white from-white/20 to-white/30"

@@ -1,3 +1,5 @@
+import { NodeIO } from "@gltf-transform/core";
+import { dedup, draco, prune, quantize } from "@gltf-transform/functions";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
 import { GLTFExporter } from "three/examples/jsm/Addons.js";
@@ -18,9 +20,27 @@ export const Avatar = ({ ...props }) => {
       const exporter = new GLTFExporter();
       exporter.parse(
         group.current,
-        function (result) {
+        async function (result) {
+          const io = new NodeIO();
+
+          // Read
+          const document = await io.readBinary(new Uint8Array(result)); // Uint8Array -> Document
+          await document.transform(
+            // Remove unused nodes, textures, or other data.
+            prune(),
+            // Remove duplicate vertex or texture data, if any.
+            dedup(),
+            // Compress mesh geometry with Draco.
+            draco(),
+            // Quantize mesh geometry.
+            quantize()
+          );
+
+          // Write
+          const glb = await io.writeBinary(document); // Document -> Uint8Array
+
           save(
-            new Blob([result], { type: "application/octet-stream" }),
+            new Blob([glb], { type: "application/octet-stream" }),
             `avatar_${+new Date()}.glb`
           );
         },

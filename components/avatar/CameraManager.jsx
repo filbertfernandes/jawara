@@ -1,4 +1,5 @@
 import { CameraControls } from "@react-three/drei";
+import { button, useControls } from "leva";
 import { useEffect, useRef } from "react";
 
 import { useCustomization } from "./stores/useCustomization";
@@ -9,6 +10,15 @@ export const DEFAULT_CAMERA_TARGET = [0, 0, 0];
 const CameraManager = () => {
   const controls = useRef();
   const currentCategory = useCustomization((state) => state.currentCategory);
+
+  useControls({
+    getCameraPosition: button(() => {
+      console.log("Camera Position", [...controls.current.getPosition()]);
+    }),
+    getCameraTarget: button(() => {
+      console.log("Camera Target", [...controls.current.getTarget()]);
+    }),
+  });
 
   useEffect(() => {
     if (currentCategory.cameraPlacement) {
