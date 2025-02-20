@@ -21,6 +21,8 @@ const CameraManager = () => {
   });
 
   useEffect(() => {
+    if (!currentCategory) return;
+
     if (currentCategory.cameraPlacement) {
       controls.current.setLookAt(
         ...currentCategory.cameraPlacement.position,

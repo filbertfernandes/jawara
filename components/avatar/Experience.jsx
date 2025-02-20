@@ -1,10 +1,4 @@
-import {
-  Backdrop,
-  Environment,
-  OrbitControls,
-  SoftShadows,
-} from "@react-three/drei";
-import React from "react";
+import { Environment, SoftShadows } from "@react-three/drei";
 
 import { Avatar } from "./Avatar";
 import CameraManager from "./CameraManager";

@@ -40,8 +40,7 @@ export const useCustomization = create((set, get) => ({
     get().skin.color.set(color);
   },
 
-  fetchCategories: () => {
-    const categories = customizationGroups;
+  fetchCategories: (categories) => {
     const assets = customizationAssets;
     const customization = {};
 
@@ -62,8 +61,15 @@ export const useCustomization = create((set, get) => ({
       }
 
       customization[category.name] = {
-        color: category.colorPalette?.colors?.[0] || "",
+        color:
+          category.colorPalette?.colors?.[category.startingColorIndex] || "",
       };
+
+      if (category.name === "Head") {
+        get().updateSkin(
+          category.colorPalette?.colors?.[category.startingColorIndex]
+        );
+      }
 
       if (category.startingAsset) {
         customization[category.name].asset = category.assets.find(

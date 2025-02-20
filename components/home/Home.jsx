@@ -7,6 +7,8 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
 import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
+import { customizationGroups } from "../avatar/stores/customizationGroups";
+import { useCustomization } from "../avatar/stores/useCustomization";
 
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
@@ -60,6 +62,32 @@ export default function Home({ userSession }) {
     if (userSession) {
       setUser(userSession);
     }
+  }, []);
+
+  const { fetchCategories } = useCustomization((state) => ({
+    fetchCategories: state.fetchCategories,
+  }));
+
+  useEffect(() => {
+    const dummyUserAvatarData = [
+      { groupId: "1", startingAsset: "Head_02", startingColorIndex: 5 },
+      { groupId: "2", startingAsset: "Hair_05", startingColorIndex: 7 },
+    ];
+
+    const categories = customizationGroups.map((group) => {
+      const userGroup = dummyUserAvatarData.find(
+        (user) => user.groupId === group.id
+      );
+      return userGroup
+        ? {
+            ...group,
+            startingAsset: userGroup.startingAsset,
+            startingColorIndex: userGroup.startingColorIndex,
+          }
+        : group;
+    });
+
+    fetchCategories(categories);
   }, []);
 
   // KEYBOARD

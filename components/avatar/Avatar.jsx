@@ -13,9 +13,12 @@ export const Avatar = ({ ...props }) => {
   const group = useRef();
   const { nodes } = useGLTF("/models/avatar/Armature.glb");
   const { animations } = useGLTF("/models/avatar/animations.glb");
-  const customization = useCustomization((state) => state.customization);
+  const { customization, setDownload } = useCustomization((state) => ({
+    customization: state.customization,
+    setDownload: state.setDownload,
+  }));
+
   const { actions } = useAnimations(animations, group);
-  const setDownload = useCustomization((state) => state.setDownload);
 
   const { playerState } = useGame((state) => ({
     playerState: state.playerState,

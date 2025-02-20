@@ -8,16 +8,20 @@ const AssetBox = () => {
   const {
     categories,
     currentCategory,
-    fetchCategories,
     setCurrentCategory,
     changeAsset,
     customization,
     lockedGroups,
-  } = useCustomization();
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  } = useCustomization((state) => ({
+    categories: state.categories,
+    currentCategory: state.currentCategory,
+    setCurrentCategory: state.setCurrentCategory,
+    changeAsset: state.changeAsset,
+    customization: state.customization,
+    lockedGroups: state.lockedGroups,
+    fetchCategories: state.fetchCategories,
+    setDownload: state.setDownload,
+  }));
 
   return (
     <div className="flex flex-col gap-6 rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20 p-6 drop-shadow-md">

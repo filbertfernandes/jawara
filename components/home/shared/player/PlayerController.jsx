@@ -4,8 +4,7 @@ import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-import Player from "./Player.jsx";
-
+import { Avatar } from "@/components/avatar/Avatar.jsx";
 import controls from "@/constants/controls.js";
 import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
@@ -184,7 +183,7 @@ export default function PlayerController({ joystickInput }) {
       >
         <CapsuleCollider args={[1.15, 0.65]} position={[0, 1.8, 0]} />
         <group ref={player}>
-          <Player />
+          <Avatar scale={1.7} />
         </group>
       </RigidBody>
     </group>
