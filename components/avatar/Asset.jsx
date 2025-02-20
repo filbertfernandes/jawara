@@ -3,7 +3,7 @@ import { useEffect, useMemo } from "react";
 
 import { useCustomization } from "./stores/useCustomization";
 
-const Asset = ({ categoryName, url, skeleton }) => {
+const Asset = ({ categoryName, url, skeleton, name, groupId }) => {
   const { scene } = useGLTF(url);
 
   const { customization, lockedGroups, skin } = useCustomization((state) => ({
@@ -55,6 +55,7 @@ const Asset = ({ categoryName, url, skeleton }) => {
       morphTargetInfluences={item.morphTargetInfluences}
       castShadow
       receiveShadow
+      name={index === 0 ? JSON.stringify({ groupId, name }) : ""}
     />
   ));
 };

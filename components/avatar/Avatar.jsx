@@ -7,13 +7,28 @@ import { GLTFExporter } from "three/examples/jsm/Addons.js";
 import Asset from "./Asset";
 import { useCustomization } from "./stores/useCustomization";
 
+import { useGame } from "@/hooks/useGame";
+
 export const Avatar = ({ ...props }) => {
   const group = useRef();
   const { nodes } = useGLTF("/models/avatar/Armature.glb");
-  const { animations } = useFBX("/models/avatar/Idle.fbx");
+  const { animations } = useGLTF("/models/avatar/animations.glb");
   const customization = useCustomization((state) => state.customization);
   const { actions } = useAnimations(animations, group);
   const setDownload = useCustomization((state) => state.setDownload);
+
+  const { playerState } = useGame((state) => ({
+    playerState: state.playerState,
+  }));
+
+  useEffect(() => {
+    actions[playerState].reset().fadeIn(0.2).play();
+    return () => {
+      if (actions[playerState]) {
+        actions[playerState].fadeOut(0.2);
+      }
+    };
+  }, [playerState]);
 
   useEffect(() => {
     function download() {
@@ -63,10 +78,6 @@ export const Avatar = ({ ...props }) => {
     setDownload(download);
   }, []);
 
-  useEffect(() => {
-    actions["mixamo.com"]?.play();
-  }, [actions]);
-
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
@@ -80,6 +91,8 @@ export const Avatar = ({ ...props }) => {
                     categoryName={key}
                     url={customization[key].asset.url}
                     skeleton={nodes.Plane.skeleton}
+                    name={customization[key].asset.name}
+                    groupId={customization[key].asset.groupId}
                   />
                 </Suspense>
               )

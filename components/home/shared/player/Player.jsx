@@ -29,4 +29,4 @@ export default function Player(props) {
   );
 }
 
-useGLTF.preload("/models/character/boy.glb");
+useGLTF.preload("/models/avatar/avatar.glb");
