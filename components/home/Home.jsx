@@ -9,6 +9,7 @@ import { TranslationInterface } from "./exercise/translation/TranslationInterfac
 import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
 import { customizationGroups } from "../avatar/stores/customizationGroups";
 import { useCustomization } from "../avatar/stores/useCustomization";
+import UI from "../avatar/UI";
 
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
@@ -120,30 +121,31 @@ export default function Home({ userSession }) {
     [phases.THIRD_GAME]: <ThirdGameInterface />,
     [phases.FOURTH_GAME]: <FourthGameInterface />,
     [phases.TUTORIAL]: <TutorialMenuInteface />,
+    [phases.AVATAR_CUSTOMIZATION]: <UI />,
   };
 
   return (
-    <KeyboardControls map={map}>
-      {/* 3D CANVAS */}
-      <Canvas
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 200,
-        }}
-      >
-        <Suspense fallback={<CanvasLoader progress={progress} />}>
-          <Experience joystickInput={joystickInput} />
-        </Suspense>
-      </Canvas>
+    <>
+      <KeyboardControls map={map}>
+        {/* 3D CANVAS */}
+        <Canvas
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 200,
+          }}
+        >
+          <Suspense fallback={<CanvasLoader progress={progress} />}>
+            <Experience joystickInput={joystickInput} />
+          </Suspense>
+        </Canvas>
 
-      {/* JOYSTICK */}
-      {progress >= 100 && isMobile && phase === phases.FREE && (
-        <Joystick onMove={handleJoystickMove} />
-      )}
-
-      {/* INTERFACES */}
+        {/* JOYSTICK */}
+        {progress >= 100 && isMobile && phase === phases.FREE && (
+          <Joystick onMove={handleJoystickMove} />
+        )}
+      </KeyboardControls>
       {progress >= 100 && gameInterfaces[phase]}
-    </KeyboardControls>
+    </>
   );
 }

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
 
 import { useCustomization } from "./stores/useCustomization";
+import { phases, useGame } from "@/hooks/useGame";
+import { GiExitDoor } from "react-icons/gi";
 
 const AssetBox = () => {
   const {
@@ -106,10 +106,10 @@ const DownloadButton = () => {
   const download = useCustomization((state) => state.download);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-indigo-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-indigo-600"
+      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
       onClick={download}
     >
-      Download
+      Save
     </button>
   );
 };
@@ -118,7 +118,7 @@ const RandomizeButton = () => {
   const randomize = useCustomization((state) => state.randomize);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-indigo-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-indigo-600"
+      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
       onClick={randomize}
     >
       <svg
@@ -183,21 +183,19 @@ const ColorPicker = () => {
 const UI = () => {
   const currentCategory = useCustomization((state) => state.currentCategory);
   const customization = useCustomization((state) => state.customization);
+  const changePhase = useGame((state) => state.changePhase);
 
   return (
     <>
       <main className="pointer-events-none fixed inset-0 z-10 select-none font-questrial">
         <div className="mx-auto flex size-full max-w-screen-xl flex-col justify-between">
           <div className="flex items-center justify-between p-10">
-            <Link href="/" className="pointer-events-auto">
-              <Image
-                src="/images/jawara/jawara-icon.png"
-                alt="Jawara Logo"
-                width={300}
-                height={300}
-                className="h-auto w-12"
-              />
-            </Link>
+            <GiExitDoor
+              className="cursor-pointer pointer-events-auto text-3xl text-white transition-all duration-100 ease-in-out hover:text-gray-200 sm:text-4xl"
+              onClick={() => {
+                changePhase(phases.FREE);
+              }}
+            />
             <div className="flex items-center gap-2">
               <RandomizeButton />
               <DownloadButton />

@@ -17,6 +17,7 @@ import Tutorial from "./tutorial/Tutorial.jsx";
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
 import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
+import Customization from "./avatar/Customization.jsx";
 
 export default function Experience({ joystickInput }) {
   const { phase, sky, setSky } = useGame((state) => ({
@@ -50,6 +51,7 @@ export default function Experience({ joystickInput }) {
     [phases.THIRD_GAME]: <ThirdGame />,
     [phases.FOURTH_GAME]: <FourthGame />,
     [phases.TUTORIAL]: <Tutorial />,
+    [phases.AVATAR_CUSTOMIZATION]: <Customization />,
   };
 
   const portals = [

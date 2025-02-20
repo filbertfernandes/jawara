@@ -23,8 +23,7 @@ const Content = ({ chapter, chapterPhase }) => {
       return;
 
     setIsLoading(false);
-    console.log(updatedUserProgress.completedPhases, chapterPhase.id);
-    console.log(updatedUserProgress.completedPhases >= chapterPhase.id);
+
     if (updatedUserProgress.completedPhases >= chapterPhase.id) {
       setIsFinished(true);
     } else {

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
 import { SoundManager } from "@/lib/SoundManager";
+import { PLAYER_INITIAL_POSITION } from "@/components/home/shared/player/PlayerController";
 
 export const phases = {
   FREE: "FREE",
@@ -11,6 +12,7 @@ export const phases = {
   THIRD_GAME: "THIRD_GAME",
   FOURTH_GAME: "FOURTH_GAME",
   TUTORIAL: "TUTORIAL",
+  AVATAR_CUSTOMIZATION: "AVATAR_CUSTOMIZATION",
 };
 
 export const gameStates = {
@@ -39,6 +41,7 @@ export const useGame = create(
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },
       sky: null,
+      playerPosition: PLAYER_INITIAL_POSITION,
 
       // USER SESSION
       setUser: (user) => {
@@ -95,6 +98,13 @@ export const useGame = create(
       setSky: (sky) => {
         set(() => {
           return { sky };
+        });
+      },
+
+      // PLAYER POSITION INFORMATION
+      setPlayerPosition: (playerPosition) => {
+        set(() => {
+          return { playerPosition };
         });
       },
     };

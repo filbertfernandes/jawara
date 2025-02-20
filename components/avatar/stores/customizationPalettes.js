@@ -11,7 +11,6 @@ export const customizationPalettes = [
       "#94614D", // Mauve-Tan
       "#703F17", // Deep brown
       "#5E2F12", // Dark brown
-      "#3D1E10", // Very dark brown
     ],
   },
   {

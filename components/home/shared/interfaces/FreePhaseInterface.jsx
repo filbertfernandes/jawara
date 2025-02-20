@@ -7,6 +7,7 @@ import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame.jsx";
+import { GiClothes } from "react-icons/gi";
 
 export default function FreePhaseInterface() {
   const {
@@ -60,6 +61,14 @@ export default function FreePhaseInterface() {
             }}
           >
             <FaQuestion />
+          </div>
+          <div
+            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 lg:text-3xl"
+            onClick={() => {
+              changePhase(phases.AVATAR_CUSTOMIZATION);
+            }}
+          >
+            <GiClothes />
           </div>
         </div>
 

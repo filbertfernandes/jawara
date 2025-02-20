@@ -24,7 +24,7 @@ const GuideInterface = () => {
   return (
     <>
       <div className="fixed left-0 top-0 flex size-full justify-center p-10 font-bebas">
-        <div className="absolute left-0 top-0 flex h-full cursor-pointer items-center p-2 text-center font-bebas text-2xl md:p-4 md:text-3xl lg:text-5xl">
+        <div className="absolute left-0 top-0 flex h-full cursor-pointer items-center p-2 text-center font-bebas md:p-4 text-3xl sm:text-4xl">
           <div>
             <GiExitDoor
               className="cursor-pointer text-white transition-all duration-100 ease-in-out hover:text-gray-200"

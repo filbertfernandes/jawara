@@ -75,7 +75,7 @@ export const customizationGroups = [
     position: 8,
     startingAsset: null,
     startingColorIndex: null,
-    colorPaletteName: null,
+    colorPaletteName: "Clothes",
     removable: true,
     cameraPlacementName: "Hair",
   },
@@ -106,7 +106,7 @@ export const customizationGroups = [
     startingAsset: "Shoes_01",
     startingColorIndex: 0,
     colorPaletteName: "Clothes",
-    removable: true,
+    removable: false,
     cameraPlacementName: "Bottom",
   },
   {

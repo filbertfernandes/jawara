@@ -9,11 +9,12 @@ import controls from "@/constants/controls.js";
 import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
+export const PLAYER_INITIAL_POSITION = { x: 2, y: 0.5, z: 18 };
+
 const JUMP_FORCE = 2;
 const MOVEMENT_SPEED = 0.6;
 const MAX_VEL = 3;
 const RUN_VEL = 2;
-const PLAYER_INITIAL_POSITION = { x: 2, y: 0.5, z: 18 };
 
 const debounce = (func, delay) => {
   let timer;
@@ -28,14 +29,14 @@ const playFootstepSound = debounce(() => {
 }, 50);
 
 export default function PlayerController({ joystickInput }) {
-  const { playerState, setPlayerState, phase, gameState } = useGame(
-    (state) => ({
+  const { playerState, setPlayerState, phase, gameState, setPlayerPosition } =
+    useGame((state) => ({
       playerState: state.playerState,
       setPlayerState: state.setPlayerState,
       phase: state.phase,
       gameState: state.gameState,
-    })
-  );
+      setPlayerPosition: state.setPlayerPosition,
+    }));
 
   const jumpPressed = useKeyboardControls((state) => state[controls.JUMP]);
   const leftPressed = useKeyboardControls((state) => state[controls.LEFT]);
@@ -69,6 +70,16 @@ export default function PlayerController({ joystickInput }) {
   }, [gameState]);
 
   useFrame((state) => {
+    const playerWorldPosition = player.current.getWorldPosition(
+      new THREE.Vector3()
+    );
+
+    setPlayerPosition({
+      x: playerWorldPosition.x,
+      y: playerWorldPosition.y,
+      z: playerWorldPosition.z,
+    });
+
     if (
       (phase !== phases.FREE && phase !== phases.FOURTH_GAME) ||
       !rigidBody.current
@@ -148,9 +159,6 @@ export default function PlayerController({ joystickInput }) {
     }
 
     // CAMERA FOLLOW
-    const playerWorldPosition = player.current.getWorldPosition(
-      new THREE.Vector3()
-    );
     state.camera.position.x = playerWorldPosition.x;
     state.camera.position.y = playerWorldPosition.y + 3;
     state.camera.position.z = playerWorldPosition.z + 5.5;
@@ -163,6 +171,12 @@ export default function PlayerController({ joystickInput }) {
 
     state.camera.lookAt(targetLookAt);
   });
+
+  useEffect(() => {
+    if (phase === phases.AVATAR_CUSTOMIZATION) {
+      player.current.rotation.y = 0;
+    }
+  }, [phase]);
 
   return (
     <group>
