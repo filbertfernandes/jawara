@@ -17,9 +17,9 @@ export const useCustomization = create((set, get) => ({
     roughness: 1,
   }),
   customization: {},
-  download: () => {},
+  save: () => {},
 
-  setDownload: (download) => set({ download }),
+  setSave: (save) => set({ save }),
 
   updateColor: (color) => {
     set((state) => ({

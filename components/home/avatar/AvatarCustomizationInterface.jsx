@@ -19,8 +19,6 @@ const AssetBox = () => {
     changeAsset: state.changeAsset,
     customization: state.customization,
     lockedGroups: state.lockedGroups,
-    fetchCategories: state.fetchCategories,
-    setDownload: state.setDownload,
   }));
 
   return (
@@ -102,14 +100,14 @@ const AssetBox = () => {
   );
 };
 
-const DownloadButton = () => {
-  const download = useCustomization((state) => state.download);
+const SaveButton = () => {
+  const save = useCustomization((state) => state.save);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
-      onClick={download}
+      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600 w-36"
+      onClick={save}
     >
-      Save
+      Login to Save
     </button>
   );
 };
@@ -198,7 +196,7 @@ const AvatarCustomizationInterface = () => {
             />
             <div className="flex items-center gap-2">
               <RandomizeButton />
-              <DownloadButton />
+              <SaveButton />
             </div>
           </div>
           <div className="flex flex-col px-10">

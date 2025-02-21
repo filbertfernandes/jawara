@@ -45,6 +45,11 @@ export const guideData = [
 
 export const modelsData = [
   {
+    name: "3D Avatar Assets",
+    author: "Kirzozz",
+    url: "https://www.instagram.com/Kirzozz",
+  },
+  {
     name: "Putu - Sad Ripu",
     author: "Dewa Martika",
     url: "https://skfb.ly/6Xpr9",
