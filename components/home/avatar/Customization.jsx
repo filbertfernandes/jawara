@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useCustomization } from "@/components/avatar/stores/useCustomization";
+import { useCustomization } from "@/components/home/avatar/stores/useCustomization";
 import { useGame } from "@/hooks/useGame";
 import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";

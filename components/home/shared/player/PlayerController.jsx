@@ -4,7 +4,7 @@ import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-import { Avatar } from "@/components/avatar/Avatar.jsx";
+import { Avatar } from "@/components/home/avatar/Avatar.jsx";
 import controls from "@/constants/controls.js";
 import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";

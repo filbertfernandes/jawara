@@ -180,7 +180,7 @@ const ColorPicker = () => {
   );
 };
 
-const UI = () => {
+const AvatarCustomizationInterface = () => {
   const currentCategory = useCustomization((state) => state.currentCategory);
   const customization = useCustomization((state) => state.customization);
   const changePhase = useGame((state) => state.changePhase);
@@ -212,4 +212,4 @@ const UI = () => {
   );
 };
 
-export default UI;
+export default AvatarCustomizationInterface;

@@ -7,9 +7,9 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
 import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
-import { customizationGroups } from "../avatar/stores/customizationGroups";
-import { useCustomization } from "../avatar/stores/useCustomization";
-import UI from "../avatar/UI";
+import { customizationGroups } from "./avatar/stores/customizationGroups";
+import { useCustomization } from "./avatar/stores/useCustomization";
+import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
 
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
@@ -17,10 +17,10 @@ import { FourthGameInterface } from "@/components/home/games/fourth-game/FourthG
 import { SecondGameInterface } from "@/components/home/games/second-game/SecondGameInterface.jsx";
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
 import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
-import constants from "@/constants/constants";
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
+import Image from "next/image";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(
@@ -30,29 +30,26 @@ const Joystick = dynamic(
   }
 );
 
-const CanvasLoader = ({ progress }) => {
+const CanvasLoader = () => {
   return (
     <Html
       as="div"
       center
       className="absolute left-0 top-0 z-[1000] flex h-screen w-screen flex-col items-center justify-center bg-orange-100"
     >
-      <p className="h5-bold text-orange-500">
-        {progress !== 0 ? `${progress}%` : "Loading..."}
-      </p>
-      <div className="mt-6 h-4 w-1/4 overflow-hidden rounded-full bg-orange-500/20">
-        <div
-          style={{ width: `${progress}%` }}
-          className="h-full bg-orange-500 transition-all duration-300 ease-in-out"
-        ></div>
-      </div>
+      <Image
+        src="/images/jawara/jawara-logo.png"
+        alt="Jawara Logo"
+        width={300}
+        height={300}
+        className="animate-pulse"
+      />
     </Html>
   );
 };
 
 export default function Home({ userSession }) {
-  const { loaded } = useProgress();
-  const progress = Math.round((loaded / constants.TOTAL_3D_OBJECT) * 100);
+  const { progress } = useProgress();
 
   const { setUser, phase } = useGame((state) => ({
     setUser: state.setUser,
@@ -123,7 +120,7 @@ export default function Home({ userSession }) {
     [phases.THIRD_GAME]: <ThirdGameInterface />,
     [phases.FOURTH_GAME]: <FourthGameInterface />,
     [phases.TUTORIAL]: <TutorialMenuInteface />,
-    [phases.AVATAR_CUSTOMIZATION]: <UI />,
+    [phases.AVATAR_CUSTOMIZATION]: <AvatarCustomizationInterface />,
   };
 
   return (
@@ -137,7 +134,7 @@ export default function Home({ userSession }) {
             far: 200,
           }}
         >
-          <Suspense fallback={<CanvasLoader progress={progress} />}>
+          <Suspense fallback={<CanvasLoader />}>
             <Experience joystickInput={joystickInput} />
           </Suspense>
         </Canvas>
