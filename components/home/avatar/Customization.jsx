@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { useCustomization } from "@/components/home/avatar/stores/useCustomization";
-import { useGame } from "@/hooks/useGame";
 import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
+
+import { useCustomization } from "@/components/home/avatar/stores/useCustomization";
+import { useGame } from "@/hooks/useGame";
 
 export const DEFAULT_CAMERA_POSITION = [
   -0.024931255730465993, 1.5, 3.378431965696465,
@@ -37,7 +38,7 @@ const Customization = () => {
 
     const tl = gsap.timeline({ ease: "power3.inOut" });
 
-    let cameraTarget = [
+    const cameraTarget = [
       (currentCategory.cameraPlacement
         ? currentCategory.cameraPlacement.target[0]
         : DEFAULT_CAMERA_TARGET[0]) + playerPosition.x,
@@ -48,7 +49,7 @@ const Customization = () => {
         ? currentCategory.cameraPlacement.target[2]
         : DEFAULT_CAMERA_TARGET[2]) + playerPosition.z,
     ];
-    let cameraPosition = [
+    const cameraPosition = [
       (currentCategory.cameraPlacement
         ? currentCategory.cameraPlacement.position[0]
         : DEFAULT_CAMERA_POSITION[0]) + playerPosition.x,

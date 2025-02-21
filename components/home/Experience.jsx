@@ -3,6 +3,7 @@ import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { useEffect } from "react";
 
+import Customization from "./avatar/Customization.jsx";
 import FirstGame from "./games/first-game/FirstGame.jsx";
 import FourthGame from "./games/fourth-game/FourthGame.jsx";
 import SecondGame from "./games/second-game/SecondGame.jsx";
@@ -17,7 +18,6 @@ import Tutorial from "./tutorial/Tutorial.jsx";
 import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
 import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
-import Customization from "./avatar/Customization.jsx";
 
 export default function Experience({ joystickInput }) {
   const { phase, sky, setSky } = useGame((state) => ({

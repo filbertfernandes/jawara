@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { FaQuestion } from "react-icons/fa";
+import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { phases, useGame } from "@/hooks/useGame.jsx";
-import { GiClothes } from "react-icons/gi";
 
 export default function FreePhaseInterface() {
   const {

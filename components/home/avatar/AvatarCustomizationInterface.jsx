@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { GiExitDoor } from "react-icons/gi";
 
 import { useCustomization } from "./stores/useCustomization";
+
 import { phases, useGame } from "@/hooks/useGame";
-import { GiExitDoor } from "react-icons/gi";
 
 const AssetBox = () => {
   const {
@@ -104,7 +105,7 @@ const SaveButton = () => {
   const save = useCustomization((state) => state.save);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600 w-36"
+      className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
       onClick={save}
     >
       Login to Save
@@ -189,7 +190,7 @@ const AvatarCustomizationInterface = () => {
         <div className="mx-auto flex size-full max-w-screen-xl flex-col justify-between">
           <div className="flex items-center justify-between p-10">
             <GiExitDoor
-              className="cursor-pointer pointer-events-auto text-3xl text-white transition-all duration-100 ease-in-out hover:text-gray-200 sm:text-4xl"
+              className="pointer-events-auto cursor-pointer text-3xl text-white transition-all duration-100 ease-in-out hover:text-gray-200 sm:text-4xl"
               onClick={() => {
                 changePhase(phases.FREE);
               }}

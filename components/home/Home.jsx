@@ -3,13 +3,14 @@
 import { Html, KeyboardControls, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
-import { TranslationInterface } from "./exercise/translation/TranslationInterface";
-import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
+import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
 import { customizationGroups } from "./avatar/stores/customizationGroups";
 import { useCustomization } from "./avatar/stores/useCustomization";
-import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
+import { TranslationInterface } from "./exercise/translation/TranslationInterface";
+import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
 
 import Experience from "@/components/home/Experience.jsx";
 import { FirstGameInterface } from "@/components/home/games/first-game/FirstGameInterface.jsx";
@@ -20,7 +21,6 @@ import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInt
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
-import Image from "next/image";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(
