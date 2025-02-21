@@ -66,7 +66,6 @@ const Customization = () => {
       y: cameraTarget[1],
       z: cameraTarget[2],
       duration: 0.7,
-      onUpdate: () => controlsRef.current.update(),
     }).to(
       camera.position,
       {
