@@ -62,7 +62,8 @@ export const useCustomization = create((set, get) => ({
 
       customization[category.name] = {
         color:
-          category.colorPalette?.colors?.[category.startingColorIndex] || "",
+          category.colorPalette?.colors?.[category.startingColorIndex || 0] ||
+          "",
       };
 
       if (category.name === "Head") {

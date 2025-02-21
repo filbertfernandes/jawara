@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-
 import { useCustomization } from "@/components/avatar/stores/useCustomization";
 import { useGame } from "@/hooks/useGame";
-import { CameraControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import gsap from "gsap";
 
 export const DEFAULT_CAMERA_POSITION = [
   -0.024931255730465993, 1.5, 3.378431965696465,
@@ -10,7 +11,8 @@ export const DEFAULT_CAMERA_POSITION = [
 export const DEFAULT_CAMERA_TARGET = [0, 1, 0];
 
 const Customization = () => {
-  const controls = useRef();
+  const { camera } = useThree();
+  const controlsRef = useRef();
   const currentCategory = useCustomization((state) => state.currentCategory);
   const { playerPosition } = useGame((state) => ({
     playerPosition: state.playerPosition,
@@ -18,36 +20,65 @@ const Customization = () => {
   const [playerPositionCheck, setPlayerPositionCheck] =
     useState(playerPosition);
 
+  // Set initial target once when mounted
   useEffect(() => {
-    if (!currentCategory) return;
-
-    let cameraPos, cameraTarget;
-
-    if (currentCategory?.cameraPlacement) {
-      cameraPos = [
-        currentCategory.cameraPlacement.position[0] + playerPosition.x,
-        currentCategory.cameraPlacement.position[1] + playerPosition.y,
-        currentCategory.cameraPlacement.position[2] + playerPosition.z,
-      ];
-      cameraTarget = [
-        currentCategory.cameraPlacement.target[0] + playerPosition.x,
-        currentCategory.cameraPlacement.target[1] + playerPosition.y,
-        currentCategory.cameraPlacement.target[2] + playerPosition.z,
-      ];
-    } else {
-      cameraPos = [
-        DEFAULT_CAMERA_POSITION[0] + playerPosition.x,
-        DEFAULT_CAMERA_POSITION[1] + playerPosition.y,
-        DEFAULT_CAMERA_POSITION[2] + playerPosition.z,
-      ];
-      cameraTarget = [
+    if (controlsRef.current) {
+      controlsRef.current.target.set(
         DEFAULT_CAMERA_TARGET[0] + playerPosition.x,
         DEFAULT_CAMERA_TARGET[1] + playerPosition.y,
-        DEFAULT_CAMERA_TARGET[2] + playerPosition.z,
-      ];
+        DEFAULT_CAMERA_TARGET[2] + playerPosition.z
+      );
+      controlsRef.current.update(); // Make sure the update is applied
     }
+  }, []); // Runs only once on mount
 
-    controls.current.setLookAt(...cameraPos, ...cameraTarget, true);
+  useEffect(() => {
+    if (!currentCategory || !controlsRef.current) return;
+
+    const tl = gsap.timeline({ ease: "power3.inOut" });
+
+    let cameraTarget = [
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.target[0]
+        : DEFAULT_CAMERA_TARGET[0]) + playerPosition.x,
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.target[1]
+        : DEFAULT_CAMERA_TARGET[1]) + playerPosition.y,
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.target[2]
+        : DEFAULT_CAMERA_TARGET[2]) + playerPosition.z,
+    ];
+    let cameraPosition = [
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.position[0]
+        : DEFAULT_CAMERA_POSITION[0]) + playerPosition.x,
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.position[1]
+        : DEFAULT_CAMERA_POSITION[1]) + playerPosition.y,
+      (currentCategory.cameraPlacement
+        ? currentCategory.cameraPlacement.position[2]
+        : DEFAULT_CAMERA_POSITION[2]) + playerPosition.z,
+    ];
+
+    // Animate camera and target
+    tl.to(controlsRef.current.target, {
+      x: cameraTarget[0],
+      y: cameraTarget[1],
+      z: cameraTarget[2],
+      duration: 0.7,
+      onUpdate: () => controlsRef.current.update(),
+    }).to(
+      camera.position,
+      {
+        x: cameraPosition[0],
+        y: cameraPosition[1],
+        z: cameraPosition[2],
+        duration: 0.7,
+      },
+      0
+    );
+
+    tl.play();
   }, [currentCategory, playerPositionCheck]);
 
   useEffect(() => {
@@ -63,8 +94,8 @@ const Customization = () => {
 
   return (
     <>
-      <CameraControls
-        ref={controls}
+      <OrbitControls
+        ref={controlsRef}
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
         minDistance={2}

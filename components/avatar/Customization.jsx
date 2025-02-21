@@ -17,8 +17,10 @@ const Customization = () => {
 
   useEffect(() => {
     const dummyUserAvatarData = [
-      { groupId: "1", startingAsset: "Head_02", startingColorIndex: 5 },
-      { groupId: "2", startingAsset: "Hair_05", startingColorIndex: 7 },
+      { groupId: "1", startingAsset: "Head_01", startingColorIndex: 1 },
+      { groupId: "2", startingAsset: "Hair_01" },
+      { groupId: "9", startingAsset: "Top_02", startingColorIndex: 14 },
+      { groupId: "11", startingAsset: "Shoes_01", startingColorIndex: 14 },
     ];
 
     const categories = customizationGroups.map((group) => {
