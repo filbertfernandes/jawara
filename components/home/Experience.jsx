@@ -206,7 +206,9 @@ export default function Experience({ joystickInput }) {
         </RigidBody>
 
         {/* Game Portals */}
-        {(phase === phases.FREE || phase === phases.TUTORIAL) &&
+        {(phase === phases.FREE ||
+          phase === phases.TUTORIAL ||
+          phase === phases.AVATAR_CUSTOMIZATION) &&
           portals.map(
             ({
               portalPhase,
