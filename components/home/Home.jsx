@@ -19,6 +19,7 @@ import { SecondGameInterface } from "@/components/home/games/second-game/SecondG
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
 import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
 import controls from "@/constants/controls";
+import { useAuth } from "@/hooks/useAuth";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
 
@@ -48,19 +49,13 @@ const CanvasLoader = () => {
   );
 };
 
-export default function Home({ userSession }) {
-  const { progress } = useProgress();
+export default function Home() {
+  const { loading } = useAuth(); // Use the authentication hook
 
-  const { setUser, phase } = useGame((state) => ({
-    setUser: state.setUser,
+  const { progress } = useProgress();
+  const { phase } = useGame((state) => ({
     phase: state.phase,
   }));
-
-  useEffect(() => {
-    if (userSession) {
-      setUser(userSession);
-    }
-  }, []);
 
   const { fetchCategories } = useCustomization((state) => ({
     fetchCategories: state.fetchCategories,
@@ -90,7 +85,7 @@ export default function Home({ userSession }) {
     fetchCategories(categories);
   }, []);
 
-  // KEYBOARD
+  // KEYBOARD CONTROLS
   const map = useMemo(
     () => [
       { name: controls.FORWARD, keys: ["ArrowUp", "KeyW"] },
@@ -122,6 +117,10 @@ export default function Home({ userSession }) {
     [phases.TUTORIAL]: <TutorialMenuInteface />,
     [phases.AVATAR_CUSTOMIZATION]: <AvatarCustomizationInterface />,
   };
+
+  if (loading) {
+    return <CanvasLoader />; // Show loading screen while fetching user session
+  }
 
   return (
     <>

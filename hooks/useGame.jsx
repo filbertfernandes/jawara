@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
-import { SoundManager } from "@/lib/SoundManager";
 import { PLAYER_INITIAL_POSITION } from "@/components/home/shared/player/PlayerController";
+import { SoundManager } from "@/lib/SoundManager";
 
 export const phases = {
   FREE: "FREE",
@@ -34,7 +34,6 @@ export const useGame = create(
   subscribeWithSelector((set) => {
     return {
       // DEFAULT PHASE
-      user: null,
       isMusicMuted: false,
       phase: phases.FREE,
       gameState: gameStates.MENU,
@@ -43,12 +42,11 @@ export const useGame = create(
       sky: null,
       playerPosition: PLAYER_INITIAL_POSITION,
 
-      // USER SESSION
-      setUser: (user) => {
-        set(() => {
-          return { user };
-        });
-      },
+      user: null,
+      setUser: (user) => set({ user }),
+
+      sessionStatus: "unauthenticated",
+      setSessionStatus: (status) => set({ sessionStatus: status }),
 
       // TOGGLE MUSIC
       toggleMusic: () => {
