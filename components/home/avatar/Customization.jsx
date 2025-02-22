@@ -100,6 +100,7 @@ const Customization = () => {
         maxPolarAngle={Math.PI / 2}
         minDistance={2}
         maxDistance={8}
+        enablePan={false}
       />
     </>
   );

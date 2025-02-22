@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useCustomization } from "./stores/useCustomization";
@@ -183,6 +184,19 @@ const AvatarCustomizationInterface = () => {
   const currentCategory = useCustomization((state) => state.currentCategory);
   const customization = useCustomization((state) => state.customization);
   const changePhase = useGame((state) => state.changePhase);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        changePhase(phases.FREE);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
