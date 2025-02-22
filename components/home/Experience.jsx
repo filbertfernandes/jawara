@@ -20,6 +20,8 @@ import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Experience({ joystickInput }) {
+  useBackgroundMusic();
+
   const { phase, sky, setSky } = useGame((state) => ({
     phase: state.phase,
     sky: state.sky,
@@ -42,8 +44,6 @@ export default function Experience({ joystickInput }) {
       setSky(skies.NIGHT);
     }
   }, []);
-
-  useBackgroundMusic(phase);
 
   const gamePhaseComponentMap = {
     [phases.FIRST_GAME]: <FirstGame />,

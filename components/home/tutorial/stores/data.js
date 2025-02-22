@@ -163,14 +163,14 @@ export const modelsData = [
 
 export const musicData = [
   {
-    name: "Grassy Plains",
-    author: "Darren-Curtis",
-    url: "https://www.youtube.com/watch?v=0vpEQn2CuaQ",
+    name: "KALOKA",
+    author: "Donkgedank",
+    url: "https://www.youtube.com/watch?v=HS0FpsQV37I",
   },
   {
-    name: "Childhood Friend",
-    author: "Arthur Vyncke",
-    url: "https://www.youtube.com/watch?v=A0sxKRakqUA",
+    name: "GANGSINGAN",
+    author: "Donkgedank",
+    url: "https://www.youtube.com/watch?v=UquWJ2TrIPQ",
   },
 ];
 

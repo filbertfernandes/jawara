@@ -5,17 +5,17 @@ const sounds = {
   freePhaseBackground: new Howl({
     src: ["/sounds/bgm/bgm-1.mp3"],
     loop: true,
-    volume: 0.05,
+    volume: 0.4,
   }),
   gamePhaseBackground: new Howl({
     src: ["/sounds/bgm/bgm-2.mp3"],
     loop: true,
-    volume: 0.05,
+    volume: 0.4,
   }),
-  move: new Howl({ src: ["/sounds/sfx/footstep-grass.mp3"], volume: 0.5 }),
+  move: new Howl({ src: ["/sounds/sfx/footstep-grass.mp3"], volume: 1.5 }),
   soccerBallImpact: new Howl({
     src: ["/sounds/sfx/soccer-ball.mp3"],
-    volume: 0.2,
+    volume: 1.5,
   }),
   buttonClick: new Howl({ src: ["/sounds/sfx/btn-click.mp3"], volume: 0.7 }),
   correctAnswer: new Howl({
