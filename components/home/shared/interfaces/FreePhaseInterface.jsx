@@ -64,7 +64,7 @@ export default function FreePhaseInterface() {
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
-  return user ? (
+  return (
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
         <div className="flex gap-4">
@@ -92,7 +92,7 @@ export default function FreePhaseInterface() {
           </div>
         </div>
 
-        {userId ? (
+        {user ? (
           <Link href={`${routes.PROFILE}/${userId}`}>
             <Avatar className="size-10 sm:size-12">
               {user.image ? (
@@ -134,5 +134,5 @@ export default function FreePhaseInterface() {
         </div>
       </div>
     </>
-  ) : null;
+  );
 }
