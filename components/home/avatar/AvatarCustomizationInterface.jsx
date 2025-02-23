@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useCustomization } from "./stores/useCustomization";
@@ -115,7 +115,11 @@ const SaveButton = () => {
     customization: state.customization,
   }));
 
+  const [saving, setSaving] = useState(false);
+
   const save = async () => {
+    setSaving(true);
+
     const groupMapping = {
       Head: "1",
       Hair: "2",
@@ -156,6 +160,8 @@ const SaveButton = () => {
 
       console.log("Avatar saved:", response.message);
 
+      setSaving(false);
+
       toast({
         title: "Success",
         description: response.message,
@@ -181,7 +187,7 @@ const SaveButton = () => {
           className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
           onClick={save}
         >
-          Save
+          {saving ? "Saving....." : "Save"}
         </button>
       ) : (
         <Link href={routes.SIGN_IN}>

@@ -8,24 +8,51 @@ import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import { api } from "@/lib/api";
 
+const IconButton = ({
+  onClick,
+  children,
+  size = "size-8",
+  textSize = "text-2xl lg:text-3xl",
+  loading,
+}) => {
+  return loading ? (
+    <LoadingSpinner size={30} />
+  ) : (
+    <div
+      className={`flex ${size} cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
+
 export default function FreePhaseInterface() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const userId = session?.user?.id;
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUser() {
-      if (!userId) return;
+      if (!userId) {
+        setLoading(false);
+        return;
+      }
 
+      setLoading(true);
       try {
         const userData = await api.users.getById(userId);
         setUser(userData.data);
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch user:", error);
+        setLoading(false);
       }
     }
 
@@ -68,31 +95,30 @@ export default function FreePhaseInterface() {
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
         <div className="flex gap-4">
-          <div
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10"
+          <IconButton
+            loading={loading}
             onClick={toggleMusic}
+            textSize="text-3cl lg:text-4xl"
           >
             {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
-          </div>
-          <div
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 lg:text-3xl"
-            onClick={() => {
-              changePhase(phases.TUTORIAL);
-            }}
+          </IconButton>
+          <IconButton
+            loading={loading}
+            onClick={() => changePhase(phases.TUTORIAL)}
           >
             <FaQuestion />
-          </div>
-          <div
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-2xl transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 lg:text-3xl"
-            onClick={() => {
-              changePhase(phases.AVATAR_CUSTOMIZATION);
-            }}
+          </IconButton>
+          <IconButton
+            loading={loading}
+            onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}
           >
             <GiClothes />
-          </div>
+          </IconButton>
         </div>
 
-        {user ? (
+        {loading ? (
+          <LoadingSpinner size={30} />
+        ) : user ? (
           <Link href={`${routes.PROFILE}/${userId}`}>
             <Avatar className="size-10 sm:size-12">
               {user.image ? (
