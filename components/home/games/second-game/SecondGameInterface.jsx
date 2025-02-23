@@ -1,4 +1,5 @@
 import { addEffect } from "@react-three/fiber";
+import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 
 import { words } from "./stores/constants.js";
@@ -13,8 +14,10 @@ import { updateScore } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const SecondGameInterface = () => {
-  const { user, gameState } = useGame((state) => ({
-    user: state.user,
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
+  const { gameState } = useGame((state) => ({
     gameState: state.gameState,
   }));
 
@@ -45,11 +48,11 @@ export const SecondGameInterface = () => {
   }));
 
   async function onFinish() {
-    if (!user) return;
+    if (!userId) return;
 
     try {
       await updateScore({
-        userId: user._id,
+        userId,
         game: "game2",
         gameMode: mode,
         score,

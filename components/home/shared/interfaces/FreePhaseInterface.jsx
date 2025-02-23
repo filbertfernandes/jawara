@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useSession } from "next-auth/react";
+import { useCallback, useEffect, useState } from "react";
 import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
@@ -9,10 +10,29 @@ import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
+import { api } from "@/lib/api";
 
 export default function FreePhaseInterface() {
+  const { data: session, status } = useSession();
+  const userId = session?.user?.id;
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    async function fetchUser() {
+      if (!userId) return;
+
+      try {
+        const userData = await api.users.getById(userId);
+        setUser(userData.data);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      }
+    }
+
+    fetchUser();
+  }, [userId]);
+
   const {
-    user,
     changePhase,
     canChangePhase,
     setCanChangePhase,
@@ -21,7 +41,6 @@ export default function FreePhaseInterface() {
     toggleMusic,
     isMusicMuted,
   } = useGame((state) => ({
-    user: state.user,
     changePhase: state.changePhase,
     canChangePhase: state.canChangePhase,
     setCanChangePhase: state.setCanChangePhase,
@@ -45,7 +64,7 @@ export default function FreePhaseInterface() {
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
-  return (
+  return user ? (
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
         <div className="flex gap-4">
@@ -73,8 +92,8 @@ export default function FreePhaseInterface() {
           </div>
         </div>
 
-        {user ? (
-          <Link href={`${routes.PROFILE}/${user._id}`}>
+        {userId ? (
+          <Link href={`${routes.PROFILE}/${userId}`}>
             <Avatar className="size-10 sm:size-12">
               {user.image ? (
                 <Image
@@ -115,5 +134,5 @@ export default function FreePhaseInterface() {
         </div>
       </div>
     </>
-  );
+  ) : null;
 }

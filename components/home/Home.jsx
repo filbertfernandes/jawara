@@ -4,6 +4,7 @@ import { Html, KeyboardControls, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
 import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
@@ -19,7 +20,6 @@ import { SecondGameInterface } from "@/components/home/games/second-game/SecondG
 import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGameInterface.jsx";
 import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
 import controls from "@/constants/controls";
-import { useAuth } from "@/hooks/useAuth";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { getUserAvatar } from "@/lib/actions/userAvatar.action";
@@ -51,11 +51,11 @@ const CanvasLoader = () => {
 };
 
 export default function Home() {
-  const { loading } = useAuth(); // Use the authentication hook
+  const { data: session, status } = useSession();
+  const userId = session?.user?.id;
 
   const { progress } = useProgress();
-  const { user, phase } = useGame((state) => ({
-    user: state.user,
+  const { phase } = useGame((state) => ({
     phase: state.phase,
   }));
 
@@ -65,14 +65,14 @@ export default function Home() {
 
   useEffect(() => {
     const fetchUserAvatar = async () => {
-      if (!user) {
+      if (!userId) {
         // Guest user → Use dummy data
         applyDummyAvatar();
         return;
       }
 
       try {
-        const response = await getUserAvatar({ userId: user._id });
+        const response = await getUserAvatar({ userId });
 
         if (response.success && response.data?.avatar) {
           const userAvatarData = response.data.avatar;
@@ -128,7 +128,7 @@ export default function Home() {
     };
 
     fetchUserAvatar();
-  }, [user]);
+  }, [userId]);
 
   // KEYBOARD CONTROLS
   const map = useMemo(
@@ -163,7 +163,7 @@ export default function Home() {
     [phases.AVATAR_CUSTOMIZATION]: <AvatarCustomizationInterface />,
   };
 
-  if (loading) {
+  if (status === "loading") {
     return <CanvasLoader />; // Show loading screen while fetching user session
   }
 

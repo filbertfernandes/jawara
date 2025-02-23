@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
@@ -40,6 +41,9 @@ const shuffleArray = (arr) => {
 };
 
 export const TranslationInterface = () => {
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
   const [correctCount, setCorrectCount] = useState(null);
   const [attempsLeft, setAttemptsLeft] = useState(null);
   const [isGeneratingSentence, setIsGeneratingSentence] = useState(false);
@@ -54,20 +58,19 @@ export const TranslationInterface = () => {
 
   const sentenceBox = useRef();
 
-  const { user, changePhase } = useGame((state) => ({
-    user: state.user,
+  const { changePhase } = useGame((state) => ({
     changePhase: state.changePhase,
   }));
 
   useEffect(() => {
-    if (!user) return;
+    if (!userId) return;
 
     const fetchAttemptsLeft = async () => {
       try {
-        const { attemptsLeft } = await getTranslationAttemptsLeft(user._id);
+        const { attemptsLeft } = await getTranslationAttemptsLeft(userId);
 
         const { totalCorrectTranslations } = await getTotalCorrectTranslations(
-          user._id
+          userId
         );
 
         setAttemptsLeft(attemptsLeft);
@@ -84,7 +87,7 @@ export const TranslationInterface = () => {
     setIsGeneratingSentence(true);
 
     try {
-      const { attemptsLeft } = await updateTranslationAttemptsLeft(user._id);
+      const { attemptsLeft } = await updateTranslationAttemptsLeft(userId);
       setAttemptsLeft(attemptsLeft);
 
       const response = await fetch(
@@ -144,7 +147,7 @@ export const TranslationInterface = () => {
 
       if (isTrue) {
         setCorrectCount(correctCount + 1);
-        await incrementCorrectTranslations(user._id);
+        await incrementCorrectTranslations(userId);
       }
     } catch (error) {
       console.log(error);
@@ -195,7 +198,7 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2">
           <div>Correct:</div>
           <div>
-            {user ? (
+            {userId ? (
               correctCount !== null ? (
                 correctCount
               ) : (
@@ -216,7 +219,7 @@ export const TranslationInterface = () => {
         <div className="flex items-center gap-2 text-gray-500">
           <div>Daily Limit:</div>
           <div>
-            {user ? (
+            {userId ? (
               attempsLeft !== null ? (
                 attempsLeft
               ) : (
@@ -276,7 +279,7 @@ export const TranslationInterface = () => {
 
       {/* Check Button */}
       <div>
-        {user ? (
+        {userId ? (
           attempsLeft ? (
             attempsLeft > 0 ? (
               <div

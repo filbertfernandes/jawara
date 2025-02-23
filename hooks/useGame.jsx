@@ -42,12 +42,6 @@ export const useGame = create(
       sky: null,
       playerPosition: PLAYER_INITIAL_POSITION,
 
-      user: null,
-      setUser: (user) => set({ user }),
-
-      sessionStatus: "unauthenticated",
-      setSessionStatus: (status) => set({ sessionStatus: status }),
-
       // TOGGLE MUSIC
       toggleMusic: () => {
         set((state) => {

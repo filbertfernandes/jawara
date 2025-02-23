@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
@@ -107,9 +108,8 @@ const AssetBox = () => {
 };
 
 const SaveButton = () => {
-  const { user } = useGame((state) => ({
-    user: state.user,
-  }));
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
   const { customization } = useCustomization((state) => ({
     customization: state.customization,
@@ -150,7 +150,7 @@ const SaveButton = () => {
 
     try {
       const response = await createOrUpdateUserAvatar({
-        userId: user._id,
+        userId,
         avatar: transformedData,
       });
 
@@ -176,7 +176,7 @@ const SaveButton = () => {
 
   return (
     <>
-      {user ? (
+      {userId ? (
         <button
           className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
           onClick={save}
