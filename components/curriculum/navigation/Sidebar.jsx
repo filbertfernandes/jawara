@@ -7,6 +7,7 @@ import { RiArrowLeftSLine } from "react-icons/ri";
 import ProgressBar from "./ProgressBar";
 import { useCurriculum } from "../stores/useCurriculum";
 
+import routes from "@/constants/routes";
 import { getUserProgress } from "@/lib/actions/userProgress.action";
 
 const Sidebar = ({ chapter, userProgress }) => {
@@ -45,7 +46,7 @@ const Sidebar = ({ chapter, userProgress }) => {
 
   return (
     <section className="min-h-screen w-2/5 bg-gray-50 py-4 text-black max-md:hidden sm:py-14 lg:w-[30%]">
-      <Link href="/curriculum" className="absolute left-3 top-3">
+      <Link href={routes.CURRICULUM} className="absolute left-3 top-3">
         <RiArrowLeftSLine className="text-4xl text-black" />
       </Link>
       <div className="mb-6 flex flex-col flex-wrap items-center justify-center">

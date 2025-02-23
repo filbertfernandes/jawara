@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame";
 import { getAllScores } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager";
@@ -112,7 +113,7 @@ const GameLeaderboardInterface = () => {
             {leaderboard.result.topScores.map((topScore, index) => (
               <li key={index}>
                 <Link
-                  href={`/profile/${topScore.userId._id}`}
+                  href={`${routes.PROFILE}/${topScore.userId._id}`}
                   className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
                 >
                   <div className="flex">

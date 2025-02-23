@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import SocialAuthForm from "@/components/auth/SocialAuthForm";
+import routes from "@/constants/routes";
 
 const Layout = ({ children }) => {
   const isMediumDevice = useMediaQuery("only screen and (min-width : 768px)");
@@ -16,7 +17,10 @@ const Layout = ({ children }) => {
           <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-black">
             <div className="flex w-full flex-wrap justify-center text-center">
               <h1 className="h6-bold w-full">WELCOME TO</h1>
-              <Link href="/" className="mb-6 flex w-full justify-center">
+              <Link
+                href={routes.HOME}
+                className="mb-6 flex w-full justify-center"
+              >
                 <Image
                   src="/images/jawara/jawara-logo-2.png"
                   alt="Jawara Logo"
@@ -31,7 +35,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
           <div className="flex flex-1 items-center justify-center bg-orange-200">
-            <Link href="/">
+            <Link href={routes.HOME}>
               <Image
                 src="/images/jawara/jawara-logo.png"
                 alt="Jawara Logo"
@@ -44,7 +48,7 @@ const Layout = ({ children }) => {
       ) : (
         <>
           <div className="flex items-center justify-center bg-orange-200">
-            <Link href="/">
+            <Link href={routes.HOME}>
               <Image
                 src="/images/jawara/jawara-logo.png"
                 alt="Jawara Logo"

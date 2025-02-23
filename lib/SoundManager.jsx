@@ -46,15 +46,14 @@ const sounds = {
 };
 
 let isMuted = false;
+let currentlyPlayingBgm = null;
 
 export const SoundManager = {
   playSound: (soundName) => {
     if (!isMuted) {
       const sound = sounds[soundName];
       if (sound) {
-        if (soundName === "move") {
-          if (sound.playing()) return;
-        }
+        if (soundName === "move" && sound.playing()) return;
         sound.play();
       }
     }
@@ -90,14 +89,26 @@ export const SoundManager = {
 
   startBackgroundMusic: (bgmName) => {
     if (!isMuted) {
+      if (currentlyPlayingBgm === bgmName && sounds[bgmName].playing()) {
+        return; // Prevent duplicate music play
+      }
+
+      if (currentlyPlayingBgm) {
+        sounds[currentlyPlayingBgm].stop();
+      }
+
       const sound = sounds[bgmName];
       if (sound) {
         sound.play();
+        currentlyPlayingBgm = bgmName;
       }
     }
   },
 
   stopBackgroundMusic: (bgmName) => {
-    sounds[bgmName].stop();
+    if (currentlyPlayingBgm === bgmName) {
+      sounds[bgmName].stop();
+      currentlyPlayingBgm = null;
+    }
   },
 };

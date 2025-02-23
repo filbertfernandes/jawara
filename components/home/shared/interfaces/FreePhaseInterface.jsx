@@ -7,6 +7,7 @@ import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 
 export default function FreePhaseInterface() {
@@ -40,7 +41,7 @@ export default function FreePhaseInterface() {
       setCanChangePhase(false, "");
     } else {
       setCanPressEnter(false);
-      router.push("/curriculum");
+      router.push(routes.CURRICULUM);
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
@@ -73,7 +74,7 @@ export default function FreePhaseInterface() {
         </div>
 
         {user ? (
-          <Link href={`/profile/${user._id}`}>
+          <Link href={`${routes.PROFILE}/${user._id}`}>
             <Avatar className="size-10 sm:size-12">
               {user.image ? (
                 <Image
@@ -96,7 +97,7 @@ export default function FreePhaseInterface() {
             </Avatar>
           </Link>
         ) : (
-          <Link href="/sign-in">
+          <Link href={routes.SIGN_IN}>
             <div>Sign In</div>
           </Link>
         )}

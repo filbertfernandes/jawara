@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { BiSolidLock } from "react-icons/bi";
 import { MdEmail, MdPerson } from "react-icons/md";
@@ -40,6 +41,12 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             ? "Signed in successfully"
             : "Signed up successfully",
       });
+
+      // Force NextAuth to refresh session
+      const newSession = await getSession(); // Fetch new session data
+      console.log("New Session:", newSession); // Debugging
+
+      router.refresh(); // Refresh the page
 
       router.push(routes.HOME);
     } else {

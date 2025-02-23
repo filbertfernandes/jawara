@@ -16,7 +16,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { getUserProgress } from "@/lib/actions/userProgress.action";
+import routes from "@/constants/routes";
 
 const MobileNavigation = ({ chapter, userProgress }) => {
   const { phase, updatedUserProgress } = useCurriculum((state) => ({
@@ -41,7 +41,7 @@ const MobileNavigation = ({ chapter, userProgress }) => {
         </SheetTrigger>
         <SheetContent className="px-0 py-8 sm:py-16" side="left">
           <SheetHeader>
-            <Link href="/curriculum" className="absolute left-3 top-3">
+            <Link href={routes.CURRICULUM} className="absolute left-3 top-3">
               <RiArrowLeftSLine className="text-4xl text-black" />
             </Link>
             <SheetTitle className="mb-6 flex flex-col flex-wrap items-center justify-center">

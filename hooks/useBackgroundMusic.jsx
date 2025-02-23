@@ -10,7 +10,6 @@ export default function useBackgroundMusic() {
     isMusicMuted: state.isMusicMuted,
   }));
 
-  // Ref to track the currently playing music
   const currentMusicRef = useRef(null);
 
   useEffect(() => {
@@ -32,14 +31,8 @@ export default function useBackgroundMusic() {
       ? "freePhaseBackground"
       : "gamePhaseBackground";
 
-    // Only switch music if it's different from the current playing one
-    if (currentMusicRef.current !== newMusic) {
-      if (currentMusicRef.current) {
-        SoundManager.stopBackgroundMusic(currentMusicRef.current);
-      }
-      SoundManager.startBackgroundMusic(newMusic);
-      currentMusicRef.current = newMusic;
-    }
+    SoundManager.startBackgroundMusic(newMusic);
+    currentMusicRef.current = newMusic;
 
     return () => {
       if (isMusicMuted && currentMusicRef.current) {

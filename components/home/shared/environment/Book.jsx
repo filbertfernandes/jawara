@@ -8,6 +8,7 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
+import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame";
 
 const Book = () => {
@@ -30,7 +31,7 @@ const Book = () => {
 
   const goToCurriculum = () => {
     setCanPressEnter(false);
-    router.push("/curriculum");
+    router.push(routes.CURRICULUM);
   };
 
   // Handle cursor change with useEffect

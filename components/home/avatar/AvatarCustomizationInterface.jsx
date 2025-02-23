@@ -5,6 +5,7 @@ import { GiExitDoor } from "react-icons/gi";
 
 import { useCustomization } from "./stores/useCustomization";
 
+import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 import { phases, useGame } from "@/hooks/useGame";
 import { createOrUpdateUserAvatar } from "@/lib/actions/userAvatar.action";
@@ -183,9 +184,9 @@ const SaveButton = () => {
           Save
         </button>
       ) : (
-        <Link href="/sign-in">
+        <Link href={routes.SIGN_IN}>
           <button className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
-            Login to Save
+            Sign In to Save
           </button>
         </Link>
       )}

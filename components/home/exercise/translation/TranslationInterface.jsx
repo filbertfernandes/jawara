@@ -6,6 +6,7 @@ import { GiExitDoor } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
 
 import LoadingSpinner from "@/components/ui/loadingSpinner";
+import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame";
 import {
   getTranslationAttemptsLeft,
@@ -302,7 +303,7 @@ export const TranslationInterface = () => {
           )
         ) : (
           <Link
-            href="/sign-in"
+            href={routes.SIGN_IN}
             className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
           >
             Sign In to Generate Sentence

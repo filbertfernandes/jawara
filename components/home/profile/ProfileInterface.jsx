@@ -14,6 +14,7 @@ import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
 const achievementsData = [
@@ -211,7 +212,7 @@ export default function ProfileInterface({ profileUser, session }) {
 
   return (
     <div className="fullscreen-orange-100 flex-wrap gap-6 overflow-scroll font-questrial font-bold text-white">
-      <Link href="/">
+      <Link href={routes.HOME}>
         <div className="absolute left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
           <GiExitDoor />
         </div>

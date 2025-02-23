@@ -12,11 +12,6 @@ export default async function Page({ params }) {
   const { id } = await params;
   const chapter = chapters[id - 1];
 
-  // Redirect to sign-in if user is not logged in
-  if (!session) {
-    redirect("/sign-in");
-  }
-
   // Create user progress if the user is logged in
   const userProgress = JSON.parse(
     JSON.stringify(await createUserProgress(id, session.user.id))
