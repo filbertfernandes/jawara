@@ -118,10 +118,10 @@ export default function FreePhaseInterface() {
 
         {loading ? (
           <LoadingSpinner size={30} />
-        ) : user ? (
+        ) : userId ? (
           <Link href={`${routes.PROFILE}/${userId}`}>
             <Avatar className="size-10 sm:size-12">
-              {user.image ? (
+              {user?.image ? (
                 <Image
                   src={user.image}
                   alt={user.username}
