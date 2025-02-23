@@ -17,17 +17,15 @@ export const useCustomization = create((set, get) => ({
     roughness: 1,
   }),
   customization: {},
-  save: () => {},
 
-  setSave: (save) => set({ save }),
-
-  updateColor: (color) => {
+  updateColor: (color, index) => {
     set((state) => ({
       customization: {
         ...state.customization,
         [state.currentCategory.name]: {
           ...state.customization[state.currentCategory.name],
           color,
+          colorIndex: index,
         },
       },
     }));
@@ -64,11 +62,14 @@ export const useCustomization = create((set, get) => ({
         color:
           category.colorPalette?.colors?.[category.startingColorIndex || 0] ||
           "",
+        colorIndex: category.colorPaletteName
+          ? category.startingColorIndex || 0
+          : null,
       };
 
       if (category.name === "Head") {
         get().updateSkin(
-          category.colorPalette?.colors?.[category.startingColorIndex]
+          category.colorPalette?.colors?.[category.startingColorIndex || 0]
         );
       }
 
@@ -100,6 +101,7 @@ export const useCustomization = create((set, get) => ({
 
   randomize: () => {
     const customization = {};
+
     get().categories.forEach((category) => {
       let randomAsset = category.assets[randInt(0, category.assets.length - 1)];
       if (category.removable) {
@@ -107,14 +109,22 @@ export const useCustomization = create((set, get) => ({
           randomAsset = null;
         }
       }
-      const randomColor =
-        category.colorPalette?.colors?.[
-          randInt(0, category.colorPalette.colors.length - 1)
-        ];
+
+      let randomColorIndex = null;
+      let randomColor = null;
+
+      if (category.colorPaletteName) {
+        randomColorIndex = randInt(0, category.colorPalette.colors.length - 1);
+
+        randomColor = category.colorPalette?.colors?.[randomColorIndex];
+      }
+
       customization[category.name] = {
         asset: randomAsset,
         color: randomColor,
+        colorIndex: randomColorIndex,
       };
+
       if (category.name === "Head") {
         get().updateSkin(randomColor);
       }

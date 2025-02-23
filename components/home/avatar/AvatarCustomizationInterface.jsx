@@ -1,10 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useCustomization } from "./stores/useCustomization";
 
+import { toast } from "@/hooks/use-toast";
 import { phases, useGame } from "@/hooks/useGame";
+import { createOrUpdateUserAvatar } from "@/lib/actions/userAvatar.action";
 
 const AssetBox = () => {
   const {
@@ -103,14 +106,90 @@ const AssetBox = () => {
 };
 
 const SaveButton = () => {
-  const save = useCustomization((state) => state.save);
+  const { user } = useGame((state) => ({
+    user: state.user,
+  }));
+
+  const { customization } = useCustomization((state) => ({
+    customization: state.customization,
+  }));
+
+  const save = async () => {
+    const groupMapping = {
+      Head: "1",
+      Hair: "2",
+      Eyes: "3",
+      Eyebrows: "4",
+      Nose: "5",
+      "Facial Hair": "6",
+      Glasses: "7",
+      Hat: "8",
+      Top: "9",
+      Bottom: "10",
+      Shoes: "11",
+      Accessories: "12",
+    };
+
+    const transformedData = Object.entries(customization)
+      .map(([key, value]) => {
+        const groupId = groupMapping[key];
+        if (!groupId) return null;
+
+        const startingAsset = value.asset ? value.asset.name : undefined;
+        const startingColorIndex =
+          value.colorIndex !== null ? value.colorIndex : undefined;
+
+        return {
+          groupId,
+          ...(startingAsset && { startingAsset }),
+          ...(startingColorIndex !== undefined && { startingColorIndex }),
+        };
+      })
+      .filter(Boolean); // Remove null entries
+
+    try {
+      const response = await createOrUpdateUserAvatar({
+        userId: user._id,
+        avatar: transformedData,
+      });
+
+      console.log("Avatar saved:", response.message);
+
+      toast({
+        title: "Success",
+        description: response.message,
+      });
+    } catch (error) {
+      console.error("Failed to save avatar:", error);
+
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An error occured when saving your 3D Avatar, please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
-    <button
-      className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
-      onClick={save}
-    >
-      Login to Save
-    </button>
+    <>
+      {user ? (
+        <button
+          className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
+          onClick={save}
+        >
+          Save
+        </button>
+      ) : (
+        <Link href="/sign-in">
+          <button className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
+            Login to Save
+          </button>
+        </Link>
+      )}
+    </>
   );
 };
 
@@ -148,8 +227,8 @@ const ColorPicker = () => {
     })
   );
 
-  const handleColorChange = (color) => {
-    updateColor(color);
+  const handleColorChange = (color, index) => {
+    updateColor(color, index);
   };
 
   if (!customization[currentCategory.name]?.asset) {
@@ -168,7 +247,7 @@ const ColorPicker = () => {
                  : "border-transparent"
              }
           `}
-          onClick={() => handleColorChange(color)}
+          onClick={() => handleColorChange(color, index)}
         >
           <div
             className="size-full rounded-md"

@@ -22,6 +22,7 @@ import controls from "@/constants/controls";
 import { useAuth } from "@/hooks/useAuth";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 import useIsMobile from "@/hooks/useIsMobile.jsx";
+import { getUserAvatar } from "@/lib/actions/userAvatar.action";
 
 // Dynamically import Joystick with SSR disabled
 const Joystick = dynamic(
@@ -53,7 +54,8 @@ export default function Home() {
   const { loading } = useAuth(); // Use the authentication hook
 
   const { progress } = useProgress();
-  const { phase } = useGame((state) => ({
+  const { user, phase } = useGame((state) => ({
+    user: state.user,
     phase: state.phase,
   }));
 
@@ -62,28 +64,71 @@ export default function Home() {
   }));
 
   useEffect(() => {
-    const dummyUserAvatarData = [
-      { groupId: "1", startingAsset: "Head_01", startingColorIndex: 1 },
-      { groupId: "2", startingAsset: "Hair_01" },
-      { groupId: "9", startingAsset: "Top_02", startingColorIndex: 14 },
-      { groupId: "11", startingAsset: "Shoes_01", startingColorIndex: 14 },
-    ];
+    const fetchUserAvatar = async () => {
+      if (!user) {
+        // Guest user → Use dummy data
+        applyDummyAvatar();
+        return;
+      }
 
-    const categories = customizationGroups.map((group) => {
-      const userGroup = dummyUserAvatarData.find(
-        (user) => user.groupId === group.id
-      );
-      return userGroup
-        ? {
-            ...group,
-            startingAsset: userGroup.startingAsset,
-            startingColorIndex: userGroup.startingColorIndex,
-          }
-        : group;
-    });
+      try {
+        const response = await getUserAvatar({ userId: user._id });
 
-    fetchCategories(categories);
-  }, []);
+        if (response.success && response.data?.avatar) {
+          const userAvatarData = response.data.avatar;
+
+          const categories = customizationGroups.map((group) => {
+            const userGroup = userAvatarData.find(
+              (user) => user.groupId === group.id
+            );
+
+            return userGroup
+              ? {
+                  ...group,
+                  startingAsset: userGroup.startingAsset,
+                  startingColorIndex: userGroup.startingColorIndex,
+                }
+              : group;
+          });
+
+          fetchCategories(categories);
+        } else {
+          // Logged-in user but no avatar → Use dummy data
+          applyDummyAvatar();
+        }
+      } catch (error) {
+        console.error("Failed to fetch user avatar:", error);
+        // If there's an error, assume no avatar exists → Use dummy data
+        applyDummyAvatar();
+      }
+    };
+
+    const applyDummyAvatar = () => {
+      const dummyUserAvatarData = [
+        { groupId: "1", startingAsset: "Head_01", startingColorIndex: 1 },
+        { groupId: "2", startingAsset: "Hair_01" },
+        { groupId: "9", startingAsset: "Top_02", startingColorIndex: 14 },
+        { groupId: "11", startingAsset: "Shoes_01", startingColorIndex: 14 },
+      ];
+
+      const categories = customizationGroups.map((group) => {
+        const userGroup = dummyUserAvatarData.find(
+          (user) => user.groupId === group.id
+        );
+        return userGroup
+          ? {
+              ...group,
+              startingAsset: userGroup.startingAsset,
+              startingColorIndex: userGroup.startingColorIndex,
+            }
+          : group;
+      });
+
+      fetchCategories(categories);
+    };
+
+    fetchUserAvatar();
+  }, [user]);
 
   // KEYBOARD CONTROLS
   const map = useMemo(

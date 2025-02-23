@@ -14,6 +14,7 @@ import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { toast } from "@/hooks/use-toast";
 
 const achievementsData = [
   {
