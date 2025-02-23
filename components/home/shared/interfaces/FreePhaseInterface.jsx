@@ -131,7 +131,7 @@ export default function FreePhaseInterface() {
                 />
               ) : (
                 <AvatarFallback className="border border-orange-500 bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
-                  {user.name
+                  {user?.name
                     .split(" ")
                     .map((word) => word[0])
                     .join("")
