@@ -18,11 +18,8 @@ const IconButton = ({
   children,
   size = "size-8",
   textSize = "text-2xl lg:text-3xl",
-  loading,
 }) => {
-  return loading ? (
-    <LoadingSpinner size={30} />
-  ) : (
+  return (
     <div
       className={`flex ${size} cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
       onClick={onClick}
@@ -95,23 +92,13 @@ export default function FreePhaseInterface() {
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
         <div className="flex gap-4">
-          <IconButton
-            loading={loading}
-            onClick={toggleMusic}
-            textSize="text-3cl lg:text-4xl"
-          >
+          <IconButton onClick={toggleMusic} textSize="text-3cl lg:text-4xl">
             {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
           </IconButton>
-          <IconButton
-            loading={loading}
-            onClick={() => changePhase(phases.TUTORIAL)}
-          >
+          <IconButton onClick={() => changePhase(phases.TUTORIAL)}>
             <FaQuestion />
           </IconButton>
-          <IconButton
-            loading={loading}
-            onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}
-          >
+          <IconButton onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}>
             <GiClothes />
           </IconButton>
         </div>
