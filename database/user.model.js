@@ -5,7 +5,6 @@ const UserSchema = new Schema(
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    image: { type: String },
     totalCorrectTranslations: { type: Number, default: 0 },
     scores: {
       game1: {

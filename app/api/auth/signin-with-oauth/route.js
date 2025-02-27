@@ -28,7 +28,7 @@ export async function POST(request) {
       throw new ValidationError(validatedData.error.flatten().fieldErrors);
     }
 
-    const { name, username, email, image } = user;
+    const { name, username, email } = user;
 
     const slugifiedUsername = slugify(username, {
       lower: true,
@@ -40,14 +40,13 @@ export async function POST(request) {
 
     if (!existingUser) {
       [existingUser] = await User.create(
-        [{ name, username: slugifiedUsername, email, image }],
+        [{ name, username: slugifiedUsername, email }],
         { session }
       );
     } else {
       const updatedData = {};
 
       if (existingUser.name !== name) updatedData.name = name;
-      if (existingUser.image !== image) updatedData.image = image;
 
       if (Object.keys(updatedData).length > 0) {
         await User.updateOne(
@@ -69,7 +68,6 @@ export async function POST(request) {
           {
             userId: existingUser._id,
             name,
-            image,
             provider,
             providerAccountId,
           },
