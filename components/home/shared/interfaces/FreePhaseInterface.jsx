@@ -38,32 +38,12 @@ const IconButton = ({
 };
 
 export default function FreePhaseInterface() {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
-  const [user, setUser] = useState();
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
-  const [disableKeys, setDisableKeys] = useState(false);
 
   useEffect(() => {
-    async function fetchUser() {
-      if (!userId) {
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      try {
-        const userData = await api.users.getById(userId);
-        setUser(userData.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
-        setLoading(false);
-      }
-    }
-
-    fetchUser();
-  }, [userId]);
+    if (status !== "loading") setLoading(false);
+  }, [status]);
 
   const {
     changePhase,
@@ -131,13 +111,13 @@ export default function FreePhaseInterface() {
 
         {loading ? (
           <LoadingSpinner size={30} />
-        ) : userId ? (
+        ) : session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
               <Avatar className="size-10 sm:size-12">
                 <Image
                   src={`/images/avatar/profile.png`}
-                  alt={user?.username}
+                  alt={session?.user?.name}
                   width={200}
                   height={200}
                   quality={100}
@@ -145,9 +125,9 @@ export default function FreePhaseInterface() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>@{user?.username}</DropdownMenuLabel>
+              <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <Link href={`${routes.PROFILE}/${userId}`}>
+              <Link href={`${routes.PROFILE}/${session?.user?.id}`}>
                 <DropdownMenuItem className="cursor-pointer">
                   Profile
                 </DropdownMenuItem>
