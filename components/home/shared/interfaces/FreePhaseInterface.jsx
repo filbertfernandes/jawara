@@ -1,4 +1,4 @@
-import Image from "next/image";
+import multiavatar from "@multiavatar/multiavatar/esm";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -7,7 +7,6 @@ import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
-import { Avatar } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +18,6 @@ import {
 import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
-import { api } from "@/lib/api";
 
 const IconButton = ({
   onClick,
@@ -42,7 +40,9 @@ export default function FreePhaseInterface() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (status !== "loading") setLoading(false);
+    if (status !== "loading") {
+      setLoading(false);
+    }
   }, [status]);
 
   const {
@@ -114,15 +114,12 @@ export default function FreePhaseInterface() {
         ) : session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
-              <Avatar className="size-10 sm:size-12">
-                <Image
-                  src={`/images/avatar/profile.png`}
-                  alt={session?.user?.name}
-                  width={200}
-                  height={200}
-                  quality={100}
-                />
-              </Avatar>
+              <div
+                className="size-12"
+                dangerouslySetInnerHTML={{
+                  __html: multiavatar(session.user.id + session.user.name),
+                }}
+              />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>

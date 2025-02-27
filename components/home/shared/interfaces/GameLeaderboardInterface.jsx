@@ -1,8 +1,7 @@
-import Image from "next/image";
+import multiavatar from "@multiavatar/multiavatar/esm";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame";
 import { getAllScores } from "@/lib/actions/score.action";
@@ -121,27 +120,14 @@ const GameLeaderboardInterface = () => {
                       {index + 1}
                     </div>
                     <div className="relative">
-                      <Avatar className="size-10 sm:size-12">
-                        {topScore.userId.image ? (
-                          <Image
-                            src={topScore.userId.image}
-                            alt={topScore.userId.username}
-                            className="object-cover"
-                            width={50}
-                            height={50}
-                            quality={100}
-                          />
-                        ) : (
-                          <AvatarFallback className="bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
-                            {topScore.userId.name
-                              .split(" ")
-                              .map((word) => word[0])
-                              .join("")
-                              .toUpperCase()
-                              .slice(0, 2)}
-                          </AvatarFallback>
-                        )}
-                      </Avatar>
+                      <div
+                        className="size-10 sm:size-12"
+                        dangerouslySetInnerHTML={{
+                          __html: multiavatar(
+                            topScore.userId._id + topScore.userId.name
+                          ),
+                        }}
+                      />
                     </div>
                     <div className="ml-4 flex items-center">
                       {topScore.userId.name}

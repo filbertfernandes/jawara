@@ -1,3 +1,4 @@
+import multiavatar from "@multiavatar/multiavatar/esm";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -8,8 +9,6 @@ import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
-
-import { Avatar } from "../ui/avatar";
 
 import routes from "@/constants/routes";
 
@@ -211,15 +210,12 @@ const ProfileInterface = ({ profileUser }) => {
         </div>
         <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/75 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
           <div className="flex w-full flex-col items-center gap-1">
-            <Avatar className="size-32">
-              <Image
-                src={`/images/avatar/profile.png`}
-                alt={profileUser.username}
-                width={200}
-                height={200}
-                quality={100}
-              />
-            </Avatar>
+            <div
+              className="size-32"
+              dangerouslySetInnerHTML={{
+                __html: multiavatar(profileUser._id + profileUser.name),
+              }}
+            />
             <h5 className="h5-bold">@{profileUser.username}</h5>
             {/* <div className="mt-2 flex w-full justify-evenly">
               <div>2000 Followers</div>
