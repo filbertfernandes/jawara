@@ -1,6 +1,7 @@
 import { addEffect } from "@react-three/fiber";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { words } from "./stores/constants.js";
 import { useSecondGame } from "./stores/useSecondGame.jsx";
@@ -9,7 +10,6 @@ import ExitDoor from "@/components/home/shared/interfaces/ExitDoor.jsx";
 import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
 import ScorePlusInterface from "@/components/home/shared/interfaces/ScorePlusInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
-import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { updateScore } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
@@ -108,7 +108,7 @@ export const SecondGameInterface = () => {
   }, [gameState]);
 
   // MOVILE CONTROLS
-  const isMobile = useIsMobile();
+  const isMobile = useMediaQuery({ maxWidth: 900 });
 
   return (
     <>

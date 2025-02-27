@@ -4,7 +4,6 @@ import { create } from "zustand";
 
 import { cameraPlacements } from "./cameraPlacements";
 import { customizationAssets } from "./customizationAssets";
-import { customizationGroups } from "./customizationGroups";
 import { customizationPalettes } from "./customizationPalettes";
 
 export const useCustomization = create((set, get) => ({

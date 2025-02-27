@@ -1,11 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import { useState } from "react";
-import { FaSignOutAlt } from "react-icons/fa";
-import { FaAward } from "react-icons/fa6";
+import { FaArrowDown, FaAward } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
@@ -13,9 +9,9 @@ import { IoBody, IoColorPalette } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar } from "../ui/avatar";
+
 import routes from "@/constants/routes";
-import { toast } from "@/hooks/use-toast";
 
 const achievementsData = [
   {
@@ -101,10 +97,10 @@ const scoresData = [
 ];
 
 const AchievementOverlay = ({ image, description, onClose }) => (
-  <div className="fullscreen-black-transparent flex-col items-center justify-center gap-4">
+  <div className="fullscreen-black-transparent z-20 flex-col items-center justify-center gap-4 font-questrial text-white">
     <div className="relative flex flex-col items-center">
       <button
-        className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-white sm:text-4xl"
+        className="absolute -right-8 -top-8 rounded-full p-1 text-3xl sm:text-4xl"
         onClick={onClose}
       >
         <IoMdClose />
@@ -124,43 +120,42 @@ const AchievementOverlay = ({ image, description, onClose }) => (
 );
 
 const AchievementGallery = ({ achievements, onAchievementClick }) => (
-  <div className="flex max-h-96 min-h-96 flex-wrap justify-center overflow-scroll rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 lg:max-h-[500px] lg:min-h-[500px] lg:px-6 lg:py-8">
-    <div className="mb-3 flex lg:mb-6">
-      <h2 className="h2-bold w-full text-center">Achievements</h2>
-      <FaAward className="ml-2 text-3xl lg:text-5xl" />
+  <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-2 py-4">
+    <div className="flex items-center justify-center">
+      <h6 className="h6-bold">Achievements</h6>
+      <FaAward className="ml-1 text-xl" />
     </div>
-    <div className="flex flex-wrap justify-center gap-6">
-      {achievements.map((achievement, idx) => (
-        <Image
-          key={idx}
-          src={achievement.src}
-          alt="Achievement"
-          width={500}
-          height={500}
-          className="size-[125px] cursor-pointer rounded-xl lg:size-[200px]"
-          quality={100}
-          onClick={() =>
-            onAchievementClick(achievement.src, achievement.description)
-          }
-        />
-      ))}
+    <div className="flex h-[500px] w-full justify-center overflow-scroll">
+      <div className="flex w-full flex-wrap justify-evenly gap-4 laptop-sm:w-3/4">
+        {achievements.map((achievement, idx) => (
+          <Image
+            key={idx}
+            src={achievement.src}
+            alt="Achievement"
+            width={500}
+            height={500}
+            className="size-36 cursor-pointer rounded-xl"
+            quality={100}
+            onClick={() =>
+              onAchievementClick(achievement.src, achievement.description)
+            }
+          />
+        ))}
+      </div>
     </div>
   </div>
 );
 
 const ScoreTable = ({ scores }) => (
-  <div className="mb-8 flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-6 py-4 text-center lg:px-10 lg:py-8">
-    <div className="mb-3 flex lg:mb-6">
-      <h2 className="h2-bold w-full text-center">Vocabulary Scores</h2>
-      <TbVocabulary className="ml-2 text-3xl lg:text-5xl" />
+  <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-6 py-4">
+    <div className="flex items-center justify-center">
+      <h6 className="h6-bold">Vocabulary Scores</h6>
+      <TbVocabulary className="ml-1 text-xl" />
     </div>
     {Object.entries(scores).map(([game, scoreCategories], idx) => (
-      <div
-        key={idx}
-        className="mb-4 flex w-full flex-wrap items-center border-b-2 border-white pb-4"
-      >
-        <h3 className="h5-bold">{scoresData[idx].category}</h3>
-        <div className="ml-1 text-2xl lg:text-4xl">{scoresData[idx].icon}</div>
+      <div key={idx} className="flex w-full flex-wrap items-center pb-2">
+        <h3 className="h6-bold">{scoresData[idx].category}</h3>
+        <div className="ml-1 text-xl lg:text-3xl">{scoresData[idx].icon}</div>
         {/* Display the game name (game1, game2, etc.) */}
         {Object.entries(scoreCategories).map(([category, score], i) => (
           <div
@@ -176,7 +171,7 @@ const ScoreTable = ({ scores }) => (
   </div>
 );
 
-export default function ProfileInterface({ profileUser, session }) {
+const ProfileInterface = ({ profileUser }) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageDescription, setSelectedImageDescription] =
@@ -193,53 +188,8 @@ export default function ProfileInterface({ profileUser, session }) {
     setSelectedImage(null);
   };
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.log(error);
-
-      toast({
-        title: "Sign-out Failed",
-        description:
-          error instanceof Error
-            ? error.message
-            : "An error occured during sign-out",
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
-    <div className="fullscreen-orange-100 flex-wrap gap-6 overflow-scroll font-questrial font-bold text-white">
-      <Link href={routes.HOME}>
-        <div className="absolute left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
-          <GiExitDoor />
-        </div>
-      </Link>
-
-      <div className="flex w-full justify-center">
-        <Avatar className="size-32 font-sans">
-          {profileUser.image ? (
-            <Image
-              src={profileUser.image}
-              alt={profileUser.username}
-              width={200}
-              height={200}
-              quality={100}
-            />
-          ) : (
-            <AvatarFallback className="border-4 border-orange-500 bg-white text-7xl font-bold tracking-wider text-orange-500">
-              FF
-            </AvatarFallback>
-          )}
-        </Avatar>
-      </div>
-
-      <div className="flex h-auto w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
-        <h2 className="h2-bold">{profileUser.name}</h2>
-      </div>
-
+    <>
       {showOverlay && (
         <AchievementOverlay
           image={selectedImage}
@@ -247,32 +197,53 @@ export default function ProfileInterface({ profileUser, session }) {
           onClose={handleCloseOverlay}
         />
       )}
-
-      <AchievementGallery
-        achievements={achievementsData}
-        onAchievementClick={handleAchievementClick}
-      />
-
-      <div className="flex h-auto w-full flex-col items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 px-2 py-4 text-center lg:px-6 lg:py-8">
-        <h1 className="text-8xl">{profileUser.totalCorrectTranslations}</h1>
-        <p className="text-base sm:text-lg lg:text-xl">
-          Total Correct Translations
-        </p>
-      </div>
-
-      <ScoreTable scores={profileUser.scores} />
-
-      {session && profileUser._id === session.user.id && (
-        <div className="-my-8 mb-8 flex h-auto w-full items-center justify-end">
-          <div
-            className="flex w-32 cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center text-base sm:text-lg lg:text-xl"
-            onClick={handleSignOut}
-          >
-            <h5>Sign Out</h5>
-            <FaSignOutAlt className="ml-2" />
+      <div className="fixed inset-0 z-10 overflow-auto font-questrial laptop-sm:flex laptop-sm:flex-wrap">
+        <Link href={routes.HOME}>
+          <div className="fixed left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
+            <GiExitDoor />
+          </div>
+        </Link>
+        <div className="flex size-full items-end justify-center bg-transparent pb-4 laptop-sm:w-1/2">
+          <div className="fixed flex w-full animate-bounce flex-col items-center justify-center font-bold text-black laptop-sm:hidden">
+            Scroll
+            <FaArrowDown />
           </div>
         </div>
-      )}
-    </div>
+        <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/75 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
+          <div className="flex w-full flex-col items-center gap-1">
+            <Avatar className="size-32">
+              <Image
+                src={`/images/avatar/profile.png`}
+                alt={profileUser.username}
+                width={200}
+                height={200}
+                quality={100}
+              />
+            </Avatar>
+            <h5 className="h5-bold">@{profileUser.username}</h5>
+            {/* <div className="mt-2 flex w-full justify-evenly">
+              <div>2000 Followers</div>
+              <div>2000 Following</div>
+            </div> */}
+          </div>
+
+          <AchievementGallery
+            achievements={achievementsData}
+            onAchievementClick={handleAchievementClick}
+          />
+
+          <div className="flex w-full flex-col items-center gap-1 rounded-xl border-2 bg-white/10 px-2 py-4">
+            <h1 className="h1-bold">{profileUser.totalCorrectTranslations}</h1>
+            <div className="flex items-center justify-center">
+              <h6 className="h6-bold">Total Correct Translations</h6>
+            </div>
+          </div>
+
+          <ScoreTable scores={profileUser.scores} />
+        </div>
+      </div>
+    </>
   );
-}
+};
+
+export default ProfileInterface;

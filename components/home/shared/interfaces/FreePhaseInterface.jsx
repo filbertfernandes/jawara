@@ -108,24 +108,13 @@ export default function FreePhaseInterface() {
         ) : userId ? (
           <Link href={`${routes.PROFILE}/${userId}`}>
             <Avatar className="size-10 sm:size-12">
-              {user?.image ? (
-                <Image
-                  src={user.image}
-                  alt={user.username}
-                  width={50}
-                  height={50}
-                  quality={100}
-                />
-              ) : (
-                <AvatarFallback className="border border-orange-500 bg-white font-sans text-2xl font-bold tracking-wider text-orange-500 sm:text-3xl">
-                  {user?.name
-                    .split(" ")
-                    .map((word) => word[0])
-                    .join("")
-                    .toUpperCase()
-                    .slice(0, 2)}
-                </AvatarFallback>
-              )}
+              <Image
+                src={`/images/avatar/profile.png`}
+                alt={user.username}
+                width={200}
+                height={200}
+                quality={100}
+              />
             </Avatar>
           </Link>
         ) : (

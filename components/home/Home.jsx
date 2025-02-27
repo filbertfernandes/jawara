@@ -1,11 +1,11 @@
 "use client";
 
-import { Html, KeyboardControls, useProgress } from "@react-three/drei";
+import { KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
 import { customizationGroups } from "./avatar/stores/customizationGroups";
@@ -21,7 +21,6 @@ import { ThirdGameInterface } from "@/components/home/games/third-game/ThirdGame
 import FreePhaseInterface from "@/components/home/shared/interfaces/FreePhaseInterface.jsx";
 import controls from "@/constants/controls";
 import { phases, useGame } from "@/hooks/useGame.jsx";
-import useIsMobile from "@/hooks/useIsMobile.jsx";
 import { getUserAvatar } from "@/lib/actions/userAvatar.action";
 
 // Dynamically import Joystick with SSR disabled
@@ -34,11 +33,7 @@ const Joystick = dynamic(
 
 const CanvasLoader = () => {
   return (
-    <Html
-      as="div"
-      center
-      className="absolute left-0 top-0 z-[1000] flex h-screen w-screen flex-col items-center justify-center bg-orange-100"
-    >
+    <div className="absolute left-0 top-0 z-[1000] flex h-screen w-screen flex-col items-center justify-center bg-orange-100">
       <Image
         src="/images/jawara/jawara-logo.png"
         alt="Jawara Logo"
@@ -46,15 +41,18 @@ const CanvasLoader = () => {
         height={300}
         className="animate-pulse"
       />
-    </Html>
+    </div>
   );
 };
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const userId = session?.user?.id;
 
-  const { progress } = useProgress();
+  const [isCategoriesLoaded, setIsCategoriesLoaded] = useState(false);
+  const [isCanvasLoaded, setIsCanvasLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const { phase } = useGame((state) => ({
     phase: state.phase,
   }));
@@ -92,6 +90,7 @@ export default function Home() {
           });
 
           fetchCategories(categories);
+          setIsCategoriesLoaded(true);
         } else {
           // Logged-in user but no avatar → Use dummy data
           applyDummyAvatar();
@@ -125,6 +124,7 @@ export default function Home() {
       });
 
       fetchCategories(categories);
+      setIsCategoriesLoaded(true);
     };
 
     fetchUserAvatar();
@@ -145,7 +145,6 @@ export default function Home() {
 
   // JOYSTICK
   const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 });
-  const isMobile = useIsMobile();
 
   const handleJoystickMove = (input) => {
     setJoystickInput(input);
@@ -163,9 +162,12 @@ export default function Home() {
     [phases.AVATAR_CUSTOMIZATION]: <AvatarCustomizationInterface />,
   };
 
-  if (status === "loading") {
-    return <CanvasLoader />; // Show loading screen while fetching user session
-  }
+  // Hide loading screen when both categories and canvas are ready
+  useEffect(() => {
+    if (isCategoriesLoaded && isCanvasLoaded) {
+      setLoading(false);
+    }
+  }, [isCategoriesLoaded, isCanvasLoaded]);
 
   return (
     <>
@@ -177,18 +179,20 @@ export default function Home() {
             near: 0.1,
             far: 200,
           }}
+          onCreated={() => setIsCanvasLoaded(true)}
         >
-          <Suspense fallback={<CanvasLoader />}>
-            <Experience joystickInput={joystickInput} />
-          </Suspense>
+          <Experience joystickInput={joystickInput} />
         </Canvas>
 
         {/* JOYSTICK */}
-        {progress >= 100 && isMobile && phase === phases.FREE && (
+        {!loading && phase === phases.FREE && (
           <Joystick onMove={handleJoystickMove} />
         )}
       </KeyboardControls>
-      {progress >= 100 && gameInterfaces[phase]}
+
+      {!loading && gameInterfaces[phase]}
+
+      {loading && <CanvasLoader />}
     </>
   );
 }

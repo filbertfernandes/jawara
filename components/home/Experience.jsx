@@ -235,7 +235,7 @@ export default function Experience({ joystickInput }) {
         {/* Soccer Ball */}
         <RigidBody
           colliders="ball"
-          position={[2, 10, 5]}
+          position={[2, 0.25, 5]}
           restitution={0.65}
           friction={1.5}
           onCollisionEnter={() =>

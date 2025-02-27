@@ -12,6 +12,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        "laptop-sm": "900px",
+      },
       fontFamily: {
         bebas: ["var(--font-bebas)"],
         questrial: ["var(--font-questrial)"],

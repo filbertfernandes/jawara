@@ -1,18 +1,18 @@
 "use client";
 
-import { useMediaQuery } from "@uidotdev/usehooks";
 import Image from "next/image";
 import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
 
 import SocialAuthForm from "@/components/auth/SocialAuthForm";
 import routes from "@/constants/routes";
 
 const Layout = ({ children }) => {
-  const isMediumDevice = useMediaQuery("only screen and (min-width : 768px)");
+  const isMobile = useMediaQuery({ maxWidth: 900 });
 
   return (
     <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
-      {isMediumDevice ? (
+      {!isMobile ? (
         <>
           <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-black">
             <div className="flex w-full flex-wrap justify-center text-center">
