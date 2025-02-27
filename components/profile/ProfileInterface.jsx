@@ -187,6 +187,8 @@ const ProfileInterface = ({ profileUser }) => {
     setSelectedImage(null);
   };
 
+  if (!profileUser) return;
+
   return (
     <>
       {showOverlay && (
