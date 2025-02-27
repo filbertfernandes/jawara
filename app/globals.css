@@ -11,15 +11,6 @@ body {
   height: 100%;
 }
 
-.noscrollbar {
-  overflow-x: auto;
-  scrollbar-width: none; /* For Firefox */
-}
-
-.noscrollbar::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
-
 @layer utilities {
   .fullscreen-white {
     @apply fixed left-0 top-0 flex size-full justify-center bg-white p-4 sm:p-14 lg:px-32 xl:px-64;

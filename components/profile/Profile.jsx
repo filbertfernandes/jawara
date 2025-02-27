@@ -10,6 +10,7 @@ import ProfileInterface from "./ProfileInterface";
 import { customizationGroups } from "../home/avatar/stores/customizationGroups";
 import { useCustomization } from "../home/avatar/stores/useCustomization";
 
+import { useGame } from "@/hooks/useGame";
 import { getUserAvatar } from "@/lib/actions/userAvatar.action";
 
 const CanvasLoader = () => {
@@ -34,6 +35,10 @@ const Profile = ({ profileUser }) => {
 
   const { fetchCategories } = useCustomization((state) => ({
     fetchCategories: state.fetchCategories,
+  }));
+
+  const { setPlayerState } = useGame((state) => ({
+    setPlayerState: state.setPlayerState,
   }));
 
   useEffect(() => {
@@ -100,6 +105,7 @@ const Profile = ({ profileUser }) => {
       setIsCategoriesLoaded(true);
     };
 
+    setPlayerState("idle");
     fetchUserAvatar();
   }, [profileUser]);
 

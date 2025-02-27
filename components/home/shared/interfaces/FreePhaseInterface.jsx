@@ -1,13 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
@@ -34,6 +42,7 @@ export default function FreePhaseInterface() {
   const userId = session?.user?.id;
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [disableKeys, setDisableKeys] = useState(false);
 
   useEffect(() => {
     async function fetchUser() {
@@ -88,6 +97,23 @@ export default function FreePhaseInterface() {
     }
   }, [canChangePhase, changePhase, setCanChangePhase, setCanPressEnter]);
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        title: "Sign-out Failed",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An error occured during sign-out",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
@@ -106,17 +132,38 @@ export default function FreePhaseInterface() {
         {loading ? (
           <LoadingSpinner size={30} />
         ) : userId ? (
-          <Link href={`${routes.PROFILE}/${userId}`}>
-            <Avatar className="size-10 sm:size-12">
-              <Image
-                src={`/images/avatar/profile.png`}
-                alt={user.username}
-                width={200}
-                height={200}
-                quality={100}
-              />
-            </Avatar>
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
+              <Avatar className="size-10 sm:size-12">
+                <Image
+                  src={`/images/avatar/profile.png`}
+                  alt={user?.username}
+                  width={200}
+                  height={200}
+                  quality={100}
+                />
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>@{user?.username}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <Link href={`${routes.PROFILE}/${userId}`}>
+                <DropdownMenuItem className="cursor-pointer">
+                  Profile
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem className="cursor-pointer">
+                Edit Profile
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <Link href={routes.SIGN_IN}>
             <div>Sign In</div>
