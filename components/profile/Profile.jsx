@@ -12,6 +12,7 @@ import { useCustomization } from "../home/avatar/stores/useCustomization";
 
 import { useGame } from "@/hooks/useGame";
 import { getUserAvatar } from "@/lib/actions/userAvatar.action";
+import { api } from "@/lib/api";
 
 const CanvasLoader = () => {
   return (
@@ -27,7 +28,8 @@ const CanvasLoader = () => {
   );
 };
 
-const Profile = ({ profileUser }) => {
+const Profile = ({ userId }) => {
+  const [profileUser, setProfileUser] = useState(null);
   const [isCategoriesLoaded, setIsCategoriesLoaded] = useState(false);
   const [isCanvasLoaded, setIsCanvasLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -42,14 +44,20 @@ const Profile = ({ profileUser }) => {
   }));
 
   useEffect(() => {
-    const fetchUserAvatar = async () => {
-      if (!profileUser) {
-        applyDummyAvatar();
-        return;
-      }
+    if (!userId) return;
 
+    const fetchProfileUser = async () => {
       try {
-        const response = await getUserAvatar({ userId: profileUser._id });
+        const response = await api.users.getById(userId);
+        setProfileUser(response.data);
+      } catch (error) {
+        console.error("Failed to fetch profile:", error);
+      }
+    };
+
+    const fetchUserAvatar = async () => {
+      try {
+        const response = await getUserAvatar({ userId });
 
         if (response.success && response.data?.avatar) {
           const userAvatarData = response.data.avatar;
@@ -106,8 +114,9 @@ const Profile = ({ profileUser }) => {
     };
 
     setPlayerState("idle");
+    fetchProfileUser();
     fetchUserAvatar();
-  }, [profileUser]);
+  }, [userId]);
 
   // Hide loading screen when both categories and canvas are ready
   useEffect(() => {

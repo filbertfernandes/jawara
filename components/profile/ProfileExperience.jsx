@@ -9,6 +9,8 @@ import {
 import { Avatar } from "../home/avatar/Avatar";
 
 const ProfileExperience = ({ profileUser, isMobile }) => {
+  if (!profileUser) return null;
+
   return (
     <>
       <OrbitControls
