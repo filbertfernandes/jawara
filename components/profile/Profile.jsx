@@ -12,8 +12,8 @@ import { customizationGroups } from "../home/avatar/stores/customizationGroups";
 import { useCustomization } from "../home/avatar/stores/useCustomization";
 
 import { useGame } from "@/hooks/useGame";
+import { getUser } from "@/lib/actions/user.action";
 import { getUserAvatar } from "@/lib/actions/userAvatar.action";
-import { api } from "@/lib/api";
 
 const CanvasLoader = () => {
   return (
@@ -50,7 +50,7 @@ const Profile = ({ userId }) => {
 
     const fetchProfileUser = async () => {
       try {
-        const response = await api.users.getById(userId);
+        const response = await getUser(userId);
         console.log("[DEBUG] fetchProfileUser response", response);
         if (response?.data) {
           setProfileUser(response.data);
