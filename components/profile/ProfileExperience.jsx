@@ -5,20 +5,10 @@ import {
   OrbitControls,
   SoftShadows,
 } from "@react-three/drei";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 import { Avatar } from "../home/avatar/Avatar";
 
 const ProfileExperience = ({ profileUser, isMobile }) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!profileUser) {
-      router.refresh();
-    }
-  }, []);
-
   return (
     <>
       <OrbitControls

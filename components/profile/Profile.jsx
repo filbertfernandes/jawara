@@ -2,6 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -43,13 +44,19 @@ const Profile = ({ userId }) => {
     setPlayerState: state.setPlayerState,
   }));
 
+  const router = useRouter();
+
   useEffect(() => {
     if (!userId) return;
 
     const fetchProfileUser = async () => {
       try {
         const response = await api.users.getById(userId);
-        setProfileUser(response.data);
+        if (response?.data) {
+          setProfileUser(response.data);
+        } else {
+          router.refresh();
+        }
       } catch (error) {
         console.error("Failed to fetch profile:", error);
       }

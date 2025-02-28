@@ -1,8 +1,7 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaArrowDown, FaAward } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
 import { GoNumber } from "react-icons/go";
@@ -187,14 +186,6 @@ const ProfileInterface = ({ profileUser }) => {
     setShowOverlay(false);
     setSelectedImage(null);
   };
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!profileUser) {
-      router.refresh();
-    }
-  }, []);
 
   return (
     <>
