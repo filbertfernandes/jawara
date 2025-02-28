@@ -9,6 +9,8 @@ import {
 import { Avatar } from "../home/avatar/Avatar";
 
 const ProfileExperience = ({ profileUser, isMobile }) => {
+  console.log("[DEBUG] ProfileExperience profileUser", profileUser);
+  console.log("[DEBUG] ProfileExperience isMobile", isMobile);
   return (
     <>
       <OrbitControls

@@ -31,7 +31,6 @@ const CanvasLoader = () => {
 
 const Profile = ({ userId }) => {
   const [profileUser, setProfileUser] = useState(null);
-  const [isCategoriesLoaded, setIsCategoriesLoaded] = useState(false);
   const [isCanvasLoaded, setIsCanvasLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 900 });
@@ -52,6 +51,7 @@ const Profile = ({ userId }) => {
     const fetchProfileUser = async () => {
       try {
         const response = await api.users.getById(userId);
+        console.log("[DEBUG] fetchProfileUser response", response);
         if (response?.data) {
           setProfileUser(response.data);
         } else {
@@ -65,6 +65,8 @@ const Profile = ({ userId }) => {
     const fetchUserAvatar = async () => {
       try {
         const response = await getUserAvatar({ userId });
+
+        console.log("[DEBUG] fetchUserAvatar response", response);
 
         if (response.success && response.data?.avatar) {
           const userAvatarData = response.data.avatar;
@@ -91,8 +93,6 @@ const Profile = ({ userId }) => {
         console.error("Failed to fetch user avatar:", error);
         applyDummyAvatar();
       }
-
-      setIsCategoriesLoaded(true);
     };
 
     const applyDummyAvatar = () => {
@@ -117,7 +117,6 @@ const Profile = ({ userId }) => {
       });
 
       fetchCategories(categories);
-      setIsCategoriesLoaded(true);
     };
 
     setPlayerState("idle");
@@ -125,28 +124,29 @@ const Profile = ({ userId }) => {
     fetchUserAvatar();
   }, [userId]);
 
-  // Hide loading screen when both categories and canvas are ready
   useEffect(() => {
-    if (isCategoriesLoaded && isCanvasLoaded) {
+    if (isCanvasLoaded) {
       setLoading(false);
     }
-  }, [isCategoriesLoaded, isCanvasLoaded]);
+  }, [isCanvasLoaded]);
 
   return (
     <>
-      <Canvas
-        camera={{
-          position: [0, isMobile ? 0.5 : 0.6, 5],
-          fov: 45,
-        }}
-        shadows
-        className="-z-10"
-        onCreated={() => setIsCanvasLoaded(true)}
-      >
-        <group position-y={-1}>
-          <ProfileExperience profileUser={profileUser} isMobile={isMobile} />
-        </group>
-      </Canvas>
+      {profileUser && (
+        <Canvas
+          camera={{
+            position: [0, isMobile ? 0.5 : 0.6, 5],
+            fov: 45,
+          }}
+          shadows
+          className="-z-10"
+          onCreated={() => setIsCanvasLoaded(true)}
+        >
+          <group position-y={-1}>
+            <ProfileExperience profileUser={profileUser} isMobile={isMobile} />
+          </group>
+        </Canvas>
+      )}
 
       {!loading && <ProfileInterface profileUser={profileUser} />}
 
