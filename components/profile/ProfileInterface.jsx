@@ -1,7 +1,8 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaArrowDown, FaAward } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
 import { GoNumber } from "react-icons/go";
@@ -187,7 +188,13 @@ const ProfileInterface = ({ profileUser }) => {
     setSelectedImage(null);
   };
 
-  if (!profileUser) return;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!profileUser) {
+      router.refresh();
+    }
+  }, []);
 
   return (
     <>
@@ -215,10 +222,10 @@ const ProfileInterface = ({ profileUser }) => {
             <div
               className="size-32"
               dangerouslySetInnerHTML={{
-                __html: multiavatar(profileUser._id + profileUser.name),
+                __html: multiavatar(profileUser?._id + profileUser?.name),
               }}
             />
-            <h5 className="h5-bold">@{profileUser.username}</h5>
+            <h5 className="h5-bold">@{profileUser?.username}</h5>
             {/* <div className="mt-2 flex w-full justify-evenly">
               <div>2000 Followers</div>
               <div>2000 Following</div>
@@ -231,13 +238,13 @@ const ProfileInterface = ({ profileUser }) => {
           />
 
           <div className="flex w-full flex-col items-center gap-1 rounded-xl border-2 bg-white/10 px-2 py-4">
-            <h1 className="h1-bold">{profileUser.totalCorrectTranslations}</h1>
+            <h1 className="h1-bold">{profileUser?.totalCorrectTranslations}</h1>
             <div className="flex items-center justify-center">
               <h6 className="h6-bold">Total Correct Translations</h6>
             </div>
           </div>
 
-          <ScoreTable scores={profileUser.scores} />
+          <ScoreTable scores={profileUser?.scores} />
         </div>
       </div>
     </>

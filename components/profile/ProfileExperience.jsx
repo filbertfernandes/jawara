@@ -5,11 +5,19 @@ import {
   OrbitControls,
   SoftShadows,
 } from "@react-three/drei";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import { Avatar } from "../home/avatar/Avatar";
 
 const ProfileExperience = ({ profileUser, isMobile }) => {
-  if (!profileUser) return;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!profileUser) {
+      router.refresh();
+    }
+  }, []);
 
   return (
     <>
@@ -61,7 +69,7 @@ const ProfileExperience = ({ profileUser, isMobile }) => {
         className="relative flex h-24 w-60 flex-col items-center justify-center rounded-lg border bg-white text-center text-xl font-medium text-black shadow-md"
       >
         <h5>Hi! My name is</h5>
-        <h5 className="font-bold text-orange-500">{profileUser.name}</h5>
+        <h5 className="font-bold text-orange-500">{profileUser?.name}</h5>
         <div className="absolute -bottom-6 left-1/2 size-0 -translate-x-1/2 border-[12px] border-transparent border-t-white drop-shadow-md"></div>
       </Html>
 
