@@ -171,7 +171,6 @@ const ScoreTable = ({ scores }) => (
 );
 
 const ProfileInterface = ({ profileUser }) => {
-  console.log("[DEBUG] ProfileInterface profileUser", profileUser);
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageDescription, setSelectedImageDescription] =

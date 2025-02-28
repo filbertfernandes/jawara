@@ -5,12 +5,35 @@ import {
   OrbitControls,
   SoftShadows,
 } from "@react-three/drei";
+import { useEffect } from "react";
 
 import { Avatar } from "../home/avatar/Avatar";
 
+import { useGame } from "@/hooks/useGame";
+
 const ProfileExperience = ({ profileUser, isMobile }) => {
-  console.log("[DEBUG] ProfileExperience profileUser", profileUser);
-  console.log("[DEBUG] ProfileExperience isMobile", isMobile);
+  const { playerState, setPlayerState } = useGame((state) => ({
+    playerState: state.playerState,
+    setPlayerState: state.setPlayerState,
+  }));
+
+  useEffect(() => {
+    let talkInterval;
+
+    if (playerState === "idle") {
+      talkInterval = setInterval(() => {
+        setPlayerState("talk");
+        setTimeout(() => {
+          if (playerState !== "run") {
+            setPlayerState("idle");
+          }
+        }, 4100); // Revert to idle after 4.1 seconds
+      }, 5000); // Trigger "talk" every 5 seconds
+    }
+
+    return () => clearInterval(talkInterval);
+  }, [playerState]);
+
   return (
     <>
       <OrbitControls

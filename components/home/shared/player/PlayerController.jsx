@@ -144,7 +144,7 @@ export default function PlayerController({ joystickInput }) {
         setPlayerState("run");
       }
     } else {
-      if (playerState !== "idle") {
+      if (playerState !== "idle" && playerState !== "talk") {
         setPlayerState("idle");
       }
     }
@@ -171,6 +171,27 @@ export default function PlayerController({ joystickInput }) {
 
     state.camera.lookAt(targetLookAt);
   });
+
+  useEffect(() => {
+    let talkInterval;
+
+    if (playerState === "idle") {
+      talkInterval = setInterval(() => {
+        setPlayerState("talk");
+        setTimeout(() => {
+          if (playerState !== "run") {
+            setPlayerState("idle");
+          }
+        }, 4100); // Revert to idle after 4.1 seconds
+      }, 5000); // Trigger "talk" every 5 seconds
+    }
+
+    if (playerState === "run") {
+      clearInterval(talkInterval);
+    }
+
+    return () => clearInterval(talkInterval);
+  }, [playerState]);
 
   useEffect(() => {
     if (phase === phases.AVATAR_CUSTOMIZATION) {

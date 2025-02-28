@@ -51,7 +51,6 @@ const Profile = ({ userId }) => {
     const fetchProfileUser = async () => {
       try {
         const response = await getUser(userId);
-        console.log("[DEBUG] fetchProfileUser response", response);
         if (response?.data) {
           setProfileUser(response.data);
         } else {
@@ -65,8 +64,6 @@ const Profile = ({ userId }) => {
     const fetchUserAvatar = async () => {
       try {
         const response = await getUserAvatar({ userId });
-
-        console.log("[DEBUG] fetchUserAvatar response", response);
 
         if (response.success && response.data?.avatar) {
           const userAvatarData = response.data.avatar;
