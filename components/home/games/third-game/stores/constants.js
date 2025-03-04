@@ -2,6 +2,7 @@ export const words = [
   {
     type: "numbers",
     english: "1",
+    indonesian: "1",
     ngoko: "siji",
     madya: "setunggal",
     alus: "setunggal",
@@ -9,6 +10,7 @@ export const words = [
   {
     type: "numbers",
     english: "2",
+    indonesian: "2",
     ngoko: "loro",
     madya: "kalih",
     alus: "kalih",
@@ -16,6 +18,7 @@ export const words = [
   {
     type: "numbers",
     english: "3",
+    indonesian: "3",
     ngoko: "telu",
     madya: "tiga",
     alus: "tiga",
@@ -23,6 +26,7 @@ export const words = [
   {
     type: "numbers",
     english: "4",
+    indonesian: "4",
     ngoko: "papat",
     madya: "sekawan",
     alus: "sekawan",
@@ -30,6 +34,7 @@ export const words = [
   {
     type: "numbers",
     english: "5",
+    indonesian: "5",
     ngoko: "lima",
     madya: "gangsal",
     alus: "gangsal",
@@ -37,6 +42,7 @@ export const words = [
   {
     type: "numbers",
     english: "6",
+    indonesian: "6",
     ngoko: "enem",
     madya: "enem",
     alus: "enem",
@@ -44,6 +50,7 @@ export const words = [
   {
     type: "numbers",
     english: "7",
+    indonesian: "7",
     ngoko: "pitu",
     madya: "pitu",
     alus: "pitu",
@@ -51,6 +58,7 @@ export const words = [
   {
     type: "numbers",
     english: "8",
+    indonesian: "8",
     ngoko: "wolu",
     madya: "wolu",
     alus: "wolu",
@@ -58,6 +66,7 @@ export const words = [
   {
     type: "numbers",
     english: "9",
+    indonesian: "9",
     ngoko: "sanga",
     madya: "sanga",
     alus: "sanga",
@@ -65,6 +74,7 @@ export const words = [
   {
     type: "numbers",
     english: "10",
+    indonesian: "10",
     ngoko: "sepuluh",
     madya: "sedasa",
     alus: "sedasa",
@@ -72,6 +82,7 @@ export const words = [
   {
     type: "numbers",
     english: "11",
+    indonesian: "11",
     ngoko: "sewelas",
     madya: "sewelas",
     alus: "sewelas",
@@ -79,6 +90,7 @@ export const words = [
   {
     type: "numbers",
     english: "12",
+    indonesian: "12",
     ngoko: "rolas",
     madya: "kalih welas",
     alus: "kalih welas",
@@ -86,6 +98,7 @@ export const words = [
   {
     type: "numbers",
     english: "13",
+    indonesian: "13",
     ngoko: "telulas",
     madya: "tiga welas",
     alus: "tiga welas",
@@ -93,6 +106,7 @@ export const words = [
   {
     type: "numbers",
     english: "14",
+    indonesian: "14",
     ngoko: "patbelas",
     madya: "sekawan welas",
     alus: "sekawan welas",
@@ -100,6 +114,7 @@ export const words = [
   {
     type: "numbers",
     english: "15",
+    indonesian: "15",
     ngoko: "limalas",
     madya: "gangsal welas",
     alus: "gangsal welas",
@@ -107,6 +122,7 @@ export const words = [
   {
     type: "numbers",
     english: "16",
+    indonesian: "16",
     ngoko: "nembelas",
     madya: "enem welas",
     alus: "enem welas",
@@ -114,6 +130,7 @@ export const words = [
   {
     type: "numbers",
     english: "17",
+    indonesian: "17",
     ngoko: "pitulas",
     madya: "pitulas",
     alus: "pitulas",
@@ -121,6 +138,7 @@ export const words = [
   {
     type: "numbers",
     english: "18",
+    indonesian: "18",
     ngoko: "wolulas",
     madya: "wolulas",
     alus: "wolulas",
@@ -128,6 +146,7 @@ export const words = [
   {
     type: "numbers",
     english: "19",
+    indonesian: "19",
     ngoko: "sangalas",
     madya: "sangalas",
     alus: "sangalas",
@@ -135,6 +154,7 @@ export const words = [
   {
     type: "numbers",
     english: "20",
+    indonesian: "20",
     ngoko: "rong puluh",
     madya: "kalih dasa",
     alus: "kalih dasa",
@@ -142,6 +162,7 @@ export const words = [
   {
     type: "numbers",
     english: "21",
+    indonesian: "21",
     ngoko: "selikur",
     madya: "selikur",
     alus: "selikur",
@@ -149,6 +170,7 @@ export const words = [
   {
     type: "numbers",
     english: "22",
+    indonesian: "22",
     ngoko: "rolikur",
     madya: "kalih likur",
     alus: "kalih likur",
@@ -156,6 +178,7 @@ export const words = [
   {
     type: "numbers",
     english: "23",
+    indonesian: "23",
     ngoko: "telulikur",
     madya: "tigang likur",
     alus: "tigang likur",
@@ -163,6 +186,7 @@ export const words = [
   {
     type: "numbers",
     english: "24",
+    indonesian: "24",
     ngoko: "patlikur",
     madya: "sekawan likur",
     alus: "sekawan likur",
@@ -170,6 +194,7 @@ export const words = [
   {
     type: "numbers",
     english: "25",
+    indonesian: "25",
     ngoko: "selawe",
     madya: "selangkung",
     alus: "selangkung",
@@ -177,6 +202,7 @@ export const words = [
   {
     type: "numbers",
     english: "26",
+    indonesian: "26",
     ngoko: "nemlikur",
     madya: "nemlikur",
     alus: "nemlikur",
@@ -184,6 +210,7 @@ export const words = [
   {
     type: "numbers",
     english: "27",
+    indonesian: "27",
     ngoko: "pitulikur",
     madya: "pitulikur",
     alus: "pitulikur",
@@ -191,6 +218,7 @@ export const words = [
   {
     type: "numbers",
     english: "28",
+    indonesian: "28",
     ngoko: "wolulikur",
     madya: "wolulikur",
     alus: "wolulikur",
@@ -198,6 +226,7 @@ export const words = [
   {
     type: "numbers",
     english: "29",
+    indonesian: "29",
     ngoko: "sanga likur",
     madya: "sangalikur",
     alus: "sangalikur",
@@ -205,6 +234,7 @@ export const words = [
   {
     type: "numbers",
     english: "30",
+    indonesian: "30",
     ngoko: "telung puluh",
     madya: "tigang dasa",
     alus: "tigang dasa",
@@ -212,6 +242,7 @@ export const words = [
   {
     type: "numbers",
     english: "31",
+    indonesian: "31",
     ngoko: "telung puluh siji",
     madya: "tigang dasa setunggal",
     alus: "tigang dasa setunggal",
@@ -219,6 +250,7 @@ export const words = [
   {
     type: "numbers",
     english: "32",
+    indonesian: "32",
     ngoko: "telung puluh loro",
     madya: "tigang dasa kalih",
     alus: "tigang dasa kalih",
@@ -226,6 +258,7 @@ export const words = [
   {
     type: "numbers",
     english: "33",
+    indonesian: "33",
     ngoko: "telung puluh telu",
     madya: "tigang dasa tiga",
     alus: "tigang dasa tiga",
@@ -233,6 +266,7 @@ export const words = [
   {
     type: "numbers",
     english: "34",
+    indonesian: "34",
     ngoko: "telung puluh papat",
     madya: "tigang dasa sekawan",
     alus: "tigang dasa sekawan",
@@ -240,6 +274,7 @@ export const words = [
   {
     type: "numbers",
     english: "35",
+    indonesian: "35",
     ngoko: "telung puluh lima",
     madya: "tigang dasa gangsal",
     alus: "tigang dasa gangsal",
@@ -247,6 +282,7 @@ export const words = [
   {
     type: "numbers",
     english: "36",
+    indonesian: "36",
     ngoko: "telung puluh enem",
     madya: "tigang dasa enem",
     alus: "tigang dasa enem",
@@ -254,6 +290,7 @@ export const words = [
   {
     type: "numbers",
     english: "37",
+    indonesian: "37",
     ngoko: "telung puluh pitu",
     madya: "tigang dasa pitu",
     alus: "tigang dasa pitu",
@@ -261,6 +298,7 @@ export const words = [
   {
     type: "numbers",
     english: "38",
+    indonesian: "38",
     ngoko: "telung puluh wolu",
     madya: "tigang dasa wolu",
     alus: "tigang dasa wolu",
@@ -268,6 +306,7 @@ export const words = [
   {
     type: "numbers",
     english: "39",
+    indonesian: "39",
     ngoko: "telung puluh sanga",
     madya: "tigang dasa sanga",
     alus: "tigang dasa sanga",
@@ -275,6 +314,7 @@ export const words = [
   {
     type: "numbers",
     english: "40",
+    indonesian: "40",
     ngoko: "patang puluh",
     madya: "sekawan dasa",
     alus: "sekawan dasa",
@@ -282,6 +322,7 @@ export const words = [
   {
     type: "numbers",
     english: "41",
+    indonesian: "41",
     ngoko: "patang puluh siji",
     madya: "sekawan dasa setunggal",
     alus: "sekawan dasa setunggal",
@@ -289,6 +330,7 @@ export const words = [
   {
     type: "numbers",
     english: "42",
+    indonesian: "42",
     ngoko: "patang puluh loro",
     madya: "sekawan dasa kalih",
     alus: "sekawan dasa kalih",
@@ -296,6 +338,7 @@ export const words = [
   {
     type: "numbers",
     english: "43",
+    indonesian: "43",
     ngoko: "patang puluh telu",
     madya: "sekawan dasa tiga",
     alus: "sekawan dasa tiga",
@@ -303,6 +346,7 @@ export const words = [
   {
     type: "numbers",
     english: "44",
+    indonesian: "44",
     ngoko: "patang puluh papat",
     madya: "sekawan dasa sekawan",
     alus: "sekawan dasa sekawan",
@@ -310,6 +354,7 @@ export const words = [
   {
     type: "numbers",
     english: "45",
+    indonesian: "45",
     ngoko: "patang puluh lima",
     madya: "sekawan dasa gangsal",
     alus: "sekawan dasa gangsal",
@@ -317,6 +362,7 @@ export const words = [
   {
     type: "numbers",
     english: "46",
+    indonesian: "46",
     ngoko: "patang puluh enem",
     madya: "sekawan dasa enem",
     alus: "sekawan dasa enem",
@@ -324,6 +370,7 @@ export const words = [
   {
     type: "numbers",
     english: "47",
+    indonesian: "47",
     ngoko: "patang puluh pitu",
     madya: "sekawan dasa pitu",
     alus: "sekawan dasa pitu",
@@ -331,6 +378,7 @@ export const words = [
   {
     type: "numbers",
     english: "48",
+    indonesian: "48",
     ngoko: "patang puluh wolu",
     madya: "sekawan dasa wolu",
     alus: "sekawan dasa wolu",
@@ -338,6 +386,7 @@ export const words = [
   {
     type: "numbers",
     english: "49",
+    indonesian: "49",
     ngoko: "patang puluh sanga",
     madya: "sekawan dasa sanga",
     alus: "sekawan dasa sanga",
@@ -345,6 +394,7 @@ export const words = [
   {
     type: "numbers",
     english: "50",
+    indonesian: "50",
     ngoko: "seket",
     madya: "seket",
     alus: "seket",
@@ -352,6 +402,7 @@ export const words = [
   {
     type: "numbers",
     english: "51",
+    indonesian: "51",
     ngoko: "seket siji",
     madya: "seket setunggal",
     alus: "seket setunggal",
@@ -359,6 +410,7 @@ export const words = [
   {
     type: "numbers",
     english: "52",
+    indonesian: "52",
     ngoko: "seket loro",
     madya: "seket kalih",
     alus: "seket kalih",
@@ -366,6 +418,7 @@ export const words = [
   {
     type: "numbers",
     english: "53",
+    indonesian: "53",
     ngoko: "seket telu",
     madya: "seket tiga",
     alus: "seket tiga",
@@ -373,6 +426,7 @@ export const words = [
   {
     type: "numbers",
     english: "54",
+    indonesian: "54",
     ngoko: "seket papat",
     madya: "seket sekawan",
     alus: "seket sekawan",
@@ -380,6 +434,7 @@ export const words = [
   {
     type: "numbers",
     english: "55",
+    indonesian: "55",
     ngoko: "seket lima",
     madya: "seket gangsal",
     alus: "seket gangsal",
@@ -387,6 +442,7 @@ export const words = [
   {
     type: "numbers",
     english: "56",
+    indonesian: "56",
     ngoko: "seket enem",
     madya: "seket enem",
     alus: "seket enem",
@@ -394,6 +450,7 @@ export const words = [
   {
     type: "numbers",
     english: "57",
+    indonesian: "57",
     ngoko: "seket pitu",
     madya: "seket pitu",
     alus: "seket pitu",
@@ -401,6 +458,7 @@ export const words = [
   {
     type: "numbers",
     english: "58",
+    indonesian: "58",
     ngoko: "seket wolu",
     madya: "seket wolu",
     alus: "seket wolu",
@@ -408,6 +466,7 @@ export const words = [
   {
     type: "numbers",
     english: "59",
+    indonesian: "59",
     ngoko: "seket sanga",
     madya: "seket sanga",
     alus: "seket sanga",
@@ -415,6 +474,7 @@ export const words = [
   {
     type: "numbers",
     english: "60",
+    indonesian: "60",
     ngoko: "sewidak",
     madya: "sewidak",
     alus: "sewidak",
@@ -422,6 +482,7 @@ export const words = [
   {
     type: "numbers",
     english: "61",
+    indonesian: "61",
     ngoko: "sewidak siji",
     madya: "sewidak setunggal",
     alus: "sewidak setunggal",
@@ -429,6 +490,7 @@ export const words = [
   {
     type: "numbers",
     english: "62",
+    indonesian: "62",
     ngoko: "sewidak loro",
     madya: "sewidak kalih",
     alus: "sewidak kalih",
@@ -436,6 +498,7 @@ export const words = [
   {
     type: "numbers",
     english: "63",
+    indonesian: "63",
     ngoko: "sewidak telu",
     madya: "sewidak tiga",
     alus: "sewidak tiga",
@@ -443,6 +506,7 @@ export const words = [
   {
     type: "numbers",
     english: "64",
+    indonesian: "64",
     ngoko: "sewidak papat",
     madya: "sewidak sekawan",
     alus: "sewidak sekawan",
@@ -450,6 +514,7 @@ export const words = [
   {
     type: "numbers",
     english: "65",
+    indonesian: "65",
     ngoko: "sewidak lima",
     madya: "sewidak gangsal",
     alus: "sewidak gangsal",
@@ -457,6 +522,7 @@ export const words = [
   {
     type: "numbers",
     english: "66",
+    indonesian: "66",
     ngoko: "sewidak enem",
     madya: "sewidak enem",
     alus: "sewidak enem",
@@ -464,6 +530,7 @@ export const words = [
   {
     type: "numbers",
     english: "67",
+    indonesian: "67",
     ngoko: "sewidak pitu",
     madya: "sewidak pitu",
     alus: "sewidak pitu",
@@ -471,6 +538,7 @@ export const words = [
   {
     type: "numbers",
     english: "68",
+    indonesian: "68",
     ngoko: "sewidak wolu",
     madya: "sewidak wolu",
     alus: "sewidak wolu",
@@ -478,6 +546,7 @@ export const words = [
   {
     type: "numbers",
     english: "69",
+    indonesian: "69",
     ngoko: "sewidak sanga",
     madya: "sewidak sanga",
     alus: "sewidak sanga",
@@ -485,6 +554,7 @@ export const words = [
   {
     type: "numbers",
     english: "70",
+    indonesian: "70",
     ngoko: "pitung puluh",
     madya: "pitung dasa",
     alus: "pitung dasa",
@@ -492,6 +562,7 @@ export const words = [
   {
     type: "numbers",
     english: "71",
+    indonesian: "71",
     ngoko: "pitung puluh siji",
     madya: "pitung dasa setunggal",
     alus: "pitung dasa setunggal",
@@ -499,6 +570,7 @@ export const words = [
   {
     type: "numbers",
     english: "72",
+    indonesian: "72",
     ngoko: "pitung puluh loro",
     madya: "pitung dasa kalih",
     alus: "pitung dasa kalih",
@@ -506,6 +578,7 @@ export const words = [
   {
     type: "numbers",
     english: "73",
+    indonesian: "73",
     ngoko: "pitung puluh telu",
     madya: "pitung dasa tiga",
     alus: "pitung dasa tiga",
@@ -513,6 +586,7 @@ export const words = [
   {
     type: "numbers",
     english: "74",
+    indonesian: "74",
     ngoko: "pitung puluh papat",
     madya: "pitung dasa sekawan",
     alus: "pitung dasa sekawan",
@@ -520,6 +594,7 @@ export const words = [
   {
     type: "numbers",
     english: "75",
+    indonesian: "75",
     ngoko: "pitung puluh lima",
     madya: "pitung dasa gangsal",
     alus: "pitung dasa gangsal",
@@ -527,6 +602,7 @@ export const words = [
   {
     type: "numbers",
     english: "76",
+    indonesian: "76",
     ngoko: "pitung puluh enem",
     madya: "pitung dasa enem",
     alus: "pitung dasa enem",
@@ -534,6 +610,7 @@ export const words = [
   {
     type: "numbers",
     english: "77",
+    indonesian: "77",
     ngoko: "pitung puluh pitu",
     madya: "pitung dasa pitu",
     alus: "pitung dasa pitu",
@@ -541,6 +618,7 @@ export const words = [
   {
     type: "numbers",
     english: "78",
+    indonesian: "78",
     ngoko: "pitung puluh wolu",
     madya: "pitung dasa wolu",
     alus: "pitung dasa wolu",
@@ -548,6 +626,7 @@ export const words = [
   {
     type: "numbers",
     english: "79",
+    indonesian: "79",
     ngoko: "pitung puluh sanga",
     madya: "pitung dasa sanga",
     alus: "pitung dasa sanga",
@@ -555,6 +634,7 @@ export const words = [
   {
     type: "numbers",
     english: "80",
+    indonesian: "80",
     ngoko: "wolung puluh",
     madya: "wolung dasa",
     alus: "wolung dasa",
@@ -562,6 +642,7 @@ export const words = [
   {
     type: "numbers",
     english: "81",
+    indonesian: "81",
     ngoko: "wolung puluh siji",
     madya: "wolung dasa setunggal",
     alus: "wolung dasa setunggal",
@@ -569,6 +650,7 @@ export const words = [
   {
     type: "numbers",
     english: "82",
+    indonesian: "82",
     ngoko: "wolung puluh loro",
     madya: "wolung dasa kalih",
     alus: "wolung dasa kalih",
@@ -576,6 +658,7 @@ export const words = [
   {
     type: "numbers",
     english: "83",
+    indonesian: "83",
     ngoko: "wolung puluh telu",
     madya: "wolung dasa tiga",
     alus: "wolung dasa tiga",
@@ -583,6 +666,7 @@ export const words = [
   {
     type: "numbers",
     english: "84",
+    indonesian: "84",
     ngoko: "wolung puluh papat",
     madya: "wolung dasa sekawan",
     alus: "wolung dasa sekawan",
@@ -590,6 +674,7 @@ export const words = [
   {
     type: "numbers",
     english: "85",
+    indonesian: "85",
     ngoko: "wolung puluh lima",
     madya: "wolung dasa gangsal",
     alus: "wolung dasa gangsal",
@@ -597,6 +682,7 @@ export const words = [
   {
     type: "numbers",
     english: "86",
+    indonesian: "86",
     ngoko: "wolung puluh enem",
     madya: "wolung dasa enem",
     alus: "wolung dasa enem",
@@ -604,6 +690,7 @@ export const words = [
   {
     type: "numbers",
     english: "87",
+    indonesian: "87",
     ngoko: "wolung puluh pitu",
     madya: "wolung dasa pitu",
     alus: "wolung dasa pitu",
@@ -611,6 +698,7 @@ export const words = [
   {
     type: "numbers",
     english: "88",
+    indonesian: "88",
     ngoko: "wolung puluh wolu",
     madya: "wolung dasa wolu",
     alus: "wolung dasa wolu",
@@ -618,6 +706,7 @@ export const words = [
   {
     type: "numbers",
     english: "89",
+    indonesian: "89",
     ngoko: "wolung puluh sanga",
     madya: "wolung dasa sanga",
     alus: "wolung dasa sanga",
@@ -625,6 +714,7 @@ export const words = [
   {
     type: "numbers",
     english: "90",
+    indonesian: "90",
     ngoko: "sangang puluh",
     madya: "sangang dasa",
     alus: "sangang dasa",
@@ -632,6 +722,7 @@ export const words = [
   {
     type: "numbers",
     english: "91",
+    indonesian: "91",
     ngoko: "sangang puluh siji",
     madya: "sangang dasa setunggal",
     alus: "sangang dasa setunggal",
@@ -639,6 +730,7 @@ export const words = [
   {
     type: "numbers",
     english: "92",
+    indonesian: "92",
     ngoko: "sangang puluh loro",
     madya: "sangang dasa kalih",
     alus: "sangang dasa kalih",
@@ -646,6 +738,7 @@ export const words = [
   {
     type: "numbers",
     english: "93",
+    indonesian: "93",
     ngoko: "sangang puluh telu",
     madya: "sangang dasa tiga",
     alus: "sangang dasa tiga",
@@ -653,6 +746,7 @@ export const words = [
   {
     type: "numbers",
     english: "94",
+    indonesian: "94",
     ngoko: "sangang puluh papat",
     madya: "sangang dasa sekawan",
     alus: "sangang dasa sekawan",
@@ -660,6 +754,7 @@ export const words = [
   {
     type: "numbers",
     english: "95",
+    indonesian: "95",
     ngoko: "sangang puluh lima",
     madya: "sangang dasa gangsal",
     alus: "sangang dasa gangsal",
@@ -667,6 +762,7 @@ export const words = [
   {
     type: "numbers",
     english: "96",
+    indonesian: "96",
     ngoko: "sangang puluh enem",
     madya: "sangang dasa enem",
     alus: "sangang dasa enem",
@@ -674,6 +770,7 @@ export const words = [
   {
     type: "numbers",
     english: "97",
+    indonesian: "97",
     ngoko: "sangang puluh pitu",
     madya: "sangang dasa pitu",
     alus: "sangang dasa pitu",
@@ -681,6 +778,7 @@ export const words = [
   {
     type: "numbers",
     english: "98",
+    indonesian: "98",
     ngoko: "sangang puluh wolu",
     madya: "sangang dasa wolu",
     alus: "sangang dasa wolu",
@@ -688,6 +786,7 @@ export const words = [
   {
     type: "numbers",
     english: "99",
+    indonesian: "99",
     ngoko: "sangang puluh sanga",
     madya: "sangang dasa sanga",
     alus: "sangang dasa sanga",
@@ -695,6 +794,7 @@ export const words = [
   {
     type: "numbers",
     english: "100",
+    indonesian: "100",
     ngoko: "satus",
     madya: "setunggal atus",
     alus: "setunggal atus",

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import ControlsInterface from "./ControlsInterface";
@@ -23,6 +24,8 @@ const Button = ({ text, onClick, isOutlined = false }) => {
 };
 
 const TutorialMenuInterface = () => {
+  const t = useTranslations("Home");
+
   const { changePhase } = useGame((state) => ({
     changePhase: state.changePhase,
   }));
@@ -58,19 +61,19 @@ const TutorialMenuInterface = () => {
         }`}
       >
         <Button
-          text="Guide"
+          text={t("guide")}
           onClick={() => setTutorialState(tutorialStates.GUIDE)}
         />
         <Button
-          text="CONTROLS"
+          text={t("controls")}
           onClick={() => setTutorialState(tutorialStates.CONTROLS)}
         />
         <Button
-          text="Credits"
+          text={t("credits")}
           onClick={() => setTutorialState(tutorialStates.CREDITS)}
         />
         <Button
-          text="Go Back"
+          text={t("go_back")}
           onClick={() => changePhase(phases.FREE)}
           isOutlined
         />

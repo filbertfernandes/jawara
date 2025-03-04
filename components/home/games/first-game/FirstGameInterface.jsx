@@ -1,4 +1,5 @@
 import { addEffect } from "@react-three/fiber";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 import { words } from "./stores/constants.js";
@@ -9,6 +10,8 @@ import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInter
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
 
 export const FirstGameInterface = () => {
+  const t = useTranslations("Home");
+
   const [score, setScore] = useState(0);
 
   const time = useRef();
@@ -54,7 +57,7 @@ export const FirstGameInterface = () => {
       {/* GAME MENU INTERFACE */}
       <GameMenuInterface
         startGame={startGame}
-        title="Body Parts"
+        title={t("first_game_title")}
         words={words}
         score={score}
       />

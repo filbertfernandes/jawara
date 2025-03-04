@@ -1,5 +1,6 @@
 import { addEffect } from "@react-three/fiber";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -14,6 +15,8 @@ import { updateScore } from "@/lib/actions/score.action";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const SecondGameInterface = () => {
+  const t = useTranslations("Home");
+
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
@@ -115,7 +118,7 @@ export const SecondGameInterface = () => {
       {/* GAME MENU INTERFACE */}
       <GameMenuInterface
         startGame={startGame}
-        title="Colors"
+        title={t("second_game_title")}
         words={words}
         score={score}
       />
@@ -128,14 +131,16 @@ export const SecondGameInterface = () => {
       >
         <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-white md:text-3xl lg:px-12 lg:text-4xl">
           <div>
-            Time Left: <span ref={time}>100</span>
+            {t("time_left")}: <span ref={time}>100</span>
           </div>
           {correctCount < 5 && (
             <div>
               {stage ? stage[correctAnswersOrder[correctCount]][mode] : ""}
             </div>
           )}
-          <div>Score: {score}</div>
+          <div>
+            {t("score")}: {score}
+          </div>
         </div>
       </div>
 

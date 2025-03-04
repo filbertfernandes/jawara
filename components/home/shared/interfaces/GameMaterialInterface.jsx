@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useState, useCallback } from "react";
 import { PiSpeakerHighBold } from "react-icons/pi";
 
@@ -20,6 +21,8 @@ const WordVariant = ({ variant, label, playSound }) => (
 );
 
 const GameMaterialInterface = ({ words }) => {
+  const t = useTranslations("Home");
+
   const [isVisible, setIsVisible] = useState(false);
 
   // Trigger popup effect after component mounts
@@ -38,7 +41,7 @@ const GameMaterialInterface = ({ words }) => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold text-white drop-shadow-lg">Material</h1>
+      <h1 className="h1-bold text-white drop-shadow-lg">{t("material")}</h1>
 
       <div className="mt-4 flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
         {words.map((word, index) => (
@@ -48,7 +51,7 @@ const GameMaterialInterface = ({ words }) => {
           >
             {word.type === "colors" ? (
               <div
-                className="h-full w-[75%] sm:w-[90%]"
+                className="h-full w-3/4 sm:w-[90%]"
                 style={{ backgroundColor: word.hexColor }}
               ></div>
             ) : word.type === "numbers" ? (
@@ -66,7 +69,7 @@ const GameMaterialInterface = ({ words }) => {
 
             <div className="flex size-full flex-col bg-gradient-to-r from-orange-500 to-orange-700 p-4 xl:py-4">
               <div className="mb-4 text-center text-2xl md:text-3xl lg:text-4xl">
-                {word.english}
+                {word[t("language")]}
               </div>
               <WordVariant
                 variant={word.ngoko}

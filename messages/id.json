@@ -1,5 +1,53 @@
 {
-  "HomePage": {
-    "title": "Hello dunia!"
+  "Home": {
+    "language": "indonesian",
+    "go_back": "Kembali",
+
+    "sign_in": "Masuk",
+    "sign_out": "Keluar",
+    "profile": "Profil",
+    "edit_profile": "Edit Profil",
+
+    "leaderboard": "Papan Peringkat",
+    "material": "Materi",
+    "controls": "Kontrol",
+    "how_to_play": "Cara Bermain",
+
+    "time_left": "Sisa Waktu",
+    "score": "Skor",
+
+    "first_game_portal": "Anggota\nTubuh",
+    "second_game_portal": "Warna",
+    "third_game_portal": "Angka",
+    "fourth_game_portal": "Hewan",
+    "translation_exercise_portal": "Latihan\nTerjemahan",
+
+    "first_game_title": "Anggota Tubuh",
+    "second_game_title": "Warna",
+    "third_game_title": "Angka",
+    "fourth_game_title": "Hewan",
+
+    "translation_exercise_description": "Hai! Selamat datang di Latihan Terjemahan Bahasa Jawa. Klik 'Buat Kalimat' untuk memulai. Anda memiliki 10 kesempatan per hari!",
+    "translate_this_sentence": "Terjemahkan kalimat ini",
+    "daily_limit": "Batas Harian",
+    "correct": "Benar",
+
+    "checking_answer": "Memeriksa",
+    "check": "Periksa",
+    "generating_sentence": "Membuat",
+    "generate_sentence": "Buat Kalimat",
+    "daily_limit_reached": "Batas harian tercapai 🙂",
+    "sign_in_to_generate": "Masuk untuk Membuat Kalimat",
+
+    "loading": "Memuat",
+    "next": "Berikutnya",
+    "previous": "Sebelumnya",
+    "guide": "Panduan",
+    "credits": "Kredit",
+    "special_thanks_to": "Terima Kasih kepada",
+
+    "save": "Simpan",
+    "saving": "Menyimpan",
+    "sign_in_to_save": "Masuk untuk Simpan"
   }
 }

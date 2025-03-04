@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useCallback } from "react";
 
 import { useGame, gameStates } from "@/hooks/useGame.jsx";
@@ -13,6 +14,8 @@ const GameButton = ({ label, onClick }) => (
 );
 
 const GameOverInterface = ({ score, startGame }) => {
+  const t = useTranslations("Home");
+
   const { changeGameState } = useGame((state) => ({
     changeGameState: state.changeGameState,
   }));
@@ -40,15 +43,22 @@ const GameOverInterface = ({ score, startGame }) => {
     >
       <div className="text-center">
         <h1 className="h1-bold text-orange-500 drop-shadow-lg">
-          CONGRATULATIONS!
+          {t("language") === "english" ? "CONGRATULATIONS!" : "SELAMAT!"}
         </h1>
         <h5 className="h5-bold text-orange-500 drop-shadow-lg">
-          Your score is {score}
+          {t("language") === "english" ? "Your score is" : "Skor Anda adalah"}{" "}
+          {score}
         </h5>
       </div>
 
-      <GameButton label="Retry" onClick={handleRetry} />
-      <GameButton label="Back to Menu" onClick={handleBackToMenu} />
+      <GameButton
+        label={t("language") === "english" ? "Play Again" : "Main Lagi"}
+        onClick={handleRetry}
+      />
+      <GameButton
+        label={t("language") === "english" ? "Back to Menu" : "Kembali ke Menu"}
+        onClick={handleBackToMenu}
+      />
     </div>
   );
 };

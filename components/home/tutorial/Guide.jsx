@@ -1,6 +1,7 @@
 import { Float, Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import gsap from "gsap";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
 import { guideData } from "./stores/data";
@@ -8,6 +9,8 @@ import { useTutorial } from "./stores/useTutorial";
 import { controlsRef } from "./Tutorial"; // Import the global reference
 
 const Guide = () => {
+  const t = useTranslations("Home");
+
   const { camera } = useThree();
 
   const { guideIndex } = useTutorial((state) => ({
@@ -56,7 +59,7 @@ const Guide = () => {
             fontSize={item.textFontSize}
             textAlign="center"
           >
-            {item.description}
+            {item[`${t("language")}_description`]}
             <meshBasicMaterial toneMapped={false} />
           </Text>
         </Float>

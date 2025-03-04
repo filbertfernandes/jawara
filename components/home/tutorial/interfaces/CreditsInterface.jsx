@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
@@ -51,6 +52,8 @@ const List = ({ title, data, isMusic = false }) => (
 );
 
 const CreditsInterface = () => {
+  const t = useTranslations("Home");
+
   const { setTutorialState } = useTutorial((state) => ({
     setTutorialState: state.setTutorialState,
   }));
@@ -75,7 +78,7 @@ const CreditsInterface = () => {
         }`}
       >
         <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl p-4 text-white lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
-          <div className="h1-bold">Special Thanks To</div>
+          <div className="h1-bold">{t("special_thanks_to")}</div>
 
           {/* Reusable list components */}
           <List title="Music" data={musicData} isMusic={true} />

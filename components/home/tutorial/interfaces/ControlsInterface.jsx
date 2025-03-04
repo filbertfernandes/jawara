@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import {
   FaArrowUp,
@@ -11,6 +12,8 @@ import ControlButton from "../../shared/interfaces/ControlButton";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
 const ControlsInterface = () => {
+  const t = useTranslations("Home");
+
   const { setTutorialState } = useTutorial((state) => ({
     setTutorialState: state.setTutorialState,
   }));
@@ -34,15 +37,19 @@ const ControlsInterface = () => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <div className="h1-bold text-white">Controls</div>
+        <div className="h1-bold text-white">{t("controls")}</div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-white">Move</div>
+          <div className="h3-bold text-center text-white">
+            {t("language") === "english" ? "Move" : "Jalan"}
+          </div>
           <div className="flex items-center gap-1">
             <ControlButton>A</ControlButton>
             <ControlButton>W</ControlButton>
             <ControlButton>S</ControlButton>
             <ControlButton>D</ControlButton>
-            <div className="h5-bold mx-3 text-center text-white">Or</div>
+            <div className="h5-bold mx-3 text-center text-white">
+              {t("language") === "english" ? "Or" : "Atau"}
+            </div>
             <ControlButton>
               <FaArrowLeft />
             </ControlButton>
@@ -58,8 +65,12 @@ const ControlsInterface = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-white">Jump</div>
-          <ControlButton className="w-36 lg:w-60">Space</ControlButton>
+          <div className="h3-bold text-center text-white">
+            {t("language") === "english" ? "Jump" : "Lompat"}
+          </div>
+          <ControlButton className="w-36 lg:w-60">
+            {t("language") === "english" ? "Space" : "Spasi"}
+          </ControlButton>
         </div>
       </div>
     </div>

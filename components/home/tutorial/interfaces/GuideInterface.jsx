@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Font Awesome arrows
 import { GiExitDoor } from "react-icons/gi";
@@ -5,6 +6,8 @@ import { GiExitDoor } from "react-icons/gi";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
 const GuideInterface = () => {
+  const t = useTranslations("Home");
+
   const {
     resetGuideIndex,
     incrementGuideIndex,
@@ -39,13 +42,13 @@ const GuideInterface = () => {
             className="flex items-center gap-2 transition-all duration-200 ease-in-out hover:text-gray-200"
             onClick={decrementGuideIndex}
           >
-            <FaArrowLeft size={32} /> Prev
+            <FaArrowLeft size={32} /> {t("previous")}
           </button>
           <button
             className="flex items-center gap-2 transition-all duration-200 ease-in-out hover:text-gray-200"
             onClick={incrementGuideIndex}
           >
-            Next <FaArrowRight size={32} />
+            {t("next")} <FaArrowRight size={32} />
           </button>
         </div>
       </div>

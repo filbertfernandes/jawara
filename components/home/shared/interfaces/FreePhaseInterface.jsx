@@ -2,10 +2,13 @@ import multiavatar from "@multiavatar/multiavatar/esm";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
+
+import LanguageSelector from "./LanguageSelector";
 
 import {
   DropdownMenu,
@@ -19,7 +22,7 @@ import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
 import { phases, useGame } from "@/hooks/useGame.jsx";
 
-const IconButton = ({
+export const IconButton = ({
   onClick,
   children,
   size = "size-8",
@@ -36,6 +39,8 @@ const IconButton = ({
 };
 
 export default function FreePhaseInterface() {
+  const t = useTranslations("Home");
+
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
 
@@ -97,7 +102,7 @@ export default function FreePhaseInterface() {
   return (
     <>
       <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <IconButton onClick={toggleMusic} textSize="text-3cl lg:text-4xl">
             {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
           </IconButton>
@@ -107,6 +112,7 @@ export default function FreePhaseInterface() {
           <IconButton onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}>
             <GiClothes />
           </IconButton>
+          <LanguageSelector />
         </div>
 
         {loading ? (
@@ -126,24 +132,24 @@ export default function FreePhaseInterface() {
               <DropdownMenuSeparator />
               <Link href={`${routes.PROFILE}/${session?.user?.id}`}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Profile
+                  {t("profile")}
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem className="cursor-pointer">
-                Edit Profile
+                {t("edit_profile")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer"
                 onClick={handleSignOut}
               >
-                Sign Out
+                {t("sign_out")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
           <Link href={routes.SIGN_IN}>
-            <div>Sign In</div>
+            <div>{t("sign_in")}</div>
           </Link>
         )}
       </div>

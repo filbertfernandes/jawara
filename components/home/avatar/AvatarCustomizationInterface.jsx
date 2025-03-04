@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { GiExitDoor } from "react-icons/gi";
 
@@ -12,6 +13,8 @@ import { phases, useGame } from "@/hooks/useGame";
 import { createOrUpdateUserAvatar } from "@/lib/actions/userAvatar.action";
 
 const AssetBox = () => {
+  const t = useTranslations("Home");
+
   const {
     categories,
     currentCategory,
@@ -41,7 +44,7 @@ const AssetBox = () => {
                 : "border-b-transparent text-gray-200 hover:text-gray-100"
             }`}
           >
-            {category.name}
+            {category[`${t("language")}_name`]}
           </button>
         ))}
       </div>
@@ -108,6 +111,8 @@ const AssetBox = () => {
 };
 
 const SaveButton = () => {
+  const t = useTranslations("Home");
+
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
@@ -187,12 +192,12 @@ const SaveButton = () => {
           className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
           onClick={save}
         >
-          {saving ? "Saving....." : "Save"}
+          {saving ? `${t("saving")}.....` : t("save")}
         </button>
       ) : (
         <Link href={routes.SIGN_IN}>
-          <button className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
-            Sign In to Save
+          <button className="pointer-events-auto min-w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
+            {t("sign_in_to_save")}
           </button>
         </Link>
       )}

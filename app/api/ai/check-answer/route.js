@@ -8,7 +8,8 @@ export async function POST(request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  const { javanese, english, indonesian, userAnswer } = await request.json();
+  const { language, javanese, generatedSentence, userAnswer } =
+    await request.json();
 
   try {
     const response = await openai.chat.completions.create({
@@ -19,23 +20,24 @@ export async function POST(request) {
           role: "system",
           content: `
           You are a very helpful Javanese language teacher, you are friendly and good at explain the student.
-          Now you're giving your student a task, you provide an english / indonesian sentence, and you tell your student to translate the sentence into Javanese language.
+          Now you're giving your student a task, you provide an ${language} sentence, and you tell your student to translate the sentence into Javanese language.
           Here is the sentence that you gave:
-          "javanese": "${javanese}", "english": "${english}", "indonesian": "${indonesian}"
+          "javanese": "${javanese}", "${language}": "${generatedSentence}"
           The student answer should match the "javanese" one to be correct.
         `,
         },
         {
           role: "user",
           content: `
-          You gave the student this sentence: "${english}"
+          You gave the student this sentence: "${generatedSentence}"
           Here is your student javanese translation answer: "${userAnswer}"
           The correct answer should be: "${javanese}"
           You should reply the student with this json format (but don't make it into a code, just a plain text but in json):
           { isTrue: boolean, "feedback": "", "explanation": "" }
            isTrue will be true if correct, and false if wrong. Also if the student give a blank answer "", it should be wrong.
            The "feedback" is like an appreciation, if student is correct, could be "Awesome!", "Amazing!", "Nice job!" or anything in your mind. If student is wrong, could be "Don't give up!", "Try again!", or anything in your mind.
-           The "explanation" is your explanation of the translation. Explain it by first tell the right sentence (if incorrect), and then breakdown the Javanese sentence. You don't have to tell the user the English sentence because user already know that, focus explaining the Javanese sentence. If user is correct, just breakdown, don't have to tell the right sentence.
+           The "explanation" is your explanation of the translation. Explain it by first tell the right sentence (if incorrect), and then breakdown the Javanese sentence. You don't have to tell the user the ${language} sentence because user already know that, focus explaining the Javanese sentence. If user is correct, just breakdown, don't have to tell the right sentence.
+           The "feedback" and "explanation" must in ${language} language.
           `,
         },
       ],

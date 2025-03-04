@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
+import { useEffect, useState, useCallback, use } from "react";
 
 import { useGame, phases, gameStates } from "@/hooks/useGame.jsx";
 
@@ -21,6 +22,8 @@ const OtherButton = ({ label, onClick }) => (
 );
 
 const GameSelectInterface = ({ startGame, title }) => {
+  const t = useTranslations("Home");
+
   const [isVisible, setIsVisible] = useState(false);
 
   // Trigger the popup effect after the component mounts
@@ -75,7 +78,7 @@ const GameSelectInterface = ({ startGame, title }) => {
         label="Krama Alus"
         onClick={() => handleButtonClick("alus")}
       />
-      <OtherButton label="Go Back" onClick={handleBackClick} />
+      <OtherButton label={t("go_back")} onClick={handleBackClick} />
     </div>
   );
 };

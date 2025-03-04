@@ -1,5 +1,52 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "Home": {
+    "language": "english",
+    "go_back": "Go Back",
+
+    "sign_in": "Sign In",
+    "sign_out": "Sign Out",
+    "profile": "Profile",
+    "edit_profile": "Edit Profile",
+
+    "leaderboard": "Leaderboard",
+    "material": "Material",
+    "controls": "Controls",
+    "how_to_play": "How to Play",
+
+    "time_left": "Time Left",
+    "score": "Score",
+
+    "first_game_portal": "Body\nParts",
+    "second_game_portal": "Colors",
+    "third_game_portal": "Numbers",
+    "fourth_game_portal": "Animals",
+    "translation_exercise_portal": "Translation\nExercise",
+
+    "first_game_title": "Body Parts",
+    "second_game_title": "Colors",
+    "third_game_title": "Numbers",
+    "fourth_game_title": "Animals",
+
+    "translation_exercise_description": "Hi! Welcome to the Translate Javanese exercise. Click &apos;Generate Sentence&apos; to start. You have 10 tries per day!",
+    "translate_this_sentence": "Translate this sentence",
+    "daily_limit": "Daily Limit",
+    "correct": "Correct",
+    "checking_answer": "Checking",
+    "check": "Check",
+    "generating_sentence": "Generating",
+    "generate_sentence": "Generate Sentence",
+    "daily_limit_reached": "Daily limit reached 🙂",
+    "sign_in_to_generate": "Sign In to Generate Sentence",
+
+    "loading": "Loading",
+    "next": "Next",
+    "previous": "Prev",
+    "guide": "Guide",
+    "credits": "Credits",
+    "special_thanks_to": "Special Thanks to",
+
+    "save": "Save",
+    "saving": "Saving",
+    "sign_in_to_save": "Sign In to Save"
   }
 }

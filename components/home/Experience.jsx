@@ -1,5 +1,6 @@
 import { Sparkles, useGLTF, useTexture } from "@react-three/drei";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
+import { useTranslations } from "next-intl";
 import { Perf } from "r3f-perf";
 import { useEffect } from "react";
 
@@ -20,6 +21,8 @@ import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Experience({ joystickInput }) {
+  const t = useTranslations("Home");
+
   useBackgroundMusic();
 
   const { phase, sky, setSky } = useGame((state) => ({
@@ -62,7 +65,7 @@ export default function Experience({ joystickInput }) {
       textPosition: [10, 0.75, 4 + 0.76],
       color: "rgb(249, 115, 22)",
       texture: null,
-      game: "Body\nParts",
+      game: t("first_game_portal"),
     },
     {
       portalPhase: phases.SECOND_GAME,
@@ -71,7 +74,7 @@ export default function Experience({ joystickInput }) {
       textPosition: [14, 0.75, 4 + 0.76],
       color: "rgb(249, 115, 22)",
       texture: null,
-      game: "Colors",
+      game: t("second_game_portal"),
     },
     {
       portalPhase: phases.THIRD_GAME,
@@ -80,7 +83,7 @@ export default function Experience({ joystickInput }) {
       textPosition: [8, 0.75, 0 + 0.76],
       color: "rgb(249, 115, 22)",
       texture: null,
-      game: "Numbers",
+      game: t("third_game_portal"),
     },
     {
       portalPhase: phases.FOURTH_GAME,
@@ -89,7 +92,7 @@ export default function Experience({ joystickInput }) {
       textPosition: [12, 0.75, 0 + 0.76],
       color: "rgb(249, 115, 22)",
       texture: null,
-      game: "Animals",
+      game: t("fourth_game_portal"),
     },
     {
       portalPhase: phases.TRANSLATION,
@@ -98,7 +101,7 @@ export default function Experience({ joystickInput }) {
       textPosition: [2 + 0.8, 0.75, -15 + 0.76],
       color: "rgb(249, 115, 22)",
       texture: useTexture("/images/character/jawara-ai.jpg"),
-      game: "Translation\nExercise",
+      game: t("translation_exercise_portal"),
     },
   ];
 

@@ -24,6 +24,7 @@ const CanvasLoader = () => {
         width={300}
         height={300}
         className="animate-pulse"
+        priority
       />
     </div>
   );

@@ -2,6 +2,8 @@ export const customizationGroups = [
   {
     id: "1",
     name: "Head",
+    english_name: "Head",
+    indonesian_name: "Kepala",
     position: 1,
     startingAsset: "Head_01",
     startingColorIndex: 0,
@@ -12,6 +14,8 @@ export const customizationGroups = [
   {
     id: "2",
     name: "Hair",
+    english_name: "Hair",
+    indonesian_name: "Rambut",
     position: 2,
     startingAsset: "Hair_01",
     startingColorIndex: 0,
@@ -22,6 +26,8 @@ export const customizationGroups = [
   {
     id: "3",
     name: "Eyes",
+    english_name: "Eyes",
+    indonesian_name: "Mata",
     position: 3,
     startingAsset: "Eyes_01",
     startingColorIndex: null,
@@ -32,6 +38,8 @@ export const customizationGroups = [
   {
     id: "4",
     name: "Eyebrows",
+    english_name: "Eyebrows",
+    indonesian_name: "Alis",
     position: 4,
     startingAsset: "Eyebrow_01",
     startingColorIndex: 0,
@@ -42,6 +50,8 @@ export const customizationGroups = [
   {
     id: "5",
     name: "Nose",
+    english_name: "Nose",
+    indonesian_name: "Hidung",
     position: 5,
     startingAsset: "Nose_01",
     startingColorIndex: null,
@@ -52,6 +62,8 @@ export const customizationGroups = [
   {
     id: "6",
     name: "Facial Hair",
+    english_name: "Facial Hair",
+    indonesian_name: "Janggut",
     position: 6,
     startingAsset: null,
     startingColorIndex: 0,
@@ -62,6 +74,8 @@ export const customizationGroups = [
   {
     id: "7",
     name: "Glasses",
+    english_name: "Glasses",
+    indonesian_name: "Kacamata",
     position: 7,
     startingAsset: null,
     startingColorIndex: 0,
@@ -72,6 +86,8 @@ export const customizationGroups = [
   {
     id: "8",
     name: "Hat",
+    english_name: "Hat",
+    indonesian_name: "Topi",
     position: 8,
     startingAsset: null,
     startingColorIndex: null,
@@ -82,6 +98,8 @@ export const customizationGroups = [
   {
     id: "9",
     name: "Top",
+    english_name: "Top",
+    indonesian_name: "Atasan",
     position: 9,
     startingAsset: "Top_01",
     startingColorIndex: 0,
@@ -92,6 +110,8 @@ export const customizationGroups = [
   {
     id: "10",
     name: "Bottom",
+    english_name: "Bottom",
+    indonesian_name: "Bawahan",
     position: 10,
     startingAsset: "Bottom_01",
     startingColorIndex: 0,
@@ -102,6 +122,8 @@ export const customizationGroups = [
   {
     id: "11",
     name: "Shoes",
+    english_name: "Shoes",
+    indonesian_name: "Sepatu",
     position: 11,
     startingAsset: "Shoes_01",
     startingColorIndex: 0,
@@ -112,6 +134,8 @@ export const customizationGroups = [
   {
     id: "12",
     name: "Accessories",
+    english_name: "Accessories",
+    indonesian_name: "Aksesori",
     position: 12,
     startingAsset: null,
     startingColorIndex: null,

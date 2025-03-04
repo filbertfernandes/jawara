@@ -1,4 +1,5 @@
 import { addEffect } from "@react-three/fiber";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
 import { words } from "./stores/constants.js";
@@ -11,6 +12,8 @@ import { gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const FourthGameInterface = () => {
+  const t = useTranslations("Home");
+
   const time = useRef();
 
   const { gameState } = useGame((state) => ({
@@ -99,7 +102,7 @@ export const FourthGameInterface = () => {
       {/* GAME MENU INTERFACE */}
       <GameMenuInterface
         startGame={startGame}
-        title="Animals"
+        title={t("fourth_game_title")}
         words={words}
         score={score}
       />
@@ -112,14 +115,16 @@ export const FourthGameInterface = () => {
       >
         <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-white md:text-3xl lg:px-12 lg:text-4xl">
           <div>
-            Time Left: <span ref={time}>100</span>
+            {t("time_left")}: <span ref={time}>100</span>
           </div>
           {answerCount < 8 && (
             <div>
               {stage ? stage[correctAnswersOrder[answerCount]].word[mode] : ""}
             </div>
           )}
-          <div>Score: {score}</div>
+          <div>
+            {t("score")}: {score}
+          </div>
         </div>
 
         {selectAnimal !== null && (

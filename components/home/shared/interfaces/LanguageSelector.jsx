@@ -1,7 +1,17 @@
-"use client"; // This component must run on the client side
+"use client";
 
 import { useState, useEffect } from "react";
 
+import { IconButton } from "./FreePhaseInterface";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import setLanguageValue from "@/lib/actions/set-language-action";
 
 const LanguageSelector = () => {
@@ -20,23 +30,33 @@ const LanguageSelector = () => {
   }, []);
 
   // Handle language change
-  const handleChange = async (e) => {
-    const newLanguage = e.target.value;
+  const handleChange = async (newLanguage) => {
     setLanguage(newLanguage); // Update state immediately
     await setLanguageValue(newLanguage); // Update the cookie on the server
   };
 
   return (
-    <div className="mt-1 flex items-start text-orange-500">
-      <select
-        className="cursor-pointer rounded border border-orange-500 bg-white text-base font-medium shadow-sm"
-        value={language} // Set the current selected value
-        onChange={handleChange}
-      >
-        <option value="en">English</option>
-        <option value="id">Indonesian</option>
-      </select>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
+        <IconButton>{language.toUpperCase()}</IconButton>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>Language</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => handleChange("en")}
+        >
+          English
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => handleChange("id")}
+        >
+          Indonesian
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

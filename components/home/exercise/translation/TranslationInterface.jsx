@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
@@ -41,6 +42,8 @@ const shuffleArray = (arr) => {
 };
 
 export const TranslationInterface = () => {
+  const t = useTranslations("Home");
+
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
@@ -99,7 +102,7 @@ export const TranslationInterface = () => {
       const sentenceObject = JSON.parse(aiAnswer.reply);
 
       if (sentenceBox.current) {
-        sentenceBox.current.innerText = sentenceObject.english;
+        sentenceBox.current.innerText = sentenceObject[t("language")];
 
         setSentence(sentenceObject);
 
@@ -130,9 +133,9 @@ export const TranslationInterface = () => {
         {
           method: "POST",
           body: JSON.stringify({
+            language: t("language"),
             javanese: sentence.javanese,
-            english: sentence.english,
-            indonesian: sentence.indonesian,
+            generatedSentence: sentence[t("language")],
             userAnswer: wordsAnswer.map((item) => item.word).join(" "),
           }),
         }
@@ -196,7 +199,7 @@ export const TranslationInterface = () => {
           onClick={() => changePhase(phases.FREE)}
         />
         <div className="flex items-center gap-2">
-          <div>Correct:</div>
+          <div>Total {t("correct")}:</div>
           <div>
             {userId ? (
               correctCount !== null ? (
@@ -214,10 +217,10 @@ export const TranslationInterface = () => {
       {/* Instruction */}
       <div className="mb-6 flex h-8 w-full items-center justify-between sm:mb-16 lg:mb-6">
         <div className="text-xl font-bold sm:text-3xl">
-          Translate this sentence
+          {t("translate_this_sentence")}
         </div>
         <div className="flex items-center gap-2 text-gray-500">
-          <div>Daily Limit:</div>
+          <div>{t("daily_limit")}:</div>
           <div>
             {userId ? (
               attempsLeft !== null ? (
@@ -246,8 +249,7 @@ export const TranslationInterface = () => {
             ref={sentenceBox}
             className="ml-1 h-44 w-4/5 rounded-3xl border-2 px-4 py-2 sm:h-48"
           >
-            Hi! Welcome to the Translate Javanese exercise. Click &apos;Generate
-            Sentence&apos; to start. You have 10 tries per day!
+            {t("translation_exercise_description")}
           </div>
         </div>
       </div>
@@ -287,21 +289,21 @@ export const TranslationInterface = () => {
                 onClick={sentence ? checkAnswer : generateSentence}
               >
                 {isCheckingAnswer
-                  ? "Checking....."
+                  ? `${t("checking_answer")}.....`
                   : sentence
-                  ? "Check"
+                  ? t("check")
                   : isGeneratingSentence
-                  ? "Generating....."
-                  : "Generate Sentence"}
+                  ? `${t("generating_sentence")}.....`
+                  : t("generate_sentence")}
               </div>
             ) : (
               <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
-                Daily limit reached 🙂
+                {t("daily_limit_reached")}
               </div>
             )
           ) : (
             <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
-              Loading.....
+              {t("loading")}.....
             </div>
           )
         ) : (
@@ -309,7 +311,7 @@ export const TranslationInterface = () => {
             href={routes.SIGN_IN}
             className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
           >
-            Sign In to Generate Sentence
+            {t("sign_in_to_generate")}
           </Link>
         )}
       </div>
@@ -344,7 +346,9 @@ export const TranslationInterface = () => {
             }`}
             onClick={generateSentence}
           >
-            {isGeneratingSentence ? "Generating....." : "Generate Sentence"}
+            {isGeneratingSentence
+              ? `${t("generating_sentence")}.....`
+              : t("generate_sentence")}
           </div>
         </div>
       </div>

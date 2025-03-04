@@ -1,6 +1,6 @@
 export const words = [
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "mata",
     english: "eye",
     ngoko: "moto",
@@ -15,7 +15,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "rambut",
     english: "hair",
     ngoko: "abc",
@@ -30,7 +30,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "dahi",
     english: "forehead",
     ngoko: "abc",
@@ -45,7 +45,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "alis",
     english: "eyebrow",
     ngoko: "abc",
@@ -60,7 +60,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "hidung",
     english: "nose",
     ngoko: "abc",
@@ -75,7 +75,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "mulut",
     english: "mouth",
     ngoko: "abc",
@@ -90,7 +90,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "pipi",
     english: "cheek",
     ngoko: "abc",
@@ -105,7 +105,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "dagu",
     english: "chin",
     ngoko: "abc",
@@ -120,7 +120,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "telinga",
     english: "ear",
     ngoko: "abc",
@@ -135,7 +135,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "dada",
     english: "chest",
     ngoko: "abc",
@@ -150,7 +150,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "perut",
     english: "stomach",
     ngoko: "abc",
@@ -165,7 +165,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "punggung",
     english: "back",
     ngoko: "abc",
@@ -180,7 +180,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "tangan",
     english: "hand",
     ngoko: "abc",
@@ -195,7 +195,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "jari",
     english: "finger",
     ngoko: "abc",
@@ -210,7 +210,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "paha",
     english: "thigh",
     ngoko: "abc",
@@ -225,7 +225,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "kaki",
     english: "leg",
     ngoko: "abc",
@@ -240,7 +240,7 @@ export const words = [
     isCorrect: false,
   },
   {
-    type: "body parts",
+    type: "body-parts",
     indonesian: "pundak",
     english: "shoulder",
     ngoko: "abc",

@@ -1,7 +1,10 @@
 export const guideData = [
   {
     information: "Curriculum",
-    description: "Click this book or walk closer\nto enter curriculum lessons!",
+    english_description:
+      "Click this book or walk closer\nto enter curriculum lessons!",
+    indonesian_description:
+      "Klik buku ini atau berjalan lebih dekat\nuntuk masuk ke pelajaran kurikulum!",
     cameraPosition: { x: -7.3, y: 3, z: 9 },
     cameraTargetPosition: { x: -7.3, y: -0.5, z: 0 },
     textPosition: { x: -7.3, y: 2, z: 5.5 },
@@ -9,8 +12,10 @@ export const guideData = [
   },
   {
     information: "Translation Exercise",
-    description:
+    english_description:
       "Click this box or walk closer\nto practice your translation skill!",
+    indonesian_description:
+      "Klik kotak ini atau berjalan lebih dekat\nuntuk melatih keterampilan menerjemahkan Anda!",
     cameraPosition: {
       x: 2.13,
       y: 4,
@@ -26,8 +31,10 @@ export const guideData = [
   },
   {
     information: "Vocabularies Games",
-    description:
+    english_description:
       "Click these boxes or walk closer\nto start vocabularies mini-games!",
+    indonesian_description:
+      "Klik kotak-kotak ini atau berjalan lebih dekat\nuntuk memulai mini-game kosa kata!",
     cameraPosition: {
       x: 11.33,
       y: 5,
