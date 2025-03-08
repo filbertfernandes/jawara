@@ -45,9 +45,9 @@ const Sidebar = ({ chapter, userProgress }) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <section className="min-h-screen w-2/5 bg-gray-50 py-4 text-black max-md:hidden sm:py-14 lg:w-[30%]">
+    <section className="min-h-screen w-2/5 bg-gray-50 py-4 text-gray-900 max-md:hidden sm:py-14 lg:w-[30%]">
       <Link href={routes.CURRICULUM} className="absolute left-3 top-3">
-        <RiArrowLeftSLine className="text-4xl text-black" />
+        <RiArrowLeftSLine className="text-4xl text-gray-900" />
       </Link>
       <div className="mb-6 flex flex-col flex-wrap items-center justify-center">
         <div className="text-sm font-bold text-orange-500 lg:text-base">

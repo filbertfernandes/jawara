@@ -16,7 +16,7 @@ const page = () => {
         </Link>
 
         <div className="mb-4 mt-10 flex w-full flex-wrap justify-center gap-2">
-          <h1 className="h1-bold w-full text-center text-black">
+          <h1 className="h1-bold w-full text-center text-gray-900">
             Welcome to <span className="text-orange-500">Jawara</span>{" "}
             Curriculum!
           </h1>
@@ -40,7 +40,7 @@ const page = () => {
               className="h-1/2 object-cover"
             />
             <div className="flex h-1/2 flex-col justify-between">
-              <div className="flex h-3/4 w-full flex-col items-center justify-center text-center text-black">
+              <div className="flex h-3/4 w-full flex-col items-center justify-center text-center text-gray-900">
                 <div className="flex h-1/2 w-full flex-col justify-center">
                   <div className="text-sm font-bold text-orange-500 lg:text-base">
                     Chapter {chapter.order}

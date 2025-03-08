@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
     <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
       {!isMobile ? (
         <>
-          <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-black">
+          <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-gray-900">
             <div className="flex w-full flex-wrap justify-center text-center">
               <h1 className="h6-bold w-full">WELCOME TO</h1>
               <Link
@@ -57,7 +57,7 @@ const Layout = ({ children }) => {
               />
             </Link>
           </div>
-          <div className="flex grow flex-wrap items-center justify-center bg-white py-4 text-black">
+          <div className="flex grow flex-wrap items-center justify-center bg-white py-4 text-gray-900">
             <div className="flex w-full flex-wrap justify-center text-center">
               <div className="w-3/4 2xl:w-1/2">{children}</div>
             </div>

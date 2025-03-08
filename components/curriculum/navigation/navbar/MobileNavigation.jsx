@@ -37,12 +37,12 @@ const MobileNavigation = ({ chapter, userProgress }) => {
     <div className="absolute left-0 top-0 p-4 sm:p-14 md:hidden">
       <Sheet>
         <SheetTrigger>
-          <RxHamburgerMenu className="text-3xl text-black" />
+          <RxHamburgerMenu className="text-3xl text-gray-900" />
         </SheetTrigger>
         <SheetContent className="px-0 py-8 sm:py-16" side="left">
           <SheetHeader>
             <Link href={routes.CURRICULUM} className="absolute left-3 top-3">
-              <RiArrowLeftSLine className="text-4xl text-black" />
+              <RiArrowLeftSLine className="text-4xl text-gray-900" />
             </Link>
             <SheetTitle className="mb-6 flex flex-col flex-wrap items-center justify-center">
               <div className="text-sm font-bold text-orange-500">

@@ -203,7 +203,7 @@ const ProfileInterface = ({ profileUser }) => {
           </div>
         </Link>
         <div className="flex size-full items-end justify-center bg-transparent pb-4 laptop-sm:w-1/2">
-          <div className="fixed flex w-full animate-bounce flex-col items-center justify-center font-bold text-black laptop-sm:hidden">
+          <div className="fixed flex w-full animate-bounce flex-col items-center justify-center font-bold text-gray-900 laptop-sm:hidden">
             Scroll
             <FaArrowDown />
           </div>

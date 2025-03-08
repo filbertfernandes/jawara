@@ -55,7 +55,7 @@ const Content = ({ chapter, chapterPhase }) => {
           onFinish={handleFinished}
         />
       ) : isFinished ? (
-        <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-black">
+        <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900">
           <div className="text-center">
             <div className="h5-bold mb-1">
               Awesome, You&apos;ve finished the {chapterPhase.name} material!
@@ -72,7 +72,7 @@ const Content = ({ chapter, chapterPhase }) => {
           </div>
         </div>
       ) : (
-        <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-black">
+        <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900">
           <div className="text-center">
             <div className="h5-bold mb-1">
               Let&apos;s make learning fun and easy!

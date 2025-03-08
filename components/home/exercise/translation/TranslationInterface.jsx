@@ -191,7 +191,7 @@ export const TranslationInterface = () => {
   }, []);
 
   return (
-    <div className="fullscreen-white translate-y-0 flex-col font-questrial text-black transition-transform duration-500 ease-in-out sm:text-2xl">
+    <div className="fullscreen-white translate-y-0 flex-col font-questrial text-gray-900 transition-transform duration-500 ease-in-out sm:text-2xl">
       {/* Header */}
       <div className="mb-10 flex h-8 w-full items-center justify-between text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:mb-20 lg:mb-10">
         <GiExitDoor

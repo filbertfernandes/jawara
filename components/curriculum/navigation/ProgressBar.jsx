@@ -9,7 +9,7 @@ const ProgressBar = ({ title, first, completed, inProgress, active }) => {
 
   return (
     <div
-      className={`flex h-28 w-full cursor-pointer items-center justify-center rounded-xl text-black hover:bg-gray-100 ${
+      className={`flex h-28 w-full cursor-pointer items-center justify-center rounded-xl text-gray-900 hover:bg-gray-100 ${
         active && "bg-gray-100"
       }`}
       onClick={completed || inProgress ? () => changePhase(title) : undefined}
