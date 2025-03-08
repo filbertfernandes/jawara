@@ -197,6 +197,16 @@ export default function PlayerController({ joystickInput }) {
     if (phase === phases.AVATAR_CUSTOMIZATION) {
       player.current.rotation.y = 0;
     }
+
+    if (phase === phases.LAPTOP) {
+      rigidBody.current.setTranslation({
+        x: -10.5,
+        y: 0.5,
+        z: 7,
+      });
+      rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
+      rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 });
+    }
   }, [phase]);
 
   return (

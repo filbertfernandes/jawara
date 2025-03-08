@@ -25,7 +25,8 @@ export default function useBackgroundMusic() {
       phase === phases.FREE ||
       phase === phases.TRANSLATION ||
       phase === phases.TUTORIAL ||
-      phase === phases.AVATAR_CUSTOMIZATION;
+      phase === phases.AVATAR_CUSTOMIZATION ||
+      phase === phases.LAPTOP;
 
     const newMusic = isFreePhase
       ? "freePhaseBackground"

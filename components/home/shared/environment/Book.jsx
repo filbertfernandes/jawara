@@ -97,9 +97,10 @@ const Book = () => {
           </mesh>
 
           <CuboidCollider
-            args={[4, 3, 4]}
+            args={[6, 3, 2.5]}
             sensor
-            position={[0, 0, 0]}
+            position={[-1.6, 0, 0.5]}
+            rotation={[0, Math.PI * 0.595, 0]}
             onIntersectionEnter={(other) => {
               if (other.rigidBodyObject.name === "Player") {
                 setCanPressEnter(true);

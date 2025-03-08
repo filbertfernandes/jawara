@@ -13,6 +13,7 @@ export const phases = {
   FOURTH_GAME: "FOURTH_GAME",
   TUTORIAL: "TUTORIAL",
   AVATAR_CUSTOMIZATION: "AVATAR_CUSTOMIZATION",
+  LAPTOP: "LAPTOP",
 };
 
 export const gameStates = {

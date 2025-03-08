@@ -72,6 +72,7 @@ export default function FreePhaseInterface() {
 
   // Memoized callback to prevent unnecessary re-renders
   const handleEnterButtonClick = useCallback(() => {
+    console.log(canChangePhase);
     if (canChangePhase.condition && canChangePhase.phase !== "") {
       changePhase(canChangePhase.phase);
       setCanPressEnter(false);

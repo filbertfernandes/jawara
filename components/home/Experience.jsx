@@ -9,9 +9,11 @@ import FirstGame from "./games/first-game/FirstGame.jsx";
 import FourthGame from "./games/fourth-game/FourthGame.jsx";
 import SecondGame from "./games/second-game/SecondGame.jsx";
 import ThirdGame from "./games/third-game/ThirdGame.jsx";
+import LaptopExperience from "./laptop/LaptopExperience.jsx";
 import Book from "./shared/environment/Book.jsx";
 import Football from "./shared/environment/Football.jsx";
 import GamePortal from "./shared/environment/GamePortal.jsx";
+import { Laptop } from "./shared/environment/Laptop.jsx";
 import Lights from "./shared/environment/Lights.jsx";
 import PlayerController from "./shared/player/PlayerController.jsx";
 import Tutorial from "./tutorial/Tutorial.jsx";
@@ -55,6 +57,7 @@ export default function Experience({ joystickInput }) {
     [phases.FOURTH_GAME]: <FourthGame />,
     [phases.TUTORIAL]: <Tutorial />,
     [phases.AVATAR_CUSTOMIZATION]: <Customization />,
+    [phases.LAPTOP]: <LaptopExperience />,
   };
 
   const portals = [
@@ -211,7 +214,8 @@ export default function Experience({ joystickInput }) {
         {/* Game Portals */}
         {(phase === phases.FREE ||
           phase === phases.TUTORIAL ||
-          phase === phases.AVATAR_CUSTOMIZATION) &&
+          phase === phases.AVATAR_CUSTOMIZATION ||
+          phase === phases.LAPTOP) &&
           portals.map(
             ({
               portalPhase,
@@ -250,6 +254,9 @@ export default function Experience({ joystickInput }) {
 
         {/* Book */}
         <Book />
+
+        {/* Laptop */}
+        <Laptop />
 
         {/* Player */}
         <PlayerController joystickInput={joystickInput} />

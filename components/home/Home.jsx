@@ -11,6 +11,7 @@ import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface"
 import { customizationGroups } from "./avatar/stores/customizationGroups";
 import { useCustomization } from "./avatar/stores/useCustomization";
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
+import LaptopInterface from "./laptop/LaptopInterface";
 import TutorialMenuInteface from "./tutorial/interfaces/TutorialMenuInteface";
 
 import Experience from "@/components/home/Experience.jsx";
@@ -160,6 +161,7 @@ export default function Home() {
     [phases.FOURTH_GAME]: <FourthGameInterface />,
     [phases.TUTORIAL]: <TutorialMenuInteface />,
     [phases.AVATAR_CUSTOMIZATION]: <AvatarCustomizationInterface />,
+    [phases.LAPTOP]: <LaptopInterface />,
   };
 
   // Hide loading screen when both categories and canvas are ready
