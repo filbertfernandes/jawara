@@ -1,6 +1,7 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
 import { Html } from "@react-three/drei";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import SearchBar from "./screen-interfaces/SearchBar";
@@ -11,6 +12,8 @@ import routes from "@/constants/routes";
 import { getUsers } from "@/lib/actions/user.action";
 
 const LaptopScreen = () => {
+  const t = useTranslations("Home");
+
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -46,7 +49,7 @@ const LaptopScreen = () => {
       >
         <div className="flex h-[4.75rem] w-28 flex-col justify-between border-none bg-white font-questrial text-gray-900">
           <div className="flex h-auto w-full flex-col">
-            <SearchBar route="/" />
+            <SearchBar text={t("search_users")} />
             <div className="mt-1 flex h-auto w-full flex-wrap justify-center gap-1 px-1 text-[0.18rem]">
               {users.length > 0
                 ? users.map((user) => (

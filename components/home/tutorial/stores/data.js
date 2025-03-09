@@ -1,10 +1,27 @@
 export const guideData = [
   {
-    information: "Curriculum",
-    english_description:
-      "Click this book or walk closer\nto enter curriculum lessons!",
+    information: "Basic",
+    english_description: "Click or walk closer to\ninteract with each objects",
     indonesian_description:
-      "Klik buku ini atau berjalan lebih dekat\nuntuk masuk ke pelajaran kurikulum!",
+      "Klik atau berjalan lebih dekat\nuntuk berinteraksi dengan setiap objek",
+    cameraPosition: { x: 2, y: 6, z: 27 },
+    cameraTargetPosition: { x: 2, y: 0, z: 0 },
+    textPosition: { x: 2, y: 5.2, z: 23 },
+    textFontSize: 0.15,
+  },
+  {
+    information: "Search Users",
+    english_description: "Search users",
+    indonesian_description: "Cari pengguna",
+    cameraPosition: { x: -9.1, y: 3, z: 9 },
+    cameraTargetPosition: { x: -9.1, y: 0.2, z: 0 },
+    textPosition: { x: -9.1, y: 2.5, z: 5.5 },
+    textFontSize: 0.15,
+  },
+  {
+    information: "Curriculum",
+    english_description: "Curriculum lessons",
+    indonesian_description: "Pelajaran kurikulum",
     cameraPosition: { x: -7.3, y: 3, z: 9 },
     cameraTargetPosition: { x: -7.3, y: -0.5, z: 0 },
     textPosition: { x: -7.3, y: 2, z: 5.5 },
@@ -12,10 +29,8 @@ export const guideData = [
   },
   {
     information: "Translation Exercise",
-    english_description:
-      "Click this box or walk closer\nto practice your translation skill!",
-    indonesian_description:
-      "Klik kotak ini atau berjalan lebih dekat\nuntuk melatih keterampilan menerjemahkan Anda!",
+    english_description: "Practice your translation skill",
+    indonesian_description: "Melatih kemampuan menerjemahkan Anda",
     cameraPosition: {
       x: 2.13,
       y: 4,
@@ -31,10 +46,8 @@ export const guideData = [
   },
   {
     information: "Vocabularies Games",
-    english_description:
-      "Click these boxes or walk closer\nto start vocabularies mini-games!",
-    indonesian_description:
-      "Klik kotak-kotak ini atau berjalan lebih dekat\nuntuk memulai mini-game kosa kata!",
+    english_description: "Vocabulary mini-games",
+    indonesian_description: "Permainan kosa kata",
     cameraPosition: {
       x: 11.33,
       y: 5,

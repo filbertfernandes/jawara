@@ -47,6 +47,8 @@
 
     "save": "Save",
     "saving": "Saving",
-    "sign_in_to_save": "Sign In to Save"
+    "sign_in_to_save": "Sign In to Save",
+
+    "search_users": "Search users"
   }
 }

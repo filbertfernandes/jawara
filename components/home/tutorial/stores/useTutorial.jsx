@@ -15,7 +15,7 @@ export const useTutorial = create(
     return {
       tutorialState: tutorialStates.MENU,
       guideIndex: 0,
-      guideLength: 3,
+      guideLength: 5,
 
       setTutorialState: (tutorialState) => {
         set(() => {

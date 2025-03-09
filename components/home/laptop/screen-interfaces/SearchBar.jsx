@@ -6,7 +6,7 @@ import { useLaptop } from "../stores/useLaptop";
 
 import { Input } from "@/components/ui/input";
 
-const SearchBar = () => {
+const SearchBar = ({ text }) => {
   const { search, setSearch } = useLaptop((state) => ({
     search: state.search,
     setSearch: state.setSearch,
@@ -18,7 +18,7 @@ const SearchBar = () => {
         <FaSearch className="pointer-events-none absolute ml-1 size-1" />
         <Input
           type="text"
-          placeholder="Search users..."
+          placeholder={`${text}...`}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="laptop-search-input h-1 focus:border-gray-400 focus:ring-0"
