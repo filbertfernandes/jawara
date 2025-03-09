@@ -48,7 +48,11 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
 
       router.refresh(); // Refresh the page
 
-      router.push(routes.HOME);
+      if (formType === "SIGN_IN") {
+        router.push(routes.HOME);
+      } else {
+        router.push(routes.SIGN_IN);
+      }
     } else {
       toast({
         title: `Error ${result?.status}`,
