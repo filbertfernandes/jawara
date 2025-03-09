@@ -42,10 +42,10 @@ const GameOverInterface = ({ score, startGame }) => {
       onKeyDown={handleKeyDown}
     >
       <div className="text-center">
-        <h1 className="h1-bold text-orange-500 drop-shadow-lg">
+        <h1 className="h1-bold text-white drop-shadow-lg">
           {t("language") === "english" ? "CONGRATULATIONS!" : "SELAMAT!"}
         </h1>
-        <h5 className="h5-bold text-orange-500 drop-shadow-lg">
+        <h5 className="h5-bold text-white drop-shadow-lg">
           {t("language") === "english" ? "Your score is" : "Skor Anda adalah"}{" "}
           {score}
         </h5>
