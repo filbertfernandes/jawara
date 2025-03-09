@@ -13,7 +13,7 @@ import { getUsers } from "@/lib/actions/user.action";
 const LaptopScreen = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const { screenRotation, search } = useLaptop((state) => ({
     screenRotation: state.screenRotation,
     search: state.search,
@@ -23,6 +23,7 @@ const LaptopScreen = () => {
     const delayDebounceFn = setTimeout(async () => {
       if (search === "") {
         setUsers([]);
+        setTotalPages(0);
         return;
       }
 
