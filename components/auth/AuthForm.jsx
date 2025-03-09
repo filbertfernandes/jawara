@@ -112,7 +112,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
         >
           {form.formState.isSubmitting
             ? buttonText === "Sign In"
-              ? "Signin In..."
+              ? "Signing In..."
               : "Signing Up..."
             : buttonText}
         </Button>

@@ -13,7 +13,7 @@ const SearchBar = ({ text }) => {
   }));
 
   return (
-    <div className="flex h-auto w-full flex-wrap items-start justify-center overflow-scroll">
+    <div className="flex h-auto w-full flex-wrap items-start justify-center overflow-hidden">
       <div className="relative mt-1 flex w-4/5 items-center text-gray-400">
         <FaSearch className="pointer-events-none absolute ml-1 size-1" />
         <Input
