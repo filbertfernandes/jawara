@@ -1,8 +1,8 @@
-import { Edges, Html, Outlines, useGLTF } from "@react-three/drei";
+import { Edges, Outlines, useGLTF } from "@react-three/drei";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useState } from "react";
-import { FaFolder, FaWindows } from "react-icons/fa";
 
+import LaptopScreen from "../../laptop/LaptopScreen";
 import { useLaptop } from "../../laptop/stores/useLaptop";
 
 import { phases, useGame } from "@/hooks/useGame";
@@ -92,38 +92,7 @@ export function Laptop(props) {
           }
         }}
       >
-        {phase === phases.LAPTOP && (
-          <group
-            position={[-2.842, 0.4, 1.659]}
-            rotation={[screenRotation, 0, 0]}
-          >
-            <Html
-              transform
-              distanceFactor={1.17}
-              position={[0, 0, -0.133]}
-              rotation-x={-Math.PI / 2}
-            >
-              <div className="flex h-[4.75rem] w-28 flex-col justify-center border-none bg-white font-questrial text-gray-900">
-                <div className="flex size-full flex-wrap items-center justify-center overflow-scroll text-[0.4rem]">
-                  <div className="font-bold">Search Players</div>
-                </div>
-                <div className="flex h-[0.3rem] w-full items-center justify-center bg-gray-900/50 px-1">
-                  <div className="flex gap-[0.1rem]">
-                    <FaWindows className="text-[0.2rem] text-blue-600" />
-                    <FaFolder className="text-[0.2rem] text-yellow-500" />
-                    <div className="size-[0.2rem] bg-rose-500"></div>
-                    <div className="size-[0.2rem] bg-pink-300"></div>
-                    <div className="size-[0.2rem] rounded bg-teal-500"></div>
-                    <div className="size-[0.2rem] bg-lime-500"></div>
-                    <div className="size-[0.2rem] bg-fuchsia-500"></div>
-                    <div className="size-[0.2rem] bg-amber-500"></div>
-                    <div className="size-[0.2rem] rounded bg-orange-800"></div>
-                  </div>
-                </div>
-              </div>
-            </Html>
-          </group>
-        )}
+        {phase === phases.LAPTOP && <LaptopScreen />}
 
         <group position={[-2.843, 0.407, 1.789]} scale={0.012}>
           <mesh
