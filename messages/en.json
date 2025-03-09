@@ -49,6 +49,10 @@
     "saving": "Saving",
     "sign_in_to_save": "Sign In to Save",
 
-    "search_users": "Search users"
+    "search_users": "Search users",
+
+    "select_language_title": "Language",
+    "select_language_english": "English",
+    "select_language_indonesian": "Indonesian"
   }
 }

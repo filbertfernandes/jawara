@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 
 import { IconButton } from "./FreePhaseInterface";
@@ -15,6 +16,8 @@ import {
 import setLanguageValue from "@/lib/actions/set-language-action";
 
 const LanguageSelector = () => {
+  const t = useTranslations("Home");
+
   const [language, setLanguage] = useState("en"); // Default to English
 
   // Load the language from cookies when the component mounts
@@ -41,19 +44,19 @@ const LanguageSelector = () => {
         <IconButton>{language.toUpperCase()}</IconButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Language</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("select_language_title")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => handleChange("en")}
         >
-          English
+          {t("select_language_english")}
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => handleChange("id")}
         >
-          Indonesian
+          {t("select_language_indonesian")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
