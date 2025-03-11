@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
               <SocialAuthForm />
             </div>
           </div>
-          <div className="flex flex-1 items-center justify-center bg-orange-200">
+          <div className="flex flex-1 items-center justify-center bg-orange-100">
             <Link href={routes.HOME}>
               <Image
                 src="/images/jawara/jawara-logo.png"
@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
         </>
       ) : (
         <>
-          <div className="flex items-center justify-center bg-orange-200">
+          <div className="flex items-center justify-center bg-orange-100">
             <Link href={routes.HOME}>
               <Image
                 src="/images/jawara/jawara-logo.png"
