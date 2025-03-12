@@ -184,7 +184,7 @@ const Test = ({ chapter, isPostTest = false }) => {
           <div className="text-center">
             <div className="h5-bold mb-1">
               {!isPostTest
-                ? "Let&apos;s see what You already know!"
+                ? "Let's see what You already know!"
                 : "Let's see what You've learned!"}
             </div>
             <div className="text-sm text-gray-500 lg:text-xl">
