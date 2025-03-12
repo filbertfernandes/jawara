@@ -31,28 +31,39 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
 
   // 2. Define a submit handler.
   const handleSubmit = async (data) => {
-    const result = await onSubmit(data);
+    try {
+      const result = await onSubmit(data);
 
-    if (result?.success) {
+      if (result?.success) {
+        toast({
+          title: "Success",
+          description:
+            formType === "SIGN_IN"
+              ? "Signed in successfully"
+              : "Signed up successfully",
+        });
+
+        // Refresh session
+        const newSession = await getSession();
+        console.log("New Session:", newSession);
+
+        router.refresh();
+        router.push(routes.HOME);
+      } else {
+        toast({
+          title: `Error ${result?.status || "Unknown"}`,
+          description: result?.error?.message || "Something went wrong",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+
       toast({
-        title: "Success",
-        description:
-          formType === "SIGN_IN"
-            ? "Signed in successfully"
-            : "Signed up successfully",
-      });
-
-      // Force NextAuth to refresh session
-      const newSession = await getSession(); // Fetch new session data
-      console.log("New Session:", newSession); // Debugging
-
-      router.refresh(); // Refresh the page
-
-      router.push(routes.HOME);
-    } else {
-      toast({
-        title: `Error ${result?.status}`,
-        description: result?.error?.message,
+        title: "Submission Error",
+        description: error?.message?.includes("timed out")
+          ? "Request timed out. Please try again."
+          : error?.message || "An unexpected error occurred.",
         variant: "destructive",
       });
     }
