@@ -80,6 +80,11 @@ export const modelsData = [
     url: "https://skfb.ly/oLFEv",
   },
   {
+    name: "Macbook",
+    author: "sriniwasjha",
+    url: "https://market.pmnd.rs/model/macbook",
+  },
+  {
     name: "Stylize Tree Lowpoly",
     author: "uday",
     url: "https://skfb.ly/oDYXM",
