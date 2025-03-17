@@ -7,6 +7,7 @@ const AccountSchema = new Schema(
     password: { type: String },
     provider: { type: String, required: true },
     providerAccountId: { type: String, required: true },
+    emailVerified: { type: Date },
   },
   { timestamps: true }
 );

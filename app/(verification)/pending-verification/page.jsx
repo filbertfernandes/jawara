@@ -1,0 +1,115 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useRef } from "react";
+import { IoIosMailOpen } from "react-icons/io";
+
+import routes from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
+import { getCredentialAccount } from "@/lib/actions/account.action";
+import { resendVerificationToken } from "@/lib/actions/auth.action";
+
+const Page = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const isCleared = useRef(false);
+
+  useEffect(() => {
+    if (isCleared.current) return; // Prevent running twice
+
+    const storedEmail = sessionStorage.getItem("pending_verification_email");
+
+    if (!storedEmail) {
+      router.push(routes.HOME);
+      return;
+    }
+
+    setEmail(storedEmail);
+
+    sessionStorage.removeItem("pending_verification_email");
+    isCleared.current = true;
+
+    const checkAccount = async () => {
+      try {
+        const response = await getCredentialAccount(storedEmail);
+        if (!response.success || !response.data) {
+          router.push(routes.HOME);
+          return;
+        }
+
+        if (response.data.emailVerified) {
+          router.push(routes.HOME);
+        }
+      } catch (error) {
+        console.error("Error fetching account:", error);
+        router.push(routes.HOME);
+      }
+    };
+
+    checkAccount();
+  }, [router]);
+
+  const handleResendEmail = async () => {
+    if (!email || isLoading) return;
+
+    setIsLoading(true);
+
+    try {
+      const result = await resendVerificationToken(email);
+      console.log("Resend email result:", result);
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: "Account activation link has been sent successfully.",
+        });
+      } else {
+        toast({
+          title: "Failed",
+          description: "Failed to resend activation link. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error resending activation link:", error);
+
+      toast({
+        title: "Failed",
+        description: "Failed to resend activation link. Please try again.",
+        variant: "destructive",
+      });
+    }
+
+    setIsLoading(false);
+  };
+
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
+        <h1 className="text-2xl font-bold text-gray-900 md:text-4xl">
+          Verify your Email
+        </h1>
+        <p className="w-full text-center text-gray-600 md:text-xl">
+          Account activation link has been sent to the e-mail address you
+          provided.
+        </p>
+        <div className="flex size-24 items-center justify-center rounded-xl bg-orange-500 text-7xl text-white">
+          <IoIosMailOpen />
+        </div>
+        <p className="w-full text-center text-gray-600 md:text-xl">
+          Didn&apos;t get the mail?{" "}
+          <span
+            className={`cursor-pointer text-orange-500 ${
+              isLoading ? "" : "hover:underline"
+            }`}
+            onClick={handleResendEmail}
+          >
+            {isLoading ? "Sending..." : "Resend"}
+          </span>
+        </p>
+      </div>
+    </>
+  );
+};
+
+export default Page;

@@ -48,13 +48,24 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
         console.log("New Session:", newSession);
 
         router.refresh();
-        router.push(routes.HOME);
+
+        if (formType === "SIGN_IN") {
+          router.push(routes.HOME);
+        } else {
+          sessionStorage.setItem("pending_verification_email", data.email);
+          router.push(routes.PENDING_VERIFICATION);
+        }
       } else {
         toast({
           title: `Error ${result?.status || "Unknown"}`,
           description: result?.error?.message || "Something went wrong",
           variant: "destructive",
         });
+
+        if (result?.error?.message === "Email not verified") {
+          sessionStorage.setItem("pending_verification_email", data.email);
+          router.push(routes.PENDING_VERIFICATION);
+        }
       }
     } catch (error) {
       console.error("Submission error:", error);
