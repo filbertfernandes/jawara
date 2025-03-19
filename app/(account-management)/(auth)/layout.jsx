@@ -2,13 +2,24 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import SocialAuthForm from "@/components/auth/SocialAuthForm";
 import routes from "@/constants/routes";
 
 const Layout = ({ children }) => {
+  const [isMounted, setIsMounted] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 900 });
+
+  // Ensure component is mounted before using useMediaQuery
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null; // Avoid SSR mismatch by not rendering anything initially
+  }
 
   return (
     <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
