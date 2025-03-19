@@ -75,7 +75,7 @@ export default function Page() {
         </div>
         <Link href={routes.SIGN_IN}>
           <div className="btn-template w-64 bg-orange-500 text-white hover:bg-orange-600">
-            Go to Sign In Page
+            Go to sign in Page
           </div>
         </Link>
       </div>

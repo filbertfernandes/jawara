@@ -103,23 +103,30 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             control={form.control}
             name={field}
             render={({ field }) => (
-              <FormItem className="flex w-full flex-wrap justify-center">
-                <FormControl className="w-full">
-                  <div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-                    {iconMap[field.name]}
-                    <Input
-                      required
-                      type={field.name === "password" ? "password" : "text"}
-                      placeholder={`${field.name
-                        .charAt(0)
-                        .toUpperCase()}${field.name.slice(1)}`}
-                      {...field}
-                      className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
-                    />
+              <div className="flex w-full flex-col">
+                <FormItem className="flex w-full flex-wrap justify-center">
+                  <FormControl className="w-full">
+                    <div className="relative flex flex-wrap items-center text-gray-400 focus-within:text-gray-600">
+                      {iconMap[field.name]}
+                      <Input
+                        required
+                        type={field.name === "password" ? "password" : "text"}
+                        placeholder={`${field.name
+                          .charAt(0)
+                          .toUpperCase()}${field.name.slice(1)}`}
+                        {...field}
+                        className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+                {field.name === "password" && formType === "SIGN_IN" && (
+                  <div className="mr-1 mt-2 flex cursor-pointer justify-end hover:underline">
+                    Forgot password?
                   </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+                )}
+              </div>
             )}
           />
         ))}

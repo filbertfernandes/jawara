@@ -1,5 +1,4 @@
 const routes = {
-  BASE_URL: "https://jawara-school.vercel.app",
   HOME: "/",
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign-up",

@@ -4,8 +4,6 @@ import { pdfjs, Document, Page } from "react-pdf";
 
 import "./stores/curriculum.css";
 
-import routes from "@/constants/routes";
-
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
@@ -43,7 +41,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
     >
       <div className="flex w-[95%] justify-end">
         <a
-          href={`${routes.BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+          href={`${process.env.JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
           download="chapter-1.pdf"
           className="btn-template bg-orange-500 px-4 text-sm text-white hover:bg-orange-600"
         >
@@ -52,7 +50,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
         </a>
       </div>
       <Document
-        file={`${routes.BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+        file={`${process.env.JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {Array.apply(null, Array(numPages))
