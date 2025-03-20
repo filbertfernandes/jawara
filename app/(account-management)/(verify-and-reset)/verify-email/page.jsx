@@ -27,7 +27,7 @@ export default function Page() {
     const checkVerification = async () => {
       try {
         const result = await newVerification(token);
-        console.log(result);
+
         if (result?.success) {
           setSuccess("Email is Verified!");
           setEmail(result.data);
@@ -73,11 +73,6 @@ export default function Page() {
             "Please wait while we verify your email..."
           )}
         </div>
-        <Link href={routes.SIGN_IN}>
-          <div className="btn-template w-64 bg-orange-500 text-white hover:bg-orange-600">
-            Go to sign in Page
-          </div>
-        </Link>
       </div>
     </>
   );

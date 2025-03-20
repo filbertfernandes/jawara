@@ -122,9 +122,11 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                   <FormMessage />
                 </FormItem>
                 {field.name === "password" && formType === "SIGN_IN" && (
-                  <div className="mr-1 mt-2 flex cursor-pointer justify-end hover:underline">
-                    Forgot password?
-                  </div>
+                  <Link href={routes.RESET_PASSWORD}>
+                    <div className="mr-1 mt-2 flex cursor-pointer justify-end hover:underline">
+                      Forgot password?
+                    </div>
+                  </Link>
                 )}
               </div>
             )}

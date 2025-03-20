@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+
+import routes from "@/constants/routes";
 
 const layout = ({ children }) => {
   return (
@@ -14,6 +17,11 @@ const layout = ({ children }) => {
           />
         </div>
         {children}
+        <Link href={routes.SIGN_IN}>
+          <div className="mt-4 w-full cursor-pointer text-center text-orange-500 hover:underline">
+            Back to Sign In Page
+          </div>
+        </Link>
       </div>
     </div>
   );
