@@ -42,6 +42,11 @@ export const useGame = create(
       canChangePhase: { condition: false, phase: "" },
       sky: null,
       playerPosition: PLAYER_INITIAL_POSITION,
+      customizationWarning: true,
+
+      setCustomizationWarning: () => {
+        set({ customizationWarning: false });
+      },
 
       // TOGGLE MUSIC
       toggleMusic: () => {

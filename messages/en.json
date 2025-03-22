@@ -48,6 +48,8 @@
     "save": "Save",
     "saving": "Saving",
     "sign_in_to_save": "Sign In to Save",
+    "customization_warning": "Your avatar will be lost when you leave the app. Sign in to save it.",
+    "i_understand": "I Understand",
 
     "search_users": "Search users",
 

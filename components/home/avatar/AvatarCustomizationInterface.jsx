@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { GiExitDoor } from "react-icons/gi";
+import { IoMdAlert } from "react-icons/io";
 
 import { useCustomization } from "./stores/useCustomization";
 
@@ -48,14 +49,6 @@ const AssetBox = () => {
           </button>
         ))}
       </div>
-      {lockedGroups[currentCategory?.name] && (
-        <p className="px-6 text-red-400">
-          Asset is hidden by{" "}
-          {lockedGroups[currentCategory.name]
-            .map((asset) => `${asset.name} (${asset.categoryName})`)
-            .join(", ")}
-        </p>
-      )}
       <div className="flex gap-2 overflow-x-auto px-6">
         {currentCategory?.removable && (
           <button
@@ -272,9 +265,19 @@ const ColorPicker = () => {
 };
 
 const AvatarCustomizationInterface = () => {
+  const t = useTranslations("Home");
+
+  const { data: session } = useSession();
+
   const currentCategory = useCustomization((state) => state.currentCategory);
   const customization = useCustomization((state) => state.customization);
-  const changePhase = useGame((state) => state.changePhase);
+
+  const { changePhase, customizationWarning, setCustomizationWarning } =
+    useGame((state) => ({
+      changePhase: state.changePhase,
+      customizationWarning: state.customizationWarning,
+      setCustomizationWarning: state.setCustomizationWarning,
+    }));
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -291,6 +294,30 @@ const AvatarCustomizationInterface = () => {
 
   return (
     <>
+      {customizationWarning && !session && (
+        <div className="fixed left-0 top-0 z-20 flex size-full items-center justify-center bg-black/50 bg-repeat text-gray-900">
+          <div className="flex h-auto min-h-56 w-[90%] flex-col justify-between rounded-xl bg-white px-2 py-4 text-center lg:h-72 lg:w-1/3 lg:px-4 lg:py-6 lg:text-lg">
+            <div className="flex flex-col gap-4">
+              <IoMdAlert className="w-full text-6xl text-orange-500 lg:text-7xl" />
+              <div>{t("customization_warning")}</div>
+            </div>
+            <div className="flex w-full justify-between font-bold">
+              <div
+                className="w-1/2 cursor-pointer text-center hover:underline"
+                onClick={() => setCustomizationWarning(false)}
+              >
+                {t("i_understand")}
+              </div>
+              <Link
+                href={routes.SIGN_IN}
+                className="w-1/2 text-center text-orange-500 hover:underline"
+              >
+                {t("sign_in")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       <main className="pointer-events-none fixed inset-0 z-10 select-none font-questrial">
         <div className="mx-auto flex size-full max-w-screen-xl flex-col justify-between">
           <div className="flex items-center justify-between p-10">
