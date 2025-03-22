@@ -45,29 +45,58 @@ const Layout = ({ children }) => {
               <SocialAuthForm />
             </div>
           </div>
-          <div className="flex flex-1 items-center justify-center bg-orange-100">
-            <Link href={routes.HOME}>
-              <Image
-                src="/images/jawara/jawara-logo.png"
-                alt="Jawara Logo"
-                width={550}
-                height={550}
-              />
-            </Link>
+          <div className="relative flex flex-1 items-center justify-center">
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/images/jawara/auth-background.jpg')",
+              }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-orange-100/80" />
+
+            {/* Content */}
+            <div className="relative">
+              <Link href={routes.HOME}>
+                <Image
+                  src="/images/jawara/jawara-logo.png"
+                  alt="Jawara Logo"
+                  width={550}
+                  height={550}
+                />
+              </Link>
+            </div>
           </div>
         </>
       ) : (
         <>
-          <div className="flex items-center justify-center bg-orange-100">
-            <Link href={routes.HOME}>
-              <Image
-                src="/images/jawara/jawara-logo.png"
-                alt="Jawara Logo"
-                width={200}
-                height={200}
-              />
-            </Link>
+          <div className="relative flex items-center justify-center">
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/images/jawara/auth-background.jpg')",
+              }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-orange-100/80" />
+
+            {/* Content */}
+            <div className="relative">
+              <Link href={routes.HOME}>
+                <Image
+                  src="/images/jawara/jawara-logo.png"
+                  alt="Jawara Logo"
+                  width={200}
+                  height={200}
+                />
+              </Link>
+            </div>
           </div>
+
           <div className="flex grow flex-wrap items-center justify-center bg-white py-4 text-gray-900">
             <div className="flex w-full flex-wrap justify-center text-center">
               <div className="w-3/4 2xl:w-1/2">{children}</div>
