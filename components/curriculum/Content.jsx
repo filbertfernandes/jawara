@@ -46,7 +46,7 @@ const Content = ({ chapter, chapterPhase }) => {
     <>
       {isLoading ? (
         <div className="flex h-screen items-center justify-center">
-          <div className="text-xl font-bold text-gray-500">Loading...</div>
+          <div className="text-xl font-bold text-gray-600">Loading...</div>
         </div>
       ) : isStarted ? (
         <PdfComponent
@@ -60,7 +60,7 @@ const Content = ({ chapter, chapterPhase }) => {
             <div className="h5-bold mb-1">
               Awesome, You&apos;ve finished the {chapterPhase.name} material!
             </div>
-            <div className="text-sm text-gray-500 lg:text-xl">
+            <div className="text-sm text-gray-600 lg:text-xl">
               You still can learn again if you want.
             </div>
           </div>
@@ -77,7 +77,7 @@ const Content = ({ chapter, chapterPhase }) => {
             <div className="h5-bold mb-1">
               Let&apos;s make learning fun and easy!
             </div>
-            <div className="text-sm text-gray-500 lg:text-xl">
+            <div className="text-sm text-gray-600 lg:text-xl">
               Explore the core concepts of this chapter through easy-to-follow
               slides.
             </div>

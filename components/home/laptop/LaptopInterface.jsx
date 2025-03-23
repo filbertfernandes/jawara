@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { GiExitDoor } from "react-icons/gi";
 
 import { useLaptop } from "./stores/useLaptop";
+import BackButton from "../shared/interfaces/BackButton";
 
 import { Slider } from "@/components/ui/slider";
 import { phases, useGame } from "@/hooks/useGame";
@@ -39,7 +39,10 @@ const LaptopInterface = () => {
 
   return (
     <>
-      <div className="fixed top-0 flex h-12 w-full items-end justify-center">
+      <div className="fixed left-4 top-4 z-10">
+        <BackButton onClick={() => changePhase(phases.FREE)} />
+      </div>
+      <div className="fixed bottom-0 mb-20 flex h-12 w-full items-end justify-center">
         <div className="w-3/4 laptop-sm:w-1/2 lg:w-1/4">
           <Slider
             defaultValue={[((screenRotation - 0.3) / (2.4 - 0.3)) * 100]}
@@ -48,14 +51,6 @@ const LaptopInterface = () => {
             step={1}
             onValueChange={handleValueChange}
           />
-        </div>
-      </div>
-      <div className="fixed bottom-0 flex h-20 w-full justify-center">
-        <div
-          className="text-3xl text-white transition-all duration-200 ease-in-out hover:cursor-pointer hover:text-gray-200 sm:text-4xl"
-          onClick={() => changePhase(phases.FREE)}
-        >
-          <GiExitDoor />
         </div>
       </div>
     </>

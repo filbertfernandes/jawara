@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaArrowDown, FaAward } from "react-icons/fa";
-import { GiExitDoor } from "react-icons/gi";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
+
+import BackButton from "../home/shared/interfaces/BackButton";
 
 import routes from "@/constants/routes";
 
@@ -198,8 +199,8 @@ const ProfileInterface = ({ profileUser }) => {
       )}
       <div className="fixed inset-0 z-10 overflow-auto font-questrial laptop-sm:flex laptop-sm:flex-wrap">
         <Link href={routes.HOME}>
-          <div className="fixed left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
-            <GiExitDoor />
+          <div className="fixed left-4 top-4">
+            <BackButton />
           </div>
         </Link>
         <div className="flex size-full items-end justify-center bg-transparent pb-4 laptop-sm:w-1/2">

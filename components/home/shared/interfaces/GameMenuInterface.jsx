@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import BackButton from "./BackButton.jsx";
 import GameLeaderboardInterface from "./GameLeaderboardInterface.jsx";
 import GameMaterialInterface from "./GameMaterialInterface.jsx";
 import GameOverInterface from "./GameOverInterface.jsx";
@@ -10,8 +11,9 @@ import GameTutorialInterface from "./GameTutorialInterface.jsx";
 import { gameStates, phases, useGame } from "@/hooks/useGame.jsx";
 
 const GameMenuInterface = ({ startGame, title, words, score }) => {
-  const { gameState, changePhase } = useGame((state) => ({
+  const { gameState, changeGameState, changePhase } = useGame((state) => ({
     gameState: state.gameState,
+    changeGameState: state.changeGameState,
     changePhase: state.changePhase,
   }));
 
@@ -46,20 +48,27 @@ const GameMenuInterface = ({ startGame, title, words, score }) => {
   };
 
   return (
-    <div
-      className={`fullscreen-backdrop ${
-        gameState === gameStates.GAME ? "pointer-events-none opacity-0" : ""
-      }`}
-    >
-      {gameState !== gameStates.GAME_OVER ? (
-        <div className="flex size-full flex-col items-center sm:flex-row md:w-[90%] lg:w-4/5">
-          <GameTabsInterface />
-          {interfaceComponentMap[gameState]}
+    <>
+      <div
+        className={`fullscreen-backdrop ${
+          gameState === gameStates.GAME ? "pointer-events-none opacity-0" : ""
+        }`}
+      >
+        {gameState !== gameStates.GAME_OVER ? (
+          <div className="flex size-full flex-col items-center sm:flex-row md:w-[90%] lg:w-4/5">
+            <GameTabsInterface />
+            {interfaceComponentMap[gameState]}
+          </div>
+        ) : (
+          interfaceComponentMap[gameState]
+        )}
+      </div>
+      {gameState === gameStates.GAME && (
+        <div className="absolute left-0 top-0 flex h-full cursor-pointer items-center p-2 text-center text-3xl sm:text-4xl md:p-4">
+          <BackButton onClick={() => changeGameState(gameStates.MENU)} />
         </div>
-      ) : (
-        interfaceComponentMap[gameState]
       )}
-    </div>
+    </>
   );
 };
 

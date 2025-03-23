@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { GiExitDoor } from "react-icons/gi";
 import { IoMdAlert } from "react-icons/io";
 
 import { useCustomization } from "./stores/useCustomization";
+import BackButton from "../shared/interfaces/BackButton";
 
 import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
@@ -22,14 +22,12 @@ const AssetBox = () => {
     setCurrentCategory,
     changeAsset,
     customization,
-    lockedGroups,
   } = useCustomization((state) => ({
     categories: state.categories,
     currentCategory: state.currentCategory,
     setCurrentCategory: state.setCurrentCategory,
     changeAsset: state.changeAsset,
     customization: state.customization,
-    lockedGroups: state.lockedGroups,
   }));
 
   return (
@@ -321,12 +319,7 @@ const AvatarCustomizationInterface = () => {
       <main className="pointer-events-none fixed inset-0 z-10 select-none font-questrial">
         <div className="mx-auto flex size-full max-w-screen-xl flex-col justify-between">
           <div className="flex items-center justify-between p-10">
-            <GiExitDoor
-              className="pointer-events-auto cursor-pointer text-3xl text-white transition-all duration-100 ease-in-out hover:text-gray-200 sm:text-4xl"
-              onClick={() => {
-                changePhase(phases.FREE);
-              }}
-            />
+            <BackButton onClick={() => changePhase(phases.FREE)} />
             <div className="flex items-center gap-2">
               <RandomizeButton />
               <SaveButton />

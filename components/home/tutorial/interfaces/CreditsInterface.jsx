@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { GiExitDoor } from "react-icons/gi";
 
+import BackButton from "../../shared/interfaces/BackButton";
 import { modelsData, musicData, soundEffectsData } from "../stores/data";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
@@ -66,11 +66,8 @@ const CreditsInterface = () => {
 
   return (
     <div className="fullscreen-backdrop">
-      <div
-        className="absolute left-4 top-4 cursor-pointer text-3xl text-white transition-all duration-200 ease-in-out hover:text-gray-200 sm:text-4xl"
-        onClick={() => setTutorialState(tutorialStates.MENU)}
-      >
-        <GiExitDoor />
+      <div className="absolute left-4 top-4">
+        <BackButton onClick={() => setTutorialState(tutorialStates.MENU)} />
       </div>
       <div
         className={`flex size-full flex-col items-center justify-center ${

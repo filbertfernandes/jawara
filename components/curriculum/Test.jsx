@@ -162,7 +162,7 @@ const Test = ({ chapter, isPostTest = false }) => {
                 ? "Try again!"
                 : "Congratulations, You've finished this chapter!"}
             </div>
-            <div className="text-sm text-gray-500 lg:text-xl">
+            <div className="text-sm text-gray-600 lg:text-xl">
               {!isPostTest
                 ? "You can start continue learn the content."
                 : isRetry
@@ -187,7 +187,7 @@ const Test = ({ chapter, isPostTest = false }) => {
                 ? "Let's see what You already know!"
                 : "Let's see what You've learned!"}
             </div>
-            <div className="text-sm text-gray-500 lg:text-xl">
+            <div className="text-sm text-gray-600 lg:text-xl">
               Your score is private and will not be shown to others.
             </div>
           </div>
@@ -200,7 +200,7 @@ const Test = ({ chapter, isPostTest = false }) => {
         </>
       ) : (
         <div className="flex w-full flex-col items-center justify-center gap-6 px-4 sm:w-3/4 lg:w-2/3">
-          <div className="text-center text-gray-500 sm:text-lg md:text-xl">
+          <div className="text-center text-gray-600 sm:text-lg md:text-xl">
             Question {questionIndex + 1} / {chapter.questions.length}
           </div>
           <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-white">

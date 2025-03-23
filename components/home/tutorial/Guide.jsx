@@ -46,8 +46,8 @@ const Guide = () => {
       {guideData.map((item) => (
         <Float
           key={item.information}
-          floatIntensity={0.1}
-          rotationIntensity={0.1}
+          floatIntensity={0.8}
+          rotationIntensity={0.02}
         >
           <Text
             position={[

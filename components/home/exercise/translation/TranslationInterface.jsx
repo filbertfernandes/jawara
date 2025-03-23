@@ -4,8 +4,9 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
-import { GiExitDoor } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
+
+import BackButton from "../../shared/interfaces/BackButton";
 
 import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
@@ -22,9 +23,9 @@ import { SoundManager } from "@/lib/SoundManager";
 
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
   <div
-    className={`flex h-8 cursor-pointer items-center justify-center rounded-xl border-2 p-1 text-center text-sm font-bold sm:p-2 sm:text-2xl ${
+    className={`flex h-8 cursor-pointer items-center justify-center rounded-xl border-2 p-1 text-center text-sm font-bold text-gray-600 sm:p-2 sm:text-2xl ${
       isSelected & !isAnswer
-        ? "cursor-not-allowed bg-gray-500 text-gray-500"
+        ? "cursor-not-allowed bg-gray-600 text-gray-600"
         : "cursor-pointer bg-white transition-all duration-200 ease-in-out hover:bg-gray-200"
     }`}
     onClick={() => onClick(id, word, isSelected)}
@@ -193,11 +194,8 @@ export const TranslationInterface = () => {
   return (
     <div className="fullscreen-white translate-y-0 flex-col font-questrial text-gray-900 transition-transform duration-500 ease-in-out sm:text-2xl">
       {/* Header */}
-      <div className="mb-10 flex h-8 w-full items-center justify-between text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:mb-20 lg:mb-10">
-        <GiExitDoor
-          className="cursor-pointer text-4xl sm:text-5xl"
-          onClick={() => changePhase(phases.FREE)}
-        />
+      <div className="mb-10 flex h-8 w-full items-center justify-between text-gray-600 transition-all duration-200 ease-in-out hover:text-gray-600 sm:mb-20 lg:mb-10">
+        <BackButton onClick={() => changePhase(phases.FREE)} />
         <div className="flex items-center gap-2">
           <div>Total {t("correct")}:</div>
           <div>
@@ -219,7 +217,7 @@ export const TranslationInterface = () => {
         <div className="text-xl font-bold sm:text-3xl">
           {t("translate_this_sentence")}
         </div>
-        <div className="flex items-center gap-2 text-gray-500">
+        <div className="flex items-center gap-2 text-gray-600">
           <div>{t("daily_limit")}:</div>
           <div>
             {userId ? (

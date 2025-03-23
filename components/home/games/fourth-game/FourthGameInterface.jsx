@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import { words } from "./stores/constants.js";
 import { useFourthGame } from "./stores/useFourthGame.jsx";
 
-import ExitDoor from "@/components/home/shared/interfaces/ExitDoor.jsx";
 import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
 import ScorePlusInterface from "@/components/home/shared/interfaces/ScorePlusInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
@@ -142,7 +141,6 @@ export const FourthGameInterface = () => {
       {gameState === gameStates.GAME && (
         <>
           <ScorePlusInterface score={score} />
-          <ExitDoor />
         </>
       )}
     </>

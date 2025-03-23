@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GiExitDoor } from "react-icons/gi";
 
 import chapters from "@/components/curriculum/data/chapters";
+import BackButton from "@/components/home/shared/interfaces/BackButton";
 import routes from "@/constants/routes";
 
 const page = () => {
@@ -10,8 +10,8 @@ const page = () => {
     <>
       <div className="left-0 top-0 flex size-full flex-wrap justify-center overflow-scroll bg-orange-100 p-4 font-questrial sm:p-14">
         <Link href={routes.HOME}>
-          <div className="absolute left-4 top-4 cursor-pointer text-3xl text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600 sm:text-4xl">
-            <GiExitDoor />
+          <div className="absolute left-4 top-4">
+            <BackButton />
           </div>
         </Link>
 
@@ -20,7 +20,7 @@ const page = () => {
             Welcome to <span className="text-orange-500">Jawara</span>{" "}
             Curriculum!
           </h1>
-          <p className="w-full text-center text-sm text-gray-500 sm:w-3/4 lg:w-1/2 lg:text-lg">
+          <p className="w-full text-center text-sm text-gray-600 sm:w-3/4 lg:w-1/2 lg:text-lg">
             Explore each chapter with structured pre-tests, engaging learning
             materials, and post-tests to track your progress. Let&apos;s take
             the first step in mastering Javanese together!
