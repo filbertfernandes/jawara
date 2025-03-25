@@ -1,5 +1,3 @@
-import React from "react";
-
 const TotalCorrectTranslation = ({ total }) => {
   return (
     <div className="flex w-full flex-col items-center gap-1 rounded-xl border-2 bg-white/10 px-2 py-4">

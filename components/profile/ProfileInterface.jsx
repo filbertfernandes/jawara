@@ -3,12 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { FaArrowDown, FaAward, FaUserPlus, FaUsers } from "react-icons/fa";
-import { GoNumber } from "react-icons/go";
+import { FaArrowDown, FaUserPlus, FaUsers } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { IoBody, IoColorPalette } from "react-icons/io5";
-import { MdOutlinePets } from "react-icons/md";
-import { TbVocabulary } from "react-icons/tb";
 
 import AchievementGallery from "./AchievementGallery";
 import ScoreTable from "./ScoreTable";
