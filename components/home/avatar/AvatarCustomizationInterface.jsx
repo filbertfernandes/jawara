@@ -293,7 +293,7 @@ const AvatarCustomizationInterface = () => {
   return (
     <>
       {customizationWarning && !session && (
-        <div className="fixed left-0 top-0 z-20 flex size-full items-center justify-center bg-black/50 bg-repeat text-gray-900">
+        <div className="fullscreen-black-transparent z-20 items-center justify-center text-gray-900">
           <div className="flex h-auto min-h-56 w-[90%] flex-col justify-between rounded-xl bg-white px-2 py-4 text-center lg:h-72 lg:w-1/3 lg:px-4 lg:py-6 lg:text-lg">
             <div className="flex flex-col gap-4">
               <IoMdAlert className="w-full text-6xl text-orange-500 lg:text-7xl" />

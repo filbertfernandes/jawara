@@ -8,6 +8,7 @@ import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
+import BackButton from "./BackButton";
 import LanguageSelector from "./LanguageSelector";
 
 import {
@@ -20,7 +21,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import LoadingSpinner from "@/components/ui/loadingSpinner";
 import routes from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
 import { phases, useGame } from "@/hooks/useGame.jsx";
+import {
+  acceptFriendRequest,
+  getFriendRequest,
+  rejectFriendRequest,
+} from "@/lib/actions/friend.action";
 
 export const IconButton = ({
   onClick,
@@ -43,12 +50,26 @@ export default function FreePhaseInterface() {
 
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
+  const [friendRequests, setFriendRequests] = useState(0);
+  const [friendRequestsOverlay, setFriendRequestsOverlay] = useState(false);
 
   useEffect(() => {
     if (status !== "loading") {
       setLoading(false);
     }
   }, [status]);
+
+  useEffect(() => {
+    if (session?.user?.id) {
+      const checkFriendRequest = async () => {
+        const result = await getFriendRequest(session.user.id);
+
+        setFriendRequests(result.friendRequests);
+      };
+
+      checkFriendRequest();
+    }
+  }, [session?.user?.id, friendRequests]);
 
   const {
     changePhase,
@@ -72,7 +93,6 @@ export default function FreePhaseInterface() {
 
   // Memoized callback to prevent unnecessary re-renders
   const handleEnterButtonClick = useCallback(() => {
-    console.log(canChangePhase);
     if (canChangePhase.condition && canChangePhase.phase !== "") {
       changePhase(canChangePhase.phase);
       setCanPressEnter(false);
@@ -100,72 +120,173 @@ export default function FreePhaseInterface() {
     }
   };
 
+  const handleFriendRequestButtonClick = async (request, isAccept) => {
+    try {
+      const result = isAccept
+        ? await acceptFriendRequest(request._id)
+        : await rejectFriendRequest(request._id);
+
+      if (result?.success) {
+        toast({
+          title: `Friend Request ${isAccept ? "Accepted" : "Rejected"}`,
+          description: `You've ${
+            isAccept ? "accepted" : "rejected"
+          } a friend request from ${request.sender.name}.`,
+        });
+      } else {
+        toast({
+          title: `Error ${result?.status || "Unknown"}`,
+          description:
+            result?.error?.message ||
+            `Failed to ${
+              isAccept ? "accept" : "reject"
+            } friend request. Please try again.`,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description:
+          error?.message ||
+          `Failed to ${
+            isAccept ? "accept" : "reject"
+          } friend request. Please try again.`,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <>
-      <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
-        <div className="flex items-center gap-4">
-          <IconButton onClick={toggleMusic} textSize="text-3cl lg:text-4xl">
-            {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
-          </IconButton>
-          <IconButton onClick={() => changePhase(phases.TUTORIAL)}>
-            <FaQuestion />
-          </IconButton>
-          <IconButton onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}>
-            <GiClothes />
-          </IconButton>
-          <LanguageSelector />
-        </div>
-
-        {loading ? (
-          <LoadingSpinner size={30} />
-        ) : session?.user ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
+      {friendRequestsOverlay && (
+        <div className="fullscreen-black-transparent z-10 flex flex-wrap items-start justify-center gap-4 overflow-scroll">
+          <div className="absolute left-4 top-4">
+            <BackButton onClick={() => setFriendRequestsOverlay(false)} />
+          </div>
+          {friendRequests.map((request) => (
+            <div
+              key={request.sender._id}
+              className="mx-10 my-16 flex w-80 items-center rounded-xl bg-white p-4 shadow-md"
+            >
+              {/* Avatar */}
               <div
-                className="size-12"
+                className="size-20"
                 dangerouslySetInnerHTML={{
-                  __html: multiavatar(session.user.id),
+                  __html: multiavatar(request.sender._id),
                 }}
               />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <Link href={`${routes.PROFILE}/${session?.user?.id}`}>
-                <DropdownMenuItem className="cursor-pointer">
-                  {t("profile")}
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuItem className="cursor-pointer">
-                {t("edit_profile")}
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={handleSignOut}
-              >
-                {t("sign_out")}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          <Link href={routes.SIGN_IN}>
-            <div>{t("sign_in")}</div>
-          </Link>
-        )}
-      </div>
-      <div
-        className={`absolute bottom-0 left-0 mb-2 flex w-full justify-center p-1 font-bebas text-3xl text-white lg:text-4xl ${
-          canPressEnter ? "" : "pointer-events-none opacity-0"
-        }`}
-      >
-        <div
-          className="btn-template bg-orange-500 px-8 drop-shadow-lg hover:bg-orange-600"
-          onClick={handleEnterButtonClick}
-        >
-          Enter
+              {/* Info and Actions */}
+              <div className="ml-4 flex flex-col">
+                <p className="font-bold text-gray-900">{request.sender.name}</p>
+                <p className="text-gray-600">@{request.sender.username}</p>
+                {/* Actions */}
+                <div className="mt-2 flex gap-2">
+                  <button
+                    className="btn-template bg-green-500 px-3 py-1 text-white shadow hover:bg-green-600"
+                    onClick={() =>
+                      handleFriendRequestButtonClick(request, true)
+                    }
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="btn-template bg-red-500 px-3 py-1 text-white shadow hover:bg-red-600"
+                    onClick={() =>
+                      handleFriendRequestButtonClick(request, false)
+                    }
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
+
+      {!friendRequestsOverlay && (
+        <>
+          <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
+            <div className="flex items-center gap-4">
+              <IconButton onClick={toggleMusic} textSize="text-3cl lg:text-4xl">
+                {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
+              </IconButton>
+              <IconButton onClick={() => changePhase(phases.TUTORIAL)}>
+                <FaQuestion />
+              </IconButton>
+              <IconButton
+                onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}
+              >
+                <GiClothes />
+              </IconButton>
+              <LanguageSelector />
+            </div>
+
+            {loading ? (
+              <LoadingSpinner size={30} />
+            ) : session?.user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
+                  <div
+                    className="size-12"
+                    dangerouslySetInnerHTML={{
+                      __html: multiavatar(session.user.id),
+                    }}
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <Link href={`${routes.PROFILE}/${session?.user?.id}`}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      {t("profile")}
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuItem className="cursor-pointer">
+                    {t("edit_profile")}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => setFriendRequestsOverlay(true)}
+                  >
+                    {t("friend_request")}
+                    {friendRequests.length > 0 && (
+                      <span className="rounded-full bg-red-500 px-2 text-sm text-white">
+                        {friendRequests.length}
+                      </span>
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={handleSignOut}
+                  >
+                    {t("sign_out")}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href={routes.SIGN_IN}>
+                <div>{t("sign_in")}</div>
+              </Link>
+            )}
+          </div>
+
+          <div
+            className={`absolute bottom-0 left-0 mb-2 flex w-full justify-center p-1 font-bebas text-3xl text-white lg:text-4xl ${
+              canPressEnter ? "" : "pointer-events-none opacity-0"
+            }`}
+          >
+            <div
+              className="btn-template bg-orange-500 px-8 drop-shadow-lg hover:bg-orange-600"
+              onClick={handleEnterButtonClick}
+            >
+              Enter
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -5,57 +5,102 @@ import { FaCheck, FaUserPlus, FaUsers } from "react-icons/fa";
 
 import { toast } from "@/hooks/use-toast";
 import {
+  acceptFriendRequest,
   addFriendRequest,
   getFriendStatus,
-} from "@/lib/actions/friendRequest.action";
+  removeFriend,
+  removeFriendRequest,
+} from "@/lib/actions/friend.action";
 
 const UserProfile = ({ profileUser }) => {
   const { data: session } = useSession();
+  const [friendRequestId, setFriendRequestId] = useState(false);
+  const [friendsCount, setFriendsCount] = useState(false);
   const [isFriend, setIsFriend] = useState(false);
   const [isFriendRequest, setIsFriendRequest] = useState(false);
   const [isRequestReceiver, setIsRequestReceiver] = useState(false);
+  const [isFriendButtonHovered, setIsFriendButtonHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [friendActionTrigger, setFriendActionTrigger] = useState(false);
 
   useEffect(() => {
     if (session?.user?.id && profileUser?._id) {
       const checkFriendStatus = async () => {
-        const status = await getFriendStatus(session.user.id, profileUser._id);
-        setIsFriend(status.isFriend);
-        setIsFriendRequest(status.isFriendRequest);
-        setIsRequestReceiver(status.isRequestReceiver);
+        const result = await getFriendStatus(session.user.id, profileUser._id);
+        setIsFriend(result.isFriend);
+        setIsFriendRequest(result.isFriendRequest);
+        setIsRequestReceiver(result.isRequestReceiver);
+        setFriendRequestId(result.friendRequestId);
+        setFriendsCount(result.friendsCount);
       };
       checkFriendStatus();
     }
-  }, [session, profileUser]);
+  }, [session, profileUser, friendActionTrigger]);
 
   const handleFriendButtonClick = async () => {
-    if (isLoading || isFriend || isFriendRequest) return;
+    if (isLoading) return;
     setIsLoading(true);
+
     try {
-      const result = await addFriendRequest(
-        session?.user?.id,
-        profileUser?._id
-      );
-      if (result?.success) {
-        setIsFriendRequest(true);
-        toast({
-          title: "Friend Request Sent",
-          description: "Your friend request has been sent successfully!",
-        });
+      if (isFriend) {
+        // Unfriend action
+        const result = await removeFriend(session?.user?.id, profileUser?._id);
+        if (result?.success) {
+          toast({
+            title: "Friend Removed",
+            description: "You are no longer friends.",
+          });
+        } else {
+          throw new Error(result?.error?.message || "Failed to remove friend.");
+        }
+      } else if (isRequestReceiver) {
+        // Accept friend request
+        const result = await acceptFriendRequest(friendRequestId);
+        if (result?.success) {
+          toast({
+            title: "Friend Request Accepted",
+            description: "You are now friends!",
+          });
+        } else {
+          throw new Error(
+            result?.error?.message || "Failed to accept request."
+          );
+        }
+      } else if (isFriendRequest) {
+        // Cancel friend request
+        const result = await removeFriendRequest(friendRequestId);
+        if (result?.success) {
+          toast({
+            title: "Friend Request Canceled",
+            description: "Your friend request has been canceled.",
+          });
+        } else {
+          throw new Error(
+            result?.error?.message || "Failed to remove request."
+          );
+        }
       } else {
-        toast({
-          title: `Error ${result?.status || "Unknown"}`,
-          description:
-            result?.error?.message ||
-            "Failed to send friend request. Please try again.",
-          variant: "destructive",
-        });
+        // Send friend request
+        const result = await addFriendRequest(
+          session?.user?.id,
+          profileUser?._id
+        );
+        if (result?.success) {
+          toast({
+            title: "Friend Request Sent",
+            description: "Your friend request has been sent successfully!",
+          });
+        } else {
+          throw new Error(result?.error?.message || "Failed to send request.");
+        }
       }
+
+      setFriendActionTrigger((prev) => !prev);
     } catch (error) {
       toast({
         title: "Error",
         description:
-          error?.message || "Failed to send friend request. Please try again.",
+          error?.message || "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -76,15 +121,17 @@ const UserProfile = ({ profileUser }) => {
         </div>
         <div className="flex flex-wrap gap-2">
           <div className="btn-template w-4/5 bg-gray-800 hover:bg-gray-900 lg:w-2/5">
-            <p>1000 Friends</p>
+            <p>{friendsCount} Friends</p>
             <FaUsers className="ml-2 text-xl" />
           </div>
           {session?.user?.id !== profileUser?._id && (
             <div
+              onMouseEnter={() => setIsFriendButtonHovered(true)}
+              onMouseLeave={() => setIsFriendButtonHovered(false)}
               onClick={handleFriendButtonClick}
               className={`btn-template w-4/5 ${
                 isFriend
-                  ? "cursor-default bg-green-500 hover:bg-green-600"
+                  ? "cursor-pointer bg-green-500 hover:bg-green-600"
                   : isFriendRequest
                   ? "cursor-default bg-gray-500 hover:bg-gray-600"
                   : "cursor-pointer bg-orange-500 hover:bg-orange-600"
@@ -92,9 +139,15 @@ const UserProfile = ({ profileUser }) => {
             >
               <p>
                 {isFriend
-                  ? "Friend"
+                  ? isFriendButtonHovered
+                    ? "Unfriend?"
+                    : "Friend"
                   : isFriendRequest
-                  ? isRequestReceiver
+                  ? isFriendButtonHovered
+                    ? isRequestReceiver
+                      ? "Accept?"
+                      : "Cancel?"
+                    : isRequestReceiver
                     ? "Accept Request"
                     : "Request Sent"
                   : isLoading
