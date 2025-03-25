@@ -1,10 +1,8 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
 
 import { Input } from "../ui/input";
 
-import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 import { createAndSendResetToken } from "@/lib/actions/resetToken.action";
 
