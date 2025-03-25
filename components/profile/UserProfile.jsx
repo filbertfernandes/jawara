@@ -143,10 +143,10 @@ const UserProfile = ({ profileUser }) => {
                     ? "Unfriend?"
                     : "Friend"
                   : isFriendRequest
-                  ? isFriendButtonHovered
-                    ? "Cancel?"
-                    : isRequestReceiver
+                  ? isRequestReceiver
                     ? "Accept Request?"
+                    : isFriendButtonHovered
+                    ? "Cancel?"
                     : "Request Sent"
                   : isLoading
                   ? "Sending..."
