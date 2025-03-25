@@ -1,6 +1,7 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { FaArrowDown, FaAward, FaUserPlus, FaUsers } from "react-icons/fa";
 import { GoNumber } from "react-icons/go";
@@ -9,95 +10,15 @@ import { IoBody, IoColorPalette } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";
 import { TbVocabulary } from "react-icons/tb";
 
+import AchievementGallery from "./AchievementGallery";
+import ScoreTable from "./ScoreTable";
+import TotalCorrectTranslation from "./TotalCorrectTranslation";
 import BackButton from "../home/shared/interfaces/BackButton";
 
 import routes from "@/constants/routes";
 
-const achievementsData = [
-  {
-    src: "/images/achievements/curriculum-completion.jpg",
-    description:
-      "Complete the entire curriculum to master key language concepts.",
-  },
-  {
-    src: "/images/achievements/top-3.jpg",
-    description: "Achieve a top 3 position in the Vocabulary Game.",
-  },
-  {
-    src: "/images/achievements/top-10.jpg",
-    description: "Achieve a top 10 position in the Vocabulary Game.",
-  },
-  {
-    src: "/images/achievements/top-50.jpg",
-    description: "Achieve a top 50 position in the Vocabulary Game.",
-  },
-  {
-    src: "/images/achievements/top-100.jpg",
-    description: "Achieve a top 100 position in the Vocabulary Game.",
-  },
-  {
-    src: "/images/achievements/correct-translations-1000.jpg",
-    description: "Achieve 1,000 correct translations.",
-  },
-  {
-    src: "/images/achievements/correct-translations-500.jpg",
-    description: "Achieve 500 correct translations.",
-  },
-  {
-    src: "/images/achievements/correct-translations-250.jpg",
-    description: "Achieve 250 correct translations.",
-  },
-  {
-    src: "/images/achievements/correct-translations-100.jpg",
-    description: "Achieve 100 correct translations.",
-  },
-  {
-    src: "/images/achievements/correct-translations-25.jpg",
-    description: "Achieve 25 correct translations.",
-  },
-  {
-    src: "/images/achievements/correct-translations-1.jpg",
-    description: "Achieve your first correct translation.",
-  },
-  {
-    src: "/images/achievements/first-time-body-parts.jpg",
-    description: "Complete the Body Parts Vocabulary Game for the first time.",
-  },
-  {
-    src: "/images/achievements/first-time-colors.jpg",
-    description: "Complete the Colors Vocabulary Game for the first time.",
-  },
-  {
-    src: "/images/achievements/first-time-numbers.jpg",
-    description: "Complete the Numbers Vocabulary Game for the first time.",
-  },
-  {
-    src: "/images/achievements/first-time-animals.jpg",
-    description: "Complete the Animals Vocabulary Game for the first time.",
-  },
-];
-
-const scoresData = [
-  {
-    category: "Body Parts",
-    icon: <IoBody />,
-  },
-  {
-    category: "Colors",
-    icon: <IoColorPalette />,
-  },
-  {
-    category: "Numbers",
-    icon: <GoNumber />,
-  },
-  {
-    category: "Animals",
-    icon: <MdOutlinePets />,
-  },
-];
-
 const AchievementOverlay = ({ image, description, onClose }) => (
-  <div className="fullscreen-black-transparent z-20 flex-col items-center justify-center gap-4 font-questrial text-white">
+  <div className="fixed left-0 top-0 z-20 flex size-full flex-col items-center justify-center gap-4 bg-black/80 p-4 font-questrial text-white sm:p-14 lg:px-32 xl:px-64">
     <div className="relative flex flex-col items-center">
       <button
         className="absolute -right-8 -top-8 rounded-full p-1 text-3xl sm:text-4xl"
@@ -119,59 +40,9 @@ const AchievementOverlay = ({ image, description, onClose }) => (
   </div>
 );
 
-const AchievementGallery = ({ achievements, onAchievementClick }) => (
-  <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-2 py-4">
-    <div className="flex items-center justify-center">
-      <h6 className="h6-bold">Achievements</h6>
-      <FaAward className="ml-1 text-xl" />
-    </div>
-    <div className="flex h-[500px] w-full justify-center overflow-scroll">
-      <div className="flex w-full flex-wrap justify-evenly gap-4 laptop-sm:w-3/4">
-        {achievements.map((achievement, idx) => (
-          <Image
-            key={idx}
-            src={achievement.src}
-            alt="Achievement"
-            width={500}
-            height={500}
-            className="size-36 cursor-pointer rounded-xl"
-            quality={100}
-            onClick={() =>
-              onAchievementClick(achievement.src, achievement.description)
-            }
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const ScoreTable = ({ scores }) => (
-  <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-6 py-4">
-    <div className="flex items-center justify-center">
-      <h6 className="h6-bold">Vocabulary Scores</h6>
-      <TbVocabulary className="ml-1 text-xl" />
-    </div>
-    {Object.entries(scores).map(([game, scoreCategories], idx) => (
-      <div key={idx} className="flex w-full flex-wrap items-center pb-2">
-        <h3 className="h6-bold">{scoresData[idx].category}</h3>
-        <div className="ml-1 text-xl lg:text-3xl">{scoresData[idx].icon}</div>
-        {/* Display the game name (game1, game2, etc.) */}
-        {Object.entries(scoreCategories).map(([category, score], i) => (
-          <div
-            key={i}
-            className="mt-1 flex w-full justify-between text-base sm:text-lg lg:text-xl"
-          >
-            <h6 className="capitalize">{category}</h6>
-            <h6>{score}</h6>
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-);
-
 const ProfileInterface = ({ profileUser }) => {
+  const { data: session } = useSession();
+
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageDescription, setSelectedImageDescription] =
@@ -197,6 +68,7 @@ const ProfileInterface = ({ profileUser }) => {
           onClose={handleCloseOverlay}
         />
       )}
+
       <div className="fixed inset-0 z-10 overflow-auto font-questrial laptop-sm:flex laptop-sm:flex-wrap">
         <Link href={routes.HOME}>
           <div className="fixed left-4 top-4">
@@ -214,7 +86,7 @@ const ProfileInterface = ({ profileUser }) => {
             <div
               className="flex size-36"
               dangerouslySetInnerHTML={{
-                __html: multiavatar(profileUser?._id + profileUser?.name),
+                __html: multiavatar(profileUser?._id),
               }}
             />
             <div className="flex w-full flex-col gap-6 lg:gap-10">
@@ -223,29 +95,25 @@ const ProfileInterface = ({ profileUser }) => {
                 <h5>@{profileUser?.username}</h5>
               </div>
               <div className="flex flex-wrap gap-2">
-                <div className="btn-template w-4/5 bg-gray-500 hover:bg-gray-600 lg:w-1/3">
+                <div className="btn-template w-4/5 bg-gray-500 hover:bg-gray-600 lg:w-2/5">
                   <p>1000 Friends</p>
                   <FaUsers className="ml-2 text-xl" />
                 </div>
-                <div className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-1/3">
-                  <p>Add Friend</p>
-                  <FaUserPlus className="ml-2 text-xl" />
-                </div>
+                {session?.user?.id !== profileUser?._id && (
+                  <div className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-2/5">
+                    <p>Add Friend</p>
+                    <FaUserPlus className="ml-2 text-xl" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
-          <AchievementGallery
-            achievements={achievementsData}
-            onAchievementClick={handleAchievementClick}
-          />
+          <AchievementGallery onAchievementClick={handleAchievementClick} />
 
-          <div className="flex w-full flex-col items-center gap-1 rounded-xl border-2 bg-white/10 px-2 py-4">
-            <h1 className="h1-bold">{profileUser?.totalCorrectTranslations}</h1>
-            <div className="flex items-center justify-center">
-              <h6 className="h6-bold">Total Correct Translations</h6>
-            </div>
-          </div>
+          <TotalCorrectTranslation
+            total={profileUser?.totalCorrectTranslations}
+          />
 
           <ScoreTable scores={profileUser?.scores} />
         </div>

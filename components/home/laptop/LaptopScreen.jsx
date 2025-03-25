@@ -61,7 +61,7 @@ const LaptopScreen = () => {
                       <div
                         className="size-2"
                         dangerouslySetInnerHTML={{
-                          __html: multiavatar(user?._id + user?.name),
+                          __html: multiavatar(user?._id),
                         }}
                       />
                       <div className="flex h-full flex-col justify-center">

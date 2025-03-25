@@ -126,9 +126,7 @@ const GameLeaderboardInterface = () => {
                       <div
                         className="size-10 sm:size-12"
                         dangerouslySetInnerHTML={{
-                          __html: multiavatar(
-                            topScore.userId._id + topScore.userId.name
-                          ),
+                          __html: multiavatar(topScore.userId._id),
                         }}
                       />
                     </div>

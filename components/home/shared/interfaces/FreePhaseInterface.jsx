@@ -124,7 +124,7 @@ export default function FreePhaseInterface() {
               <div
                 className="size-12"
                 dangerouslySetInnerHTML={{
-                  __html: multiavatar(session.user.id + session.user.name),
+                  __html: multiavatar(session.user.id),
                 }}
               />
             </DropdownMenuTrigger>
