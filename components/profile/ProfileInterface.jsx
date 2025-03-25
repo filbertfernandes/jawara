@@ -2,7 +2,7 @@ import multiavatar from "@multiavatar/multiavatar/esm";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { FaArrowDown, FaAward } from "react-icons/fa";
+import { FaArrowDown, FaAward, FaUserPlus, FaUsers } from "react-icons/fa";
 import { GoNumber } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { IoBody, IoColorPalette } from "react-icons/io5";
@@ -210,18 +210,29 @@ const ProfileInterface = ({ profileUser }) => {
           </div>
         </div>
         <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/75 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
-          <div className="flex w-full flex-col items-center gap-1">
+          <div className="flex h-auto min-h-40 w-full items-center justify-center gap-4">
             <div
-              className="size-32"
+              className="flex size-36"
               dangerouslySetInnerHTML={{
                 __html: multiavatar(profileUser?._id + profileUser?.name),
               }}
             />
-            <h5 className="h5-bold">@{profileUser?.username}</h5>
-            {/* <div className="mt-2 flex w-full justify-evenly">
-              <div>2000 Followers</div>
-              <div>2000 Following</div>
-            </div> */}
+            <div className="flex w-full flex-col gap-6 lg:gap-10">
+              <div>
+                <h5 className="h5-bold">{profileUser?.name}</h5>
+                <h5>@{profileUser?.username}</h5>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <div className="btn-template w-4/5 bg-gray-500 hover:bg-gray-600 lg:w-1/3">
+                  <p>1000 Friends</p>
+                  <FaUsers className="ml-2 text-xl" />
+                </div>
+                <div className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-1/3">
+                  <p>Add Friend</p>
+                  <FaUserPlus className="ml-2 text-xl" />
+                </div>
+              </div>
+            </div>
           </div>
 
           <AchievementGallery
