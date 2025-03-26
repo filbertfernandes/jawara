@@ -70,6 +70,8 @@ const GameLeaderboardInterface = () => {
                 activeGameMode
               );
               setLeaderboard(result.friendsLeaderboard);
+            } else {
+              setLeaderboard(null);
             }
           }
         }
@@ -143,10 +145,10 @@ const GameLeaderboardInterface = () => {
 
       <div className="flex size-full flex-col justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-white sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
         {loading ? (
-          <ul className="flex size-full items-center justify-center text-2xl sm:text-3xl">
+          <ul className="flex size-full items-center justify-center text-center text-2xl sm:text-3xl">
             {t("loading")}...
           </ul>
-        ) : leaderboard.length > 0 ? (
+        ) : leaderboard?.length > 0 ? (
           <ul className="size-full overflow-y-auto pb-64 sm:pb-28">
             {leaderboard.map((topScore, index) => (
               <li key={index}>
@@ -176,8 +178,21 @@ const GameLeaderboardInterface = () => {
             ))}
           </ul>
         ) : (
-          <ul className="flex size-full items-center justify-center whitespace-pre-line text-2xl sm:text-3xl">
-            {t("leaderboard_is_empty")}
+          <ul className="flex size-full items-center justify-center whitespace-pre-line text-center text-2xl sm:text-3xl">
+            {isGlobal || session?.user?.id ? (
+              t("leaderboard_is_empty")
+            ) : (
+              <span>
+                {t("friends_leaderboard_is_empty").split("Sign in")[0]}
+                <Link
+                  href={routes.SIGN_IN}
+                  className="text-blue-300 underline hover:text-blue-400"
+                >
+                  {t("sign_in")}
+                </Link>
+                {t("friends_leaderboard_is_empty").split("Sign in")[1]}
+              </span>
+            )}
           </ul>
         )}
       </div>
