@@ -69,7 +69,7 @@ export default function FreePhaseInterface() {
 
       checkFriendRequest();
     }
-  }, [session?.user?.id, friendRequests]);
+  }, [session?.user?.id]);
 
   const {
     changePhase,
@@ -127,6 +127,12 @@ export default function FreePhaseInterface() {
         : await rejectFriendRequest(request._id);
 
       if (result?.success) {
+        // Refresh the friend requests list
+        if (session?.user?.id) {
+          const updatedRequests = await getFriendRequest(session.user.id);
+          setFriendRequests(updatedRequests.friendRequests);
+        }
+
         toast({
           title: `Friend Request ${isAccept ? "Accepted" : "Rejected"}`,
           description: `You've ${
@@ -156,6 +162,19 @@ export default function FreePhaseInterface() {
       });
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        setFriendRequestsOverlay(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
