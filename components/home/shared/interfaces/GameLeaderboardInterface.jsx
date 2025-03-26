@@ -186,7 +186,7 @@ const GameLeaderboardInterface = () => {
                 {t("friends_leaderboard_is_empty").split("Sign in")[0]}
                 <Link
                   href={routes.SIGN_IN}
-                  className="text-blue-300 underline hover:text-blue-400"
+                  className="text-blue-400 hover:underline"
                 >
                   {t("sign_in")}
                 </Link>
