@@ -7,7 +7,7 @@ const LaptopExperience = () => {
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(-9.16, 2.1, 9);
+    camera.position.set(-9.1, 2.2, 8);
   }, []);
 
   return (
@@ -20,7 +20,7 @@ const LaptopExperience = () => {
         enableRotate={false}
         minDistance={0.5}
         maxDistance={3}
-        target={[-9.1218, 1.8, 6.564374303246011]}
+        target={[-9.1, 1.9, 6.564374303246011]}
       />
     </>
   );
