@@ -10,6 +10,10 @@
     "friend_request": "Permintaan Pertemanan",
 
     "leaderboard": "Papan Peringkat",
+    "global_leaderboard": "Papan Peringkat Global",
+    "friends_leaderboard": "Papan Peringkat Teman",
+    "friends": "Teman",
+    "leaderboard_is_empty": "Papan peringkat masih kosong...\nWaktunya unjuk gigi! 💪",
     "material": "Materi",
     "controls": "Kontrol",
     "how_to_play": "Cara Bermain",

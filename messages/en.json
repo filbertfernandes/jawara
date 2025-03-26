@@ -10,6 +10,10 @@
     "friend_request": "Friend Request",
 
     "leaderboard": "Leaderboard",
+    "global_leaderboard": "Global Leaderboard",
+    "friends_leaderboard": "Friends Leaderboard",
+    "friends": "Friends",
+    "leaderboard_is_empty": "Leaderboard is empty...\nTime to make history! 💪",
     "material": "Material",
     "controls": "Controls",
     "how_to_play": "How to Play",

@@ -287,11 +287,11 @@ export const TranslationInterface = () => {
                 onClick={sentence ? checkAnswer : generateSentence}
               >
                 {isCheckingAnswer
-                  ? `${t("checking_answer")}.....`
+                  ? `${t("checking_answer")}...`
                   : sentence
                   ? t("check")
                   : isGeneratingSentence
-                  ? `${t("generating_sentence")}.....`
+                  ? `${t("generating_sentence")}...`
                   : t("generate_sentence")}
               </div>
             ) : (
@@ -301,7 +301,7 @@ export const TranslationInterface = () => {
             )
           ) : (
             <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
-              {t("loading")}.....
+              {t("loading")}...
             </div>
           )
         ) : (
@@ -345,7 +345,7 @@ export const TranslationInterface = () => {
             onClick={generateSentence}
           >
             {isGeneratingSentence
-              ? `${t("generating_sentence")}.....`
+              ? `${t("generating_sentence")}...`
               : t("generate_sentence")}
           </div>
         </div>

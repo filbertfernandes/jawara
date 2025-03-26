@@ -150,7 +150,7 @@ const Test = ({ chapter, isPostTest = false }) => {
     >
       {isLoading ? (
         <div className="text-center">
-          <div className="h5-bold mb-1">Loading.....</div>
+          <div className="h5-bold mb-1">Loading...</div>
         </div>
       ) : isFinished ? (
         <>
