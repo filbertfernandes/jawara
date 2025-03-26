@@ -24,7 +24,7 @@ const scoresData = [
 
 const ScoreTable = ({ scores }) => {
   return (
-    <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-10 py-8">
+    <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 p-6">
       <div className="flex items-center justify-center">
         <h6 className="h6-bold">Vocabulary Scores</h6>
         <TbVocabulary className="ml-1 text-xl" />
@@ -33,7 +33,7 @@ const ScoreTable = ({ scores }) => {
         {Object.entries(scores).map(([game, scoreCategories], index) => (
           <div
             key={index}
-            className="flex flex-col items-center rounded-lg border px-6 py-4"
+            className="flex flex-col items-center rounded-lg border p-4"
           >
             <div className="flex w-full items-center">
               <h3 className="h6-bold">{scoresData[index].category}</h3>
