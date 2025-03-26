@@ -50,7 +50,7 @@ export default function FreePhaseInterface() {
 
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
-  const [friendRequests, setFriendRequests] = useState(0);
+  const [friendRequests, setFriendRequests] = useState([]);
   const [friendRequestsOverlay, setFriendRequestsOverlay] = useState(false);
 
   useEffect(() => {
@@ -270,9 +270,9 @@ export default function FreePhaseInterface() {
                     onClick={() => setFriendRequestsOverlay(true)}
                   >
                     {t("friend_request")}
-                    {friendRequests.length > 0 && (
+                    {friendRequests?.length > 0 && (
                       <span className="rounded-full bg-red-500 px-2 text-sm text-white">
-                        {friendRequests.length}
+                        {friendRequests?.length}
                       </span>
                     )}
                   </DropdownMenuItem>
