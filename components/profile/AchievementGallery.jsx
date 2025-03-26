@@ -68,7 +68,7 @@ const achievementsData = [
 const AchievementGallery = ({ onAchievementClick }) => {
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-2 py-4">
+      <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-2 py-6">
         <div className="flex items-center justify-center">
           <h6 className="h6-bold">Achievements</h6>
           <FaAward className="ml-1 text-xl" />
