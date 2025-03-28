@@ -2,6 +2,7 @@ import { addEffect } from "@react-three/fiber";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { words } from "./stores/constants.js";
 import { useThirdGame } from "./stores/useThirdGame.jsx";
@@ -17,21 +18,31 @@ export const ThirdGameInterface = () => {
 
   const { data: session } = useSession();
 
+  const isMobile = useMediaQuery({ maxWidth: 900 });
+
   const time = useRef();
 
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
   }));
 
-  const { startGame, mode, score, correctAnswersOrder, answerCount, stage } =
-    useThirdGame((state) => ({
-      startGame: state.startGame,
-      mode: state.mode,
-      score: state.score,
-      correctAnswersOrder: state.correctAnswersOrder,
-      answerCount: state.answerCount,
-      stage: state.stage,
-    }));
+  const {
+    startGame,
+    mode,
+    score,
+    correctAnswersOrder,
+    answerCount,
+    stage,
+    setMobileJump,
+  } = useThirdGame((state) => ({
+    startGame: state.startGame,
+    mode: state.mode,
+    score: state.score,
+    correctAnswersOrder: state.correctAnswersOrder,
+    answerCount: state.answerCount,
+    stage: state.stage,
+    setMobileJump: state.setMobileJump,
+  }));
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
@@ -110,7 +121,7 @@ export const ThirdGameInterface = () => {
           <div>
             {t("time_left")}: <span ref={time}>100</span>
           </div>
-          {answerCount < 10 && (
+          {answerCount < 8 && (
             <div>
               {stage ? stage[correctAnswersOrder[answerCount]].word[mode] : ""}
             </div>
@@ -126,6 +137,27 @@ export const ThirdGameInterface = () => {
           <ScorePlusInterface score={score} />
         </>
       )}
+
+      <div
+        className={`absolute bottom-0 right-0 flex w-1/2 flex-nowrap pt-1 text-center font-bebas text-2xl text-white md:text-3xl ${
+          isMobile === false || gameState !== gameStates.GAME
+            ? "pointer-events-none opacity-0"
+            : ""
+        }`}
+      >
+        <div className="flex w-full flex-col items-end gap-6 px-10 pb-12 sm:pb-6">
+          <div
+            className="w-full touch-manipulation select-none bg-white/25 sm:w-1/2"
+            onTouchStart={(e) => {
+              e.preventDefault();
+              setMobileJump(true);
+            }}
+            onTouchEnd={() => setMobileJump(false)}
+          >
+            Jump
+          </div>
+        </div>
+      </div>
     </>
   );
 };

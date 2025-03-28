@@ -22,7 +22,7 @@ import useBackgroundMusic from "@/hooks/useBackgroundMusic.jsx";
 import { phases, skies, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
-export default function Experience({ joystickInput }) {
+export default function Experience() {
   const t = useTranslations("Home");
 
   useBackgroundMusic();
@@ -259,7 +259,7 @@ export default function Experience({ joystickInput }) {
         <Laptop />
 
         {/* Player */}
-        <PlayerController joystickInput={joystickInput} />
+        <PlayerController />
 
         {/* Phases */}
         {gamePhaseComponentMap[phase]}

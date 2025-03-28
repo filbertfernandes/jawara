@@ -19,8 +19,9 @@ export default function Marble() {
   const { rapier, world } = useRapier();
 
   // GAME STATE
-  const { gameState } = useGame((state) => ({
+  const { gameState, joystickInput } = useGame((state) => ({
     gameState: state.gameState,
+    joystickInput: state.joystickInput,
   }));
 
   const { stage } = useThirdGame((state) => ({
@@ -58,9 +59,17 @@ export default function Marble() {
       }
     );
 
+    const unsubscribeMobileJump = useThirdGame.subscribe(
+      (state) => state.mobileJump,
+      (isJump) => {
+        if (isJump) jump();
+      }
+    );
+
     return () => {
       isMounted.current = false;
       unsubscribeJump();
+      unsubscribeMobileJump();
     };
   }, []);
 
@@ -100,6 +109,25 @@ export default function Marble() {
     if (right) {
       impulse.x += impulseStrength;
       torque.z -= torqueStrength;
+    }
+
+    if (joystickInput) {
+      const { x, y } = joystickInput;
+      const distance = Math.sqrt(x * x + y * y); // Computes the Euclidean distance from the center to the joystick's current position
+
+      if (distance > 0) {
+        const angle = Math.atan2(x, y); // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
+        const normalizedX = Math.cos(angle);
+        const normalizedZ = Math.sin(angle);
+
+        // Apply impulse
+        impulse.x -= normalizedX * impulseStrength;
+        impulse.z -= normalizedZ * impulseStrength;
+
+        // Apply torque (to mimic rolling behavior)
+        torque.x -= normalizedZ * torqueStrength; // Rotate based on forward/backward movement
+        torque.z += normalizedX * torqueStrength; // Rotate based on left/right movement
+      }
     }
 
     marbleBody.current.applyImpulse(impulse);

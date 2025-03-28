@@ -45,8 +45,6 @@ export const useSecondGame = create(
       startTime: 0,
       correctAnswersOrder: [],
       correctCount: 0,
-      mobileLeft: false,
-      mobileRight: false,
       mobilePush: false,
       mobileJump: false,
 
@@ -62,7 +60,7 @@ export const useSecondGame = create(
             combo: 1,
             mode,
             timer: 0,
-            initialTimer: 10,
+            initialTimer: 100,
             startTime: Date.now(),
             correctAnswersOrder,
             correctCount: 0,
@@ -91,19 +89,6 @@ export const useSecondGame = create(
       resetCombo: () => {
         set(() => {
           return { combo: 1 };
-        });
-      },
-
-      // MOBILE CONTROLS
-      setMobileLeft: (condition) => {
-        set(() => {
-          return { mobileLeft: condition };
-        });
-      },
-
-      setMobileRight: (condition) => {
-        set(() => {
-          return { mobileRight: condition };
         });
       },
 

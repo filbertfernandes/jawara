@@ -5,7 +5,7 @@ import { words, positions } from "./constants.js";
 
 export const generateGameLevel = () => {
   const stage = [];
-  const nbOptions = 10;
+  const nbOptions = 8;
   const usedPositions = [];
 
   for (let j = 0; j < nbOptions; j++) {
@@ -33,7 +33,7 @@ export const generateGameLevel = () => {
 };
 
 export const genereateCorrectAnswersOrder = () => {
-  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7];
 
   /// Shuffle the array using Fisher-Yates (Knuth) Shuffle algorithm
   for (let i = arr.length - 1; i > 0; i--) {
@@ -56,6 +56,7 @@ export const useThirdGame = create(
       startTime: 0,
       correctAnswersOrder: [],
       answerCount: 0,
+      mobileJump: false,
 
       startGame: ({ mode }) => {
         set((state) => {
@@ -133,6 +134,12 @@ export const useThirdGame = create(
           const answerCount = 0;
           const correctAnswersOrder = genereateCorrectAnswersOrder();
           return { stage, answerCount, correctAnswersOrder };
+        });
+      },
+
+      setMobileJump: (condition) => {
+        set(() => {
+          return { mobileJump: condition };
         });
       },
     };

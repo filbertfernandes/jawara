@@ -215,57 +215,57 @@ export const words = [
 
 export const positions = [
   {
-    position: [0, 0, -15],
+    position: [0, 0, -18],
   },
   {
-    position: [4, 0, -15],
+    position: [5, 0, -18],
   },
   {
-    position: [8, 0, -15],
+    position: [10, 0, -18],
   },
   {
-    position: [-4, 0, -15],
+    position: [-5, 0, -18],
   },
   {
-    position: [-8, 0, -15],
+    position: [-10, 0, -18],
   },
   {
-    position: [0, 0, -10],
+    position: [0, 0, -12],
   },
   {
-    position: [4, 0, -10],
+    position: [5, 0, -12],
   },
   {
-    position: [8, 0, -10],
+    position: [10, 0, -12],
   },
   {
-    position: [-4, 0, -10],
+    position: [-5, 0, -12],
   },
   {
-    position: [-8, 0, -10],
+    position: [-10, 0, -12],
   },
   {
-    position: [4, 0, -5],
+    position: [5, 0, -6],
   },
   {
-    position: [8, 0, -5],
+    position: [10, 0, -6],
   },
   {
-    position: [0, 0, -5],
+    position: [0, 0, -6],
   },
   {
-    position: [-4, 0, -5],
+    position: [-5, 0, -6],
   },
   {
-    position: [-8, 0, -5],
+    position: [-10, 0, -6],
   },
   {
     position: [0, 0, 0],
   },
   {
-    position: [4, 0, 0],
+    position: [5, 0, 0],
   },
   {
-    position: [8, 0, 0],
+    position: [10, 0, 0],
   },
 ];

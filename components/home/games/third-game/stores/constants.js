@@ -809,13 +809,7 @@ export const positions = [
     position: [3, 0, -15],
   },
   {
-    position: [6, 0, -15],
-  },
-  {
     position: [-3, 0, -15],
-  },
-  {
-    position: [-6, 0, -15],
   },
   {
     position: [0, 0, -10],
@@ -824,25 +818,13 @@ export const positions = [
     position: [3, 0, -10],
   },
   {
-    position: [6, 0, -10],
-  },
-  {
     position: [-3, 0, -10],
-  },
-  {
-    position: [-6, 0, -10],
   },
   {
     position: [3, 0, -5],
   },
   {
-    position: [6, 0, -5],
-  },
-  {
     position: [-3, 0, -5],
-  },
-  {
-    position: [-6, 0, -5],
   },
   {
     position: [0, 0, 0],
@@ -851,12 +833,6 @@ export const positions = [
     position: [3, 0, 0],
   },
   {
-    position: [6, 0, 0],
-  },
-  {
     position: [-3, 0, 0],
-  },
-  {
-    position: [-6, 0, 0],
   },
 ];

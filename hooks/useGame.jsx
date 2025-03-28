@@ -43,6 +43,13 @@ export const useGame = create(
       sky: null,
       playerPosition: PLAYER_INITIAL_POSITION,
       customizationWarning: true,
+      joystickInput: { x: 0, y: 0 },
+
+      setJoystickInput: (input) => {
+        set(() => {
+          return { joystickInput: input };
+        });
+      },
 
       setCustomizationWarning: () => {
         set({ customizationWarning: false });

@@ -54,8 +54,9 @@ export default function Home() {
   const [isCanvasLoaded, setIsCanvasLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { phase } = useGame((state) => ({
+  const { phase, setJoystickInput } = useGame((state) => ({
     phase: state.phase,
+    setJoystickInput: state.setJoystickInput,
   }));
 
   const { fetchCategories } = useCustomization((state) => ({
@@ -144,9 +145,6 @@ export default function Home() {
     []
   );
 
-  // JOYSTICK
-  const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 });
-
   const handleJoystickMove = (input) => {
     setJoystickInput(input);
   };
@@ -183,13 +181,17 @@ export default function Home() {
           }}
           onCreated={() => setIsCanvasLoaded(true)}
         >
-          <Experience joystickInput={joystickInput} />
+          <Experience />
         </Canvas>
 
         {/* JOYSTICK */}
-        {!loading && phase === phases.FREE && (
-          <Joystick onMove={handleJoystickMove} />
-        )}
+        {!loading &&
+          (phase === phases.FREE ||
+            phase === phases.SECOND_GAME ||
+            phase === phases.THIRD_GAME ||
+            phase === phases.FOURTH_GAME) && (
+            <Joystick onMove={handleJoystickMove} />
+          )}
       </KeyboardControls>
 
       {!loading && gameInterfaces[phase]}

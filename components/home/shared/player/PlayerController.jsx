@@ -2,6 +2,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 import * as THREE from "three";
 
 import { Avatar } from "@/components/home/avatar/Avatar.jsx";
@@ -28,15 +29,24 @@ const playFootstepSound = debounce(() => {
   SoundManager.playSound("move");
 }, 50);
 
-export default function PlayerController({ joystickInput }) {
-  const { playerState, setPlayerState, phase, gameState, setPlayerPosition } =
-    useGame((state) => ({
-      playerState: state.playerState,
-      setPlayerState: state.setPlayerState,
-      phase: state.phase,
-      gameState: state.gameState,
-      setPlayerPosition: state.setPlayerPosition,
-    }));
+export default function PlayerController() {
+  const isPortraitMobile = useMediaQuery({ maxWidth: 768 });
+
+  const {
+    playerState,
+    setPlayerState,
+    phase,
+    gameState,
+    setPlayerPosition,
+    joystickInput,
+  } = useGame((state) => ({
+    playerState: state.playerState,
+    setPlayerState: state.setPlayerState,
+    phase: state.phase,
+    gameState: state.gameState,
+    setPlayerPosition: state.setPlayerPosition,
+    joystickInput: state.joystickInput,
+  }));
 
   const jumpPressed = useKeyboardControls((state) => state[controls.JUMP]);
   const leftPressed = useKeyboardControls((state) => state[controls.LEFT]);
@@ -126,10 +136,9 @@ export default function PlayerController({ joystickInput }) {
       linvel.z > -MAX_VEL
     ) {
       const { x, y } = joystickInput;
-      const angle = Math.atan2(x, y); // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
       const distance = Math.sqrt(x * x + y * y); // Computes the Euclidean distance from the center to the joystick's current position
-
       if (distance > 0) {
+        const angle = Math.atan2(x, y); // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
         impulse.x -= MOVEMENT_SPEED * Math.cos(angle);
         impulse.z -= MOVEMENT_SPEED * Math.sin(angle);
         changeRotation = true;
@@ -160,12 +169,14 @@ export default function PlayerController({ joystickInput }) {
 
     // CAMERA FOLLOW
     state.camera.position.x = playerWorldPosition.x;
-    state.camera.position.y = playerWorldPosition.y + 3;
-    state.camera.position.z = playerWorldPosition.z + 5.5;
+    state.camera.position.y =
+      playerWorldPosition.y + (isPortraitMobile ? 5 : 3);
+    state.camera.position.z =
+      playerWorldPosition.z + (isPortraitMobile ? 10 : 5.5);
 
     const targetLookAt = new THREE.Vector3(
       playerWorldPosition.x,
-      playerWorldPosition.y + 1.6,
+      playerWorldPosition.y + (isPortraitMobile ? 2 : 1.6),
       playerWorldPosition.z
     );
 

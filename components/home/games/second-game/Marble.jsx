@@ -2,6 +2,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody, useRapier } from "@react-three/rapier";
 import { useState, useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 import * as THREE from "three";
 
 import { useSecondGame } from "./stores/useSecondGame";
@@ -13,6 +14,8 @@ const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 0);
 const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3;
 
 export default function Marble() {
+  const isPortraitMobile = useMediaQuery({ maxWidth: 768 });
+
   const marbleBody = useRef();
   const timeoutId = useRef(null);
   const isMounted = useRef(true); // Track component mount status
@@ -26,18 +29,15 @@ export default function Marble() {
   const [smoothCameraTarget] = useState(() => new THREE.Vector3(0, 0.25, 3.5));
 
   // GAME STATE
-  const { gameState } = useGame((state) => ({
+  const { gameState, joystickInput } = useGame((state) => ({
     gameState: state.gameState,
+    joystickInput: state.joystickInput,
   }));
 
-  const { mobileLeft, mobileRight, score, resetCombo } = useSecondGame(
-    (state) => ({
-      mobileLeft: state.mobileLeft,
-      mobileRight: state.mobileRight,
-      score: state.score,
-      resetCombo: state.resetCombo,
-    })
-  );
+  const { score, resetCombo } = useSecondGame((state) => ({
+    score: state.score,
+    resetCombo: state.resetCombo,
+  }));
 
   const reset = () => {
     if (timeoutId.current) resetCombo(); // reset combo if marble didn't hit correct answer
@@ -161,12 +161,12 @@ export default function Marble() {
     const impulseStrength = 0.6 * delta;
     const torqueStrength = 0.2 * delta;
 
-    if (left || mobileLeft) {
+    if (left || joystickInput.y > 0) {
       impulse.x -= impulseStrength;
       torque.z += torqueStrength;
     }
 
-    if (right || mobileRight) {
+    if (right || joystickInput.y < 0) {
       impulse.x += impulseStrength;
       torque.z -= torqueStrength;
     }
@@ -181,12 +181,17 @@ export default function Marble() {
 
     const cameraPosition = new THREE.Vector3();
     cameraPosition.copy(marbleBodyPosition);
-    cameraPosition.z = MARBLE_INITIAL_POSITION.z + 3.5;
-    cameraPosition.y += 0.65;
+    if (marbleBodyPosition.z > MARBLE_INITIAL_POSITION.z) {
+      cameraPosition.z += isPortraitMobile ? 8 : 3.5;
+    } else {
+      cameraPosition.z =
+        MARBLE_INITIAL_POSITION.z + (isPortraitMobile ? 8 : 3.5);
+    }
+    cameraPosition.y += isPortraitMobile ? 2 : 0.65;
 
     const cameraTarget = new THREE.Vector3();
     cameraTarget.copy(marbleBodyPosition);
-    cameraTarget.y += 0.25;
+    cameraTarget.y += isPortraitMobile ? 0.65 : 0.25;
 
     // make it smooth
     smoothCameraPosition.lerp(cameraPosition, 5 * delta);
