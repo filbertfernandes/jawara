@@ -19,7 +19,9 @@ const UserProfile = ({ profileUser }) => {
   const { data: session } = useSession();
 
   const [friendRequestId, setFriendRequestId] = useState(false);
-  const [friendsCount, setFriendsCount] = useState(false);
+  const [friendsCount, setFriendsCount] = useState(
+    profileUser?.friends?.length
+  );
   const [isFriend, setIsFriend] = useState(false);
   const [isFriendRequest, setIsFriendRequest] = useState(false);
   const [isRequestReceiver, setIsRequestReceiver] = useState(false);
