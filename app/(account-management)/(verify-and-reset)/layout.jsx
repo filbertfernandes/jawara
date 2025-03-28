@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 
 import routes from "@/constants/routes";
 
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
   const t = useTranslations("EmailVerification");
 
   return (
@@ -30,4 +30,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default Layout;
