@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
 export default function SocialAuthForm() {
+  const t = useTranslations("Auth");
+
   const handleSignIn = async (provider) => {
     try {
       await signIn(provider, {
@@ -31,7 +34,7 @@ export default function SocialAuthForm() {
     <div className="flex w-3/4 flex-wrap justify-center 2xl:w-1/2">
       <div className="my-4 flex w-full items-center justify-center">
         <div className="w-1/2 border-t border-gray-400"></div>
-        <span className="px-4 text-gray-900">Or</span>
+        <span className="px-4 text-gray-900">{t("or")}</span>
         <div className="w-1/2 border-t border-gray-400"></div>
       </div>
       <div
@@ -45,7 +48,7 @@ export default function SocialAuthForm() {
           height={20}
           className="mr-2.5 object-contain"
         />
-        <span>Continue with Google</span>
+        <span>{t("continue_with_google")}</span>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { BiSolidLock } from "react-icons/bi";
 import { MdEmail, MdPerson } from "react-icons/md";
@@ -21,29 +22,27 @@ import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
 const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
+  const t = useTranslations("Auth");
   const router = useRouter();
 
-  // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues,
   });
 
-  // 2. Define a submit handler.
   const handleSubmit = async (data) => {
     try {
       const result = await onSubmit(data);
 
       if (result?.success) {
         toast({
-          title: "Success",
+          title: t("success"),
           description:
             formType === "SIGN_IN"
-              ? "Signed in successfully"
-              : "Signed up successfully",
+              ? t("sign_in_success")
+              : t("sign_up_success"),
         });
 
-        // Refresh session
         const newSession = await getSession();
         console.log("New Session:", newSession);
 
@@ -57,8 +56,8 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
         }
       } else {
         toast({
-          title: `Error ${result?.status || "Unknown"}`,
-          description: result?.error?.message || "Something went wrong",
+          title: `${t("error")} ${result?.status || "Unknown"}`,
+          description: result?.error?.message || t("error_message"),
           variant: "destructive",
         });
 
@@ -71,16 +70,16 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
       console.error("Submission error:", error);
 
       toast({
-        title: "Submission Error",
+        title: t("submission_error"),
         description: error?.message?.includes("timed out")
-          ? "Request timed out. Please try again."
-          : error?.message || "An unexpected error occurred.",
+          ? t("timeout_error")
+          : error?.message || t("unexpected_error"),
         variant: "destructive",
       });
     }
   };
 
-  const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
+  const buttonText = formType === "SIGN_IN" ? t("sign_in") : t("sign_up");
 
   const iconMap = {
     email: <MdEmail className="pointer-events-none absolute ml-3 size-5" />,
@@ -111,9 +110,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                       <Input
                         required
                         type={field.name === "password" ? "password" : "text"}
-                        placeholder={`${field.name
-                          .charAt(0)
-                          .toUpperCase()}${field.name.slice(1)}`}
+                        placeholder={t(`fields.${field.name}`)}
                         {...field}
                         className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
                       />
@@ -124,7 +121,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                 {field.name === "password" && formType === "SIGN_IN" && (
                   <Link href={routes.RESET_PASSWORD}>
                     <div className="mr-1 mt-2 flex cursor-pointer justify-end hover:underline">
-                      Forgot password?
+                      {t("forgot_password")}
                     </div>
                   </Link>
                 )}
@@ -138,30 +135,30 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
           className="btn-template w-full bg-orange-500 text-xs hover:bg-orange-600 lg:text-sm xl:text-base"
         >
           {form.formState.isSubmitting
-            ? buttonText === "Sign In"
-              ? "Signing In..."
-              : "Signing Up..."
+            ? buttonText === t("sign_in")
+              ? t("signing_in")
+              : t("signing_up")
             : buttonText}
         </Button>
 
         {formType === "SIGN_IN" ? (
           <p className="w-full">
-            Don&apos;t have an account?{" "}
+            {t("no_account")}{" "}
             <Link
               href={routes.SIGN_UP}
               className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
-              Sign Up
+              {t("sign_up")}
             </Link>
           </p>
         ) : (
           <p className="w-full">
-            Already have an account?{" "}
+            {t("has_account")}{" "}
             <Link
               href={routes.SIGN_IN}
               className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
             >
-              Sign In
+              {t("sign_in")}
             </Link>
           </p>
         )}

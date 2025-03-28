@@ -63,6 +63,38 @@
     "select_language_english": "English",
     "select_language_indonesian": "Indonesian"
   },
+  "Auth": {
+    "welcome_to": "WELCOME TO",
+
+    "sign_in_description": "Sign in to explore more features, make progress, and enhance your Javanese learning journey!",
+    "sign_up_description": "Create an account to unlock a full experience and take your Javanese skills to the next level!",
+
+    "success": "Success",
+    "error": "Error",
+    "unknown": "Unknown",
+    "sign_in_success": "Signed in successfully",
+    "sign_up_success": "Signed up successfully",
+    "error_message": "Something went wrong",
+    "submission_error": "Submission Error",
+    "timeout_error": "Request timed out. Please try again.",
+    "unexpected_error": "An unexpected error occurred.",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "signing_in": "Signing In...",
+    "signing_up": "Signing Up...",
+    "forgot_password": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "has_account": "Already have an account?",
+    "fields": {
+      "email": "Email",
+      "password": "Password",
+      "username": "Username",
+      "name": "Name"
+    },
+
+    "or": "Or",
+    "continue_with_google": "Continue with Google"
+  },
   "Profile": {
     "language": "english",
 

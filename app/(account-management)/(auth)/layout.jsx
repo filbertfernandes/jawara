@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -9,6 +10,8 @@ import SocialAuthForm from "@/components/auth/SocialAuthForm";
 import routes from "@/constants/routes";
 
 const Layout = ({ children }) => {
+  const t = useTranslations("Auth");
+
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 900 });
 
@@ -27,7 +30,7 @@ const Layout = ({ children }) => {
         <>
           <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-gray-900">
             <div className="flex w-full flex-wrap justify-center text-center">
-              <h1 className="h6-bold w-full">WELCOME TO</h1>
+              <h1 className="h6-bold w-full">{t("welcome_to")}</h1>
               <Link
                 href={routes.HOME}
                 className="mb-6 flex w-full justify-center"

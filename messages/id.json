@@ -64,6 +64,38 @@
     "select_language_english": "Inggris",
     "select_language_indonesian": "Indonesia"
   },
+  "Auth": {
+    "welcome_to": "SELAMAT DATANG DI",
+
+    "sign_in_description": "Masuk untuk mengakses lebih banyak fitur, melanjutkan progres, dan meningkatkan kemampuan bahasa Jawa Anda!",
+    "sign_up_description": "Buat akun untuk menikmati pengalaman lengkap dan mengasah keterampilan bahasa Jawa Anda ke tingkat berikutnya!",
+
+    "success": "Berhasil",
+    "error": "Kesalahan",
+    "unknown": "Tidak Diketahui",
+    "sign_in_success": "Berhasil masuk",
+    "sign_up_success": "Berhasil mendaftar",
+    "error_message": "Terjadi kesalahan",
+    "submission_error": "Kesalahan Pengiriman",
+    "timeout_error": "Waktu permintaan habis. Coba lagi.",
+    "unexpected_error": "Terjadi kesalahan yang tidak terduga.",
+    "sign_in": "Masuk",
+    "sign_up": "Daftar",
+    "signing_in": "Sedang masuk...",
+    "signing_up": "Sedang mendaftar...",
+    "forgot_password": "Lupa kata sandi?",
+    "no_account": "Belum punya akun?",
+    "has_account": "Sudah punya akun?",
+    "fields": {
+      "email": "Email",
+      "password": "Kata sandi",
+      "username": "Nama pengguna",
+      "name": "Nama"
+    },
+
+    "or": "Atau",
+    "continue_with_google": "Lanjutkan dengan Google"
+  },
   "Profile": {
     "language": "indonesian",
 
