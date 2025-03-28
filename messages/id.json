@@ -63,5 +63,40 @@
     "select_language_title": "Bahasa",
     "select_language_english": "Inggris",
     "select_language_indonesian": "Indonesia"
+  },
+  "Profile": {
+    "language": "indonesian",
+
+    "scroll": "Geser",
+    "friend_removed": "Teman Dihapus",
+    "no_longer_friends": "Kamu tidak lagi berteman.",
+    "remove_friend_failed": "Gagal menghapus teman.",
+    "request_accepted": "Permintaan Pertemanan Diterima",
+    "now_friends": "Kamu sekarang berteman.",
+    "accept_request_failed": "Gagal menerima permintaan pertemanan.",
+    "request_canceled": "Permintaan Pertemanan Dibatalkan",
+    "request_has_been_canceled": "Permintaan pertemananmu telah dibatalkan.",
+    "remove_request_failed": "Gagal membatalkan permintaan pertemanan.",
+    "friend_request_sent": "Permintaan Pertemanan Dikirim",
+    "request_sent_successfully": "Permintaan pertemananmu berhasil dikirim.",
+    "send_request_failed": "Gagal mengirim permintaan pertemanan.",
+    "error": "Kesalahan",
+    "something_went_wrong": "Terjadi kesalahan. Silakan coba lagi.",
+    "friends": "Teman",
+    "unfriend": "Hapus Teman?",
+    "friend": "Teman",
+    "accept_request": "Terima Permintaan?",
+    "cancel_request": "Batalkan Permintaan?",
+    "request_sent": "Permintaan Dikirim",
+    "sending": "Mengirim...",
+    "add_friend": "Tambah Teman",
+
+    "hi_my_name_is": "Hai! Nama saya",
+
+    "achievements": "Pencapaian",
+
+    "total_correct_translations": "Total Terjemahan Benar",
+
+    "vocabulary_scores": "Skor Kosa Kata"
   }
 }

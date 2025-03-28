@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -36,6 +37,8 @@ const AchievementOverlay = ({ image, description, onClose }) => (
 );
 
 const ProfileInterface = ({ profileUser }) => {
+  const t = useTranslations("Profile");
+
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageDescription, setSelectedImageDescription] =
@@ -70,7 +73,7 @@ const ProfileInterface = ({ profileUser }) => {
         </Link>
         <div className="flex size-full items-end justify-center bg-transparent pb-4 laptop-sm:w-1/2">
           <div className="fixed flex w-full animate-bounce flex-col items-center justify-center font-bold text-gray-900 laptop-sm:hidden">
-            Scroll
+            {t("scroll")}
             <FaArrowDown />
           </div>
         </div>

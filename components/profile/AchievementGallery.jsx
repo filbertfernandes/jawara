@@ -1,76 +1,107 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { FaAward } from "react-icons/fa";
 
 const achievementsData = [
   {
     src: "/images/achievements/curriculum-completion.jpg",
-    description:
-      "Complete the entire curriculum to master key language concepts.",
+    description_english:
+      "Master the language by completing the entire curriculum.",
+    description_indonesian:
+      "Kuasai bahasa dengan menyelesaikan seluruh kurikulum.",
   },
   {
     src: "/images/achievements/top-3.jpg",
-    description: "Achieve a top 3 position in the Vocabulary Game.",
+    description_english: "Achieve a top 3 position in the Vocabulary Game.",
+    description_indonesian:
+      "Capai peringkat 3 besar dalam Permainan Kosa Kata.",
   },
   {
     src: "/images/achievements/top-10.jpg",
-    description: "Achieve a top 10 position in the Vocabulary Game.",
+    description_english: "Achieve a top 10 position in the Vocabulary Game.",
+    description_indonesian:
+      "Capai peringkat 10 besar dalam Permainan Kosa Kata.",
   },
   {
     src: "/images/achievements/top-50.jpg",
-    description: "Achieve a top 50 position in the Vocabulary Game.",
+    description_english: "Achieve a top 50 position in the Vocabulary Game.",
+    description_indonesian:
+      "Capai peringkat 50 besar dalam Permainan Kosa Kata.",
   },
   {
     src: "/images/achievements/top-100.jpg",
-    description: "Achieve a top 100 position in the Vocabulary Game.",
+    description_english: "Achieve a top 100 position in the Vocabulary Game.",
+    description_indonesian:
+      "Capai peringkat 100 besar dalam Permainan Kosa Kata.",
   },
   {
     src: "/images/achievements/correct-translations-1000.jpg",
-    description: "Achieve 1,000 correct translations.",
+    description_english: "Achieve 1,000 correct translations.",
+    description_indonesian: "Capai 1.000 terjemahan yang benar.",
   },
   {
     src: "/images/achievements/correct-translations-500.jpg",
-    description: "Achieve 500 correct translations.",
+    description_english: "Achieve 500 correct translations.",
+    description_indonesian: "Capai 500 terjemahan yang benar.",
   },
   {
     src: "/images/achievements/correct-translations-250.jpg",
-    description: "Achieve 250 correct translations.",
+    description_english: "Achieve 250 correct translations.",
+    description_indonesian: "Capai 250 terjemahan yang benar.",
   },
   {
     src: "/images/achievements/correct-translations-100.jpg",
-    description: "Achieve 100 correct translations.",
+    description_english: "Achieve 100 correct translations.",
+    description_indonesian: "Capai 100 terjemahan yang benar.",
   },
   {
     src: "/images/achievements/correct-translations-25.jpg",
-    description: "Achieve 25 correct translations.",
+    description_english: "Achieve 25 correct translations.",
+    description_indonesian: "Capai 25 terjemahan yang benar.",
   },
   {
     src: "/images/achievements/correct-translations-1.jpg",
-    description: "Achieve your first correct translation.",
+    description_english: "Achieve your first correct translation.",
+    description_indonesian: "Capai terjemahan benar pertamamu.",
   },
   {
     src: "/images/achievements/first-time-body-parts.jpg",
-    description: "Complete the Body Parts Vocabulary Game for the first time.",
+    description_english:
+      "Complete the Body Parts Vocabulary Game for the first time.",
+    description_indonesian:
+      "Selesaikan Permainan Kosa Kata Bagian Tubuh untuk pertama kalinya.",
   },
   {
     src: "/images/achievements/first-time-colors.jpg",
-    description: "Complete the Colors Vocabulary Game for the first time.",
+    description_english:
+      "Complete the Colors Vocabulary Game for the first time.",
+    description_indonesian:
+      "Selesaikan Permainan Kosa Kata Warna untuk pertama kalinya.",
   },
   {
     src: "/images/achievements/first-time-numbers.jpg",
-    description: "Complete the Numbers Vocabulary Game for the first time.",
+    description_english:
+      "Complete the Numbers Vocabulary Game for the first time.",
+    description_indonesian:
+      "Selesaikan Permainan Kosa Kata Angka untuk pertama kalinya.",
   },
   {
     src: "/images/achievements/first-time-animals.jpg",
-    description: "Complete the Animals Vocabulary Game for the first time.",
+    description_english:
+      "Complete the Animals Vocabulary Game for the first time.",
+    description_indonesian:
+      "Selesaikan Permainan Kosa Kata Hewan untuk pertama kalinya.",
   },
 ];
 
 const AchievementGallery = ({ onAchievementClick }) => {
+  const t = useTranslations("Profile");
+
   return (
     <>
       <div className="flex w-full flex-col items-center gap-4 rounded-xl border-2 bg-white/10 px-2 py-6">
         <div className="flex items-center justify-center">
-          <h6 className="h6-bold">Achievements</h6>
+          <h6 className="h6-bold">{t("achievements")}</h6>
           <FaAward className="ml-1 text-xl" />
         </div>
         <div className="flex h-[500px] w-full justify-center overflow-scroll">
@@ -85,7 +116,10 @@ const AchievementGallery = ({ onAchievementClick }) => {
                 className="size-36 cursor-pointer rounded-xl"
                 quality={100}
                 onClick={() =>
-                  onAchievementClick(achievement.src, achievement.description)
+                  onAchievementClick(
+                    achievement.src,
+                    achievement[`description_${t("language")}`]
+                  )
                 }
               />
             ))}

@@ -62,5 +62,40 @@
     "select_language_title": "Language",
     "select_language_english": "English",
     "select_language_indonesian": "Indonesian"
+  },
+  "Profile": {
+    "language": "english",
+
+    "scroll": "Scroll",
+    "friend_removed": "Friend Removed",
+    "no_longer_friends": "You are no longer friends.",
+    "remove_friend_failed": "Failed to remove friend.",
+    "request_accepted": "Friend Request Accepted",
+    "now_friends": "You are now friends.",
+    "accept_request_failed": "Failed to accept friend request.",
+    "request_canceled": "Friend Request Canceled",
+    "request_has_been_canceled": "Your friend request has been canceled.",
+    "remove_request_failed": "Failed to cancel friend request.",
+    "friend_request_sent": "Friend Request Sent",
+    "request_sent_successfully": "Your friend request has been sent successfully.",
+    "send_request_failed": "Failed to send friend request.",
+    "error": "Error",
+    "something_went_wrong": "Something went wrong. Please try again.",
+    "friends": "Friends",
+    "unfriend": "Unfriend?",
+    "friend": "Friend",
+    "accept_request": "Accept Request?",
+    "cancel_request": "Cancel Request?",
+    "request_sent": "Request Sent",
+    "sending": "Sending...",
+    "add_friend": "Add Friend",
+
+    "hi_my_name_is": "Hi! My name is",
+
+    "achievements": "Achievements",
+
+    "total_correct_translations": "Total Correct Translations",
+
+    "vocabulary_scores": "Vocabulary Scores"
   }
 }

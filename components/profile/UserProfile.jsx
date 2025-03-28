@@ -1,5 +1,6 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { FaCheck, FaUserPlus, FaUsers } from "react-icons/fa";
 
@@ -13,7 +14,10 @@ import {
 } from "@/lib/actions/friend.action";
 
 const UserProfile = ({ profileUser }) => {
+  const t = useTranslations("Profile");
+
   const { data: session } = useSession();
+
   const [friendRequestId, setFriendRequestId] = useState(false);
   const [friendsCount, setFriendsCount] = useState(false);
   const [isFriend, setIsFriend] = useState(false);
@@ -43,64 +47,55 @@ const UserProfile = ({ profileUser }) => {
 
     try {
       if (isFriend) {
-        // Unfriend action
         const result = await removeFriend(session?.user?.id, profileUser?._id);
         if (result?.success) {
           toast({
-            title: "Friend Removed",
-            description: "You are no longer friends.",
+            title: t("friend_removed"),
+            description: t("no_longer_friends"),
           });
         } else {
-          throw new Error(result?.error?.message || "Failed to remove friend.");
+          throw new Error(result?.error?.message || t("remove_friend_failed"));
         }
       } else if (isRequestReceiver) {
-        // Accept friend request
         const result = await acceptFriendRequest(friendRequestId);
         if (result?.success) {
           toast({
-            title: "Friend Request Accepted",
-            description: "You are now friends!",
+            title: t("request_accepted"),
+            description: t("now_friends"),
           });
         } else {
-          throw new Error(
-            result?.error?.message || "Failed to accept request."
-          );
+          throw new Error(result?.error?.message || t("accept_request_failed"));
         }
       } else if (isFriendRequest) {
-        // Cancel friend request
         const result = await removeFriendRequest(friendRequestId);
         if (result?.success) {
           toast({
-            title: "Friend Request Canceled",
-            description: "Your friend request has been canceled.",
+            title: t("request_canceled"),
+            description: t("request_has_been_canceled"),
           });
         } else {
-          throw new Error(
-            result?.error?.message || "Failed to remove request."
-          );
+          throw new Error(result?.error?.message || t("remove_request_failed"));
         }
       } else {
-        // Send friend request
         const result = await addFriendRequest(
           session?.user?.id,
           profileUser?._id
         );
         if (result?.success) {
           toast({
-            title: "Friend Request Sent",
-            description: "Your friend request has been sent successfully!",
+            title: t("friend_request_sent"),
+            description: t("request_sent_successfully"),
           });
         } else {
-          throw new Error(result?.error?.message || "Failed to send request.");
+          throw new Error(result?.error?.message || t("send_request_failed"));
         }
       }
 
       setFriendActionTrigger((prev) => !prev);
     } catch (error) {
       toast({
-        title: "Error",
-        description:
-          error?.message || "Something went wrong. Please try again.",
+        title: t("error"),
+        description: error?.message || t("something_went_wrong"),
         variant: "destructive",
       });
     } finally {
@@ -121,7 +116,9 @@ const UserProfile = ({ profileUser }) => {
         </div>
         <div className="flex flex-wrap gap-2">
           <div className="btn-template w-4/5 bg-gray-800 hover:bg-gray-900 lg:w-2/5">
-            <p>{friendsCount} Friends</p>
+            <p>
+              {friendsCount} {t("friends")}
+            </p>
             <FaUsers className="ml-2 text-xl" />
           </div>
           {session?.user?.id !== profileUser?._id && (
@@ -140,17 +137,17 @@ const UserProfile = ({ profileUser }) => {
               <p>
                 {isFriend
                   ? isFriendButtonHovered
-                    ? "Unfriend?"
-                    : "Friend"
+                    ? t("unfriend")
+                    : t("friend")
                   : isFriendRequest
                   ? isRequestReceiver
-                    ? "Accept Request?"
+                    ? t("accept_request")
                     : isFriendButtonHovered
-                    ? "Cancel?"
-                    : "Request Sent"
+                    ? t("cancel_request")
+                    : t("request_sent")
                   : isLoading
-                  ? "Sending..."
-                  : "Add Friend"}
+                  ? t("sending")
+                  : t("add_friend")}
               </p>
               {!isFriend && !isFriendRequest && !isLoading && (
                 <FaUserPlus className="ml-2 text-xl" />
