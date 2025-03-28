@@ -95,6 +95,71 @@
     "or": "Or",
     "continue_with_google": "Continue with Google"
   },
+  "EmailVerification": {
+    "verify_title": "Verify Your Email",
+    "verify_description": "An account activation link has been sent to ",
+    "resend_prompt": "Didn't get the email?",
+    "sending": "Sending...",
+    "resend": "Resend",
+    "toast": {
+      "success_title": "Success",
+      "success_description": "Account activation link has been sent successfully.",
+      "failed_title": "Failed",
+      "failed_description": "Failed to resend activation link. Please try again."
+    },
+
+    "email_is_verified": "Email is Verified!",
+    "unexpected_error": "An unexpected error occurred.",
+    "timeout_error": "Request timed out. Please try again.",
+    "verifying_email": "Verifying Email...",
+    "verify_success_message_before_email": "Your email ",
+    "verify_success_message_after_email": " has been successfully verified! You can now sign in to your Jawara account. 🚀",
+    "verify_error_message": "Oops! Email verification failed. 😔",
+    "verify_error_instruction": "This link may be invalid. Try signing in again if needed, and you'll receive further instructions.",
+    "verifying_email_message": "Please wait while we verify your email...",
+
+    "back_to_sign_in_page": "Back to Sign In Page"
+  },
+  "ResetPasswordForm": {
+    "title": "Forgot your password?",
+    "description": "Enter your email and we'll send you a password reset link.",
+    "placeholder": "Enter your email",
+    "button_send": "Send",
+    "button_sending": "Sending...",
+
+    "success_title": "Success",
+    "success_message": "Password reset link has been sent!",
+
+    "error_title": "Error",
+    "error_no_email": "Please enter your email.",
+    "error_unknown": "Unknown",
+    "error_failed": "Failed to send reset link.",
+    "error_submission": "Submission Error",
+    "error_timed_out": "Request timed out. Please try again.",
+    "error_unexpected": "An unexpected error occurred."
+  },
+  "ChangePasswordForm": {
+    "title": "Change your password",
+    "description": "Enter a new password below to change your password.",
+    "fields": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "newPassword": "Enter new password",
+      "confirmPassword": "Enter confirm password"
+    },
+    "success_title": "Success",
+    "success_message": "Your password has been successfully updated. You can now sign in with your new password.",
+    "error_title": "Error",
+    "error_unknown": "Unknown",
+    "error_failed": "Failed to change password.",
+    "error_submission": "Submission Error",
+    "error_timed_out": "Request timed out. Please try again.",
+    "error_unexpected": "An unexpected error occurred.",
+    "button_submit": "Change Password",
+    "button_loading": "Changing..."
+  },
   "Profile": {
     "language": "english",
 

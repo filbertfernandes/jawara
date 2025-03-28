@@ -78,7 +78,7 @@
     "error_message": "Terjadi kesalahan",
     "submission_error": "Kesalahan Pengiriman",
     "timeout_error": "Waktu permintaan habis. Coba lagi.",
-    "unexpected_error": "Terjadi kesalahan yang tidak terduga.",
+    "unexpected_error": "Terjadi kesalahan tak terduga.",
     "sign_in": "Masuk",
     "sign_up": "Daftar",
     "signing_in": "Sedang masuk...",
@@ -96,15 +96,80 @@
     "or": "Atau",
     "continue_with_google": "Lanjutkan dengan Google"
   },
+  "EmailVerification": {
+    "verify_title": "Verifikasi Email Anda",
+    "verify_description": "Tautan aktivasi akun telah dikirim ke ",
+    "resend_prompt": "Belum menerima email?",
+    "sending": "Mengirim...",
+    "resend": "Kirim ulang",
+    "toast": {
+      "success_title": "Berhasil",
+      "success_description": "Tautan aktivasi akun telah berhasil dikirim.",
+      "failed_title": "Gagal",
+      "failed_description": "Gagal mengirim ulang tautan aktivasi. Silakan coba lagi."
+    },
+
+    "email_is_verified": "Email Terverifikasi!",
+    "unexpected_error": "Terjadi kesalahan tak terduga",
+    "timeout_error": "Waktu permintaan habis. Coba lagi.",
+    "verifying_email": "Memverifikasi Email...",
+    "verify_success_message_before_email": "Email ",
+    "verify_success_message_after_email": " Anda telah berhasil diverifikasi! Sekarang Anda bisa masuk ke akun Jawara. 🚀",
+    "verify_error_message": "Ups! Verifikasi email gagal. 😔",
+    "verify_error_instruction": "Tautan ini mungkin tidak valid. Coba masuk kembali jika diperlukan, dan Anda akan mendapatkan instruksi lebih lanjut.",
+    "verifying_email_message": "Harap tunggu sementara kami memverifikasi email Anda...",
+
+    "back_to_sign_in_page": "Kembali ke Halaman Masuk"
+  },
+  "ResetPasswordForm": {
+    "title": "Lupa kata sandi Anda?",
+    "description": "Masukkan email Anda dan kami akan mengirimkan tautan reset kata sandi.",
+    "placeholder": "Masukkan email Anda",
+    "button_send": "Kirim",
+    "button_sending": "Mengirim...",
+
+    "success_title": "Berhasil",
+    "success_message": "Tautan reset kata sandi telah dikirim!",
+
+    "error_title": "Kesalahan",
+    "error_no_email": "Harap masukkan email Anda.",
+    "error_unknown": "Tidak diketahui",
+    "error_failed": "Gagal mengirim tautan reset.",
+    "error_submission": "Kesalahan Pengiriman",
+    "error_timed_out": "Permintaan melebihi waktu tunggu. Silakan coba lagi.",
+    "error_unexpected": "Terjadi kesalahan yang tidak terduga."
+  },
+  "ChangePasswordForm": {
+    "title": "Ubah kata sandi Anda",
+    "description": "Masukkan kata sandi baru di bawah ini untuk mengubah kata sandi Anda.",
+    "fields": {
+      "newPassword": "Kata Sandi Baru",
+      "confirmPassword": "Konfirmasi Kata Sandi"
+    },
+    "placeholders": {
+      "newPassword": "Masukkan kata sandi baru",
+      "confirmPassword": "Masukkan konfirmasi kata sandi"
+    },
+    "success_title": "Berhasil",
+    "success_message": "Kata sandi Anda telah diperbarui. Anda sekarang dapat masuk dengan kata sandi baru.",
+    "error_title": "Kesalahan",
+    "error_unknown": "Tidak diketahui",
+    "error_failed": "Gagal mengubah kata sandi.",
+    "error_submission": "Kesalahan Pengiriman",
+    "error_timed_out": "Permintaan melebihi batas waktu. Silakan coba lagi.",
+    "error_unexpected": "Terjadi kesalahan yang tidak terduga.",
+    "button_submit": "Ubah Kata Sandi",
+    "button_loading": "Mengubah..."
+  },
   "Profile": {
     "language": "indonesian",
 
     "scroll": "Geser",
     "friend_removed": "Teman Dihapus",
-    "no_longer_friends": "Kamu tidak lagi berteman.",
+    "no_longer_friends": "Anda tidak lagi berteman.",
     "remove_friend_failed": "Gagal menghapus teman.",
     "request_accepted": "Permintaan Pertemanan Diterima",
-    "now_friends": "Kamu sekarang berteman.",
+    "now_friends": "Anda sekarang berteman.",
     "accept_request_failed": "Gagal menerima permintaan pertemanan.",
     "request_canceled": "Permintaan Pertemanan Dibatalkan",
     "request_has_been_canceled": "Permintaan pertemananmu telah dibatalkan.",

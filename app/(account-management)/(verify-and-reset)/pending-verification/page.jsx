@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState, useRef } from "react";
 import { IoIosMailOpen } from "react-icons/io";
 
@@ -10,6 +11,8 @@ import { getCredentialAccount } from "@/lib/actions/account.action";
 import { resendVerificationToken } from "@/lib/actions/auth.action";
 
 const Page = () => {
+  const t = useTranslations("EmailVerification");
+
   const router = useRouter();
   const [email, setEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,13 +63,13 @@ const Page = () => {
       console.log("Resend email result:", result);
       if (result.success) {
         toast({
-          title: "Success",
-          description: "Account activation link has been sent successfully.",
+          title: t("toast.success_title"),
+          description: t("toast.success_description"),
         });
       } else {
         toast({
-          title: "Failed",
-          description: "Failed to resend activation link. Please try again.",
+          title: t("toast.failed_title"),
+          description: t("toast.failed_description"),
           variant: "destructive",
         });
       }
@@ -74,8 +77,8 @@ const Page = () => {
       console.error("Error resending activation link:", error);
 
       toast({
-        title: "Failed",
-        description: "Failed to resend activation link. Please try again.",
+        title: t("toast.failed_title"),
+        description: t("toast.failed_description"),
         variant: "destructive",
       });
     }
@@ -84,31 +87,29 @@ const Page = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-        <h1 className="text-2xl font-bold text-gray-900 md:text-4xl">
-          Verify your Email
-        </h1>
-        <p className="w-full text-center text-gray-600 md:text-xl">
-          Account activation link has been sent to the e-mail address you
-          provided.
-        </p>
-        <div className="flex size-24 items-center justify-center rounded-xl bg-orange-500 text-7xl text-white">
-          <IoIosMailOpen />
-        </div>
-        <p className="w-full text-center text-gray-600 md:text-xl">
-          Didn&apos;t get the mail?{" "}
-          <span
-            className={`cursor-pointer text-orange-500 ${
-              isLoading ? "" : "hover:underline"
-            }`}
-            onClick={handleResendEmail}
-          >
-            {isLoading ? "Sending..." : "Resend"}
-          </span>
-        </p>
+    <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
+      <h1 className="text-2xl font-bold text-gray-900 md:text-4xl">
+        {t("verify_title")}
+      </h1>
+      <p className="w-full text-center text-gray-600 md:text-xl">
+        {t("verify_description")}{" "}
+        <span className="text-orange-500">{email}</span>
+      </p>
+      <div className="flex size-24 items-center justify-center rounded-xl bg-orange-500 text-7xl text-white">
+        <IoIosMailOpen />
       </div>
-    </>
+      <p className="w-full text-center text-gray-600 md:text-xl">
+        {t("resend_prompt")}{" "}
+        <span
+          className={`cursor-pointer text-orange-500 ${
+            isLoading ? "" : "hover:underline"
+          }`}
+          onClick={handleResendEmail}
+        >
+          {isLoading ? t("sending") : t("resend")}
+        </span>
+      </p>
+    </div>
   );
 };
 

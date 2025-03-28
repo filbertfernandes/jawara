@@ -1,13 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
-import routes from "@/constants/routes";
 import { newVerification } from "@/lib/actions/verificationToken.action";
 
 export default function Page() {
+  const t = useTranslations("EmailVerification");
+
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
   const [email, setEmail] = useState();
@@ -29,18 +30,18 @@ export default function Page() {
         const result = await newVerification(token);
 
         if (result?.success) {
-          setSuccess("Email is Verified!");
+          setSuccess(t("email_is_verified"));
           setEmail(result.data);
         } else {
-          setError(result?.error?.message || "An unexpected error occurred.");
+          setError(result?.error?.message || t("unexpected_error"));
         }
       } catch (error) {
         console.error("Submission error:", error);
 
         setError(
           error?.message?.includes("timed out")
-            ? "Request timed out. Please try again."
-            : error?.message || "An unexpected error occurred."
+            ? t("timeout_error")
+            : error?.message || t("unexpected_error")
         );
       }
     };
@@ -52,25 +53,22 @@ export default function Page() {
     <>
       <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
         <h1 className="text-2xl font-bold text-gray-900 md:text-4xl">
-          {success || error || "Verifying Email..."}
+          {success || error || t("verifying_email")}
         </h1>
         <div className="w-full text-center text-gray-600 md:text-xl">
           {success ? (
             <>
-              Your email <span className="text-orange-500">{email}</span> has
-              been successfully verified! You can start sign in to your Jawara
-              account. 🚀
+              {t("verify_success_message_before_email")}
+              <span className="text-orange-500">{email}</span>
+              {t("verify_success_message_after_email")}
             </>
           ) : error ? (
             <>
-              <p>Oops! Email verification failed. 😔</p>
-              <p>
-                This link may be invalid. Try signing in if needed, you&apos;ll
-                get further instructions.
-              </p>
+              <p>{t("verify_error_message")}</p>
+              <p>{t("verify_error_instruction")}</p>
             </>
           ) : (
-            "Please wait while we verify your email..."
+            t("verifying_email_message")
           )}
         </div>
       </div>

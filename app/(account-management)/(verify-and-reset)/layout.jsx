@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import routes from "@/constants/routes";
 
 const layout = ({ children }) => {
+  const t = useTranslations("EmailVerification");
+
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-orange-100 font-questrial">
       <div className="flex h-auto w-[90%] flex-col justify-center gap-4 rounded-3xl bg-white px-4 py-8 shadow-lg md:w-3/5 md:gap-8 md:px-10 lg:w-2/5 xl:w-1/3">
@@ -19,7 +22,7 @@ const layout = ({ children }) => {
         {children}
         <Link href={routes.SIGN_IN}>
           <div className="mt-4 w-full cursor-pointer text-center text-orange-500 hover:underline">
-            Back to Sign In Page
+            {t("back_to_sign_in_page")}
           </div>
         </Link>
       </div>
