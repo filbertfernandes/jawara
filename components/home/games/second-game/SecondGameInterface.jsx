@@ -17,7 +17,6 @@ export const SecondGameInterface = () => {
   const t = useTranslations("Home");
 
   const { data: session } = useSession();
-  const userId = session?.user?.id;
 
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
@@ -48,22 +47,6 @@ export const SecondGameInterface = () => {
     setMobilePush: state.setMobilePush,
     setMobileJump: state.setMobileJump,
   }));
-
-  async function onFinish() {
-    if (!userId) return;
-
-    try {
-      await updateScore({
-        userId,
-        game: "game2",
-        gameMode: mode,
-        score,
-      });
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
 
   // SCORE
   useEffect(() => {
@@ -103,6 +86,21 @@ export const SecondGameInterface = () => {
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
+      const onFinish = async () => {
+        if (!session?.user?.id) return;
+
+        try {
+          await updateScore({
+            userId: session.user.id,
+            game: "game2",
+            gameMode: mode,
+            score,
+          });
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      };
       onFinish();
     }
   }, [gameState]);

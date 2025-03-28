@@ -72,46 +72,44 @@ const Level = () => {
       {stage !== null &&
         gameState === gameStates.GAME &&
         stage.map((s, index) => (
-          <>
-            <RigidBody
-              key={index}
-              type="kinematicPosition"
-              colliders={false}
-              scale={1}
-              enabledRotations={[false, false, false]}
-              position={[
-                s.position[0],
-                s.word.rigidPositionY ? s.word.rigidPositionY : s.position[1],
-                s.position[2],
+          <RigidBody
+            key={index}
+            type="kinematicPosition"
+            colliders={false}
+            scale={1}
+            enabledRotations={[false, false, false]}
+            position={[
+              s.position[0],
+              s.word.rigidPositionY ? s.word.rigidPositionY : s.position[1],
+              s.position[2],
+            ]}
+            rotation-y={Math.PI * Math.random()}
+          >
+            <CuboidCollider
+              args={s.word.colliderSize}
+              position={s.word.colliderPosition}
+            />
+            <CuboidCollider
+              sensor
+              args={[
+                s.word.colliderSize[0] + 0.5,
+                s.word.colliderSize[1] + 0.5,
+                s.word.colliderSize[2] + 0.5,
               ]}
-              rotation-y={Math.PI * Math.random()}
-            >
-              <CuboidCollider
-                args={s.word.colliderSize}
-                position={s.word.colliderPosition}
-              />
-              <CuboidCollider
-                sensor
-                args={[
-                  s.word.colliderSize[0] + 0.5,
-                  s.word.colliderSize[1] + 0.5,
-                  s.word.colliderSize[2] + 0.5,
-                ]}
-                position={s.word.colliderPosition}
-                onIntersectionEnter={(other) => {
-                  if (other.rigidBodyObject.name === "Player") {
-                    setSelectAnimal(index);
-                  }
-                }}
-                onIntersectionExit={(other) => {
-                  if (other.rigidBodyObject.name === "Player") {
-                    setSelectAnimal(null);
-                  }
-                }}
-              />
-              {s.word.model}
-            </RigidBody>
-          </>
+              position={s.word.colliderPosition}
+              onIntersectionEnter={(other) => {
+                if (other.rigidBodyObject.name === "Player") {
+                  setSelectAnimal(index);
+                }
+              }}
+              onIntersectionExit={(other) => {
+                if (other.rigidBodyObject.name === "Player") {
+                  setSelectAnimal(null);
+                }
+              }}
+            />
+            {s.word.model}
+          </RigidBody>
         ))}
     </>
   );

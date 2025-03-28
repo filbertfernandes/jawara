@@ -1,4 +1,5 @@
 import { addEffect } from "@react-three/fiber";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
@@ -8,10 +9,13 @@ import { useFourthGame } from "./stores/useFourthGame.jsx";
 import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
 import ScorePlusInterface from "@/components/home/shared/interfaces/ScorePlusInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import { updateScore } from "@/lib/actions/score.action.js";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const FourthGameInterface = () => {
   const t = useTranslations("Home");
+
+  const { data: session } = useSession();
 
   const time = useRef();
 
@@ -45,7 +49,22 @@ export const FourthGameInterface = () => {
 
   useEffect(() => {
     if (gameState === gameStates.GAME_OVER) {
-      // onFinish()
+      const onFinish = async () => {
+        if (!session?.user?.id) return;
+
+        try {
+          await updateScore({
+            userId: session.user.id,
+            game: "game4",
+            gameMode: mode,
+            score,
+          });
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      };
+      onFinish();
     }
   }, [gameState]);
 

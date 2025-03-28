@@ -1,4 +1,5 @@
 import { addEffect } from "@react-three/fiber";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
@@ -7,24 +8,47 @@ import { useFirstGame } from "./stores/useFirstGame.jsx";
 
 import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import { updateScore } from "@/lib/actions/score.action.js";
 
 export const FirstGameInterface = () => {
   const t = useTranslations("Home");
+
+  const { data: session } = useSession();
 
   const [score, setScore] = useState(0);
 
   const time = useRef();
 
-  // GAME STATE
   const { gameState } = useGame((state) => ({
     gameState: state.gameState,
   }));
 
-  const { startGame } = useFirstGame((state) => ({
+  const { startGame, mode } = useFirstGame((state) => ({
     startGame: state.startGame,
+    mode: state.mode,
   }));
 
-  // SCORE
+  useEffect(() => {
+    if (gameState === gameStates.GAME_OVER) {
+      const onFinish = async () => {
+        if (!session?.user?.id) return;
+
+        try {
+          await updateScore({
+            userId: session.user.id,
+            game: "game1",
+            gameMode: mode,
+            score,
+          });
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      };
+      onFinish();
+    }
+  }, [score]);
+
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
       const state = useGame.getState();
