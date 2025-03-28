@@ -56,7 +56,7 @@ const LaptopScreen = () => {
                     <Link
                       key={user._id}
                       href={`${routes.PROFILE}/${user._id}`}
-                      className="flex h-4 w-[45%] cursor-pointer items-center gap-[0.1rem] bg-gray-100 p-[0.1rem] transition-all duration-200 ease-in-out hover:bg-gray-200"
+                      className="flex h-4 w-[45%] cursor-pointer items-center gap-[0.1rem] bg-gray-100 p-[0.1rem] transition-all duration-300 ease-in-out hover:bg-gray-200"
                     >
                       <div
                         className="size-2"
@@ -79,7 +79,7 @@ const LaptopScreen = () => {
               {Array.from({ length: totalPages }, (_, index) => (
                 <div
                   key={index}
-                  className={`size-1 cursor-pointer transition-all duration-200 ease-in-out ${
+                  className={`size-1 cursor-pointer transition-all duration-300 ease-in-out ${
                     index + 1 === page
                       ? "bg-gray-900"
                       : "bg-gray-900/50 hover:bg-gray-900"

@@ -146,7 +146,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             {t("no_account")}{" "}
             <Link
               href={routes.SIGN_UP}
-              className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
+              className="font-bold text-orange-500 transition-all duration-300 ease-in-out hover:text-orange-600"
             >
               {t("sign_up")}
             </Link>
@@ -156,7 +156,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
             {t("has_account")}{" "}
             <Link
               href={routes.SIGN_IN}
-              className="font-bold text-orange-500 transition-all duration-200 ease-in-out hover:text-orange-600"
+              className="font-bold text-orange-500 transition-all duration-300 ease-in-out hover:text-orange-600"
             >
               {t("sign_in")}
             </Link>

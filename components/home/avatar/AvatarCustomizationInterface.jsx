@@ -37,7 +37,7 @@ const AssetBox = () => {
           <button
             key={category.id}
             onClick={() => setCurrentCategory(category)}
-            className={`shrink-0 border-b font-medium transition-colors duration-200 ${
+            className={`shrink-0 border-b font-medium transition-colors duration-300 ${
               currentCategory.name === category.name
                 ? "border-b-white text-white shadow-purple-100"
                 : "border-b-transparent text-gray-200 hover:text-gray-100"
@@ -243,7 +243,7 @@ const ColorPicker = () => {
       {currentCategory.colorPalette?.colors.map((color, index) => (
         <button
           key={`${index}-${color}`}
-          className={`w-10 h-10 p-1.5 drop-shadow-md bg-black/20 shrink-0 rounded-lg overflow-hidden transition-all duration-200 border-2
+          className={`w-10 h-10 p-1.5 drop-shadow-md bg-black/20 shrink-0 rounded-lg overflow-hidden transition-all duration-300 border-2
              ${
                customization[currentCategory.name].color === color
                  ? "border-white"

@@ -25,7 +25,7 @@ body {
   }
 
   .fullscreen-black-transparent {
-    @apply fixed left-0 top-0 flex size-full bg-black/50 p-4 sm:p-14 lg:px-32 xl:px-64;
+    @apply fixed left-0 top-0 flex size-full bg-black/70 p-4 sm:p-14 lg:px-32 xl:px-64;
   }
 
   .fullscreen-backdrop {
@@ -53,7 +53,7 @@ body {
   }
 
   .btn-template {
-    @apply flex cursor-pointer items-center justify-center rounded-full py-1 text-center font-bold transition-all duration-200 ease-in-out;
+    @apply flex cursor-pointer items-center justify-center rounded-full py-1 text-center font-bold transition-all duration-300 ease-in-out;
   }
 }
 

@@ -1,9 +1,11 @@
 import multiavatar from "@multiavatar/multiavatar/esm";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { FaCheck, FaUserPlus, FaUsers } from "react-icons/fa";
 
+import routes from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 import {
   acceptFriendRequest,
@@ -17,6 +19,8 @@ const UserProfile = ({ profileUser }) => {
   const t = useTranslations("Profile");
 
   const { data: session } = useSession();
+
+  const router = useRouter();
 
   const [friendRequestId, setFriendRequestId] = useState(false);
   const [friendsCount, setFriendsCount] = useState(
@@ -45,6 +49,12 @@ const UserProfile = ({ profileUser }) => {
 
   const handleFriendButtonClick = async () => {
     if (isLoading) return;
+
+    if (!session?.user?.id) {
+      router.push(routes.SIGN_IN);
+      return;
+    }
+
     setIsLoading(true);
 
     try {

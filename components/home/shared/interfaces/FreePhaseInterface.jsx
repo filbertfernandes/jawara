@@ -37,7 +37,7 @@ export const IconButton = ({
 }) => {
   return (
     <div
-      className={`flex ${size} cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-200 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
+      className={`flex ${size} cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-300 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
       onClick={onClick}
     >
       {children}

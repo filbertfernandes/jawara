@@ -14,7 +14,7 @@ import BackButton from "../home/shared/interfaces/BackButton";
 import routes from "@/constants/routes";
 
 const AchievementOverlay = ({ image, description, onClose }) => (
-  <div className="fixed left-0 top-0 z-20 flex size-full flex-col items-center justify-center gap-4 bg-black/80 p-4 font-questrial text-white sm:p-14 lg:px-32 xl:px-64">
+  <div className="fixed left-0 top-0 z-20 flex size-full flex-col items-center justify-center gap-4 bg-black/70 p-4 font-questrial text-white sm:p-14 lg:px-32 xl:px-64">
     <div className="relative flex flex-col items-center">
       <button
         className="absolute -right-8 -top-8 rounded-full p-1 text-3xl sm:text-4xl"
@@ -77,7 +77,7 @@ const ProfileInterface = ({ profileUser }) => {
             <FaArrowDown />
           </div>
         </div>
-        <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/75 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
+        <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/70 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
           <UserProfile profileUser={profileUser} />
 
           <AchievementGallery onAchievementClick={handleAchievementClick} />

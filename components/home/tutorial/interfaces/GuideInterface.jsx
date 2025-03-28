@@ -32,13 +32,13 @@ const GuideInterface = () => {
         </div>
         <div className="flex size-full items-end justify-center gap-60 text-4xl text-white">
           <button
-            className="flex items-center gap-2 transition-all duration-200 ease-in-out hover:text-gray-200"
+            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200"
             onClick={decrementGuideIndex}
           >
             <FaArrowLeft size={32} /> {t("previous")}
           </button>
           <button
-            className="flex items-center gap-2 transition-all duration-200 ease-in-out hover:text-gray-200"
+            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200"
             onClick={incrementGuideIndex}
           >
             {t("next")} <FaArrowRight size={32} />

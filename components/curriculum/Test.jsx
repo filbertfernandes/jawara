@@ -145,7 +145,7 @@ const Test = ({ chapter, isPostTest = false }) => {
   return (
     <div
       className={`flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900 ${
-        showOverlay ? "bg-black/80" : ""
+        showOverlay ? "bg-black/70" : ""
       }`}
     >
       {isLoading ? (
