@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { achievementsData } from "../profile/stores/achievementsData";
@@ -6,6 +7,8 @@ import { achievementsData } from "../profile/stores/achievementsData";
 import { useGame } from "@/hooks/useGame";
 
 export default function NewAchievementPopup() {
+  const t = useTranslations("Home");
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -70,10 +73,10 @@ export default function NewAchievementPopup() {
         />
         <div className="ml-4 flex flex-col">
           <p className="text-sm font-bold text-gray-900">
-            Achievement Unlocked!
+            {t("new_achievement_unlocked")}
           </p>
           <p className="text-xs text-gray-900">
-            {achievement.description_english}
+            {achievement[`description_${t("language")}`]}
           </p>
         </div>
       </div>
