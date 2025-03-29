@@ -9,6 +9,7 @@ import { useFirstGame } from "./stores/useFirstGame.jsx";
 import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
 import { updateScore } from "@/lib/actions/score.action.js";
+import { getUnseenAchievements } from "@/lib/actions/userAchievement.action.js";
 
 export const FirstGameInterface = () => {
   const t = useTranslations("Home");
@@ -19,8 +20,9 @@ export const FirstGameInterface = () => {
 
   const time = useRef();
 
-  const { gameState } = useGame((state) => ({
+  const { gameState, setAchievementsPopup } = useGame((state) => ({
     gameState: state.gameState,
+    setAchievementsPopup: state.setAchievementsPopup,
   }));
 
   const { startGame, mode } = useFirstGame((state) => ({
@@ -34,12 +36,17 @@ export const FirstGameInterface = () => {
         if (!session?.user?.id) return;
 
         try {
-          await updateScore({
+          const { isGetAchievements } = await updateScore({
             userId: session.user.id,
             game: "game1",
             gameMode: mode,
             score,
           });
+
+          if (isGetAchievements) {
+            const { data } = await getUnseenAchievements(session.user.id);
+            setAchievementsPopup(data);
+          }
         } catch (error) {
           console.log(error);
           throw error;

@@ -11,6 +11,7 @@ import GameMenuInterface from "@/components/home/shared/interfaces/GameMenuInter
 import ScorePlusInterface from "@/components/home/shared/interfaces/ScorePlusInterface.jsx";
 import { gameStates, useGame } from "@/hooks/useGame.jsx";
 import { updateScore } from "@/lib/actions/score.action.js";
+import { getUnseenAchievements } from "@/lib/actions/userAchievement.action.js";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const ThirdGameInterface = () => {
@@ -22,8 +23,9 @@ export const ThirdGameInterface = () => {
 
   const time = useRef();
 
-  const { gameState } = useGame((state) => ({
+  const { gameState, setAchievementsPopup } = useGame((state) => ({
     gameState: state.gameState,
+    setAchievementsPopup: state.setAchievementsPopup,
   }));
 
   const {
@@ -50,12 +52,17 @@ export const ThirdGameInterface = () => {
         if (!session?.user?.id) return;
 
         try {
-          await updateScore({
+          const { isGetAchievements } = await updateScore({
             userId: session.user.id,
             game: "game3",
             gameMode: mode,
             score,
           });
+
+          if (isGetAchievements) {
+            const { data } = await getUnseenAchievements(session.user.id);
+            setAchievementsPopup(data);
+          }
         } catch (error) {
           console.log(error);
           throw error;

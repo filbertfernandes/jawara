@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 
 import AvatarCustomizationInterface from "./avatar/AvatarCustomizationInterface";
+import NewAchievementPopup from "../shared/NewAchievementPopup";
 import { customizationGroups } from "./avatar/stores/customizationGroups";
 import { useCustomization } from "./avatar/stores/useCustomization";
 import { TranslationInterface } from "./exercise/translation/TranslationInterface";
@@ -197,6 +198,8 @@ export default function Home() {
       {!loading && gameInterfaces[phase]}
 
       {loading && <CanvasLoader />}
+
+      <NewAchievementPopup />
     </>
   );
 }

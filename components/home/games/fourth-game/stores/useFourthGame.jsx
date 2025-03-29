@@ -70,7 +70,7 @@ export const useFourthGame = create(
             combo: 1,
             mode,
             timer: 0,
-            initialTimer: 100,
+            initialTimer: 5,
             startTime: Date.now(),
             correctAnswersOrder,
             answerCount: 0,

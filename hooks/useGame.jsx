@@ -44,6 +44,12 @@ export const useGame = create(
       playerPosition: PLAYER_INITIAL_POSITION,
       customizationWarning: true,
       joystickInput: { x: 0, y: 0 },
+      achievementsPopup: [],
+      setAchievementsPopup: (data) => {
+        set(() => {
+          return { achievementsPopup: data };
+        });
+      },
 
       setJoystickInput: (input) => {
         set(() => {

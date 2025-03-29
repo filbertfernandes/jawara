@@ -19,6 +19,7 @@ import {
   getTotalCorrectTranslations,
   incrementCorrectTranslations,
 } from "@/lib/actions/user.action";
+import { getUnseenAchievements } from "@/lib/actions/userAchievement.action";
 import { SoundManager } from "@/lib/SoundManager";
 
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
@@ -62,8 +63,9 @@ export const TranslationInterface = () => {
 
   const sentenceBox = useRef();
 
-  const { changePhase } = useGame((state) => ({
+  const { changePhase, setAchievementsPopup } = useGame((state) => ({
     changePhase: state.changePhase,
+    setAchievementsPopup: state.setAchievementsPopup,
   }));
 
   useEffect(() => {
@@ -151,7 +153,14 @@ export const TranslationInterface = () => {
 
       if (isTrue) {
         setCorrectCount(correctCount + 1);
-        await incrementCorrectTranslations(userId);
+        const { isGetAchievements } = await incrementCorrectTranslations(
+          userId
+        );
+
+        if (isGetAchievements) {
+          const { data } = await getUnseenAchievements(session.user.id);
+          setAchievementsPopup(data);
+        }
       }
     } catch (error) {
       console.log(error);

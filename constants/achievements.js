@@ -1,4 +1,4 @@
-export const ACHIEVEMENTS = {
+export const achievements = {
   CURRICULUM_COMPLETION: "curriculum-completion",
   TOP_3: "top-3",
   TOP_10: "top-10",

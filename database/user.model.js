@@ -9,24 +9,60 @@ const UserSchema = new Schema(
     friends: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
     scores: {
       game1: {
-        ngoko: Number,
-        madya: Number,
-        alus: Number,
+        ngoko: {
+          type: Number,
+          default: -1,
+        },
+        madya: {
+          type: Number,
+          default: -1,
+        },
+        alus: {
+          type: Number,
+          default: -1,
+        },
       },
       game2: {
-        ngoko: Number,
-        madya: Number,
-        alus: Number,
+        ngoko: {
+          type: Number,
+          default: -1,
+        },
+        madya: {
+          type: Number,
+          default: -1,
+        },
+        alus: {
+          type: Number,
+          default: -1,
+        },
       },
       game3: {
-        ngoko: Number,
-        madya: Number,
-        alus: Number,
+        ngoko: {
+          type: Number,
+          default: -1,
+        },
+        madya: {
+          type: Number,
+          default: -1,
+        },
+        alus: {
+          type: Number,
+          default: -1,
+        },
       },
       game4: {
-        ngoko: Number,
-        madya: Number,
-        alus: Number,
+        ngoko: {
+          type: Number,
+          default: -1,
+        },
+        madya: {
+          type: Number,
+          default: -1,
+        },
+        alus: {
+          type: Number,
+          default: -1,
+        },
       },
     },
   },

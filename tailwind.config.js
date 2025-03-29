@@ -22,6 +22,7 @@ export default {
       animation: {
         bounceIn: "bounceIn 0.5s ease-out",
         bounceInFadeOut: "bounceInFadeOut 3s ease-out",
+        slideDown: "slideDown 0.5s ease-out",
       },
       keyframes: {
         bounceIn: {
@@ -50,6 +51,16 @@ export default {
           "100%": {
             transform: "scale(0)",
             opacity: "0",
+          },
+        },
+        slideDown: {
+          "0%": {
+            transform: "translateY(-100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
           },
         },
       },

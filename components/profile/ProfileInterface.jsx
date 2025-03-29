@@ -80,7 +80,10 @@ const ProfileInterface = ({ profileUser }) => {
         <div className="flex h-auto min-h-screen w-full flex-col items-center gap-10 bg-black/70 px-6 py-10 text-white backdrop-blur-md md:px-10 laptop-sm:w-1/2">
           <UserProfile profileUser={profileUser} />
 
-          <AchievementGallery onAchievementClick={handleAchievementClick} />
+          <AchievementGallery
+            onAchievementClick={handleAchievementClick}
+            userId={profileUser?._id}
+          />
 
           <TotalCorrectTranslation
             total={profileUser?.totalCorrectTranslations}
