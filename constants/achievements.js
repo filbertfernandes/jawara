@@ -1,0 +1,17 @@
+export const ACHIEVEMENTS = {
+  CURRICULUM_COMPLETION: "curriculum-completion",
+  TOP_3: "top-3",
+  TOP_10: "top-10",
+  TOP_50: "top-50",
+  TOP_100: "top-100",
+  CORRECT_TRANSLATIONS_1000: "correct-translations-1000",
+  CORRECT_TRANSLATIONS_500: "correct-translations-500",
+  CORRECT_TRANSLATIONS_250: "correct-translations-250",
+  CORRECT_TRANSLATIONS_100: "correct-translations-100",
+  CORRECT_TRANSLATIONS_25: "correct-translations-25",
+  CORRECT_TRANSLATIONS_1: "correct-translations-1",
+  FIRST_TIME_BODY_PARTS: "first-time-body-parts",
+  FIRST_TIME_COLORS: "first-time-colors",
+  FIRST_TIME_NUMBERS: "first-time-numbers",
+  FIRST_TIME_ANIMALS: "first-time-animals",
+};

@@ -104,7 +104,7 @@ export const useThirdGame = create(
             ].isAnswered = true;
           }
 
-          const score = state.score - 2;
+          const score = Math.max(state.score - 2, 0);
           return {
             combo: 1,
             score,

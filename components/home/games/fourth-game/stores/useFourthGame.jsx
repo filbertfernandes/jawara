@@ -102,7 +102,7 @@ export const useFourthGame = create(
 
       decrementScore: () => {
         set((state) => {
-          const score = state.score - 2;
+          const score = Math.max(state.score - 2, 0);
           return {
             combo: 1,
             score,
