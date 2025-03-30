@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { FaQuestion } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 import EditProfileCard from "./EditProfileCard";
@@ -51,19 +51,13 @@ export const IconButton = ({
 export default function FreePhaseInterface() {
   const t = useTranslations("Home");
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const [loading, setLoading] = useState(true);
   const [friendRequests, setFriendRequests] = useState([]);
   const [friendRequestsOverlay, setFriendRequestsOverlay] = useState(false);
   const [editProfileOverlay, setEditProfileOverlay] = useState(false);
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    if (status !== "loading") {
-      setLoading(false);
-    }
-  }, [status]);
 
   useEffect(() => {
     if (session?.user?.id) {
@@ -75,12 +69,13 @@ export default function FreePhaseInterface() {
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
+        } finally {
+          setLoading(false);
         }
       };
 
       const checkFriendRequest = async () => {
         const result = await getFriendRequest(session.user.id);
-
         setFriendRequests(result.friendRequests);
       };
 
@@ -207,21 +202,20 @@ export default function FreePhaseInterface() {
       )}
 
       {friendRequestsOverlay && (
-        <div className="fixed left-0 top-0 flex size-full items-center justify-center">
-          {/* ubah code di bawah ini */}
+        <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial">
           <div
-            className={`relative flex h-1/2 w-[90%] flex-col items-center gap-4 overflow-scroll bg-gradient-to-r from-orange-500 to-orange-700 px-4 py-8 shadow-xl sm:w-1/2 sm:gap-6 lg:h-3/4 lg:w-1/3 ${
+            className={`relative flex h-[500px] w-[400px] flex-col items-center gap-4 overflow-scroll rounded-2xl bg-white px-4 py-8 shadow-xl ${
               friendRequestsOverlay ? "animate-bounceIn" : "opacity-0"
             }`}
           >
             <button
-              className="absolute right-0 top-0 cursor-pointer rounded-full p-1 text-3xl text-gray-100 transition-all duration-300 ease-in-out hover:text-gray-300 sm:text-4xl"
+              className="absolute right-0 top-0 cursor-pointer rounded-full p-1 text-3xl text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700 sm:text-4xl"
               onClick={() => setFriendRequestsOverlay(false)}
             >
               <IoMdCloseCircle />
             </button>
-            <h5 className="h3-bold text-gray-100">{t("friend_requests")}</h5>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <h5 className="h3-bold text-gray-900">{t("friend_requests")}</h5>
+            <div className="flex w-full flex-wrap justify-center gap-4 sm:gap-6">
               {friendRequests?.length === 0 ? (
                 <p className="text-center text-lg text-gray-100">
                   {t("no_friend_requests")}
@@ -230,42 +224,44 @@ export default function FreePhaseInterface() {
                 friendRequests?.map((request) => (
                   <div
                     key={request.sender._id}
-                    className="flex items-center rounded-xl bg-white p-4 text-gray-100 shadow-md"
+                    className="flex w-full items-center justify-between rounded-xl bg-gray-100 p-4 text-gray-100 shadow-md"
                   >
                     {/* Avatar */}
                     <div
-                      className="size-20"
+                      className="flex size-12"
                       dangerouslySetInnerHTML={{
-                        __html: multiavatar(1),
+                        __html: multiavatar(
+                          request.sender._id + request.sender.profileAvatarIndex
+                        ),
                       }}
                     />
-                    {/* Info and Actions */}
-                    <div className="ml-4 flex flex-col">
+                    {/* Info */}
+                    <div className="flex w-4/5 flex-col items-start px-4">
                       <p className="font-bold text-gray-900">
                         {request.sender.name}
                       </p>
-                      <p className="text-gray-600">
+                      <p className="text-sm text-gray-600">
                         @{request.sender.username}
                       </p>
-                      {/* Actions */}
-                      <div className="mt-2 flex gap-2">
-                        <button
-                          className="btn-template bg-green-500 px-3 py-1 text-gray-100 shadow hover:bg-green-600"
-                          onClick={() =>
-                            handleFriendRequestButtonClick(request, true)
-                          }
-                        >
-                          {t("accept")}
-                        </button>
-                        <button
-                          className="btn-template bg-red-500 px-3 py-1 text-gray-100 shadow hover:bg-red-600"
-                          onClick={() =>
-                            handleFriendRequestButtonClick(request, false)
-                          }
-                        >
-                          {t("reject")}
-                        </button>
-                      </div>
+                    </div>
+                    {/* Actions */}
+                    <div className="flex w-1/5 justify-center gap-4">
+                      <button
+                        className="text-2xl text-green-500 hover:text-green-600"
+                        onClick={() =>
+                          handleFriendRequestButtonClick(request, true)
+                        }
+                      >
+                        <IoMdCheckmarkCircle />
+                      </button>
+                      <button
+                        className="text-2xl text-red-500 hover:text-red-600"
+                        onClick={() =>
+                          handleFriendRequestButtonClick(request, false)
+                        }
+                      >
+                        <IoMdCloseCircle />
+                      </button>
                     </div>
                   </div>
                 ))
@@ -297,7 +293,7 @@ export default function FreePhaseInterface() {
               <div
                 className="size-12"
                 dangerouslySetInnerHTML={{
-                  __html: multiavatar(user._id),
+                  __html: multiavatar(user._id + user.profileAvatarIndex),
                 }}
               />
             </DropdownMenuTrigger>

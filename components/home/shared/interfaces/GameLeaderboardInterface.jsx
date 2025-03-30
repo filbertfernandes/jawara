@@ -154,7 +154,7 @@ const GameLeaderboardInterface = () => {
               <li key={index}>
                 <Link
                   href={`${routes.PROFILE}/${topScore.userId}`}
-                  className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1"
+                  className="mb-4 flex justify-between border-b-2 border-white px-1 pb-3 pt-1 transition-all duration-300 ease-in-out hover:bg-white/25"
                 >
                   <div className="flex">
                     <div className="flex w-5 items-center text-center sm:w-10">
@@ -164,12 +164,15 @@ const GameLeaderboardInterface = () => {
                       <div
                         className="size-10 sm:size-12"
                         dangerouslySetInnerHTML={{
-                          __html: multiavatar(topScore.userId),
+                          __html: multiavatar(
+                            topScore.userId + topScore.profileAvatarIndex
+                          ),
                         }}
                       />
                     </div>
-                    <div className="ml-4 flex items-center">
-                      {topScore.name}
+                    <div className="ml-4 flex flex-col justify-center">
+                      <div>{topScore.name}</div>
+                      <div className="text-sm">@{topScore.username}</div>
                     </div>
                   </div>
                   <div className="flex items-center">{topScore.score}</div>

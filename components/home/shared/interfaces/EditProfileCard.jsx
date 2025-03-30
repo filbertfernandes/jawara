@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import multiavatar from "@multiavatar/multiavatar/esm";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaEdit } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 
 import {
@@ -17,7 +16,8 @@ import { toast } from "@/hooks/use-toast";
 import { updateUser } from "@/lib/actions/user.action";
 import { EditProfileSchema } from "@/lib/validations";
 
-const EditProfileCard = ({ onClose, isVisible, onUpdate, user, setUser }) => {
+const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
+  const [profileAvatarIndex, setProfileAvatarIndex] = useState("0");
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
@@ -31,6 +31,7 @@ const EditProfileCard = ({ onClose, isVisible, onUpdate, user, setUser }) => {
   useEffect(() => {
     if (user) {
       form.reset({ name: user.name, username: user.username });
+      setProfileAvatarIndex(user.profileAvatarIndex);
     }
   }, [user, form]);
 
@@ -39,7 +40,12 @@ const EditProfileCard = ({ onClose, isVisible, onUpdate, user, setUser }) => {
 
     setLoading(true);
     try {
-      const res = await updateUser(user._id, data);
+      const res = await updateUser(
+        user._id,
+        data.name,
+        data.username,
+        profileAvatarIndex
+      );
       if (res.success) {
         setUser(res.data);
         toast({
@@ -70,9 +76,37 @@ const EditProfileCard = ({ onClose, isVisible, onUpdate, user, setUser }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 flex size-full items-center justify-center">
+    <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial laptop-sm:flex-row">
       <div
-        className={`relative flex w-[400px] flex-col gap-4 rounded-2xl bg-white p-6 shadow-xl ${
+        className={`h-[250px] w-[400px] overflow-auto rounded-2xl bg-white p-4 shadow-xl laptop-sm:h-[400px] laptop-sm:w-[300px] ${
+          isVisible ? "animate-bounceIn" : "opacity-0"
+        }`}
+      >
+        <h3 className="h5-bold mb-2 font-semibold text-gray-900">
+          Select Avatar
+        </h3>
+        <div className="grid grid-cols-4 gap-2">
+          {[...Array(40).keys()].map((i) => (
+            <div
+              key={i}
+              className="cursor-pointer rounded-lg border p-2 hover:bg-gray-100"
+              onClick={() => setProfileAvatarIndex(i.toString())}
+            >
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: multiavatar(user?._id + i.toString()).replace(
+                    "<svg",
+                    '<svg style="pointer-events: none;"'
+                  ),
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className={`relative flex size-[400px] flex-col gap-4 rounded-2xl bg-white p-6 shadow-xl ${
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
@@ -88,16 +122,13 @@ const EditProfileCard = ({ onClose, isVisible, onUpdate, user, setUser }) => {
           <div className="relative flex size-20">
             <div
               className="flex size-full"
-              dangerouslySetInnerHTML={{ __html: multiavatar(user?._id) }}
+              dangerouslySetInnerHTML={{
+                __html: multiavatar(user?._id + profileAvatarIndex),
+              }}
             />
-            <div className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/70 opacity-0 transition-opacity hover:opacity-100">
-              <FaEdit size={24} className="text-gray-100" />
-            </div>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              Edit Profile
-            </h2>
+            <h3 className="h5-bold text-lg text-gray-900">Edit Profile</h3>
             <p className="text-sm text-gray-600">Update your informations</p>
           </div>
         </div>

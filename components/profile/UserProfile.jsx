@@ -119,7 +119,11 @@ const UserProfile = ({ profileUser }) => {
     <div className="flex h-auto min-h-40 w-full items-center justify-center gap-4">
       <div
         className="flex size-36"
-        dangerouslySetInnerHTML={{ __html: multiavatar(profileUser?._id) }}
+        dangerouslySetInnerHTML={{
+          __html: multiavatar(
+            profileUser?._id + profileUser?.profileAvatarIndex
+          ),
+        }}
       />
       <div className="flex w-full flex-col gap-6 lg:gap-10">
         <div>

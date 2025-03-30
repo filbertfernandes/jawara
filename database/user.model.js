@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true },
     totalCorrectTranslations: { type: Number, default: 0 },
     friends: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
+    profileAvatarIndex: { type: String, default: "0" },
     scores: {
       game1: {
         ngoko: {
