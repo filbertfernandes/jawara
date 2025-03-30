@@ -7,7 +7,10 @@
     "sign_out": "Keluar",
     "profile": "Profil",
     "edit_profile": "Ubah Profil",
-    "friend_request": "Permintaan Pertemanan",
+    "friend_requests": "Permintaan Pertemanan",
+    "accept": "Terima",
+    "reject": "Tolak",
+    "no_friend_requests": "Tidak ada permintaan pertemanan.",
 
     "leaderboard": "Papan Peringkat",
     "global_leaderboard": "Papan Peringkat Global",

@@ -127,7 +127,7 @@ const UserProfile = ({ profileUser }) => {
           <h5>@{profileUser?.username}</h5>
         </div>
         <div className="flex flex-wrap gap-2">
-          <div className="btn-template w-4/5 bg-gray-800 hover:bg-gray-900 lg:w-2/5">
+          <div className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-2/5">
             <p>
               {friendsCount} {t("friends")}
             </p>
@@ -143,7 +143,7 @@ const UserProfile = ({ profileUser }) => {
                   ? "cursor-pointer bg-green-500 hover:bg-green-600"
                   : isFriendRequest
                   ? "cursor-default bg-gray-500 hover:bg-gray-600"
-                  : "cursor-pointer bg-orange-500 hover:bg-orange-600"
+                  : "cursor-pointer bg-blue-500 hover:bg-blue-600"
               } lg:w-2/5`}
             >
               <p>

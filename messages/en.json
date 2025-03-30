@@ -7,7 +7,10 @@
     "sign_out": "Sign Out",
     "profile": "Profile",
     "edit_profile": "Edit Profile",
-    "friend_request": "Friend Request",
+    "friend_requests": "Friend Requests",
+    "accept": "Accept",
+    "reject": "Reject",
+    "no_friend_requests": "No friend requests.",
 
     "leaderboard": "Leaderboard",
     "global_leaderboard": "Global Leaderboard",
