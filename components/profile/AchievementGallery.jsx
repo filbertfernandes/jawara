@@ -68,7 +68,13 @@ const AchievementGallery = ({ onAchievementClick, userId }) => {
                 />
 
                 {/* Overlay with Description (Always Visible on Hover) */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/70 p-2 text-center text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div
+                  className={`absolute inset-0 flex items-center justify-center p-2 text-center text-sm text-white opacity-0 transition-opacity duration-300 ${
+                    !isUnlocked
+                      ? "bg-black opacity-100"
+                      : "bg-black/70 group-hover:opacity-100"
+                  }`}
+                >
                   {achievement[`description_${t("language")}`]}
                 </div>
               </div>

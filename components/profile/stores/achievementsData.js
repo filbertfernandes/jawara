@@ -38,8 +38,8 @@ export const achievementsData = [
   {
     id: "correct-translations-1000",
     src: "/images/achievements/correct-translations-1000.jpg",
-    description_english: "Achieve 1,000 correct translations.",
-    description_indonesian: "Capai 1.000 terjemahan yang benar.",
+    description_english: "Achieve 1000 correct translations.",
+    description_indonesian: "Capai 1000 terjemahan yang benar.",
   },
   {
     id: "correct-translations-500",
