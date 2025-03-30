@@ -9,6 +9,7 @@ import { GiClothes } from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
+import EditProfileCard from "./EditProfileCard";
 import LanguageSelector from "./LanguageSelector";
 
 import {
@@ -28,6 +29,8 @@ import {
   getFriendRequest,
   rejectFriendRequest,
 } from "@/lib/actions/friend.action";
+import { getUser } from "@/lib/actions/user.action";
+import { SoundManager } from "@/lib/SoundManager";
 
 export const IconButton = ({
   onClick,
@@ -49,9 +52,12 @@ export default function FreePhaseInterface() {
   const t = useTranslations("Home");
 
   const { data: session, status } = useSession();
+
   const [loading, setLoading] = useState(true);
   const [friendRequests, setFriendRequests] = useState([]);
   const [friendRequestsOverlay, setFriendRequestsOverlay] = useState(false);
+  const [editProfileOverlay, setEditProfileOverlay] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (status !== "loading") {
@@ -61,15 +67,27 @@ export default function FreePhaseInterface() {
 
   useEffect(() => {
     if (session?.user?.id) {
+      const fetchUser = async () => {
+        try {
+          const result = await getUser(session.user.id);
+          if (result.success) {
+            setUser(result.data);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+
       const checkFriendRequest = async () => {
         const result = await getFriendRequest(session.user.id);
 
         setFriendRequests(result.friendRequests);
       };
 
+      fetchUser();
       checkFriendRequest();
     }
-  }, [session?.user?.id]);
+  }, [session]);
 
   const {
     changePhase,
@@ -166,6 +184,7 @@ export default function FreePhaseInterface() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
+        setEditProfileOverlay(false);
         setFriendRequestsOverlay(false);
       }
     };
@@ -178,8 +197,18 @@ export default function FreePhaseInterface() {
 
   return (
     <>
+      {editProfileOverlay && (
+        <EditProfileCard
+          onClose={() => setEditProfileOverlay(false)}
+          isVisible={editProfileOverlay}
+          user={user}
+          setUser={(data) => setUser(data)}
+        />
+      )}
+
       {friendRequestsOverlay && (
         <div className="fixed left-0 top-0 flex size-full items-center justify-center">
+          {/* ubah code di bawah ini */}
           <div
             className={`relative flex h-1/2 w-[90%] flex-col items-center gap-4 overflow-scroll bg-gradient-to-r from-orange-500 to-orange-700 px-4 py-8 shadow-xl sm:w-1/2 sm:gap-6 lg:h-3/4 lg:w-1/3 ${
               friendRequestsOverlay ? "animate-bounceIn" : "opacity-0"
@@ -201,7 +230,7 @@ export default function FreePhaseInterface() {
                 friendRequests?.map((request) => (
                   <div
                     key={request.sender._id}
-                    className="flex items-center rounded-xl bg-gray-100 p-4 text-gray-100 shadow-md"
+                    className="flex items-center rounded-xl bg-white p-4 text-gray-100 shadow-md"
                   >
                     {/* Avatar */}
                     <div
@@ -262,30 +291,39 @@ export default function FreePhaseInterface() {
 
         {loading ? (
           <LoadingSpinner size={30} />
-        ) : session?.user ? (
+        ) : user ? (
           <DropdownMenu>
             <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
               <div
                 className="size-12"
                 dangerouslySetInnerHTML={{
-                  __html: multiavatar(session.user.id),
+                  __html: multiavatar(user._id),
                 }}
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
+              <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <Link href={`${routes.PROFILE}/${session?.user?.id}`}>
+              <Link href={`${routes.PROFILE}/${user._id}`}>
                 <DropdownMenuItem className="cursor-pointer">
                   {t("profile")}
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  SoundManager.playSound("buttonClick");
+                  setEditProfileOverlay(true);
+                }}
+              >
                 {t("edit_profile")}
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="cursor-pointer"
-                onClick={() => setFriendRequestsOverlay(true)}
+                onClick={() => {
+                  SoundManager.playSound("buttonClick");
+                  setFriendRequestsOverlay(true);
+                }}
               >
                 {t("friend_requests")}
                 {friendRequests?.length > 0 && (
