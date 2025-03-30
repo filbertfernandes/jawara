@@ -287,20 +287,20 @@ export default function FreePhaseInterface() {
 
         {loading ? (
           <LoadingSpinner size={30} />
-        ) : user ? (
+        ) : session?.user?.id ? (
           <DropdownMenu>
             <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
               <div
                 className="size-12"
                 dangerouslySetInnerHTML={{
-                  __html: multiavatar(user._id + user.profileAvatarIndex),
+                  __html: multiavatar(user?._id + user?.profileAvatarIndex),
                 }}
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
+              <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <Link href={`${routes.PROFILE}/${user._id}`}>
+              <Link href={`${routes.PROFILE}/${user?._id}`}>
                 <DropdownMenuItem className="cursor-pointer">
                   {t("profile")}
                 </DropdownMenuItem>
