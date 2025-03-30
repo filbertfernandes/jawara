@@ -75,7 +75,7 @@ const LaptopScreen = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="flex h-auto w-full justify-center text-center text-[0.2rem] font-bold text-white">
+            <div className="flex h-auto w-full justify-center text-center text-[0.2rem] font-bold text-gray-100">
               {Array.from({ length: totalPages }, (_, index) => (
                 <div
                   key={index}

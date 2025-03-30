@@ -13,8 +13,8 @@ const Button = ({ text, onClick, isOutlined = false }) => {
     <button
       className={`btn-template w-28 px-1 text-sm lg:w-52 lg:p-1.5 lg:text-3xl ${
         isOutlined
-          ? "border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-white"
-          : "bg-orange-500 text-white hover:bg-orange-600"
+          ? "border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-gray-100"
+          : "bg-orange-500 text-gray-100 hover:bg-orange-600"
       }`}
       onClick={onClick}
     >

@@ -30,15 +30,15 @@ const GuideInterface = () => {
         <div className="absolute left-4 top-4">
           <BackButton onClick={() => setTutorialState(tutorialStates.MENU)} />
         </div>
-        <div className="flex size-full items-end justify-center gap-60 text-4xl text-white">
+        <div className="flex size-full items-end justify-center gap-60 text-4xl text-gray-100">
           <button
-            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-100"
             onClick={decrementGuideIndex}
           >
             <FaArrowLeft size={32} /> {t("previous")}
           </button>
           <button
-            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+            className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-100"
             onClick={incrementGuideIndex}
           >
             {t("next")} <FaArrowRight size={32} />

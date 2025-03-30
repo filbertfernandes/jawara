@@ -202,7 +202,7 @@ export default function FreePhaseInterface() {
                 {/* Actions */}
                 <div className="mt-2 flex gap-2">
                   <button
-                    className="btn-template bg-green-500 px-3 py-1 text-white shadow hover:bg-green-600"
+                    className="btn-template bg-green-500 px-3 py-1 text-gray-100 shadow hover:bg-green-600"
                     onClick={() =>
                       handleFriendRequestButtonClick(request, true)
                     }
@@ -210,7 +210,7 @@ export default function FreePhaseInterface() {
                     Accept
                   </button>
                   <button
-                    className="btn-template bg-red-500 px-3 py-1 text-white shadow hover:bg-red-600"
+                    className="btn-template bg-red-500 px-3 py-1 text-gray-100 shadow hover:bg-red-600"
                     onClick={() =>
                       handleFriendRequestButtonClick(request, false)
                     }
@@ -226,7 +226,7 @@ export default function FreePhaseInterface() {
 
       {!friendRequestsOverlay && (
         <>
-          <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-white lg:text-4xl">
+          <div className="absolute left-0 top-0 flex w-full justify-between p-2 font-bebas text-3xl text-gray-100 lg:text-4xl">
             <div className="flex items-center gap-4">
               <IconButton onClick={toggleMusic} textSize="text-3cl lg:text-4xl">
                 {isMusicMuted ? <MdMusicOff /> : <MdMusicNote />}
@@ -271,7 +271,7 @@ export default function FreePhaseInterface() {
                   >
                     {t("friend_request")}
                     {friendRequests?.length > 0 && (
-                      <span className="rounded-full bg-red-500 px-2 text-sm text-white">
+                      <span className="rounded-full bg-red-500 px-2 text-sm text-gray-100">
                         {friendRequests?.length}
                       </span>
                     )}
@@ -293,7 +293,7 @@ export default function FreePhaseInterface() {
           </div>
 
           <div
-            className={`absolute bottom-0 left-0 mb-2 flex w-full justify-center p-1 font-bebas text-3xl text-white lg:text-4xl ${
+            className={`absolute bottom-0 left-0 mb-2 flex w-full justify-center p-1 font-bebas text-3xl text-gray-100 lg:text-4xl ${
               canPressEnter ? "" : "pointer-events-none opacity-0"
             }`}
           >

@@ -39,7 +39,7 @@ const AssetBox = () => {
             onClick={() => setCurrentCategory(category)}
             className={`shrink-0 border-b font-medium transition-colors duration-300 ${
               currentCategory.name === category.name
-                ? "border-b-white text-white shadow-purple-100"
+                ? "border-b-white text-gray-100 shadow-purple-100"
                 : "border-b-transparent text-gray-200 hover:text-gray-100"
             }`}
           >
@@ -58,7 +58,7 @@ const AssetBox = () => {
                   : "border-black from-black/70 to-black/20"
               }`}
           >
-            <div className="flex size-full items-center justify-center bg-black/40 text-white">
+            <div className="flex size-full items-center justify-center bg-black/40 text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -180,14 +180,14 @@ const SaveButton = () => {
     <>
       {userId ? (
         <button
-          className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
+          className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
           onClick={save}
         >
           {saving ? `${t("saving")}...` : t("save")}
         </button>
       ) : (
         <Link href={routes.SIGN_IN}>
-          <button className="pointer-events-auto min-w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
+          <button className="pointer-events-auto min-w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
             {t("sign_in_to_save")}
           </button>
         </Link>
@@ -200,7 +200,7 @@ const RandomizeButton = () => {
   const randomize = useCustomization((state) => state.randomize);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-white drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
+      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
       onClick={randomize}
     >
       <svg

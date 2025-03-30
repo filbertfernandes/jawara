@@ -95,7 +95,7 @@ const Page = () => {
         {t("verify_description")}{" "}
         <span className="text-orange-500">{email}</span>
       </p>
-      <div className="flex size-24 items-center justify-center rounded-xl bg-orange-500 text-7xl text-white">
+      <div className="flex size-24 items-center justify-center rounded-xl bg-orange-500 text-7xl text-gray-100">
         <IoIosMailOpen />
       </div>
       <p className="w-full text-center text-gray-600 md:text-xl">

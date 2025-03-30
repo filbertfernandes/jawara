@@ -65,7 +65,7 @@ const Content = ({ chapter, chapterPhase }) => {
             </div>
           </div>
           <div
-            className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+            className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
             Start Learning
@@ -83,7 +83,7 @@ const Content = ({ chapter, chapterPhase }) => {
             </div>
           </div>
           <div
-            className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+            className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
             Start Learning

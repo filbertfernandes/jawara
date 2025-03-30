@@ -43,7 +43,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
         <a
           href={`${process.env.JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
           download="chapter-1.pdf"
-          className="btn-template bg-orange-500 px-4 text-sm text-white hover:bg-orange-600"
+          className="btn-template bg-orange-500 px-4 text-sm text-gray-100 hover:bg-orange-600"
         >
           <IoMdDownload className="mr-1" />
           Download
@@ -69,7 +69,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
       {!isFinished && (
         <div className="flex w-full justify-center">
           <div
-            className="btn-template w-1/4 border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-white"
+            className="btn-template w-1/4 border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-gray-100"
             onClick={onFinish}
           >
             Finish

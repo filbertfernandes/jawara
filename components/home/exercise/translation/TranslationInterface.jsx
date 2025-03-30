@@ -292,7 +292,7 @@ export const TranslationInterface = () => {
           attempsLeft ? (
             attempsLeft > 0 ? (
               <div
-                className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+                className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-gray-100 hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
                 onClick={sentence ? checkAnswer : generateSentence}
               >
                 {isCheckingAnswer
@@ -304,19 +304,19 @@ export const TranslationInterface = () => {
                   : t("generate_sentence")}
               </div>
             ) : (
-              <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
+              <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-gray-100 sm:mt-20 sm:text-3xl lg:mt-10">
                 {t("daily_limit_reached")}
               </div>
             )
           ) : (
-            <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-white sm:mt-20 sm:text-3xl lg:mt-10">
+            <div className="mt-10 flex h-10 w-full cursor-default items-center justify-center gap-2 rounded-full bg-gray-500 py-1 text-center text-xl font-bold text-gray-100 sm:mt-20 sm:text-3xl lg:mt-10">
               {t("loading")}...
             </div>
           )
         ) : (
           <Link
             href={routes.SIGN_IN}
-            className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-white hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
+            className="btn-template mt-10 flex h-10 w-full items-center justify-center bg-orange-500 text-xl text-gray-100 hover:bg-orange-600 sm:mt-20 sm:text-3xl lg:mt-10"
           >
             {t("sign_in_to_generate")}
           </Link>
@@ -346,7 +346,7 @@ export const TranslationInterface = () => {
         </div>
         <div className="flex w-full justify-center">
           <div
-            className={`btn-template flex h-8 w-1/2 items-center justify-center text-white ${
+            className={`btn-template flex h-8 w-1/2 items-center justify-center text-gray-100 ${
               isTrue
                 ? "bg-green-700 hover:bg-green-800"
                 : "bg-red-700 hover:bg-red-800"

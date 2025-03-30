@@ -12,10 +12,10 @@ const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
                 btn btn-square btn-lg rounded-2xl text-4xl
                 ${
                   isActive
-                    ? "border-none bg-orange-500 text-white"
+                    ? "border-none bg-orange-500 text-gray-100"
                     : "border-2 border-orange-500 bg-white text-orange-500"
                 }
-                hover:text-white hover:bg-orange-500 hover:border-none
+                hover:text-gray-100 hover:bg-orange-500 hover:border-none
                 transition-all duration-300 ease-in-out
             `}
       onClick={onClick}

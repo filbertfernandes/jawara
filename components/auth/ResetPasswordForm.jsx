@@ -79,7 +79,7 @@ const ResetPasswordForm = () => {
       />
       <div
         onClick={handleSubmit}
-        className={`btn-template w-full bg-orange-500 text-white ${
+        className={`btn-template w-full bg-orange-500 text-gray-100 ${
           !isLoading ? "cursor-pointer hover:bg-orange-600" : "cursor-none"
         }`}
       >

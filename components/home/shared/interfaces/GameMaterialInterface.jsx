@@ -14,7 +14,7 @@ const WordVariant = ({ variant, label, playSound }) => (
         <PiSpeakerHighBold />
       </button>
     </div>
-    <span className="text-sm text-white/75 md:text-base lg:text-lg">
+    <span className="text-sm text-gray-100/75 md:text-base lg:text-lg">
       ({label})
     </span>
   </div>
@@ -41,9 +41,9 @@ const GameMaterialInterface = ({ words }) => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold text-white drop-shadow-lg">{t("material")}</h1>
+      <h1 className="h1-bold text-gray-100 drop-shadow-lg">{t("material")}</h1>
 
-      <div className="mt-4 flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-white">
+      <div className="mt-4 flex size-full flex-wrap justify-evenly overflow-y-auto px-4 pb-32 text-gray-100">
         {words.map((word, index) => (
           <div
             key={index}

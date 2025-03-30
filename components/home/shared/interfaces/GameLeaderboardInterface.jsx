@@ -102,7 +102,7 @@ const GameLeaderboardInterface = () => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold flex text-white drop-shadow-lg">
+      <h1 className="h1-bold flex text-gray-100 drop-shadow-lg">
         {isGlobal ? t("global_leaderboard") : t("friends_leaderboard")}
         <DropdownMenu>
           <DropdownMenuTrigger onFocus={(e) => e.target.blur()}>
@@ -125,7 +125,7 @@ const GameLeaderboardInterface = () => {
         </DropdownMenu>
       </h1>
 
-      <div className="flex h-10 w-[90%] justify-between rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 px-4 text-white sm:w-[70%] sm:text-lg md:text-xl lg:w-1/2 lg:text-2xl">
+      <div className="flex h-10 w-[90%] justify-between rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 px-4 text-gray-100 sm:w-[70%] sm:text-lg md:text-xl lg:w-1/2 lg:text-2xl">
         <LanguageCategory
           gameMode="ngoko"
           activeGameMode={activeGameMode}
@@ -143,7 +143,7 @@ const GameLeaderboardInterface = () => {
         />
       </div>
 
-      <div className="flex size-full flex-col justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-white sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
+      <div className="flex size-full flex-col justify-between rounded-t-3xl bg-gradient-to-r from-orange-500 to-orange-700 px-4 pb-32 pt-4 text-gray-100 sm:w-[90%] sm:text-lg md:text-xl lg:w-[70%] lg:text-2xl">
         {loading ? (
           <ul className="flex size-full items-center justify-center text-center text-2xl sm:text-3xl">
             {t("loading")}...

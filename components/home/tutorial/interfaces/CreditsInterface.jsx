@@ -74,7 +74,7 @@ const CreditsInterface = () => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl p-4 text-white lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
+        <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl p-4 text-gray-100 lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
           <div className="h1-bold">{t("special_thanks_to")}</div>
 
           {/* Reusable list components */}

@@ -53,7 +53,7 @@ const page = () => {
               </div>
               <Link
                 href={`${routes.CURRICULUM}/${chapter.id}`}
-                className="flex h-1/4 w-full cursor-pointer items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 text-center text-3xl font-bold text-white"
+                className="flex h-1/4 w-full cursor-pointer items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 text-center text-3xl font-bold text-gray-100"
               >
                 Start Learning
               </Link>

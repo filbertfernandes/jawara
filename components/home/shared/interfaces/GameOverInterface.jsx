@@ -6,7 +6,7 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx";
 // Reusable Button Component
 const GameButton = ({ label, onClick }) => (
   <button
-    className="btn-template w-28 bg-orange-500 px-1 text-sm text-white lg:w-52 lg:p-1.5 lg:text-3xl"
+    className="btn-template w-28 bg-orange-500 px-1 text-sm text-gray-100 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}
@@ -42,10 +42,10 @@ const GameOverInterface = ({ score, startGame }) => {
       onKeyDown={handleKeyDown}
     >
       <div className="text-center">
-        <h1 className="h1-bold text-white drop-shadow-lg">
+        <h1 className="h1-bold text-gray-100 drop-shadow-lg">
           {t("language") === "english" ? "CONGRATULATIONS!" : "SELAMAT!"}
         </h1>
-        <h5 className="h5-bold text-white drop-shadow-lg">
+        <h5 className="h5-bold text-gray-100 drop-shadow-lg">
           {t("language") === "english" ? "Your score is" : "Skor Anda adalah"}{" "}
           {score}
         </h5>

@@ -100,7 +100,7 @@ export const FirstGameInterface = () => {
       >
         <div
           ref={time}
-          className="pointer-events-none absolute left-0 top-0 w-full bg-gradient-to-r from-orange-500/80 to-orange-700/80 pt-1 text-center font-bebas text-3xl text-white"
+          className="pointer-events-none absolute left-0 top-0 w-full bg-gradient-to-r from-orange-500/80 to-orange-700/80 pt-1 text-center font-bebas text-3xl text-gray-100"
         >
           0.00
         </div>

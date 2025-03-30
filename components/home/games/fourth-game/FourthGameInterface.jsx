@@ -138,7 +138,7 @@ export const FourthGameInterface = () => {
           gameState !== gameStates.GAME ? "pointer-events-none opacity-0" : ""
         }`}
       >
-        <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-white md:text-3xl lg:px-12 lg:text-4xl">
+        <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-gray-100 md:text-3xl lg:px-12 lg:text-4xl">
           <div>
             {t("time_left")}: <span ref={time}>100</span>
           </div>
@@ -153,7 +153,7 @@ export const FourthGameInterface = () => {
         </div>
 
         {selectAnimal !== null && (
-          <div className="absolute bottom-0 left-0 flex w-full flex-wrap justify-center pb-2 font-bebas text-xl text-white md:text-2xl lg:px-12 lg:text-3xl">
+          <div className="absolute bottom-0 left-0 flex w-full flex-wrap justify-center pb-2 font-bebas text-xl text-gray-100 md:text-2xl lg:px-12 lg:text-3xl">
             <div
               className="btn-template bg-orange-500 px-8 drop-shadow-lg"
               onClick={handleSelectAnimal}

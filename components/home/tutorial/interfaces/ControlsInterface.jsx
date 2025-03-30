@@ -34,9 +34,9 @@ const ControlsInterface = () => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <div className="h1-bold text-white">{t("controls")}</div>
+        <div className="h1-bold text-gray-100">{t("controls")}</div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-white">
+          <div className="h3-bold text-center text-gray-100">
             {t("language") === "english" ? "Move" : "Jalan"}
           </div>
           <div className="flex items-center gap-1">
@@ -44,7 +44,7 @@ const ControlsInterface = () => {
             <ControlButton>W</ControlButton>
             <ControlButton>S</ControlButton>
             <ControlButton>D</ControlButton>
-            <div className="h5-bold mx-3 text-center text-white">
+            <div className="h5-bold mx-3 text-center text-gray-100">
               {t("language") === "english" ? "Or" : "Atau"}
             </div>
             <ControlButton>
@@ -62,7 +62,7 @@ const ControlsInterface = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="h3-bold text-center text-white">
+          <div className="h3-bold text-center text-gray-100">
             {t("language") === "english" ? "Jump" : "Lompat"}
           </div>
           <ControlButton className="w-36 lg:w-60">

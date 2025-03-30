@@ -126,7 +126,7 @@ export const SecondGameInterface = () => {
           gameState !== gameStates.GAME ? "pointer-events-none opacity-0" : ""
         }`}
       >
-        <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-white md:text-3xl lg:px-12 lg:text-4xl">
+        <div className="pointer-events-none absolute left-0 top-0 flex w-full flex-wrap justify-between bg-gradient-to-r from-orange-500/80 to-orange-700/80 px-2 pt-1 text-center font-bebas text-2xl text-gray-100 md:text-3xl lg:px-12 lg:text-4xl">
           <div>
             {t("time_left")}: <span ref={time}>100</span>
           </div>
@@ -149,7 +149,7 @@ export const SecondGameInterface = () => {
 
       {/* MOBILE CONTROLLERS */}
       <div
-        className={`absolute bottom-0 right-0 flex w-1/2 flex-nowrap pt-1 text-center font-bebas text-2xl text-white md:text-3xl ${
+        className={`absolute bottom-0 right-0 flex w-1/2 flex-nowrap pt-1 text-center font-bebas text-2xl text-gray-100 md:text-3xl ${
           isMobile === false || gameState !== gameStates.GAME
             ? "pointer-events-none opacity-0"
             : ""

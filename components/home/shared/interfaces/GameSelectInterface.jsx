@@ -5,7 +5,7 @@ import { useGame, phases, gameStates } from "@/hooks/useGame.jsx";
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
-    className="btn-template w-28 bg-orange-500 px-1 text-sm text-white hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
+    className="btn-template w-28 bg-orange-500 px-1 text-sm text-gray-100 hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}
@@ -14,7 +14,7 @@ const GameSelectButton = ({ label, onClick }) => (
 
 const OtherButton = ({ label, onClick }) => (
   <button
-    className="btn-template w-28 border-2 border-orange-500 bg-white px-1 text-sm text-orange-500 hover:bg-orange-500 hover:text-white lg:w-52 lg:p-1.5 lg:text-3xl"
+    className="btn-template w-28 border-2 border-orange-500 bg-white px-1 text-sm text-orange-500 hover:bg-orange-500 hover:text-gray-100 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}
@@ -64,7 +64,7 @@ const GameSelectInterface = ({ startGame, title }) => {
       }`}
       onKeyDown={handleKeyDown}
     >
-      <h1 className="h1-bold text-white drop-shadow-lg">{title}</h1>
+      <h1 className="h1-bold text-gray-100 drop-shadow-lg">{title}</h1>
 
       <GameSelectButton
         label="Ngoko"

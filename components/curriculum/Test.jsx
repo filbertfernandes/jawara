@@ -172,7 +172,7 @@ const Test = ({ chapter, isPostTest = false }) => {
           </div>
           {isPostTest && (
             <div
-              className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+              className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
               onClick={handleRetry}
             >
               Retry
@@ -192,7 +192,7 @@ const Test = ({ chapter, isPostTest = false }) => {
             </div>
           </div>
           <div
-            className="btn-template w-36 cursor-pointer bg-orange-500 text-white hover:bg-orange-600 lg:w-48 lg:text-2xl"
+            className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
             {!isPostTest ? "Start Pretest" : "Start Posttest"}
@@ -203,7 +203,7 @@ const Test = ({ chapter, isPostTest = false }) => {
           <div className="text-center text-gray-600 sm:text-lg md:text-xl">
             Question {questionIndex + 1} / {chapter.questions.length}
           </div>
-          <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-white">
+          <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-gray-100">
             {chapter.questions[questionIndex].question}
           </div>
           <div className="flex w-full flex-col items-center gap-2">
@@ -223,7 +223,7 @@ const Test = ({ chapter, isPostTest = false }) => {
           </div>
           <div className="mt-10 flex w-full justify-between sm:text-lg md:text-xl">
             <div
-              className={`w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-white ${
+              className={`w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100 ${
                 questionIndex === 0 ? "invisible" : ""
               }`}
               onClick={() => setQuestionIndex(questionIndex - 1)}
@@ -231,7 +231,7 @@ const Test = ({ chapter, isPostTest = false }) => {
               Prev
             </div>
             <div
-              className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-white"
+              className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100"
               onClick={
                 questionIndex + 1 < chapter.questions.length
                   ? () => setQuestionIndex(questionIndex + 1)
@@ -247,12 +247,12 @@ const Test = ({ chapter, isPostTest = false }) => {
       {showOverlay && (
         <div className="absolute flex items-center justify-center">
           <button
-            className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-white sm:text-4xl"
+            className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-gray-100 sm:text-4xl"
             onClick={handleCloseOverlay}
           >
             <IoMdClose />
           </button>
-          <div className="flex size-52 flex-col flex-wrap items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 text-center text-white lg:size-64">
+          <div className="flex size-52 flex-col flex-wrap items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 text-center text-gray-100 lg:size-64">
             <div className="mb-2 w-full text-2xl font-bold">Your Score</div>
             <div className="text-6xl font-bold">{score.toFixed(0)}</div>
           </div>

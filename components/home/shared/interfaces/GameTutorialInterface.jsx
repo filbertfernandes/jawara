@@ -336,11 +336,11 @@ const GameTutorialInterface = () => {
         isVisible ? "animate-bounceIn" : "opacity-0"
       }`}
     >
-      <h1 className="h1-bold text-white drop-shadow-lg">{t("controls")}</h1>
+      <h1 className="h1-bold text-gray-100 drop-shadow-lg">{t("controls")}</h1>
       <div className="flex w-full justify-center px-4">
         <div className="mb-10 mt-2 flex flex-wrap items-center justify-center gap-4 lg:w-3/4 lg:gap-8">
           {controls[phase].map((control, index) => (
-            <div key={index} className="h3-bold text-center text-white">
+            <div key={index} className="h3-bold text-center text-gray-100">
               {control[`${t("language")}_title`]}
               <div className="flex items-center justify-center gap-1">
                 {control.buttons.map((Button, buttonIndex) => (
@@ -364,8 +364,10 @@ const GameTutorialInterface = () => {
         </div>
       </div>
 
-      <h1 className="h1-bold text-white drop-shadow-lg">{t("how_to_play")}</h1>
-      <div className="mb-10 mt-2 w-[90%] space-y-4 rounded-xl text-justify font-questrial text-white lg:w-3/4 lg:text-xl">
+      <h1 className="h1-bold text-gray-100 drop-shadow-lg">
+        {t("how_to_play")}
+      </h1>
+      <div className="mb-10 mt-2 w-[90%] space-y-4 rounded-xl text-justify font-questrial text-gray-100 lg:w-3/4 lg:text-xl">
         {howToPlaySteps[phase].map((step, index) => (
           <p key={index}>
             {step.icon} <strong>{step[`${t("language")}_title`]}:</strong>{" "}

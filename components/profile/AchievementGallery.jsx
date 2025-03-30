@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { FaAward } from "react-icons/fa";
+import { FaAward, FaLock } from "react-icons/fa";
 
 import { achievementsData } from "./stores/achievementsData";
 
@@ -56,25 +56,23 @@ const AchievementGallery = ({ onAchievementClick, userId }) => {
                 }
               >
                 {/* Achievement Image */}
-                <Image
-                  src={achievement.src}
-                  alt="Achievement"
-                  width={500}
-                  height={500}
-                  className={`size-full object-cover transition-all ${
-                    isUnlocked ? "grayscale-0" : "grayscale"
-                  }`}
-                  quality={100}
-                />
+                {isUnlocked ? (
+                  <Image
+                    src={achievement.src}
+                    alt="Achievement"
+                    width={500}
+                    height={500}
+                    className="size-full object-cover transition-all"
+                    quality={100}
+                  />
+                ) : (
+                  <div className="flex size-full items-center justify-center bg-black text-4xl text-gray-100">
+                    <FaLock />
+                  </div>
+                )}
 
                 {/* Overlay with Description (Always Visible on Hover) */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center p-2 text-center text-sm text-white opacity-0 transition-opacity duration-300 ${
-                    !isUnlocked
-                      ? "bg-black opacity-100"
-                      : "bg-black/70 group-hover:opacity-100"
-                  }`}
-                >
+                <div className="absolute inset-0 flex items-center justify-center bg-black/70 p-2 text-center text-sm text-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   {achievement[`description_${t("language")}`]}
                 </div>
               </div>
