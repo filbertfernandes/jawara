@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import multiavatar from "@multiavatar/multiavatar/esm";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdCloseCircle } from "react-icons/io";
@@ -17,6 +18,8 @@ import { updateUser } from "@/lib/actions/user.action";
 import { EditProfileSchema } from "@/lib/validations";
 
 const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
+  const t = useTranslations("Home");
+
   const [profileAvatarIndex, setProfileAvatarIndex] = useState("0");
   const [loading, setLoading] = useState(false);
 
@@ -82,7 +85,9 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <h3 className="mb-2 text-2xl font-bold text-gray-900">Select Avatar</h3>
+        <h3 className="mb-2 text-2xl font-bold text-gray-900">
+          {t("select_avatar")}
+        </h3>
         <div className="grid grid-cols-4 gap-2">
           {[...Array(40).keys()].map((i) => (
             <div
@@ -126,8 +131,12 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
             />
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-gray-900">Edit Profile</h3>
-            <p className="text-sm text-gray-600">Update your informations</p>
+            <h3 className="text-2xl font-bold text-gray-900">
+              {t("edit_profile")}
+            </h3>
+            <p className="text-sm text-gray-600">
+              {t("update_your_informations")}
+            </p>
           </div>
         </div>
 
@@ -142,7 +151,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
               render={({ field }) => (
                 <FormItem className="group">
                   <label className="text-sm font-medium text-gray-700">
-                    Name
+                    {t("name")}
                   </label>
                   <FormControl>
                     <Input
@@ -165,7 +174,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
               render={({ field }) => (
                 <FormItem className="group">
                   <label className="text-sm font-medium text-gray-700">
-                    Username
+                    {t("username")}
                   </label>
                   <FormControl>
                     <Input

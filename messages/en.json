@@ -11,6 +11,10 @@
     "accept": "Accept",
     "reject": "Reject",
     "no_friend_requests": "No friend requests.",
+    "select_avatar": "Select Avatar",
+    "update_your_informations": "Update your informations",
+    "username": "Username",
+    "name": "Name",
 
     "leaderboard": "Leaderboard",
     "global_leaderboard": "Global Leaderboard",

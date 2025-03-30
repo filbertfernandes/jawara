@@ -11,6 +11,10 @@
     "accept": "Terima",
     "reject": "Tolak",
     "no_friend_requests": "Tidak ada permintaan pertemanan.",
+    "select_avatar": "Pilih Avatar",
+    "update_your_informations": "Perbarui informasi Anda",
+    "username": "Nama pengguna",
+    "name": "Nama",
 
     "leaderboard": "Papan Peringkat",
     "global_leaderboard": "Papan Peringkat Global",
