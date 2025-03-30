@@ -51,7 +51,7 @@ export const IconButton = ({
 export default function FreePhaseInterface() {
   const t = useTranslations("Home");
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const [loading, setLoading] = useState(true);
   const [friendRequests, setFriendRequests] = useState([]);
@@ -81,6 +81,10 @@ export default function FreePhaseInterface() {
 
       fetchUser();
       checkFriendRequest();
+    } else {
+      if (status !== "loading") {
+        setLoading(false);
+      }
     }
   }, [session]);
 
