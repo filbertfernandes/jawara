@@ -82,9 +82,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <h3 className="h5-bold mb-2 font-semibold text-gray-900">
-          Select Avatar
-        </h3>
+        <h3 className="mb-2 text-2xl font-bold text-gray-900">Select Avatar</h3>
         <div className="grid grid-cols-4 gap-2">
           {[...Array(40).keys()].map((i) => (
             <div
@@ -128,7 +126,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
             />
           </div>
           <div>
-            <h3 className="h5-bold text-lg text-gray-900">Edit Profile</h3>
+            <h3 className="text-2xl font-bold text-gray-900">Edit Profile</h3>
             <p className="text-sm text-gray-600">Update your informations</p>
           </div>
         </div>

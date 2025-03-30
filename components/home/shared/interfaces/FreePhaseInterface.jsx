@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
-import { FaQuestion } from "react-icons/fa";
+import { FaQuestion, FaUsers } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
@@ -208,17 +208,20 @@ export default function FreePhaseInterface() {
       {friendRequestsOverlay && (
         <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial">
           <div
-            className={`relative flex h-[500px] w-[400px] flex-col items-center gap-4 overflow-scroll rounded-2xl bg-white px-4 py-8 shadow-xl ${
+            className={`relative flex h-[500px] w-[400px] flex-col items-center gap-4 overflow-scroll rounded-2xl bg-white px-4 py-10 shadow-xl ${
               friendRequestsOverlay ? "animate-bounceIn" : "opacity-0"
             }`}
           >
             <button
-              className="absolute right-0 top-0 cursor-pointer rounded-full p-1 text-3xl text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700 sm:text-4xl"
+              className="absolute right-4 top-4 cursor-pointer rounded-full p-1 text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700"
               onClick={() => setFriendRequestsOverlay(false)}
             >
-              <IoMdCloseCircle />
+              <IoMdCloseCircle size={24} />
             </button>
-            <h5 className="h3-bold text-gray-900">{t("friend_requests")}</h5>
+            <h5 className="flex w-full items-center gap-2 text-2xl font-bold text-gray-900">
+              <p>{t("friend_requests")}</p>
+              <FaUsers />
+            </h5>
             <div className="flex w-full flex-wrap justify-center gap-4 sm:gap-6">
               {friendRequests?.length === 0 ? (
                 <p className="text-center text-lg text-gray-100">
