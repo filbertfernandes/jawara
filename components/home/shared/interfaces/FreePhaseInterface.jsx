@@ -208,7 +208,7 @@ export default function FreePhaseInterface() {
       {friendRequestsOverlay && (
         <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial">
           <div
-            className={`scrollbar-hide relative flex h-[500px] w-[400px] flex-col items-center gap-4 overflow-scroll rounded-2xl bg-white px-4 py-10 shadow-xl ${
+            className={`scrollbar-hide relative flex h-[500px] w-4/5 flex-col items-center gap-4 overflow-scroll rounded-2xl bg-white px-4 py-10 shadow-xl md:w-[400px] ${
               friendRequestsOverlay ? "animate-bounceIn" : "opacity-0"
             }`}
           >

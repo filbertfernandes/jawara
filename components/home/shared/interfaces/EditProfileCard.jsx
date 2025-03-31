@@ -79,9 +79,9 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial laptop-sm:flex-row">
+    <div className="fixed left-0 top-0 z-10 flex size-full flex-col items-center justify-center gap-6 bg-black/25 bg-repeat pt-8 font-questrial md:flex-row">
       <div
-        className={`h-[250px] w-[400px] overflow-auto rounded-2xl bg-white p-4 shadow-xl laptop-sm:h-[400px] laptop-sm:w-[300px] ${
+        className={`h-[250px] w-4/5 overflow-auto rounded-2xl bg-white p-4 shadow-xl md:h-[350px] md:w-[250px] laptop-sm:h-[400px] laptop-sm:w-[300px] ${
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
@@ -109,7 +109,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
       </div>
 
       <div
-        className={`relative flex size-[400px] flex-col gap-4 rounded-2xl bg-white p-6 shadow-xl ${
+        className={`relative flex h-[400px] w-4/5 flex-col gap-4 rounded-2xl bg-white p-6 shadow-xl md:size-[350px] laptop-sm:size-[400px] ${
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
