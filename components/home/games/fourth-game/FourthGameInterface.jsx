@@ -122,6 +122,14 @@ export const FourthGameInterface = () => {
     incrementAnswerCount();
   };
 
+  useEffect(() => {
+    if (answerCount < 8 && stage !== null) {
+      SoundManager.playSoundPath(
+        stage[correctAnswersOrder[answerCount]].word[`${mode}Sound`]
+      );
+    }
+  }, [answerCount, stage]);
+
   return (
     <>
       {/* GAME MENU INTERFACE */}

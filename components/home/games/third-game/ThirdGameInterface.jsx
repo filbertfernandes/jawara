@@ -109,9 +109,7 @@ export const ThirdGameInterface = () => {
   }, []);
 
   useEffect(() => {
-    console.log(answerCount);
     if (answerCount < 8 && stage !== null) {
-      console.log(stage[correctAnswersOrder[answerCount]]);
       if (stage[correctAnswersOrder[answerCount]].isAnswered) return;
 
       SoundManager.playSoundPath(
