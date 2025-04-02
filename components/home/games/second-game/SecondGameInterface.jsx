@@ -110,6 +110,14 @@ export const SecondGameInterface = () => {
     }
   }, [gameState]);
 
+  useEffect(() => {
+    if (correctCount < 5 && stage !== null && gameState === gameStates.GAME) {
+      SoundManager.playSoundPath(
+        stage[correctAnswersOrder[correctCount]][`${mode}Sound`]
+      );
+    }
+  }, [correctCount, stage]);
+
   return (
     <>
       {/* GAME MENU INTERFACE */}
