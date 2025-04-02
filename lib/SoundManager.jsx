@@ -10,7 +10,7 @@ const sounds = {
   gamePhaseBackground: new Howl({
     src: ["/sounds/bgm/bgm-2.mp3"],
     loop: true,
-    volume: 0.1,
+    volume: 0.06,
   }),
   move: new Howl({ src: ["/sounds/sfx/footstep-grass.mp3"], volume: 1.5 }),
   soccerBallImpact: new Howl({
@@ -49,6 +49,16 @@ let isMuted = false;
 let currentlyPlayingBgm = null;
 
 export const SoundManager = {
+  playSoundPath: (path) => {
+    if (!isMuted) {
+      const sound = new Howl({
+        src: path,
+        volume: 3.5,
+      });
+      sound.play();
+    }
+  },
+
   playSound: (soundName) => {
     if (!isMuted) {
       const sound = sounds[soundName];

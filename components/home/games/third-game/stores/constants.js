@@ -6,6 +6,9 @@ export const words = [
     ngoko: "siji",
     madya: "setunggal",
     alus: "setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/setunggal.mp3",
   },
   {
     type: "numbers",
@@ -14,6 +17,9 @@ export const words = [
     ngoko: "loro",
     madya: "kalih",
     alus: "kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/kalih.mp3",
   },
   {
     type: "numbers",
@@ -22,6 +28,9 @@ export const words = [
     ngoko: "telu",
     madya: "tiga",
     alus: "tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tiga.mp3",
   },
   {
     type: "numbers",
@@ -30,6 +39,9 @@ export const words = [
     ngoko: "papat",
     madya: "sekawan",
     alus: "sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan.mp3",
   },
   {
     type: "numbers",
@@ -38,6 +50,9 @@ export const words = [
     ngoko: "lima",
     madya: "gangsal",
     alus: "gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/gangsal.mp3",
   },
   {
     type: "numbers",
@@ -46,6 +61,9 @@ export const words = [
     ngoko: "enem",
     madya: "enem",
     alus: "enem",
+    ngokoSound: "/sounds/vocabularies/numbers/enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/enem.mp3",
   },
   {
     type: "numbers",
@@ -54,6 +72,9 @@ export const words = [
     ngoko: "pitu",
     madya: "pitu",
     alus: "pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitu.mp3",
   },
   {
     type: "numbers",
@@ -62,6 +83,9 @@ export const words = [
     ngoko: "wolu",
     madya: "wolu",
     alus: "wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolu.mp3",
   },
   {
     type: "numbers",
@@ -70,6 +94,9 @@ export const words = [
     ngoko: "sanga",
     madya: "sanga",
     alus: "sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sanga.mp3",
   },
   {
     type: "numbers",
@@ -78,6 +105,9 @@ export const words = [
     ngoko: "sepuluh",
     madya: "sedasa",
     alus: "sedasa",
+    ngokoSound: "/sounds/vocabularies/numbers/sepuluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sedasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sedasa.mp3",
   },
   {
     type: "numbers",
@@ -86,6 +116,9 @@ export const words = [
     ngoko: "sewelas",
     madya: "sewelas",
     alus: "sewelas",
+    ngokoSound: "/sounds/vocabularies/numbers/sewelas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewelas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewelas.mp3",
   },
   {
     type: "numbers",
@@ -94,6 +127,9 @@ export const words = [
     ngoko: "rolas",
     madya: "kalih welas",
     alus: "kalih welas",
+    ngokoSound: "/sounds/vocabularies/numbers/rolas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/kalih-welas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/kalih-welas.mp3",
   },
   {
     type: "numbers",
@@ -102,6 +138,9 @@ export const words = [
     ngoko: "telulas",
     madya: "tiga welas",
     alus: "tiga welas",
+    ngokoSound: "/sounds/vocabularies/numbers/telulas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tiga-welas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tiga-welas.mp3",
   },
   {
     type: "numbers",
@@ -110,6 +149,9 @@ export const words = [
     ngoko: "patbelas",
     madya: "sekawan welas",
     alus: "sekawan welas",
+    ngokoSound: "/sounds/vocabularies/numbers/patbelas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-welas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-welas.mp3",
   },
   {
     type: "numbers",
@@ -118,6 +160,9 @@ export const words = [
     ngoko: "limalas",
     madya: "gangsal welas",
     alus: "gangsal welas",
+    ngokoSound: "/sounds/vocabularies/numbers/limalas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/gangsal-welas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/gangsal-welas.mp3",
   },
   {
     type: "numbers",
@@ -126,6 +171,9 @@ export const words = [
     ngoko: "nembelas",
     madya: "enem welas",
     alus: "enem welas",
+    ngokoSound: "/sounds/vocabularies/numbers/nembelas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/enem-welas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/enem-welas.mp3",
   },
   {
     type: "numbers",
@@ -134,6 +182,9 @@ export const words = [
     ngoko: "pitulas",
     madya: "pitulas",
     alus: "pitulas",
+    ngokoSound: "/sounds/vocabularies/numbers/pitulas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitulas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitulas.mp3",
   },
   {
     type: "numbers",
@@ -142,6 +193,9 @@ export const words = [
     ngoko: "wolulas",
     madya: "wolulas",
     alus: "wolulas",
+    ngokoSound: "/sounds/vocabularies/numbers/wolulas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolulas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolulas.mp3",
   },
   {
     type: "numbers",
@@ -150,6 +204,9 @@ export const words = [
     ngoko: "sangalas",
     madya: "sangalas",
     alus: "sangalas",
+    ngokoSound: "/sounds/vocabularies/numbers/sangalas.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangalas.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangalas.mp3",
   },
   {
     type: "numbers",
@@ -158,6 +215,9 @@ export const words = [
     ngoko: "rong puluh",
     madya: "kalih dasa",
     alus: "kalih dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/rong-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/kalih-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/kalih-dasa.mp3",
   },
   {
     type: "numbers",
@@ -166,6 +226,9 @@ export const words = [
     ngoko: "selikur",
     madya: "selikur",
     alus: "selikur",
+    ngokoSound: "/sounds/vocabularies/numbers/selikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/selikur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/selikur.mp3",
   },
   {
     type: "numbers",
@@ -174,6 +237,9 @@ export const words = [
     ngoko: "rolikur",
     madya: "kalih likur",
     alus: "kalih likur",
+    ngokoSound: "/sounds/vocabularies/numbers/rolikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/kalih-likur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/kalih-likur.mp3",
   },
   {
     type: "numbers",
@@ -182,6 +248,9 @@ export const words = [
     ngoko: "telulikur",
     madya: "tigang likur",
     alus: "tigang likur",
+    ngokoSound: "/sounds/vocabularies/numbers/telulikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-likur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-likur.mp3",
   },
   {
     type: "numbers",
@@ -190,6 +259,9 @@ export const words = [
     ngoko: "patlikur",
     madya: "sekawan likur",
     alus: "sekawan likur",
+    ngokoSound: "/sounds/vocabularies/numbers/patlikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-likur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-likur.mp3",
   },
   {
     type: "numbers",
@@ -198,6 +270,9 @@ export const words = [
     ngoko: "selawe",
     madya: "selangkung",
     alus: "selangkung",
+    ngokoSound: "/sounds/vocabularies/numbers/selawe.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/selangkung.mp3",
+    alusSound: "/sounds/vocabularies/numbers/selangkung.mp3",
   },
   {
     type: "numbers",
@@ -206,6 +281,9 @@ export const words = [
     ngoko: "nemlikur",
     madya: "nemlikur",
     alus: "nemlikur",
+    ngokoSound: "/sounds/vocabularies/numbers/nemlikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/nemlikur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/nemlikur.mp3",
   },
   {
     type: "numbers",
@@ -214,6 +292,9 @@ export const words = [
     ngoko: "pitulikur",
     madya: "pitulikur",
     alus: "pitulikur",
+    ngokoSound: "/sounds/vocabularies/numbers/pitulikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitulikur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitulikur.mp3",
   },
   {
     type: "numbers",
@@ -222,14 +303,20 @@ export const words = [
     ngoko: "wolulikur",
     madya: "wolulikur",
     alus: "wolulikur",
+    ngokoSound: "/sounds/vocabularies/numbers/wolulikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolulikur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolulikur.mp3",
   },
   {
     type: "numbers",
     english: "29",
     indonesian: "29",
-    ngoko: "sanga likur",
+    ngoko: "sangalikur",
     madya: "sangalikur",
     alus: "sangalikur",
+    ngokoSound: "/sounds/vocabularies/numbers/sangalikur.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangalikur.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangalikur.mp3",
   },
   {
     type: "numbers",
@@ -238,6 +325,9 @@ export const words = [
     ngoko: "telung puluh",
     madya: "tigang dasa",
     alus: "tigang dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa.mp3",
   },
   {
     type: "numbers",
@@ -246,6 +336,9 @@ export const words = [
     ngoko: "telung puluh siji",
     madya: "tigang dasa setunggal",
     alus: "tigang dasa setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -254,6 +347,9 @@ export const words = [
     ngoko: "telung puluh loro",
     madya: "tigang dasa kalih",
     alus: "tigang dasa kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-kalih.mp3",
   },
   {
     type: "numbers",
@@ -262,6 +358,9 @@ export const words = [
     ngoko: "telung puluh telu",
     madya: "tigang dasa tiga",
     alus: "tigang dasa tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-tiga.mp3",
   },
   {
     type: "numbers",
@@ -270,6 +369,9 @@ export const words = [
     ngoko: "telung puluh papat",
     madya: "tigang dasa sekawan",
     alus: "tigang dasa sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -278,6 +380,9 @@ export const words = [
     ngoko: "telung puluh lima",
     madya: "tigang dasa gangsal",
     alus: "tigang dasa gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -286,6 +391,9 @@ export const words = [
     ngoko: "telung puluh enem",
     madya: "tigang dasa enem",
     alus: "tigang dasa enem",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-enem.mp3",
   },
   {
     type: "numbers",
@@ -294,6 +402,9 @@ export const words = [
     ngoko: "telung puluh pitu",
     madya: "tigang dasa pitu",
     alus: "tigang dasa pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-pitu.mp3",
   },
   {
     type: "numbers",
@@ -302,6 +413,9 @@ export const words = [
     ngoko: "telung puluh wolu",
     madya: "tigang dasa wolu",
     alus: "tigang dasa wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-wolu.mp3",
   },
   {
     type: "numbers",
@@ -310,6 +424,9 @@ export const words = [
     ngoko: "telung puluh sanga",
     madya: "tigang dasa sanga",
     alus: "tigang dasa sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/telung-puluh-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/tigang-dasa-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/tigang-dasa-sanga.mp3",
   },
   {
     type: "numbers",
@@ -318,6 +435,9 @@ export const words = [
     ngoko: "patang puluh",
     madya: "sekawan dasa",
     alus: "sekawan dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa.mp3",
   },
   {
     type: "numbers",
@@ -326,6 +446,9 @@ export const words = [
     ngoko: "patang puluh siji",
     madya: "sekawan dasa setunggal",
     alus: "sekawan dasa setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -334,6 +457,9 @@ export const words = [
     ngoko: "patang puluh loro",
     madya: "sekawan dasa kalih",
     alus: "sekawan dasa kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-kalih.mp3",
   },
   {
     type: "numbers",
@@ -342,6 +468,9 @@ export const words = [
     ngoko: "patang puluh telu",
     madya: "sekawan dasa tiga",
     alus: "sekawan dasa tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-tiga.mp3",
   },
   {
     type: "numbers",
@@ -350,6 +479,9 @@ export const words = [
     ngoko: "patang puluh papat",
     madya: "sekawan dasa sekawan",
     alus: "sekawan dasa sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -358,6 +490,9 @@ export const words = [
     ngoko: "patang puluh lima",
     madya: "sekawan dasa gangsal",
     alus: "sekawan dasa gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -366,6 +501,9 @@ export const words = [
     ngoko: "patang puluh enem",
     madya: "sekawan dasa enem",
     alus: "sekawan dasa enem",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-enem.mp3",
   },
   {
     type: "numbers",
@@ -374,6 +512,9 @@ export const words = [
     ngoko: "patang puluh pitu",
     madya: "sekawan dasa pitu",
     alus: "sekawan dasa pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-pitu.mp3",
   },
   {
     type: "numbers",
@@ -382,6 +523,9 @@ export const words = [
     ngoko: "patang puluh wolu",
     madya: "sekawan dasa wolu",
     alus: "sekawan dasa wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-wolu.mp3",
   },
   {
     type: "numbers",
@@ -390,6 +534,9 @@ export const words = [
     ngoko: "patang puluh sanga",
     madya: "sekawan dasa sanga",
     alus: "sekawan dasa sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/patang-puluh-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sekawan-dasa-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sekawan-dasa-sanga.mp3",
   },
   {
     type: "numbers",
@@ -398,6 +545,9 @@ export const words = [
     ngoko: "seket",
     madya: "seket",
     alus: "seket",
+    ngokoSound: "/sounds/vocabularies/numbers/seket.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket.mp3",
   },
   {
     type: "numbers",
@@ -406,6 +556,9 @@ export const words = [
     ngoko: "seket siji",
     madya: "seket setunggal",
     alus: "seket setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -414,6 +567,9 @@ export const words = [
     ngoko: "seket loro",
     madya: "seket kalih",
     alus: "seket kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-kalih.mp3",
   },
   {
     type: "numbers",
@@ -422,6 +578,9 @@ export const words = [
     ngoko: "seket telu",
     madya: "seket tiga",
     alus: "seket tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-tiga.mp3",
   },
   {
     type: "numbers",
@@ -430,6 +589,9 @@ export const words = [
     ngoko: "seket papat",
     madya: "seket sekawan",
     alus: "seket sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -438,6 +600,9 @@ export const words = [
     ngoko: "seket lima",
     madya: "seket gangsal",
     alus: "seket gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -446,6 +611,9 @@ export const words = [
     ngoko: "seket enem",
     madya: "seket enem",
     alus: "seket enem",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-enem.mp3",
   },
   {
     type: "numbers",
@@ -454,6 +622,9 @@ export const words = [
     ngoko: "seket pitu",
     madya: "seket pitu",
     alus: "seket pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-pitu.mp3",
   },
   {
     type: "numbers",
@@ -462,6 +633,9 @@ export const words = [
     ngoko: "seket wolu",
     madya: "seket wolu",
     alus: "seket wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-wolu.mp3",
   },
   {
     type: "numbers",
@@ -470,6 +644,9 @@ export const words = [
     ngoko: "seket sanga",
     madya: "seket sanga",
     alus: "seket sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/seket-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/seket-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/seket-sanga.mp3",
   },
   {
     type: "numbers",
@@ -478,6 +655,9 @@ export const words = [
     ngoko: "sewidak",
     madya: "sewidak",
     alus: "sewidak",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak.mp3",
   },
   {
     type: "numbers",
@@ -486,6 +666,9 @@ export const words = [
     ngoko: "sewidak siji",
     madya: "sewidak setunggal",
     alus: "sewidak setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -494,6 +677,9 @@ export const words = [
     ngoko: "sewidak loro",
     madya: "sewidak kalih",
     alus: "sewidak kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-kalih.mp3",
   },
   {
     type: "numbers",
@@ -502,6 +688,9 @@ export const words = [
     ngoko: "sewidak telu",
     madya: "sewidak tiga",
     alus: "sewidak tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-tiga.mp3",
   },
   {
     type: "numbers",
@@ -510,6 +699,9 @@ export const words = [
     ngoko: "sewidak papat",
     madya: "sewidak sekawan",
     alus: "sewidak sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -518,6 +710,9 @@ export const words = [
     ngoko: "sewidak lima",
     madya: "sewidak gangsal",
     alus: "sewidak gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -526,6 +721,9 @@ export const words = [
     ngoko: "sewidak enem",
     madya: "sewidak enem",
     alus: "sewidak enem",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-enem.mp3",
   },
   {
     type: "numbers",
@@ -534,6 +732,9 @@ export const words = [
     ngoko: "sewidak pitu",
     madya: "sewidak pitu",
     alus: "sewidak pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-pitu.mp3",
   },
   {
     type: "numbers",
@@ -542,6 +743,9 @@ export const words = [
     ngoko: "sewidak wolu",
     madya: "sewidak wolu",
     alus: "sewidak wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-wolu.mp3",
   },
   {
     type: "numbers",
@@ -550,6 +754,9 @@ export const words = [
     ngoko: "sewidak sanga",
     madya: "sewidak sanga",
     alus: "sewidak sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/sewidak-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sewidak-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sewidak-sanga.mp3",
   },
   {
     type: "numbers",
@@ -558,6 +765,9 @@ export const words = [
     ngoko: "pitung puluh",
     madya: "pitung dasa",
     alus: "pitung dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa.mp3",
   },
   {
     type: "numbers",
@@ -566,6 +776,9 @@ export const words = [
     ngoko: "pitung puluh siji",
     madya: "pitung dasa setunggal",
     alus: "pitung dasa setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -574,6 +787,9 @@ export const words = [
     ngoko: "pitung puluh loro",
     madya: "pitung dasa kalih",
     alus: "pitung dasa kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-kalih.mp3",
   },
   {
     type: "numbers",
@@ -582,6 +798,9 @@ export const words = [
     ngoko: "pitung puluh telu",
     madya: "pitung dasa tiga",
     alus: "pitung dasa tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-tiga.mp3",
   },
   {
     type: "numbers",
@@ -590,6 +809,9 @@ export const words = [
     ngoko: "pitung puluh papat",
     madya: "pitung dasa sekawan",
     alus: "pitung dasa sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -598,6 +820,9 @@ export const words = [
     ngoko: "pitung puluh lima",
     madya: "pitung dasa gangsal",
     alus: "pitung dasa gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -606,6 +831,9 @@ export const words = [
     ngoko: "pitung puluh enem",
     madya: "pitung dasa enem",
     alus: "pitung dasa enem",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-enem.mp3",
   },
   {
     type: "numbers",
@@ -614,6 +842,9 @@ export const words = [
     ngoko: "pitung puluh pitu",
     madya: "pitung dasa pitu",
     alus: "pitung dasa pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-pitu.mp3",
   },
   {
     type: "numbers",
@@ -622,6 +853,9 @@ export const words = [
     ngoko: "pitung puluh wolu",
     madya: "pitung dasa wolu",
     alus: "pitung dasa wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-wolu.mp3",
   },
   {
     type: "numbers",
@@ -630,6 +864,9 @@ export const words = [
     ngoko: "pitung puluh sanga",
     madya: "pitung dasa sanga",
     alus: "pitung dasa sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/pitung-puluh-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/pitung-dasa-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/pitung-dasa-sanga.mp3",
   },
   {
     type: "numbers",
@@ -638,6 +875,9 @@ export const words = [
     ngoko: "wolung puluh",
     madya: "wolung dasa",
     alus: "wolung dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa.mp3",
   },
   {
     type: "numbers",
@@ -646,6 +886,9 @@ export const words = [
     ngoko: "wolung puluh siji",
     madya: "wolung dasa setunggal",
     alus: "wolung dasa setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -654,6 +897,9 @@ export const words = [
     ngoko: "wolung puluh loro",
     madya: "wolung dasa kalih",
     alus: "wolung dasa kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-kalih.mp3",
   },
   {
     type: "numbers",
@@ -662,6 +908,9 @@ export const words = [
     ngoko: "wolung puluh telu",
     madya: "wolung dasa tiga",
     alus: "wolung dasa tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-tiga.mp3",
   },
   {
     type: "numbers",
@@ -670,6 +919,9 @@ export const words = [
     ngoko: "wolung puluh papat",
     madya: "wolung dasa sekawan",
     alus: "wolung dasa sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -678,6 +930,9 @@ export const words = [
     ngoko: "wolung puluh lima",
     madya: "wolung dasa gangsal",
     alus: "wolung dasa gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -686,6 +941,9 @@ export const words = [
     ngoko: "wolung puluh enem",
     madya: "wolung dasa enem",
     alus: "wolung dasa enem",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-enem.mp3",
   },
   {
     type: "numbers",
@@ -694,6 +952,9 @@ export const words = [
     ngoko: "wolung puluh pitu",
     madya: "wolung dasa pitu",
     alus: "wolung dasa pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-pitu.mp3",
   },
   {
     type: "numbers",
@@ -702,6 +963,9 @@ export const words = [
     ngoko: "wolung puluh wolu",
     madya: "wolung dasa wolu",
     alus: "wolung dasa wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-wolu.mp3",
   },
   {
     type: "numbers",
@@ -710,6 +974,9 @@ export const words = [
     ngoko: "wolung puluh sanga",
     madya: "wolung dasa sanga",
     alus: "wolung dasa sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/wolung-puluh-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/wolung-dasa-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/wolung-dasa-sanga.mp3",
   },
   {
     type: "numbers",
@@ -718,6 +985,9 @@ export const words = [
     ngoko: "sangang puluh",
     madya: "sangang dasa",
     alus: "sangang dasa",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa.mp3",
   },
   {
     type: "numbers",
@@ -726,6 +996,9 @@ export const words = [
     ngoko: "sangang puluh siji",
     madya: "sangang dasa setunggal",
     alus: "sangang dasa setunggal",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-siji.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-setunggal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-setunggal.mp3",
   },
   {
     type: "numbers",
@@ -734,6 +1007,9 @@ export const words = [
     ngoko: "sangang puluh loro",
     madya: "sangang dasa kalih",
     alus: "sangang dasa kalih",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-loro.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-kalih.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-kalih.mp3",
   },
   {
     type: "numbers",
@@ -742,6 +1018,9 @@ export const words = [
     ngoko: "sangang puluh telu",
     madya: "sangang dasa tiga",
     alus: "sangang dasa tiga",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-telu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-tiga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-tiga.mp3",
   },
   {
     type: "numbers",
@@ -750,6 +1029,9 @@ export const words = [
     ngoko: "sangang puluh papat",
     madya: "sangang dasa sekawan",
     alus: "sangang dasa sekawan",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-papat.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-sekawan.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-sekawan.mp3",
   },
   {
     type: "numbers",
@@ -758,6 +1040,9 @@ export const words = [
     ngoko: "sangang puluh lima",
     madya: "sangang dasa gangsal",
     alus: "sangang dasa gangsal",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-lima.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-gangsal.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-gangsal.mp3",
   },
   {
     type: "numbers",
@@ -766,6 +1051,9 @@ export const words = [
     ngoko: "sangang puluh enem",
     madya: "sangang dasa enem",
     alus: "sangang dasa enem",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-enem.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-enem.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-enem.mp3",
   },
   {
     type: "numbers",
@@ -774,6 +1062,9 @@ export const words = [
     ngoko: "sangang puluh pitu",
     madya: "sangang dasa pitu",
     alus: "sangang dasa pitu",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-pitu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-pitu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-pitu.mp3",
   },
   {
     type: "numbers",
@@ -782,6 +1073,9 @@ export const words = [
     ngoko: "sangang puluh wolu",
     madya: "sangang dasa wolu",
     alus: "sangang dasa wolu",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-wolu.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-wolu.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-wolu.mp3",
   },
   {
     type: "numbers",
@@ -790,6 +1084,9 @@ export const words = [
     ngoko: "sangang puluh sanga",
     madya: "sangang dasa sanga",
     alus: "sangang dasa sanga",
+    ngokoSound: "/sounds/vocabularies/numbers/sangang-puluh-sanga.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/sangang-dasa-sanga.mp3",
+    alusSound: "/sounds/vocabularies/numbers/sangang-dasa-sanga.mp3",
   },
   {
     type: "numbers",
@@ -798,6 +1095,9 @@ export const words = [
     ngoko: "satus",
     madya: "setunggal atus",
     alus: "setunggal atus",
+    ngokoSound: "/sounds/vocabularies/numbers/satus.mp3",
+    madyaSound: "/sounds/vocabularies/numbers/setunggal-atus.mp3",
+    alusSound: "/sounds/vocabularies/numbers/setunggal-atus.mp3",
   },
 ];
 

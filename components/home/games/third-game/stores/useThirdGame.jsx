@@ -70,7 +70,7 @@ export const useThirdGame = create(
             combo: 1,
             mode,
             timer: 0,
-            initialTimer: 5,
+            initialTimer: 100,
             startTime: Date.now(),
             correctAnswersOrder,
             answerCount: 0,

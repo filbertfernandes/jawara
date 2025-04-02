@@ -10,7 +10,10 @@ const WordVariant = ({ variant, label, playSound }) => (
   <div className="mb-3">
     <div className="-mb-2 flex justify-between text-xl md:text-2xl lg:text-3xl">
       <div>{variant} </div>
-      <button onClick={playSound}>
+      <button
+        onClick={playSound}
+        className="transition-all duration-300 ease-in-out hover:text-gray-300"
+      >
         <PiSpeakerHighBold />
       </button>
     </div>
@@ -31,9 +34,9 @@ const GameMaterialInterface = ({ words }) => {
   }, []);
 
   // Memoize the sound handler to prevent unnecessary re-renders
-  const handlePlaySound = useCallback(() => {
-    SoundManager.playSound("gameComplete");
-  }, []);
+  const handlePlaySound = (path) => {
+    SoundManager.playSoundPath(path);
+  };
 
   return (
     <div
@@ -74,17 +77,17 @@ const GameMaterialInterface = ({ words }) => {
               <WordVariant
                 variant={word.ngoko}
                 label="Ngoko"
-                playSound={handlePlaySound}
+                playSound={() => handlePlaySound(word.ngokoSound)}
               />
               <WordVariant
                 variant={word.madya}
                 label="Krama Madya"
-                playSound={handlePlaySound}
+                playSound={() => handlePlaySound(word.madyaSound)}
               />
               <WordVariant
                 variant={word.alus}
                 label="Krama Alus"
-                playSound={handlePlaySound}
+                playSound={() => handlePlaySound(word.alusSound)}
               />
             </div>
           </div>
