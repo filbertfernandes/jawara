@@ -204,5 +204,13 @@
     "total_correct_translations": "Total Terjemahan Benar",
 
     "vocabulary_scores": "Skor Kosa Kata"
+  },
+  "Curriculum": {
+    "language": "indonesian",
+    "welcome_to": "Selamat datang di",
+    "curriculum": "Kurikulum",
+    "description": "Jelajahi setiap bab dengan pre-test yang terstruktur, materi pembelajaran yang menarik, dan post-test untuk melacak kemajuanmu. Ayo ambil langkah pertama dalam menguasai bahasa Jawa bersama!",
+    "chapter": "Bab",
+    "start_learning": "Mulai Belajar"
   }
 }

@@ -203,5 +203,13 @@
     "total_correct_translations": "Total Correct Translations",
 
     "vocabulary_scores": "Vocabulary Scores"
+  },
+  "Curriculum": {
+    "language": "english",
+    "welcome_to": "Welcome to",
+    "curriculum": "Curriculum",
+    "description": "Explore each chapter with structured pre-tests, engaging learning materials, and post-tests to track your progress. Let&apos;s take the first step in mastering Javanese together!",
+    "chapter": "Chapter",
+    "start_learning": "Start Learning"
   }
 }

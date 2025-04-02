@@ -2,8 +2,10 @@ const chapters = [
   {
     id: 1,
     title: "Kenalan",
-    description:
+    description_english:
       "Master basic Javanese greetings, introductions, and simple conversation starters!",
+    description_indonesian:
+      "Kuasai salam dasar, perkenalan, dan cara memulai percakapan dalam bahasa Jawa!",
     order: 1,
     phases: [
       { id: 1, name: "Pretest" },
@@ -47,8 +49,10 @@ const chapters = [
   {
     id: 2,
     title: "Pitutur kang Becik",
-    description:
+    description_english:
       "Learn about good advice and wise sayings in Javanese culture.",
+    description_indonesian:
+      "Pelajari nasihat baik dan pepatah bijak dalam budaya Jawa.",
     order: 2,
     phases: [
       { id: 1, name: "Pretest" },
@@ -60,10 +64,10 @@ const chapters = [
       {
         question: "What does 'Aja nganti nyangkruk' mean?",
         options: [
-          "Don’t rush",
-          "Don’t be lazy",
-          "Don’t sit idly",
-          "Don’t be rude",
+          "Don't rush",
+          "Don't be lazy",
+          "Don't sit idly",
+          "Don't be rude",
         ],
         correctAnswer: 2,
       },
@@ -82,8 +86,10 @@ const chapters = [
   {
     id: 3,
     title: "Budi Pekerti",
-    description:
+    description_english:
       "Learn about good manners and how to behave respectfully in Javanese culture.",
+    description_indonesian:
+      "Pelajari tata krama dan cara bersikap sopan dalam budaya Jawa.",
     order: 3,
     phases: [
       { id: 1, name: "Pretest" },
@@ -117,7 +123,9 @@ const chapters = [
   {
     id: 4,
     title: "Perangane Awak",
-    description: "Learn the Javanese vocabulary related to body parts.",
+    description_english: "Learn the Javanese vocabulary related to body parts.",
+    description_indonesian:
+      "Pelajari kosakata bahasa Jawa tentang bagian tubuh.",
     order: 4,
     phases: [
       { id: 1, name: "Pretest" },
@@ -145,7 +153,10 @@ const chapters = [
   {
     id: 5,
     title: "Ayo, Dolanan",
-    description: "Explore Javanese traditional games and fun activities.",
+    description_english:
+      "Explore Javanese traditional games and fun activities.",
+    description_indonesian:
+      "Jelajahi permainan tradisional Jawa dan aktivitas seru.",
     order: 5,
     phases: [
       { id: 1, name: "Pretest" },
@@ -173,7 +184,9 @@ const chapters = [
   {
     id: 6,
     title: "Ndongeng Fabel",
-    description: "Learn about Javanese fairy tales and storytelling.",
+    description_english: "Learn about Javanese fairy tales and storytelling.",
+    description_indonesian:
+      "Pelajari dongeng dan cara bercerita dalam bahasa Jawa.",
     order: 6,
     phases: [
       { id: 1, name: "Pretest" },
