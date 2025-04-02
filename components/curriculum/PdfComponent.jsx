@@ -44,7 +44,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
     >
       <div className="flex w-[95%] justify-end">
         <a
-          href={`${process.env.JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+          href={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
           download="chapter-1.pdf"
           className="btn-template bg-orange-500 px-4 text-sm text-gray-100 hover:bg-orange-600"
         >
@@ -53,7 +53,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
         </a>
       </div>
       <Document
-        file={`${process.env.JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+        file={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {Array.apply(null, Array(numPages))
