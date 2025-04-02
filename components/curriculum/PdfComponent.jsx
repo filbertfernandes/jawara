@@ -1,9 +1,9 @@
+import { useTranslations } from "next-intl";
 import { useState, useEffect, useRef } from "react";
 import { IoMdDownload } from "react-icons/io";
 import { pdfjs, Document, Page } from "react-pdf";
 
 import "./stores/curriculum.css";
-import { useTranslations } from "next-intl";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
