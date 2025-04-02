@@ -123,7 +123,7 @@ export const FourthGameInterface = () => {
   };
 
   useEffect(() => {
-    if (answerCount < 8 && stage !== null) {
+    if (answerCount < 8 && stage !== null && gameState === gameStates.GAME) {
       SoundManager.playSoundPath(
         stage[correctAnswersOrder[answerCount]].word[`${mode}Sound`]
       );
