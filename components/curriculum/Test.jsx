@@ -89,7 +89,7 @@ const Test = ({ chapter, isPostTest = false }) => {
             updatedUserProgress.userId
           );
         } else {
-          if (updatedUserProgress.postTestScore < 0) {
+          if (updatedUserProgress.completedPhases < chapter.phases.length) {
             await updatePosttestScore(
               chapter.id,
               updatedUserProgress.userId,
@@ -97,8 +97,8 @@ const Test = ({ chapter, isPostTest = false }) => {
             );
           }
           if (
-            calculatedScore >= 70 ||
-            updatedUserProgress.completedPhases >= chapter.phases.length
+            calculatedScore >= 70 &&
+            updatedUserProgress.completedPhases < chapter.phases.length
           ) {
             await incrementCompletedPhases(
               chapter.id,
