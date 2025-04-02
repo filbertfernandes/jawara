@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-orange-100/80" />
+            <div className="absolute inset-0 bg-orange-100/70" />
 
             {/* Content */}
             <div className="relative">
@@ -85,7 +85,7 @@ const Layout = ({ children }) => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-orange-100/80" />
+            <div className="absolute inset-0 bg-orange-100/70" />
 
             {/* Content */}
             <div className="relative">
