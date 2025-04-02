@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -19,6 +20,8 @@ import {
 import routes from "@/constants/routes";
 
 const MobileNavigation = ({ chapter, userProgress }) => {
+  const t = useTranslations("Curriculum");
+
   const { phase, updatedUserProgress } = useCurriculum((state) => ({
     phase: state.phase,
     updatedUserProgress: state.updatedUserProgress,
@@ -46,7 +49,7 @@ const MobileNavigation = ({ chapter, userProgress }) => {
             </Link>
             <SheetTitle className="mb-6 flex flex-col flex-wrap items-center justify-center">
               <div className="text-sm font-bold text-orange-500">
-                Chapter {chapter.order}
+                {t("chapter")} {chapter.order}
               </div>
               <div className="h3-bold">{chapter.title}</div>
             </SheetTitle>

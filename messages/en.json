@@ -209,8 +209,35 @@
     "language": "english",
     "welcome_to": "Welcome to",
     "curriculum": "Curriculum",
-    "description": "Explore each chapter with structured pre-tests, engaging learning materials, and post-tests to track your progress. Let&apos;s take the first step in mastering Javanese together!",
+    "description": "Explore each chapter with structured pre-tests, engaging learning materials, and post-tests to track your progress. Let's take the first step in mastering Javanese together!",
     "chapter": "Chapter",
-    "start_learning": "Start Learning"
+    "start_learning": "Start Learning",
+
+    "loading": "Loading",
+
+    "pretest_finished": "Nice, you've finished the pre-test!",
+    "pretest_finished_description": "You can start continue learn the content.",
+    "try_again": "Try again!",
+    "try_again_description": "You should get 70 and higher score to complete this chapter.",
+    "chapter_finish": "Congratulations, you've finished this chapter!",
+    "chapter_finish_description": "You still can retry the test for exercise.",
+    "retry": "Retry",
+    "pretest_title": "Let's see what you already know!",
+    "posttest_title": "Let's see what you've learned!",
+    "score_is_private": "Your score is private and will not be shown to other users.",
+    "start_pretest": "Start Pretest",
+    "start_posttest": "Start Posttest",
+    "prev": "Prev",
+    "next": "Next",
+    "finish": "Finish",
+    "your_score": "Your Score",
+    "question": "Question",
+
+    "material_finished": "Awesome, you've finished the material on",
+    "material_finished_description": "You still can learn again if you want.",
+    "material_title": "Let's make learning fun and easy!",
+    "material_description": " Explore the core concepts of this chapter through easy-to-follow slides.",
+
+    "download": "Download"
   }
 }

@@ -3,6 +3,7 @@ import { IoMdDownload } from "react-icons/io";
 import { pdfjs, Document, Page } from "react-pdf";
 
 import "./stores/curriculum.css";
+import { useTranslations } from "next-intl";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -10,6 +11,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 function PdfComponent({ isFinished, chapterPhase, onFinish }) {
+  const t = useTranslations("Curriculum");
+
   const [numPages, setNumPages] = useState();
   const [parentWidth, setParentWidth] = useState(0);
   const containerRef = useRef();
@@ -46,7 +49,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
           className="btn-template bg-orange-500 px-4 text-sm text-gray-100 hover:bg-orange-600"
         >
           <IoMdDownload className="mr-1" />
-          Download
+          {t("download")}
         </a>
       </div>
       <Document
@@ -72,7 +75,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
             className="btn-template w-1/4 border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-500 hover:text-gray-100"
             onClick={onFinish}
           >
-            Finish
+            {t("finish")}
           </div>
         </div>
       )}

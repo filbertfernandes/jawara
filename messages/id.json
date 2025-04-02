@@ -53,8 +53,8 @@
     "sign_in_to_generate": "Masuk untuk Membuat Kalimat",
 
     "loading": "Memuat",
-    "next": "Berikutnya",
-    "previous": "Sebelumnya",
+    "next": "Lanjut",
+    "previous": "Balik",
     "guide": "Panduan",
     "credits": "Kredit",
     "special_thanks_to": "Terima Kasih kepada",
@@ -210,8 +210,35 @@
     "language": "indonesian",
     "welcome_to": "Selamat datang di",
     "curriculum": "Kurikulum",
-    "description": "Jelajahi setiap bab dengan pre-test yang terstruktur, materi pembelajaran yang menarik, dan post-test untuk melacak kemajuanmu. Ayo ambil langkah pertama dalam menguasai bahasa Jawa bersama!",
+    "description": "Jelajahi setiap bab dengan pre-test terstruktur, materi pembelajaran yang menarik, dan post-test untuk melacak kemajuan Anda. Mari ambil langkah pertama dalam menguasai bahasa Jawa bersama!",
     "chapter": "Bab",
-    "start_learning": "Mulai Belajar"
+    "start_learning": "Mulai Belajar",
+
+    "loading": "Memuat",
+
+    "pretest_finished": "Mantap, Anda telah menyelesaikan pre-test!",
+    "pretest_finished_description": "Anda bisa mulai lanjut mempelajari materinya.",
+    "try_again": "Coba lagi!",
+    "try_again_description": "Anda harus mendapatkan skor 70 atau lebih tinggi untuk menyelesaikan bab ini.",
+    "chapter_finish": "Selamat, Anda telah menyelesaikan bab ini!",
+    "chapter_finish_description": "Anda tetap bisa mengulang tes sebagai latihan.",
+    "retry": "Ulangi",
+    "pretest_title": "Yuk, lihat seberapa banyak yang sudah Anda ketahui!",
+    "posttest_title": "Yuk, lihat seberapa banyak yang sudah Anda pelajari!",
+    "score_is_private": "Skor Anda bersifat pribadi dan tidak akan ditampilkan kepada pengguna lain.",
+    "start_pretest": "Mulai Pre-test",
+    "start_posttest": "Mulai Post-test",
+    "prev": "Balik",
+    "next": "Lanjut",
+    "finish": "Selesai",
+    "your_score": "Skor Anda",
+    "question": "Pertanyaan",
+
+    "material_finished": "Hebat, Anda telah menyelesaikan materi tentang",
+    "material_finished_description": "Anda tetap bisa belajar lagi jika ingin.",
+    "material_title": "Mari belajar dengan cara yang seru dan mudah!",
+    "material_description": "Jelajahi konsep inti dari bab ini melalui slide yang mudah dipahami.",
+
+    "download": "Unduh"
   }
 }

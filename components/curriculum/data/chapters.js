@@ -15,8 +15,15 @@ const chapters = [
     ],
     questions: [
       {
-        question: "What is the Javanese word for 'Hello'?",
-        options: [
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
+        ],
+        options_indonesian: [
           "Sugeng Enjing",
           "Sugeng Rawuh",
           "Sugeng Dalu",
@@ -25,8 +32,16 @@ const chapters = [
         correctAnswer: 0,
       },
       {
-        question: "How do you say 'What is your name?' in Javanese?",
-        options: [
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
           "Jenengmu sopo?",
           "Jenenge kowe?",
           "Jenengku sopo?",
@@ -35,8 +50,16 @@ const chapters = [
         correctAnswer: 2,
       },
       {
-        question: "How do you say 'Good morning' in Javanese?",
-        options: [
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        options_indonesian: [
           "Sugeng Enjing",
           "Sugeng Rawuh",
           "Sugeng Dalu",
@@ -62,24 +85,57 @@ const chapters = [
     ],
     questions: [
       {
-        question: "What does 'Aja nganti nyangkruk' mean?",
-        options: [
-          "Don't rush",
-          "Don't be lazy",
-          "Don't sit idly",
-          "Don't be rude",
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
+      },
+      {
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
         ],
         correctAnswer: 2,
       },
       {
-        question: "Which of these is a Javanese proverb?",
-        options: [
-          "Aja nggo ngongkon",
-          "Ngundhuh wohing pakarti",
-          "Rungokna wong tuwa",
-          "Aja tumindak kaya lemah",
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
         ],
-        correctAnswer: 1,
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
       },
     ],
   },
@@ -99,24 +155,57 @@ const chapters = [
     ],
     questions: [
       {
-        question: "How do you show respect in Javanese culture?",
-        options: [
-          "Always speak loudly",
-          "Use polite words",
-          "Ignore elders",
-          "Show anger",
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
         ],
-        correctAnswer: 1,
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
       },
       {
-        question: "Which of these is not considered polite in Javanese?",
-        options: [
-          "Speaking slowly",
-          "Addressing elders with respect",
-          "Interrupting conversations",
-          "Offering help to others",
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
         ],
         correctAnswer: 2,
+      },
+      {
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
       },
     ],
   },
@@ -139,13 +228,56 @@ const chapters = [
     ],
     questions: [
       {
-        question: "What is the Javanese word for 'Hand'?",
-        options: ["Tangan", "Wajah", "Kaki", "Tulung"],
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
         correctAnswer: 0,
       },
       {
-        question: "Which part of the body is 'Sirah' in Javanese?",
-        options: ["Head", "Leg", "Arm", "Eye"],
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
         correctAnswer: 0,
       },
     ],
@@ -170,13 +302,56 @@ const chapters = [
     ],
     questions: [
       {
-        question: "Which of these is a traditional Javanese game?",
-        options: ["Sepak Bola", "Congklak", "Monopoli", "Kartu Remi"],
-        correctAnswer: 1,
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
       },
       {
-        question: "What is the Javanese name for 'Doll'?",
-        options: ["Boneka", "Topi", "Gasing", "Wayang"],
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
         correctAnswer: 0,
       },
     ],
@@ -200,15 +375,57 @@ const chapters = [
     ],
     questions: [
       {
-        question: "What is a common theme in Javanese fairy tales?",
-        options: ["Good vs Evil", "Love stories", "Friendship", "Adventure"],
+        question_english: "What is the Javanese word for 'Hello'?",
+        question_indonesian: "Apa kata dalam bahasa Jawa untuk 'Halo'?",
+        options_english: [
+          "Good Morning",
+          "Welcome",
+          "Good Night",
+          "Good Afternoon",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
         correctAnswer: 0,
       },
       {
-        question:
-          "Which of these animals is often featured in Javanese fables?",
-        options: ["Tiger", "Crocodile", "Elephant", "Monkey"],
-        correctAnswer: 3,
+        question_english: "How do you say 'What is your name?' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Siapa namamu?' dalam bahasa Jawa?",
+        options_english: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        options_indonesian: [
+          "Jenengmu sopo?",
+          "Jenenge kowe?",
+          "Jenengku sopo?",
+          "Jenenge aku?",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        question_english: "How do you say 'Good morning' in Javanese?",
+        question_indonesian:
+          "Bagaimana cara mengatakan 'Selamat pagi' dalam bahasa Jawa?",
+        options_english: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        options_indonesian: [
+          "Sugeng Enjing",
+          "Sugeng Rawuh",
+          "Sugeng Dalu",
+          "Sugeng Siang",
+        ],
+        correctAnswer: 0,
       },
     ],
   },

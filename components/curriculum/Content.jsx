@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import PdfComponent from "./PdfComponent";
@@ -6,6 +7,8 @@ import { useCurriculum } from "./stores/useCurriculum";
 import { incrementCompletedPhases } from "@/lib/actions/userProgress.action";
 
 const Content = ({ chapter, chapterPhase }) => {
+  const t = useTranslations("Curriculum");
+
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +49,9 @@ const Content = ({ chapter, chapterPhase }) => {
     <>
       {isLoading ? (
         <div className="flex h-screen items-center justify-center">
-          <div className="text-xl font-bold text-gray-600">Loading...</div>
+          <div className="text-xl font-bold text-gray-600">
+            {t("loading")}...
+          </div>
         </div>
       ) : isStarted ? (
         <PdfComponent
@@ -58,35 +63,32 @@ const Content = ({ chapter, chapterPhase }) => {
         <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900">
           <div className="text-center">
             <div className="h5-bold mb-1">
-              Awesome, You&apos;ve finished the {chapterPhase.name} material!
+              {t("material_finished")} {chapterPhase.name}!
             </div>
             <div className="text-sm text-gray-600 lg:text-xl">
-              You still can learn again if you want.
+              {t("material_finished_description")}
             </div>
           </div>
           <div
             className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
-            Start Learning
+            {t("start_learning")}
           </div>
         </div>
       ) : (
         <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900">
           <div className="text-center">
-            <div className="h5-bold mb-1">
-              Let&apos;s make learning fun and easy!
-            </div>
+            <div className="h5-bold mb-1">{t("material_title")}</div>
             <div className="text-sm text-gray-600 lg:text-xl">
-              Explore the core concepts of this chapter through easy-to-follow
-              slides.
+              {t("material_description")}
             </div>
           </div>
           <div
             className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
             onClick={() => setIsStarted(true)}
           >
-            Start Learning
+            {t("start_learning")}
           </div>
         </div>
       )}
