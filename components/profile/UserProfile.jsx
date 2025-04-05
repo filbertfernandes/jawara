@@ -15,7 +15,7 @@ import {
   removeFriendRequest,
 } from "@/lib/actions/friend.action";
 
-const UserProfile = ({ profileUser }) => {
+const UserProfile = ({ profileUser, onFriendsClick }) => {
   const t = useTranslations("Profile");
 
   const { data: session } = useSession();
@@ -131,7 +131,10 @@ const UserProfile = ({ profileUser }) => {
           <h5>@{profileUser?.username}</h5>
         </div>
         <div className="flex flex-wrap gap-2">
-          <div className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-2/5">
+          <div
+            className="btn-template w-4/5 bg-orange-500 hover:bg-orange-600 lg:w-2/5"
+            onClick={onFriendsClick}
+          >
             <p>
               {friendsCount} {t("friends")}
             </p>

@@ -46,6 +46,7 @@ export default function BlockAxe({ coloredBlock, index }) {
       restitution={0.2}
       friction={0}
       onCollisionEnter={(other) => {
+        console.log("DEBUG collision happened", other);
         if (
           correctAnswersOrder[correctCount] === index &&
           other.rigidBodyObject.name === "SecondGameMarble"
