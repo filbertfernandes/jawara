@@ -56,7 +56,7 @@ const FriendsOverlay = ({ friends, onClose, t }) => (
       {/* Friends List */}
       <div className="max-h-[60vh] space-y-4 overflow-y-auto">
         {friends?.length === 0 ? (
-          <p className="text-center text-gray-600">No friends yet.</p>
+          <p className="text-center text-gray-600">{t("no_friends")}</p>
         ) : (
           friends.map((friend) => {
             const avatarSvg = multiavatar(
