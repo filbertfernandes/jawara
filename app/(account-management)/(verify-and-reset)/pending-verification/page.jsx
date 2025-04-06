@@ -60,7 +60,7 @@ const Page = () => {
 
     try {
       const result = await resendVerificationToken(email);
-      console.log("Resend email result:", result);
+
       if (result.success) {
         toast({
           title: t("toast.success_title"),

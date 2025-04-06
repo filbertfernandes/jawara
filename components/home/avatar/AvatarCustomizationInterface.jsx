@@ -154,8 +154,6 @@ const SaveButton = () => {
         avatar: transformedData,
       });
 
-      console.log("Avatar saved:", response.message);
-
       setSaving(false);
 
       toast({

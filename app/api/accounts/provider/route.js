@@ -7,16 +7,11 @@ import dbConnect from "@/lib/mongoose";
 import { AccountSchema } from "@/lib/validations";
 
 export async function POST(request) {
-  console.log("INFO: Received request to create/fetch account");
-
   try {
     const { providerAccountId } = await request.json();
-    console.log("INFO: Extracted providerAccountId", providerAccountId);
 
-    console.log("INFO: Connecting to database");
     await dbConnect();
 
-    console.log("INFO: Validating input data");
     const validatedData = AccountSchema.partial().safeParse({
       providerAccountId,
     });
@@ -29,16 +24,12 @@ export async function POST(request) {
       throw new ValidationError(validatedData.error.flatten().fieldErrors);
     }
 
-    console.log(
-      `INFO: Searching for account with providerAccountId ${providerAccountId}`
-    );
     const account = await Account.findOne({ providerAccountId });
     if (!account) {
       console.error("ERROR: Account not found");
       throw new NotFoundError("Account");
     }
 
-    console.log("INFO: Successfully fetched account", account);
     return NextResponse.json(
       {
         success: true,

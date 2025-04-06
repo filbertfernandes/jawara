@@ -8,8 +8,6 @@ import { UserSchema } from "@/lib/validations";
 
 // GET /api/users/[id]
 export async function GET(_, { params }) {
-  console.log("INFO: Received request to fetch user", params);
-
   const { id } = await params;
   if (!id) {
     console.error("ERROR: User ID not provided");
@@ -17,17 +15,14 @@ export async function GET(_, { params }) {
   }
 
   try {
-    console.log("INFO: Connecting to database");
     await dbConnect();
 
-    console.log(`INFO: Fetching user with ID ${id}`);
     const user = await User.findById(id);
     if (!user) {
       console.error(`ERROR: User with ID ${id} not found`);
       throw new NotFoundError("User");
     }
 
-    console.log("INFO: Successfully fetched user", user);
     return NextResponse.json({ success: true, data: user }, { status: 200 });
   } catch (error) {
     console.error("ERROR: An error occurred while fetching user", error);

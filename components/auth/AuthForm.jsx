@@ -43,8 +43,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
               : t("sign_up_success"),
         });
 
-        const newSession = await getSession();
-        console.log("New Session:", newSession);
+        await getSession();
 
         router.refresh();
 
