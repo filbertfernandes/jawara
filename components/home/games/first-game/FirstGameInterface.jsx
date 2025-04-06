@@ -25,9 +25,11 @@ export const FirstGameInterface = () => {
     setAchievementsPopup: state.setAchievementsPopup,
   }));
 
-  const { startGame, mode } = useFirstGame((state) => ({
+  const { startGame, mode, level, currentStage } = useFirstGame((state) => ({
     startGame: state.startGame,
     mode: state.mode,
+    level: state.level,
+    currentStage: state.currentStage,
   }));
 
   useEffect(() => {
@@ -105,6 +107,22 @@ export const FirstGameInterface = () => {
           0.00
         </div>
       </div>
+
+      {gameState === gameStates.GAME && Array.isArray(level[currentStage]) && (
+        <div className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col items-end gap-2 pr-4 text-right font-questrial font-bold text-white">
+          {level[currentStage].map((item, idx) => (
+            <div
+              key={idx}
+              className="rounded-lg bg-orange-600/80 px-3 py-1 shadow-lg backdrop-blur"
+            >
+              {`${idx + 1}. ${
+                item[t("language")].charAt(0).toUpperCase() +
+                item[t("language")].slice(1)
+              }`}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
