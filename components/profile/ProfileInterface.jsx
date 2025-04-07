@@ -66,9 +66,9 @@ const FriendsOverlay = ({ friends, onClose, t }) => (
               <Link
                 key={friend._id}
                 href={`/profile/${friend._id}`}
-                className="block overflow-hidden transition-transform hover:scale-[1.02]"
+                className="block overflow-hidden transition-transform"
               >
-                <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4 shadow-sm hover:bg-gray-100">
+                <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100">
                   <div
                     className="size-14 shrink-0 overflow-hidden rounded-full bg-white"
                     dangerouslySetInnerHTML={{ __html: avatarSvg }}
