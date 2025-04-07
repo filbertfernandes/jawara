@@ -26,8 +26,9 @@ const Button = ({ text, onClick, isOutlined = false }) => {
 const TutorialMenuInterface = () => {
   const t = useTranslations("Home");
 
-  const { changePhase } = useGame((state) => ({
+  const { changePhase, isFirstTime } = useGame((state) => ({
     changePhase: state.changePhase,
+    isFirstTime: state.isFirstTime,
   }));
 
   const { tutorialState, setTutorialState } = useTutorial((state) => ({
@@ -53,7 +54,9 @@ const TutorialMenuInterface = () => {
     };
   }, []);
 
-  return tutorialState === tutorialStates.MENU ? (
+  return isFirstTime ? (
+    <GuideInterface isFirstTime />
+  ) : tutorialState === tutorialStates.MENU ? (
     <div className="fullscreen-backdrop">
       <div
         className={`flex h-[90%] w-full flex-col items-center justify-center gap-6 ${
@@ -81,7 +84,7 @@ const TutorialMenuInterface = () => {
     </div>
   ) : tutorialState === tutorialStates.GUIDE ? (
     <>
-      <GuideInterface />
+      <GuideInterface isFirstTime={false} />
     </>
   ) : tutorialState === tutorialStates.CONTROLS ? (
     <>

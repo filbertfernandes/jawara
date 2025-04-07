@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { FaQuestion, FaUsers } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
+import { HiQuestionMarkCircle } from "react-icons/hi";
 import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
@@ -59,6 +60,28 @@ export default function FreePhaseInterface() {
   const [editProfileOverlay, setEditProfileOverlay] = useState(false);
   const [user, setUser] = useState(null);
 
+  const {
+    changePhase,
+    canChangePhase,
+    setCanChangePhase,
+    canPressEnter,
+    setCanPressEnter,
+    toggleMusic,
+    isMusicMuted,
+    isFirstTime,
+    setIsFirstTime,
+  } = useGame((state) => ({
+    changePhase: state.changePhase,
+    canChangePhase: state.canChangePhase,
+    setCanChangePhase: state.setCanChangePhase,
+    canPressEnter: state.canPressEnter,
+    setCanPressEnter: state.setCanPressEnter,
+    toggleMusic: state.toggleMusic,
+    isMusicMuted: state.isMusicMuted,
+    isFirstTime: state.isFirstTime,
+    setIsFirstTime: state.setIsFirstTime,
+  }));
+
   useEffect(() => {
     if (session?.user?.id) {
       const fetchUser = async () => {
@@ -81,30 +104,13 @@ export default function FreePhaseInterface() {
 
       fetchUser();
       checkFriendRequest();
+      setIsFirstTime(false);
     } else {
       if (status !== "loading") {
         setLoading(false);
       }
     }
   }, [session]);
-
-  const {
-    changePhase,
-    canChangePhase,
-    setCanChangePhase,
-    canPressEnter,
-    setCanPressEnter,
-    toggleMusic,
-    isMusicMuted,
-  } = useGame((state) => ({
-    changePhase: state.changePhase,
-    canChangePhase: state.canChangePhase,
-    setCanChangePhase: state.setCanChangePhase,
-    canPressEnter: state.canPressEnter,
-    setCanPressEnter: state.setCanPressEnter,
-    toggleMusic: state.toggleMusic,
-    isMusicMuted: state.isMusicMuted,
-  }));
 
   const router = useRouter();
 
@@ -196,6 +202,35 @@ export default function FreePhaseInterface() {
 
   return (
     <>
+      {isFirstTime && (
+        <div className="fullscreen-black-transparent z-50 items-center justify-center font-questrial text-gray-900">
+          <div className="flex h-auto min-h-56 w-[90%] flex-col justify-between rounded-xl bg-white px-2 py-4 text-center lg:h-72 lg:w-1/3 lg:px-4 lg:py-6 lg:text-lg">
+            <div className="flex flex-col gap-4">
+              <div className="waving-hand text-6xl">👋</div>
+              <div>
+                {t("need_a_quick_guide")}
+                <HiQuestionMarkCircle className="inline text-xl text-orange-500" />{" "}
+                {t("icon_on_top_left")}
+              </div>
+            </div>
+            <div className="flex w-full justify-between font-bold">
+              <div
+                className="w-1/2 cursor-pointer text-center hover:underline"
+                onClick={() => changePhase(phases.TUTORIAL)}
+              >
+                {t("lets_go")}
+              </div>
+              <div
+                className="w-1/2 cursor-pointer text-center hover:underline"
+                onClick={() => setIsFirstTime(false)}
+              >
+                {t("maybe_later")}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {editProfileOverlay && (
         <EditProfileCard
           onClose={() => setEditProfileOverlay(false)}

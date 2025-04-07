@@ -36,6 +36,7 @@ export const useTutorial = create(
             state.guideIndex === state.guideLength - 1
               ? 0
               : state.guideIndex + 1;
+
           return { guideIndex: newGuideIndex };
         });
       },

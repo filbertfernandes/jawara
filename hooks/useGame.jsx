@@ -45,6 +45,14 @@ export const useGame = create(
       customizationWarning: true,
       joystickInput: { x: 0, y: 0 },
       achievementsPopup: [],
+      isFirstTime: true,
+
+      setIsFirstTime: (condition) => {
+        set(() => {
+          return { isFirstTime: condition };
+        });
+      },
+
       setAchievementsPopup: (data) => {
         set(() => {
           return { achievementsPopup: data };

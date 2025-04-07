@@ -57,6 +57,11 @@
     "guide": "Guide",
     "credits": "Credits",
     "special_thanks_to": "Special Thanks to",
+    "need_a_quick_guide": "Hi, need a quick guide? You can always view the guide later via the ",
+    "icon_on_top_left": "icon on the top left.",
+    "lets_go": "Let's go!",
+    "maybe_later": "Maybe later",
+    "finish": "Finish",
 
     "save": "Save",
     "saving": "Saving",

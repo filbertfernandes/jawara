@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import Guide from "./Guide";
 import { tutorialStates, useTutorial } from "./stores/useTutorial";
 
+import { useGame } from "@/hooks/useGame";
+
 export const controlsRef = { current: null }; // Global reference object
 
 const Tutorial = () => {
@@ -13,6 +15,10 @@ const Tutorial = () => {
 
   const { tutorialState } = useTutorial((state) => ({
     tutorialState: state.tutorialState,
+  }));
+
+  const { isFirstTime } = useGame((state) => ({
+    isFirstTime: state.isFirstTime,
   }));
 
   useEffect(() => {
@@ -31,7 +37,7 @@ const Tutorial = () => {
         target={[2, 0, 0]}
       />
 
-      {tutorialState === tutorialStates.GUIDE && <Guide />}
+      {(tutorialState === tutorialStates.GUIDE || isFirstTime) && <Guide />}
     </>
   );
 };
