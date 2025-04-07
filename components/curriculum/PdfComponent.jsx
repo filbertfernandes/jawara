@@ -59,13 +59,18 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
         {Array.apply(null, Array(numPages))
           .map((x, i) => i + 1)
           .map((page) => (
-            <Page
-              key={`page_${page}`}
-              pageNumber={page}
-              width={parentWidth * 0.95} // Set width to 95% of parent container
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-            />
+            <div key={`page-wrapper-${page}`} className="mb-8 text-center">
+              <Page
+                key={`page_${page}`}
+                pageNumber={page}
+                width={parentWidth * 0.95}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
+              <p className="mt-2 text-sm text-gray-500">
+                Page {page} of {numPages}
+              </p>
+            </div>
           ))}
       </Document>
 
