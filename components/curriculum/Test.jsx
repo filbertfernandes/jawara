@@ -23,6 +23,7 @@ const Test = ({ chapter, isPostTest = false }) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isRetry, setIsRetry] = useState(true);
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
   const { changePhase, updatedUserProgress } = useCurriculum((state) => ({
     changePhase: state.changePhase,
@@ -67,13 +68,13 @@ const Test = ({ chapter, isPostTest = false }) => {
     let correctCount = 0;
 
     // Calculate the correct answers and score
-    chapter.questions.forEach((question, index) => {
+    shuffledQuestions.forEach((question, index) => {
       if (userAnswers[index] === question.correctAnswer) {
         correctCount++;
       }
     });
 
-    const calculatedScore = (correctCount / chapter.questions.length) * 100;
+    const calculatedScore = (correctCount / shuffledQuestions.length) * 100;
     setScore(calculatedScore);
 
     const updateProgress = async (calculatedScore) => {
@@ -130,7 +131,7 @@ const Test = ({ chapter, isPostTest = false }) => {
 
   const handleCloseOverlay = () => {
     if (!isPostTest) {
-      changePhase(chapter.phases[1].name);
+      changePhase(chapter.phases[1].name_english);
     }
 
     setShowOverlay(false);
@@ -141,6 +142,26 @@ const Test = ({ chapter, isPostTest = false }) => {
     setIsRetry(false);
     setIsStarted(true);
   };
+
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  useEffect(() => {
+    if (chapter?.questions?.length > 0) {
+      const randomized = shuffleArray(chapter.questions).slice(
+        0,
+        isPostTest ? 15 : 10
+      ); // shuffle & only take 15 questions (posttest) & 10 questions (pretest)
+      setShuffledQuestions(randomized);
+      setUserAnswers(new Array(randomized.length).fill(-1)); // reset user answers
+    }
+  }, [chapter, isFinished]);
 
   return (
     <div
@@ -199,13 +220,13 @@ const Test = ({ chapter, isPostTest = false }) => {
       ) : (
         <div className="flex w-full flex-col items-center justify-center gap-6 px-4 sm:w-3/4 lg:w-2/3">
           <div className="text-center text-gray-600 sm:text-lg md:text-xl">
-            {t("question")} {questionIndex + 1} / {chapter.questions.length}
+            {t("question")} {questionIndex + 1} / {shuffledQuestions.length}
           </div>
           <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-gray-100">
-            {chapter.questions[questionIndex][`question_${t("language")}`]}
+            {shuffledQuestions[questionIndex][`question_${t("language")}`]}
           </div>
           <div className="flex w-full flex-col items-center gap-2">
-            {chapter.questions[questionIndex][`options_${t("language")}`].map(
+            {shuffledQuestions[questionIndex][`options_${t("language")}`].map(
               (option, index) => (
                 <div
                   key={index}
@@ -233,12 +254,12 @@ const Test = ({ chapter, isPostTest = false }) => {
             <div
               className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100"
               onClick={
-                questionIndex + 1 < chapter.questions.length
+                questionIndex + 1 < shuffledQuestions.length
                   ? () => setQuestionIndex(questionIndex + 1)
                   : () => handleFinished()
               }
             >
-              {questionIndex + 1 < chapter.questions.length
+              {questionIndex + 1 < shuffledQuestions.length
                 ? t("next")
                 : t("finish")}
             </div>

@@ -44,7 +44,9 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
     >
       <div className="flex w-[95%] justify-end">
         <a
-          href={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+          href={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${
+            chapterPhase["pdf_file_" + t("language")]
+          }`}
           download="chapter-1.pdf"
           className="btn-template bg-orange-500 px-4 text-sm text-gray-100 hover:bg-orange-600"
         >
@@ -53,13 +55,18 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
         </a>
       </div>
       <Document
-        file={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${chapterPhase.pdfFile}`}
+        file={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${
+          chapterPhase["pdf_file_" + t("language")]
+        }`}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {Array.apply(null, Array(numPages))
           .map((x, i) => i + 1)
           .map((page) => (
             <div key={`page-wrapper-${page}`} className="mb-8 text-center">
+              <p className="mb-2 text-sm text-gray-600">
+                Page {page} of {numPages}
+              </p>
               <Page
                 key={`page_${page}`}
                 pageNumber={page}
@@ -67,9 +74,6 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
                 renderTextLayer={false}
                 renderAnnotationLayer={false}
               />
-              <p className="mt-2 text-sm text-gray-500">
-                Page {page} of {numPages}
-              </p>
             </div>
           ))}
       </Document>

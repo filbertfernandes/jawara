@@ -15,16 +15,25 @@ export default function ChapterContent({ chapter }) {
 
   useEffect(() => {
     changePhase("Pretest");
+    return () => {
+      changePhase("Pretest");
+    };
   }, []);
 
   const chapterPhasesMap = {};
   chapter.phases.forEach((chapterPhase) => {
-    if (chapterPhase.name === "Pretest" || chapterPhase.name === "Posttest") {
-      chapterPhasesMap[chapterPhase.name] = (
-        <Test chapter={chapter} isPostTest={chapterPhase.name === "Posttest"} />
+    if (
+      chapterPhase.name_english === "Pretest" ||
+      chapterPhase.name_english === "Posttest"
+    ) {
+      chapterPhasesMap[chapterPhase.name_english] = (
+        <Test
+          chapter={chapter}
+          isPostTest={chapterPhase.name_english === "Posttest"}
+        />
       );
     } else {
-      chapterPhasesMap[chapterPhase.name] = (
+      chapterPhasesMap[chapterPhase.name_english] = (
         <Content chapter={chapter} chapterPhase={chapterPhase} />
       );
     }

@@ -39,7 +39,7 @@ const Content = ({ chapter, chapterPhase }) => {
       await incrementCompletedPhases(chapter.id, updatedUserProgress.userId);
       setIsFinished(true);
       setIsStarted(false);
-      changePhase(chapter.phases[chapterPhase.id].name);
+      changePhase(chapter.phases[chapterPhase.id].name_english);
     } catch (error) {
       console.error("Error updating progress:", error);
     }
@@ -63,7 +63,7 @@ const Content = ({ chapter, chapterPhase }) => {
         <div className="flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900">
           <div className="text-center">
             <div className="h5-bold mb-1">
-              {t("material_finished")} {chapterPhase.name}!
+              {t("material_finished")} {chapterPhase.name_english}!
             </div>
             <div className="text-sm text-gray-600 lg:text-xl">
               {t("material_finished_description")}

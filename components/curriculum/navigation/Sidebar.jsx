@@ -63,20 +63,22 @@ const Sidebar = ({ chapter, userProgress }) => {
           !loading ? (
             <ProgressBar
               key={index}
-              title={chapterPhase.name}
+              phaseName={chapterPhase.name_english}
+              title={chapterPhase[`name_${t("language")}`]}
               first={index === 0}
               completed={updatedUserProgress.completedPhases > index}
               inProgress={updatedUserProgress.completedPhases === index}
-              active={phase === chapterPhase.name}
+              active={phase === chapterPhase.name_english}
             />
           ) : (
             <ProgressBar
               key={index}
-              title={chapterPhase.name}
+              phaseName={chapterPhase.name_english}
+              title={chapterPhase[`name_${t("language")}`]}
               first={index === 0}
               completed={userProgress.completedPhases > index}
               inProgress={userProgress.completedPhases === index}
-              active={phase === chapterPhase.name}
+              active={phase === chapterPhase.name_english}
             />
           )
         )}
