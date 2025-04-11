@@ -570,9 +570,9 @@ const chapters = [
       },
       {
         question_english: "Ing basa Jawa, 'sheep' iku ...",
-        question_indonesian: "Ing basa Jawa, 'sheep' iku ...",
-        options_english: ["Sheep", "Goat", "Cow", "Horse"],
-        options_indonesian: ["Wedhus gembel", "Wedhus biasa", "Sapi", "Jaran"],
+        question_indonesian: "Ing basa Jawa, 'domba' iku ...",
+        options_english: ["Wedhus", "Celeng", "Menjangan", "Jaran"],
+        options_indonesian: ["Wedhus", "Celeng", "Menjangan", "Jaran"],
         correctAnswer: 0,
       },
       {
@@ -585,7 +585,7 @@ const chapters = [
         correctAnswer: 1,
       },
       {
-        question_english: "Tembung 'itik' ing basa Indonesia tegesé ...",
+        question_english: "Tembung 'itik' ing basa Inggris tegesé ...",
         question_indonesian: "Tembung 'itik' ing basa Indonesia tegesé ...",
         options_english: ["Duck", "Chicken", "Bird", "Cow"],
         options_indonesian: ["Bebek", "Ayam", "Burung", "Sapi"],

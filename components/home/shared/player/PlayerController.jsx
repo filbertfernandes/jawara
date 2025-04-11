@@ -11,23 +11,23 @@ import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const PLAYER_INITIAL_POSITION = { x: 2, y: 0.5, z: 18 };
-
 const JUMP_FORCE = 2;
 const MOVEMENT_SPEED = 0.6;
 const MAX_VEL = 3;
 const RUN_VEL = 2;
 
-const debounce = (func, delay) => {
-  let timer;
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(func, delay);
-  };
-};
+// Reusable vector instances
+const playerWorldPosition = new THREE.Vector3();
+const targetLookAt = new THREE.Vector3();
 
-const playFootstepSound = debounce(() => {
-  SoundManager.playSound("move");
-}, 50);
+// Debounced footstep sound
+let footstepTimer;
+const playFootstepSound = () => {
+  clearTimeout(footstepTimer);
+  footstepTimer = setTimeout(() => {
+    SoundManager.playSound("move");
+  }, 50);
+};
 
 export default function PlayerController() {
   const isPortraitMobile = useMediaQuery({ maxWidth: 768 });
@@ -48,26 +48,22 @@ export default function PlayerController() {
     joystickInput: state.joystickInput,
   }));
 
-  const jumpPressed = useKeyboardControls((state) => state[controls.JUMP]);
-  const leftPressed = useKeyboardControls((state) => state[controls.LEFT]);
-  const rightPressed = useKeyboardControls((state) => state[controls.RIGHT]);
-  const backPressed = useKeyboardControls((state) => state[controls.BACK]);
-  const forwardPressed = useKeyboardControls(
-    (state) => state[controls.FORWARD]
-  );
+  const jumpPressed = useKeyboardControls((s) => s[controls.JUMP]);
+  const leftPressed = useKeyboardControls((s) => s[controls.LEFT]);
+  const rightPressed = useKeyboardControls((s) => s[controls.RIGHT]);
+  const backPressed = useKeyboardControls((s) => s[controls.BACK]);
+  const forwardPressed = useKeyboardControls((s) => s[controls.FORWARD]);
 
   const rigidBody = useRef();
   const isOnFloor = useRef(true);
   const player = useRef();
 
-  const reset = () => {
+  const resetPlayer = () => {
+    const offsetZ = phase === phases.FREE ? 0 : -10;
     rigidBody.current.setTranslation({
       x: PLAYER_INITIAL_POSITION.x,
       y: PLAYER_INITIAL_POSITION.y,
-      z:
-        phase === phases.FREE
-          ? PLAYER_INITIAL_POSITION.z
-          : PLAYER_INITIAL_POSITION.z - 10,
+      z: PLAYER_INITIAL_POSITION.z + offsetZ,
     });
     rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
     rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 });
@@ -75,146 +71,129 @@ export default function PlayerController() {
 
   useEffect(() => {
     if (phase === phases.FOURTH_GAME && gameState === gameStates.GAME) {
-      reset();
+      resetPlayer();
     }
   }, [gameState]);
 
   useFrame((state) => {
-    const playerWorldPosition = player.current.getWorldPosition(
-      new THREE.Vector3()
-    );
-
-    setPlayerPosition({
-      x: playerWorldPosition.x,
-      y: playerWorldPosition.y,
-      z: playerWorldPosition.z,
-    });
+    const rb = rigidBody.current;
+    if (!rb) return;
 
     if (
-      (phase !== phases.FREE && phase !== phases.FOURTH_GAME) ||
-      !rigidBody.current
+      phase !== phases.FREE &&
+      phase !== phases.FOURTH_GAME &&
+      phase !== phases.AVATAR_CUSTOMIZATION
     )
       return;
 
-    const rigidBodyPosition = rigidBody.current.translation();
+    player.current.getWorldPosition(playerWorldPosition);
+    setPlayerPosition({ ...playerWorldPosition });
 
+    if (phase === phases.AVATAR_CUSTOMIZATION) return;
+
+    const linvel = rb.linvel();
     const impulse = { x: 0, y: 0, z: 0 };
+    let shouldRotate = false;
+
     if (jumpPressed && isOnFloor.current) {
-      impulse.y += JUMP_FORCE;
+      impulse.y = JUMP_FORCE;
       isOnFloor.current = false;
     }
 
-    const linvel = rigidBody.current.linvel();
-    let changeRotation = false;
-    if (rightPressed && linvel.x < MAX_VEL) {
-      impulse.x += MOVEMENT_SPEED;
-      changeRotation = true;
-      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
-    }
-    if (leftPressed && linvel.x > -MAX_VEL) {
-      impulse.x -= MOVEMENT_SPEED;
-      changeRotation = true;
-      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
-    }
-    if (backPressed && linvel.z < MAX_VEL) {
-      impulse.z += MOVEMENT_SPEED;
-      changeRotation = true;
-      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
-    }
-    if (forwardPressed && linvel.z > -MAX_VEL) {
-      impulse.z -= MOVEMENT_SPEED;
-      changeRotation = true;
-      if (isOnFloor.current && playerState !== "idle") playFootstepSound();
-    }
+    const shouldPlayFootstep = isOnFloor.current && playerState !== "idle";
 
-    // Joystick Controls
+    const moveIf = (condition, axis, value) => {
+      if (condition) {
+        impulse[axis] += value;
+        shouldRotate = true;
+        if (shouldPlayFootstep) playFootstepSound();
+      }
+    };
+
+    moveIf(rightPressed && linvel.x < MAX_VEL, "x", MOVEMENT_SPEED);
+    moveIf(leftPressed && linvel.x > -MAX_VEL, "x", -MOVEMENT_SPEED);
+    moveIf(backPressed && linvel.z < MAX_VEL, "z", MOVEMENT_SPEED);
+    moveIf(forwardPressed && linvel.z > -MAX_VEL, "z", -MOVEMENT_SPEED);
+
+    // Joystick
     if (
       joystickInput &&
-      linvel.x < MAX_VEL &&
-      linvel.x > -MAX_VEL &&
-      linvel.z < MAX_VEL &&
-      linvel.z > -MAX_VEL
+      Math.abs(linvel.x) < MAX_VEL &&
+      Math.abs(linvel.z) < MAX_VEL
     ) {
       const { x, y } = joystickInput;
-      const distance = Math.sqrt(x * x + y * y); // Computes the Euclidean distance from the center to the joystick's current position
-      if (distance > 0) {
-        const angle = Math.atan2(x, y); // Computes the angle in radians from the x and y values. This angle indicates the direction of movement.
+      const magnitude = Math.sqrt(x * x + y * y);
+      if (magnitude > 0) {
+        const angle = Math.atan2(x, y);
         impulse.x -= MOVEMENT_SPEED * Math.cos(angle);
         impulse.z -= MOVEMENT_SPEED * Math.sin(angle);
-        changeRotation = true;
-        if (isOnFloor.current) playFootstepSound();
+        shouldRotate = true;
+        if (shouldPlayFootstep) playFootstepSound();
       }
     }
 
-    rigidBody.current.applyImpulse(impulse, true);
+    rb.applyImpulse(impulse, true);
 
-    if (Math.abs(linvel.x) > RUN_VEL || Math.abs(linvel.z) > RUN_VEL) {
-      if (playerState !== "run") {
-        setPlayerState("run");
-      }
-    } else {
-      if (playerState !== "idle" && playerState !== "talk") {
-        setPlayerState("idle");
-      }
+    // State transition
+    const isRunning =
+      Math.abs(linvel.x) > RUN_VEL || Math.abs(linvel.z) > RUN_VEL;
+
+    if (isRunning && playerState !== "run") {
+      setPlayerState("run");
+    } else if (!isRunning && playerState !== "idle" && playerState !== "talk") {
+      setPlayerState("idle");
     }
 
-    if (changeRotation) {
+    if (shouldRotate) {
       const angle = Math.atan2(linvel.x, linvel.z);
       player.current.rotation.y = angle;
     }
 
-    if (rigidBodyPosition.y < -4) {
-      reset();
+    if (rb.translation().y < -4) {
+      resetPlayer();
     }
 
-    // CAMERA FOLLOW
-    state.camera.position.x = playerWorldPosition.x;
-    state.camera.position.y =
-      playerWorldPosition.y + (isPortraitMobile ? 5 : 3);
-    state.camera.position.z =
-      playerWorldPosition.z + (isPortraitMobile ? 10 : 5.5);
+    // Camera follow
+    const cam = state.camera;
+    cam.position.set(
+      playerWorldPosition.x,
+      playerWorldPosition.y + (isPortraitMobile ? 5 : 3),
+      playerWorldPosition.z + (isPortraitMobile ? 10 : 5.5)
+    );
 
-    const targetLookAt = new THREE.Vector3(
+    targetLookAt.set(
       playerWorldPosition.x,
       playerWorldPosition.y + (isPortraitMobile ? 2 : 1.6),
       playerWorldPosition.z
     );
 
-    state.camera.lookAt(targetLookAt);
+    cam.lookAt(targetLookAt);
   });
 
   useEffect(() => {
-    let talkInterval;
+    let talkTimer;
 
     if (playerState === "idle") {
-      talkInterval = setInterval(() => {
+      talkTimer = setInterval(() => {
         setPlayerState("talk");
         setTimeout(() => {
-          if (playerState !== "run") {
-            setPlayerState("idle");
-          }
-        }, 4100); // Revert to idle after 4.1 seconds
-      }, 5000); // Trigger "talk" every 5 seconds
+          if (playerState !== "run") setPlayerState("idle");
+        }, 4100);
+      }, 5000);
     }
 
-    if (playerState === "run") {
-      clearInterval(talkInterval);
-    }
-
-    return () => clearInterval(talkInterval);
+    return () => clearInterval(talkTimer);
   }, [playerState]);
 
   useEffect(() => {
+    if (!rigidBody.current) return;
+
     if (phase === phases.AVATAR_CUSTOMIZATION) {
       player.current.rotation.y = 0;
     }
 
     if (phase === phases.LAPTOP) {
-      rigidBody.current.setTranslation({
-        x: -10.5,
-        y: 0.5,
-        z: 7,
-      });
+      rigidBody.current.setTranslation({ x: -10.5, y: 0.5, z: 7 });
       rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
       rigidBody.current.setAngvel({ x: 0, y: 0, z: 0 });
     }
@@ -228,14 +207,14 @@ export default function PlayerController() {
         colliders={false}
         scale={[0.5, 0.5, 0.5]}
         enabledRotations={[false, false, false]}
-        onCollisionEnter={() => {
-          isOnFloor.current = true;
-        }}
         position={[
           PLAYER_INITIAL_POSITION.x,
           PLAYER_INITIAL_POSITION.y,
           PLAYER_INITIAL_POSITION.z,
         ]}
+        onCollisionEnter={() => {
+          isOnFloor.current = true;
+        }}
       >
         <CapsuleCollider args={[1.15, 0.65]} position={[0, 1.8, 0]} />
         <group ref={player}>

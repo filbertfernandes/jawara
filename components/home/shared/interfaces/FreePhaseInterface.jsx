@@ -321,10 +321,10 @@ export default function FreePhaseInterface() {
           <IconButton onClick={() => changePhase(phases.TUTORIAL)}>
             <FaQuestion />
           </IconButton>
+          <LanguageSelector />
           <IconButton onClick={() => changePhase(phases.AVATAR_CUSTOMIZATION)}>
             <GiClothes />
           </IconButton>
-          <LanguageSelector />
         </div>
 
         {loading ? (

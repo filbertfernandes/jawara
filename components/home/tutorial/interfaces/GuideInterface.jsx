@@ -49,7 +49,7 @@ const GuideInterface = ({ isFirstTime }) => {
           <BackButton onClick={() => setTutorialState(tutorialStates.MENU)} />
         </div>
       )}
-      <div className="flex size-full items-end justify-center gap-60 text-4xl text-gray-100">
+      <div className="flex size-full items-end justify-center gap-24 text-4xl text-gray-100 lg:gap-60">
         <button
           className={`flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200 ${
             isFirstTime && guideIndex === 0
