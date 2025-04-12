@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { BiSolidLock } from "react-icons/bi";
 
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { PasswordInput } from "../ui/password-input";
 
 import {
   Form,
@@ -91,13 +92,14 @@ const ChangePasswordForm = ({ resetPasswordToken }) => {
                     {t(`fields.${key}`)}
                   </div>
                   <FormControl>
-                    <Input
-                      required
-                      type="password"
-                      placeholder={t(`placeholders.${key}`)}
-                      {...field}
-                      className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
-                    />
+                    <div className="relative flex flex-wrap items-center text-gray-400 focus-within:text-gray-600">
+                      <BiSolidLock className="pointer-events-none absolute ml-3 size-5" />
+                      <PasswordInput
+                        placeholder={t(`placeholders.${key}`)}
+                        {...field}
+                        className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

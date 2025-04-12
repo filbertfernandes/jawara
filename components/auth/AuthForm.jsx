@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { BiSolidLock } from "react-icons/bi";
 import { MdEmail, MdPerson } from "react-icons/md";
 
+import { PasswordInput } from "../ui/password-input";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -106,13 +108,21 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                   <FormControl className="w-full">
                     <div className="relative flex flex-wrap items-center text-gray-400 focus-within:text-gray-600">
                       {iconMap[field.name]}
-                      <Input
-                        required
-                        type={field.name === "password" ? "password" : "text"}
-                        placeholder={t(`fields.${field.name}`)}
-                        {...field}
-                        className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
-                      />
+                      {field.name === "password" ? (
+                        <PasswordInput
+                          placeholder={t(`fields.${field.name}`)}
+                          {...field}
+                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
+                        />
+                      ) : (
+                        <Input
+                          required
+                          type="text"
+                          placeholder={t(`fields.${field.name}`)}
+                          {...field}
+                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
+                        />
+                      )}
                     </div>
                   </FormControl>
                   <FormMessage />

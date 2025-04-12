@@ -16,7 +16,7 @@ export default function Page() {
       <AuthForm
         formType="SIGN_UP"
         schema={SignUpSchema}
-        defaultValues={{ email: "", password: "", name: "", username: "" }}
+        defaultValues={{ name: "", username: "", email: "", password: "" }}
         onSubmit={signUpWithCredentials}
       />
     </>

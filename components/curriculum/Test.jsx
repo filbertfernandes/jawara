@@ -63,6 +63,8 @@ const Test = ({ chapter, isPostTest = false }) => {
   };
 
   const handleFinished = async () => {
+    setIsLoading(true);
+
     setQuestionIndex(0);
 
     let correctCount = 0;
@@ -127,6 +129,7 @@ const Test = ({ chapter, isPostTest = false }) => {
 
     setShowOverlay(true);
     setIsFinished(true);
+    setIsLoading(false);
   };
 
   const handleCloseOverlay = () => {

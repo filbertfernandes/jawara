@@ -12,7 +12,7 @@ import {
 
 export default async function Page({ params }) {
   const session = await auth();
-  const { id } = params;
+  const { id } = await params;
   const chapter = chapters[id - 1];
 
   if (parseInt(id) < 1) return redirect("/curriculum");
