@@ -37,10 +37,7 @@ const chapters = [
         pdf_file_english: "chapter-1-4-en.pdf",
         pdf_file_indonesian: "chapter-1-4-id.pdf",
       },
-      { id: 6, 
-        name_english: "Posttest", 
-        name_indonesian: "Posttest" 
-      },
+      { id: 6, name_english: "Posttest", name_indonesian: "Posttest" },
     ],
     questions: [
       {
@@ -53,15 +50,35 @@ const chapters = [
       {
         question_english: "Jenengku …",
         question_indonesian: "Jenengku …",
-        options_english: ["SD 1 Sukareja", "Jalan Juanda No. 2", "Doni Wicaksono", "Patang taun"],
-        options_indonesian: ["SD 1 Sukareja", "Jalan Juanda No. 2", "Doni Wicaksono", "Patang taun"],
+        options_english: [
+          "SD 1 Sukareja",
+          "Jalan Juanda No. 2",
+          "Doni Wicaksono",
+          "Patang taun",
+        ],
+        options_indonesian: [
+          "SD 1 Sukareja",
+          "Jalan Juanda No. 2",
+          "Doni Wicaksono",
+          "Patang taun",
+        ],
         correctAnswer: 2,
       },
       {
         question_english: "Alamat omahku …",
         question_indonesian: "Alamat omahku …",
-        options_english: ["Niken", "Jalan Juanda No. 2", "Doni Wicaksono", "Patang taun"],
-        options_indonesian: ["Niken", "Jalan Juanda No. 2", "Doni Wicaksono", "Patang taun"],
+        options_english: [
+          "Niken",
+          "Jalan Juanda No. 2",
+          "Doni Wicaksono",
+          "Patang taun",
+        ],
+        options_indonesian: [
+          "Niken",
+          "Jalan Juanda No. 2",
+          "Doni Wicaksono",
+          "Patang taun",
+        ],
         correctAnswer: 1,
       },
       {
@@ -114,8 +131,10 @@ const chapters = [
         correctAnswer: 2,
       },
       {
-        question_english: "Kangmas sebutan kanggo lanang, yen kanggo wedok kasebut ...",
-        question_indonesian: "Kangmas sebutan kanggo lanang, yen kanggo wedok kasebut ...",
+        question_english:
+          "Kangmas sebutan kanggo lanang, yen kanggo wedok kasebut ...",
+        question_indonesian:
+          "Kangmas sebutan kanggo lanang, yen kanggo wedok kasebut ...",
         options_english: ["Simbah", "Budhe", "Adhi", "Mbakyu"],
         options_indonesian: ["Simbah", "Budhe", "Adhi", "Mbakyu"],
         correctAnswer: 3,
@@ -130,15 +149,35 @@ const chapters = [
       {
         question_english: "Gunane Kenalan yaiku ...",
         question_indonesian: "Gunane Kenalan yaiku ...",
-        options_english: ["Ajar wedi", "Akeh satru", "Nduweni kanca", "Nambah Songong"],
-        options_indonesian: ["Ajar wedi", "Akeh satru", "Nduweni kanca", "Nambah Songong"],
+        options_english: [
+          "Ajar wedi",
+          "Akeh satru",
+          "Nduweni kanca",
+          "Nambah Songong",
+        ],
+        options_indonesian: [
+          "Ajar wedi",
+          "Akeh satru",
+          "Nduweni kanca",
+          "Nambah Songong",
+        ],
         correctAnswer: 2,
       },
       {
         question_english: "Jeneng celukanku ...",
         question_indonesian: "Jeneng celukanku ...",
-        options_english: ["Doni", "Doni Bagus Saputra", "Telu taun", "SMA 5 Semarang"],
-        options_indonesian: ["Doni", "Doni Bagus Saputra", "Telu taun", "SMA 5 Semarang"],
+        options_english: [
+          "Doni",
+          "Doni Bagus Saputra",
+          "Telu taun",
+          "SMA 5 Semarang",
+        ],
+        options_indonesian: [
+          "Doni",
+          "Doni Bagus Saputra",
+          "Telu taun",
+          "SMA 5 Semarang",
+        ],
         correctAnswer: 0,
       },
       {
@@ -147,7 +186,7 @@ const chapters = [
         options_english: ["Nyekel", "Mlaku", "Ndelok", "Ngrungokake"],
         options_indonesian: ["Nyekel", "Mlaku", "Ndelok", "Ngrungokake"],
         correctAnswer: 1,
-      }   
+      },
     ],
   },
   {
@@ -184,15 +223,15 @@ const chapters = [
           "Basane angel",
           "Cengkok utawa wilet lagu samadya",
           "Cacahe gatra wates",
-          "Ngemot babagan kaendahan, kejahatan, lan nilai sosial liyane"
+          "Ngemot babagan kaendahan, kejahatan, lan nilai sosial liyane",
         ],
         options_indonesian: [
           "Basane angel",
           "Cengkok utawa wilet lagu samadya",
           "Cacahe gatra wates",
-          "Ngemot babagan kaendahan, kejahatan, lan nilai sosial liyane"
+          "Ngemot babagan kaendahan, kejahatan, lan nilai sosial liyane",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Tembang kodhok ngorek nduweni makna …",
@@ -201,15 +240,15 @@ const chapters = [
           "Dadi bocah kudu sregep",
           "Dadi bocah sing kesed",
           "Bocah bodho dadi dokter",
-          "Bocah pinter dadi kebo"
+          "Bocah pinter dadi kebo",
         ],
         options_indonesian: [
           "Dadi bocah kudu sregep",
           "Dadi bocah sing kesed",
           "Bocah bodho dadi dokter",
-          "Bocah pinter dadi kebo"
+          "Bocah pinter dadi kebo",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Sedheku tegese …",
@@ -218,15 +257,15 @@ const chapters = [
           "Sikep nalika lungguh, tangane ditekuk kaya sedhakep, sidelehake ing ndhuwur meja",
           "Nyimak pitutur kanthi premati",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
         options_indonesian: [
           "Sikep nalika lungguh, tangane ditekuk kaya sedhakep, sidelehake ing ndhuwur meja",
           "Nyimak pitutur kanthi premati",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Mirengake ing tembung “Siji Loro Telu” tegese …",
@@ -235,15 +274,15 @@ const chapters = [
           "Sikep nalika lungguh, tangane ditekuk kaya sedhakep, sidelehake ing ndhuwur meja",
           "Nyimak pitutur kanthi premati",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
         options_indonesian: [
           "Sikep nalika lungguh, tangane ditekuk kaya sedhakep, sidelehake ing ndhuwur meja",
           "Nyimak pitutur kanthi premati",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Isi Tembang “Siji Loro Telu” yaiku …",
@@ -252,66 +291,37 @@ const chapters = [
           "Dadi bocah sing mirengake guru lan aja usil",
           "Bocah kasebut kudu nduweni piwulang lan nilai moral sing apik supaya bisa migunani kanggo wong liyane",
           "Aja srakah marang kasugihan llan kebak hawa nepsu",
-          "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan"
+          "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan",
         ],
         options_indonesian: [
           "Dadi bocah sing mirengake guru lan aja usil",
           "Bocah kasebut kudu nduweni piwulang lan nilai moral sing apik supaya bisa migunani kanggo wong liyane",
           "Aja srakah marang kasugihan llan kebak hawa nepsu",
-          "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan"
+          "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Kendharaan kang ana ing tembang “Sepuran” yaiku …",
-        question_indonesian: "Kendharaan kang ana ing tembang “Sepuran” yaiku …",
-        options_english: [
-          "Montor",
-          "Bis",
-          "Sepur",
-          "Prau"
-        ],
-        options_indonesian: [
-          "Montor",
-          "Bis",
-          "Sepur",
-          "Prau"
-        ],
-        correctAnswer: 2
+        question_indonesian:
+          "Kendharaan kang ana ing tembang “Sepuran” yaiku …",
+        options_english: ["Montor", "Bis", "Sepur", "Prau"],
+        options_indonesian: ["Montor", "Bis", "Sepur", "Prau"],
+        correctAnswer: 2,
       },
       {
         question_english: "Kendharaan ing “Sepuran” areng menyang …",
         question_indonesian: "Kendharaan ing “Sepuran” areng menyang …",
-        options_english: [
-          "Kedhiri",
-          "Semarang",
-          "Surabaya",
-          "Tegal"
-        ],
-        options_indonesian: [
-          "Kedhiri",
-          "Semarang",
-          "Surabaya",
-          "Tegal"
-        ],
-        correctAnswer: 0
+        options_english: ["Kedhiri", "Semarang", "Surabaya", "Tegal"],
+        options_indonesian: ["Kedhiri", "Semarang", "Surabaya", "Tegal"],
+        correctAnswer: 0,
       },
       {
         question_english: "Tembang kasebut klebu jinise tembang …",
         question_indonesian: "Tembang kasebut klebu jinise tembang …",
-        options_english: [
-          "Dolanan",
-          "Macapat",
-          "Campusari",
-          "Bawa"
-        ],
-        options_indonesian: [
-          "Dolanan",
-          "Macapat",
-          "Campusari",
-          "Bawa"
-        ],
-        correctAnswer: 0
+        options_english: ["Dolanan", "Macapat", "Campusari", "Bawa"],
+        options_indonesian: ["Dolanan", "Macapat", "Campusari", "Bawa"],
+        correctAnswer: 0,
       },
       {
         question_english: "Cublak-Cublak Suweng nduweni makna …",
@@ -320,83 +330,67 @@ const chapters = [
           "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan",
           "Aja dadi bocak nakal",
           "Bocah kasebut kudu nduweni piwulang lan nilai moral sing apik supaya bisa migunani kanggo wong liyane",
-          "Aja srakah marang kasugihan llan kebak hawa nepsu"
+          "Aja srakah marang kasugihan llan kebak hawa nepsu",
         ],
         options_indonesian: [
           "Undangan kanggo sregep sinau supaya bisa entuk kesempatan dadi pimpinan",
           "Aja dadi bocak nakal",
           "Bocah kasebut kudu nduweni piwulang lan nilai moral sing apik supaya bisa migunani kanggo wong liyane",
-          "Aja srakah marang kasugihan llan kebak hawa nepsu"
+          "Aja srakah marang kasugihan llan kebak hawa nepsu",
         ],
-        correctAnswer: 3
+        correctAnswer: 3,
       },
       {
-        question_english: "“Pak Empong lera lero” ing cublak-cublak suweng tegese …",
-        question_indonesian: "“Pak Empong lera lero” ing cublak-cublak suweng tegese …",
+        question_english:
+          "“Pak Empong lera lero” ing cublak-cublak suweng tegese …",
+        question_indonesian:
+          "“Pak Empong lera lero” ing cublak-cublak suweng tegese …",
         options_english: [
           "Wong tuwa bingung",
           "Wong sing gila bondo",
           "Kebecikan",
-          "Lagu dolanan bocah"
+          "Lagu dolanan bocah",
         ],
         options_indonesian: [
           "Wong tuwa bingung",
           "Wong sing gila bondo",
           "Kebecikan",
-          "Lagu dolanan bocah"
+          "Lagu dolanan bocah",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Adhedhasar crita, sapa sing kesed?",
         question_indonesian: "Adhedhasar crita, sapa sing kesed?",
-        options_english: [
-          "Ibu",
-          "Menthog",
-          "Dimas",
-          "Esuk"
-        ],
-        options_indonesian: [
-          "Ibu",
-          "Menthog",
-          "Dimas",
-          "Esuk"
-        ],
-        correctAnswer: 2
+        options_english: ["Ibu", "Menthog", "Dimas", "Esuk"],
+        options_indonesian: ["Ibu", "Menthog", "Dimas", "Esuk"],
+        correctAnswer: 2,
       },
       {
         question_english: "Adhedhasar crita, saiki Dimas kelas pira?",
         question_indonesian: "Adhedhasar crita, saiki Dimas kelas pira?",
-        options_english: [
-          "Papat",
-          "Telu",
-          "Loro",
-          "Siji"
-        ],
-        options_indonesian: [
-          "Papat",
-          "Telu",
-          "Loro",
-          "Siji"
-        ],
-        correctAnswer: 3
+        options_english: ["Papat", "Telu", "Loro", "Siji"],
+        options_indonesian: ["Papat", "Telu", "Loro", "Siji"],
+        correctAnswer: 3,
       },
       {
-        question_english: "Tembang dolanan nduweni piwulang ngadohi watak kesed, kaya kewan menthog",
-        question_indonesian: "Tembang dolanan nduweni piwulang ngadohi watak kesed, kaya kewan menthog",
+        question_english:
+          "Tembang dolanan nduweni piwulang ngadohi watak kesed, kaya kewan menthog",
+        question_indonesian:
+          "Tembang dolanan nduweni piwulang ngadohi watak kesed, kaya kewan menthog",
         options_english: [
           "Menthog-menthog",
           "Kupu-kupu",
           "Kodhok ngorek",
-          "Kidang"
+          "Kidang",
         ],
         options_indonesian: [
           "Menthog-menthog",
           "Kupu-kupu",
           "Kodhok ngorek",
-          "Kidang"
+          "Kidang",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "“Siji Loro Telu” yaiku …",
@@ -405,33 +399,23 @@ const chapters = [
           "Nyimak pitutur kanthi premati",
           "Jengenge wilangan kang kasebut kanthi runtut",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
         options_indonesian: [
           "Nyimak pitutur kanthi premati",
           "Jengenge wilangan kang kasebut kanthi runtut",
           "Diwenehi pitakonan",
-          "Perangan awak kanggo nulis lan nyekel"
+          "Perangan awak kanggo nulis lan nyekel",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Tuladha tembang dolanan …",
         question_indonesian: "Tuladha tembang dolanan …",
-        options_english: [
-          "Kodhok ngorek",
-          "Sinom",
-          "Pangkur",
-          "Pocung"
-        ],
-        options_indonesian: [
-          "Kodhok ngorek",
-          "Sinom",
-          "Pangkur",
-          "Pocung"
-        ],
-        correctAnswer: 0
-      }     
+        options_english: ["Kodhok ngorek", "Sinom", "Pangkur", "Pocung"],
+        options_indonesian: ["Kodhok ngorek", "Sinom", "Pangkur", "Pocung"],
+        correctAnswer: 0,
+      },
     ],
   },
   {
@@ -476,72 +460,60 @@ const chapters = [
     ],
     questions: [
       {
-        question_english: "Piwulang kang bisa dijupuk saka crita “Kancil lan Pak Tani” yaiku …",
-        question_indonesian: "Piwulang kang bisa dijupuk saka crita “Kancil lan Pak Tani” yaiku …",
+        question_english:
+          "Piwulang kang bisa dijupuk saka crita “Kancil lan Pak Tani” yaiku …",
+        question_indonesian:
+          "Piwulang kang bisa dijupuk saka crita “Kancil lan Pak Tani” yaiku …",
         options_english: [
           "Aja nyolong, kuwi ora becik",
           "Ngapusi wae marang wong tuwa",
           "Yen salah ora usa njaluk ngapura",
-          "Aja tulung-tinulung marang sepadha"
+          "Aja tulung-tinulung marang sepadha",
         ],
         options_indonesian: [
           "Aja nyolong, kuwi ora becik",
           "Ngapusi wae marang wong tuwa",
           "Yen salah ora usa njaluk ngapura",
-          "Aja tulung-tinulung marang sepadha"
+          "Aja tulung-tinulung marang sepadha",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
-        question_english: "Ing dongeng “Kancil lan Pak Tani” apa sing dicolong kancil …",
-        question_indonesian: "Ing dongeng “Kancil lan Pak Tani” apa sing dicolong kancil …",
-        options_english: [
-          "Nangka",
-          "Godhong",
-          "Jipang",
-          "Timun"
-        ],
-        options_indonesian: [
-          "Nangka",
-          "Godhong",
-          "Jipang",
-          "Timun"
-        ],
-        correctAnswer: 3
+        question_english:
+          "Ing dongeng “Kancil lan Pak Tani” apa sing dicolong kancil …",
+        question_indonesian:
+          "Ing dongeng “Kancil lan Pak Tani” apa sing dicolong kancil …",
+        options_english: ["Nangka", "Godhong", "Jipang", "Timun"],
+        options_indonesian: ["Nangka", "Godhong", "Jipang", "Timun"],
+        correctAnswer: 3,
       },
       {
-        question_english: "Sapa wae paraga kang ana ing dongeng Kancil lan Pak Tani …",
-        question_indonesian: "Sapa wae paraga kang ana ing dongeng Kancil lan Pak Tani …",
+        question_english:
+          "Sapa wae paraga kang ana ing dongeng Kancil lan Pak Tani …",
+        question_indonesian:
+          "Sapa wae paraga kang ana ing dongeng Kancil lan Pak Tani …",
         options_english: [
           "Timun",
           "Kancil lan Pak Tani",
           "Wong awah",
-          "Kancil, Timun, Pak Tani, lan Wong sawah"
+          "Kancil, Timun, Pak Tani, lan Wong sawah",
         ],
         options_indonesian: [
           "Timun",
           "Kancil lan Pak Tani",
           "Wong awah",
-          "Kancil, Timun, Pak Tani, lan Wong sawah"
+          "Kancil, Timun, Pak Tani, lan Wong sawah",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
-        question_english: "Klebu jinis dongeng apa dongeng Kancil lan Pak Tani kuwi …",
-        question_indonesian: "Klebu jinis dongeng apa dongeng Kancil lan Pak Tani kuwi …",
-        options_english: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        options_indonesian: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        correctAnswer: 2
+        question_english:
+          "Klebu jinis dongeng apa dongeng Kancil lan Pak Tani kuwi …",
+        question_indonesian:
+          "Klebu jinis dongeng apa dongeng Kancil lan Pak Tani kuwi …",
+        options_english: ["Legendha", "Mite", "Fabel", "Sage"],
+        options_indonesian: ["Legendha", "Mite", "Fabel", "Sage"],
+        correctAnswer: 2,
       },
       {
         question_english: "Ndongeng nduweni tatacara …",
@@ -550,32 +522,24 @@ const chapters = [
           "Swarane cilik",
           "Swarane ora cetha",
           "Paham isine",
-          "Maca"
+          "Maca",
         ],
         options_indonesian: [
           "Swarane cilik",
           "Swarane ora cetha",
           "Paham isine",
-          "Maca"
+          "Maca",
         ],
-        correctAnswer: 2
+        correctAnswer: 2,
       },
       {
-        question_english: "Ing dongeng “Yuyu lan Bango”, sing dicapit Yuyu yaiku …",
-        question_indonesian: "Ing dongeng “Yuyu lan Bango”, sing dicapit Yuyu yaiku …",
-        options_english: [
-          "Iwak",
-          "Kancil",
-          "Pak Tani",
-          "Bango"
-        ],
-        options_indonesian: [
-          "Iwak",
-          "Kancil",
-          "Pak Tani",
-          "Bango"
-        ],
-        correctAnswer: 3
+        question_english:
+          "Ing dongeng “Yuyu lan Bango”, sing dicapit Yuyu yaiku …",
+        question_indonesian:
+          "Ing dongeng “Yuyu lan Bango”, sing dicapit Yuyu yaiku …",
+        options_english: ["Iwak", "Kancil", "Pak Tani", "Bango"],
+        options_indonesian: ["Iwak", "Kancil", "Pak Tani", "Bango"],
+        correctAnswer: 3,
       },
       {
         question_english: "Dongeng ngemot patuladhan supaya para siswa …",
@@ -584,49 +548,41 @@ const chapters = [
           "Kuminter",
           "Nduweni Budi Pekerti",
           "Kesed",
-          "Gumedhe"
+          "Gumedhe",
         ],
         options_indonesian: [
           "Kuminter",
           "Nduweni Budi Pekerti",
           "Kesed",
-          "Gumedhe"
+          "Gumedhe",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
-        question_english: "Dongeng yaiku crita rakyat sing isine ngayawara. Ngayawara tegese …",
-        question_indonesian: "Dongeng yaiku crita rakyat sing isine ngayawara. Ngayawara tegese …",
+        question_english:
+          "Dongeng yaiku crita rakyat sing isine ngayawara. Ngayawara tegese …",
+        question_indonesian:
+          "Dongeng yaiku crita rakyat sing isine ngayawara. Ngayawara tegese …",
         options_english: [
           "Pengalaman",
           "Saka angen-angen",
           "Kasunyatan",
-          "Kabeh bener"
+          "Kabeh bener",
         ],
         options_indonesian: [
           "Pengalaman",
           "Saka angen-angen",
           "Kasunyatan",
-          "Kabeh bener"
+          "Kabeh bener",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Crita dongeng sumebar kanthi …",
         question_indonesian: "Crita dongeng sumebar kanthi …",
-        options_english: [
-          "Turun-tumurun",
-          "Buku",
-          "Naskah",
-          "Warta"
-        ],
-        options_indonesian: [
-          "Turun-tumurun",
-          "Buku",
-          "Naskah",
-          "Warta"
-        ],
-        correctAnswer: 0
+        options_english: ["Turun-tumurun", "Buku", "Naskah", "Warta"],
+        options_indonesian: ["Turun-tumurun", "Buku", "Naskah", "Warta"],
+        correctAnswer: 0,
       },
       {
         question_english: "Sage iku crita kang ana sesambungane karo …",
@@ -635,101 +591,62 @@ const chapters = [
           "Alam Gaib",
           "Sejarah",
           "Dumadine panggonan",
-          "Kewan"
+          "Kewan",
         ],
         options_indonesian: [
           "Alam Gaib",
           "Sejarah",
           "Dumadine panggonan",
-          "Kewan"
+          "Kewan",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Crita dongeng kuwi klebu kasusastran …",
         question_indonesian: "Crita dongeng kuwi klebu kasusastran …",
-        options_english: [
-          "Lawas",
-          "Anyar",
-          "Modern",
-          "Kabeh bener"
-        ],
-        options_indonesian: [
-          "Lawas",
-          "Anyar",
-          "Modern",
-          "Kabeh bener"
-        ],
-        correctAnswer: 0
+        options_english: ["Lawas", "Anyar", "Modern", "Kabeh bener"],
+        options_indonesian: ["Lawas", "Anyar", "Modern", "Kabeh bener"],
+        correctAnswer: 0,
       },
       {
         question_english: "Asal-usul Rawa Pening iku klebu jinis dongeng …",
         question_indonesian: "Asal-usul Rawa Pening iku klebu jinis dongeng …",
-        options_english: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        options_indonesian: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        correctAnswer: 0
+        options_english: ["Legendha", "Mite", "Fabel", "Sage"],
+        options_indonesian: ["Legendha", "Mite", "Fabel", "Sage"],
+        correctAnswer: 0,
       },
       {
         question_english: "Sapa sing dadi paraga ana ing dongen jinis fabel …",
-        question_indonesian: "Sapa sing dadi paraga ana ing dongen jinis fabel …",
+        question_indonesian:
+          "Sapa sing dadi paraga ana ing dongen jinis fabel …",
         options_english: [
           "Sultan",
           "Wong",
           "Kewan sing bisa guneman",
-          "Dewa lan dewi"
+          "Dewa lan dewi",
         ],
         options_indonesian: [
           "Sultan",
           "Wong",
           "Kewan sing bisa guneman",
-          "Dewa lan dewi"
+          "Dewa lan dewi",
         ],
-        correctAnswer: 2
+        correctAnswer: 2,
       },
       {
         question_english: "Dongeng asal-usuling panggonan/bendha kasebut …",
         question_indonesian: "Dongeng asal-usuling panggonan/bendha kasebut …",
-        options_english: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        options_indonesian: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        correctAnswer: 0
+        options_english: ["Legendha", "Mite", "Fabel", "Sage"],
+        options_indonesian: ["Legendha", "Mite", "Fabel", "Sage"],
+        correctAnswer: 0,
       },
       {
         question_english: "Crita sing ana gegayutane karo sejarah kasebut …",
         question_indonesian: "Crita sing ana gegayutane karo sejarah kasebut …",
-        options_english: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        options_indonesian: [
-          "Legendha",
-          "Mite",
-          "Fabel",
-          "Sage"
-        ],
-        correctAnswer: 3
-      }      
+        options_english: ["Legendha", "Mite", "Fabel", "Sage"],
+        options_indonesian: ["Legendha", "Mite", "Fabel", "Sage"],
+        correctAnswer: 3,
+      },
     ],
   },
   {
@@ -1133,25 +1050,29 @@ const chapters = [
         name_indonesian: "Bonus: Makanan Traditional Semarang",
         pdf_file_english: "chapter-6-2-en.pdf",
         pdf_file_indonesian: "chapter-6-2-id.pdf",
-      },{
+      },
+      {
         id: 4,
         name_english: "Bonus: Semarang Travel Destinations",
         name_indonesian: "Bonus: Destinasi Wisata Semarang",
         pdf_file_english: "chapter-6-3-en.pdf",
         pdf_file_indonesian: "chapter-6-3-id.pdf",
-      },{
+      },
+      {
         id: 5,
         name_english: "Bonus: Semarangan Language",
         name_indonesian: "Bonus: Bahasa Semarangan",
         pdf_file_english: "chapter-6-4-en.pdf",
         pdf_file_indonesian: "chapter-6-4-id.pdf",
-      },{
+      },
+      {
         id: 6,
         name_english: "Bonus: Central Java Traditional House",
         name_indonesian: "Bonus: Rumah Traditional Jawa Tengah",
         pdf_file_english: "chapter-6-5-en.pdf",
         pdf_file_indonesian: "chapter-6-5-id.pdf",
-      },{
+      },
+      {
         id: 7,
         name_english: "Bonus: Traditional Clothing",
         name_indonesian: "Bonus: Baju Traditional",
@@ -1162,105 +1083,147 @@ const chapters = [
     ],
     questions: [
       {
-        question_english: "ꦠꦸꦏꦸꦠꦲꦸꦧꦏ꧀ꦱꦺꦴꦩꦼꦚꦁꦱꦭꦠꦶꦒ Wacane aksara ing dhuwur yaiku …",
-        question_indonesian: "ꦠꦸꦏꦸꦠꦲꦸꦧꦏ꧀ꦱꦺꦴꦩꦼꦚꦁꦱꦭꦠꦶꦒ Wacane aksara ing dhuwur yaiku …",
+        question_english:
+          "ꦠꦸꦏꦸꦠꦲꦸꦧꦏ꧀ꦱꦺꦴꦩꦼꦚꦁꦱꦭꦠꦶꦒ Wacane aksara ing dhuwur yaiku …",
+        question_indonesian:
+          "ꦠꦸꦏꦸꦠꦲꦸꦧꦏ꧀ꦱꦺꦴꦩꦼꦚꦁꦱꦭꦠꦶꦒ Wacane aksara ing dhuwur yaiku …",
         options_english: [
           "Tuku tahu bakso menyang Semarang",
           "Tuku tahu bakso menyang Salatiga",
           "Tuku buku menyang Salatiga",
-          "Tuku buku telu menyang Semarang"
+          "Tuku buku telu menyang Semarang",
         ],
         options_indonesian: [
           "Tuku tahu bakso menyang Semarang",
           "Tuku tahu bakso menyang Salatiga",
           "Tuku buku menyang Salatiga",
-          "Tuku buku telu menyang Semarang"
+          "Tuku buku telu menyang Semarang",
         ],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Unine aksara “ꦩ” yaiku …",
         question_indonesian: "Unine aksara “ꦩ” yaiku …",
         options_english: ["Ma", "Ga", "Ba", "Tha"],
         options_indonesian: ["Ma", "Ga", "Ba", "Tha"],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Jeneng penemu Aksara Jawi yaiku …",
         question_indonesian: "Jeneng penemu Aksara Jawi yaiku …",
-        options_english: ["Ajisaka", "Roro Jonggrang", "Timun Mas", "Dewi Persik"],
-        options_indonesian: ["Ajisaka", "Roro Jonggrang", "Timun Mas", "Dewi Persik"],
-        correctAnswer: 0
+        options_english: [
+          "Ajisaka",
+          "Roro Jonggrang",
+          "Timun Mas",
+          "Dewi Persik",
+        ],
+        options_indonesian: [
+          "Ajisaka",
+          "Roro Jonggrang",
+          "Timun Mas",
+          "Dewi Persik",
+        ],
+        correctAnswer: 0,
       },
       {
         question_english: "Jeneng abdi setiane Ajisaka yaikut …",
         question_indonesian: "Jeneng abdi setiane Ajisaka yaikut …",
-        options_english: ["Rama lan Sinta", "Dewa", "Sembada lan Dora", "Sembadan lan Dara"],
-        options_indonesian: ["Rama lan Sinta", "Dewa", "Sembada lan Dora", "Sembadan lan Dara"],
-        correctAnswer: 2
+        options_english: [
+          "Rama lan Sinta",
+          "Dewa",
+          "Sembada lan Dora",
+          "Sembadan lan Dara",
+        ],
+        options_indonesian: [
+          "Rama lan Sinta",
+          "Dewa",
+          "Sembada lan Dora",
+          "Sembadan lan Dara",
+        ],
+        correctAnswer: 2,
       },
       {
         question_english: "“Gelas” migunake E …",
         question_indonesian: "“Gelas” migunake E …",
         options_english: ["Taling", "Taling tarung", "Suku", "Pepet"],
         options_indonesian: ["Taling", "Taling tarung", "Suku", "Pepet"],
-        correctAnswer: 3
+        correctAnswer: 3,
       },
       {
         question_english: "ꦲꦏ꧀ꦱꦫꦗꦮ macane …",
         question_indonesian: "ꦲꦏ꧀ꦱꦫꦗꦮ macane …",
-        options_english: ["Aksara Jawa", "Ajisaka", "Hasin Kundang", "Aksesoris"],
-        options_indonesian: ["Aksara Jawa", "Ajisaka", "Hasin Kundang", "Aksesoris"],
-        correctAnswer: 0
+        options_english: [
+          "Aksara Jawa",
+          "Ajisaka",
+          "Hasin Kundang",
+          "Aksesoris",
+        ],
+        options_indonesian: [
+          "Aksara Jawa",
+          "Ajisaka",
+          "Hasin Kundang",
+          "Aksesoris",
+        ],
+        correctAnswer: 0,
       },
       {
         question_english: "ꦩꦔꦤ꧀ꦱꦼꦒꦺꦴ macane …",
         question_indonesian: "ꦩꦔꦤ꧀ꦱꦼꦒꦺꦴ macane …",
-        options_english: ["Sego dadi bubur", "Mangan sego", "Masak lawuk", "Adus esuk"],
-        options_indonesian: ["Sego dadi bubur", "Mangan sego", "Masak lawuk", "Adus esuk"],
-        correctAnswer: 1
+        options_english: [
+          "Sego dadi bubur",
+          "Mangan sego",
+          "Masak lawuk",
+          "Adus esuk",
+        ],
+        options_indonesian: [
+          "Sego dadi bubur",
+          "Mangan sego",
+          "Masak lawuk",
+          "Adus esuk",
+        ],
+        correctAnswer: 1,
       },
       {
         question_english: "꧇꧒꧐꧒꧐꧇ macane yaiku …",
         question_indonesian: "꧇꧒꧐꧒꧐꧇ macane yaiku …",
         options_english: ["2019", "2017", "2020", "1010"],
         options_indonesian: ["2019", "2017", "2020", "1010"],
-        correctAnswer: 2
+        correctAnswer: 2,
       },
       {
         question_english: "ꦠꦸꦏꦸ macane …",
         question_indonesian: "ꦠꦸꦏꦸ macane …",
         options_english: ["Tuku", "Mangan", "Ngombe", "Buku"],
         options_indonesian: ["Tuku", "Mangan", "Ngombe", "Buku"],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "ꦧꦥꦏ꧀ macane …",
         question_indonesian: "ꦧꦥꦏ꧀ macane …",
         options_english: ["Bapak", "Ibu", "Simbah", "Mbakyu"],
         options_indonesian: ["Bapak", "Ibu", "Simbah", "Mbakyu"],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "ꦗꦺꦤꦺꦁ macane …",
         question_indonesian: "ꦗꦺꦤꦺꦁ macane …",
         options_english: ["Meneng", "Jenang", "Renang", "Jeneng"],
         options_indonesian: ["Meneng", "Jenang", "Renang", "Jeneng"],
-        correctAnswer: 3
+        correctAnswer: 3,
       },
       {
         question_english: "ꦏꦿꦠꦺꦴꦤ꧀ macane …",
         question_indonesian: "ꦏꦿꦠꦺꦴꦤ꧀ macane …",
         options_english: ["Kerdus", "Kraton", "Sikil", "Rambut"],
         options_indonesian: ["Kerdus", "Kraton", "Sikil", "Rambut"],
-        correctAnswer: 1
+        correctAnswer: 1,
       },
       {
         question_english: "Joglo salah sawijining …",
         question_indonesian: "Joglo salah sawijining …",
         options_english: ["Omah adat", "Baju adat", "Gamelan", "Sego"],
         options_indonesian: ["Omah adat", "Baju adat", "Gamelan", "Sego"],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Hanacaraka tegese …",
@@ -1269,23 +1232,23 @@ const chapters = [
           "Ada utusan hidup",
           "Mereka berbeda pendapat",
           "Mereka berdua sama kuatnya",
-          "Inilah mayat mereka"
+          "Inilah mayat mereka",
         ],
         options_indonesian: [
           "Ada utusan hidup",
           "Mereka berbeda pendapat",
           "Mereka berdua sama kuatnya",
-          "Inilah mayat mereka"
+          "Inilah mayat mereka",
         ],
-        correctAnswer: 0
+        correctAnswer: 0,
       },
       {
         question_english: "Unine aksara “ꦲ” yaiku …",
         question_indonesian: "Unine aksara “ꦲ” yaiku …",
         options_english: ["Ma", "Ra", "Na", "Ha"],
         options_indonesian: ["Ma", "Ra", "Na", "Ha"],
-        correctAnswer: 3
-      }      
+        correctAnswer: 3,
+      },
     ],
   },
 ];

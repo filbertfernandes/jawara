@@ -6,6 +6,7 @@ export const useCurriculum = create(
     return {
       phase: "Pretest",
       updatedUserProgress: null,
+      achievementsPopup: [],
 
       changePhase: (phase) => {
         set(() => {
@@ -16,6 +17,12 @@ export const useCurriculum = create(
       setUpdatedUserProgress: (updatedUserProgress) => {
         set(() => {
           return { updatedUserProgress };
+        });
+      },
+
+      setAchievementsPopup: (data) => {
+        set(() => {
+          return { achievementsPopup: data };
         });
       },
     };

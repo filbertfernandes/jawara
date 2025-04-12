@@ -199,7 +199,7 @@ export default function Home() {
 
       {loading && <CanvasLoader />}
 
-      <NewAchievementPopup />
+      <NewAchievementPopup useStore={useGame} />
     </>
   );
 }

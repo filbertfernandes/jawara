@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
 import { useCurriculum } from "./stores/useCurriculum";
+import NewAchievementPopup from "../shared/NewAchievementPopup";
 
+import { getUnseenAchievements } from "@/lib/actions/userAchievement.action";
 import {
   incrementCompletedPhases,
   updatePosttestScore,
@@ -25,10 +27,12 @@ const Test = ({ chapter, isPostTest = false }) => {
   const [isRetry, setIsRetry] = useState(true);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
-  const { changePhase, updatedUserProgress } = useCurriculum((state) => ({
-    changePhase: state.changePhase,
-    updatedUserProgress: state.updatedUserProgress,
-  }));
+  const { changePhase, updatedUserProgress, setAchievementsPopup } =
+    useCurriculum((state) => ({
+      changePhase: state.changePhase,
+      updatedUserProgress: state.updatedUserProgress,
+      setAchievementsPopup: state.setAchievementsPopup,
+    }));
 
   useEffect(() => {
     if (!updatedUserProgress || chapter.id !== updatedUserProgress?.chapterId)
@@ -103,10 +107,17 @@ const Test = ({ chapter, isPostTest = false }) => {
             calculatedScore >= 70 &&
             updatedUserProgress.completedPhases < chapter.phases.length
           ) {
-            await incrementCompletedPhases(
+            const { isGetAchievements } = await incrementCompletedPhases(
               chapter.id,
               updatedUserProgress.userId
             );
+
+            if (isGetAchievements) {
+              const { data } = await getUnseenAchievements(
+                updatedUserProgress.userId
+              );
+              setAchievementsPopup(data);
+            }
           }
         }
       } catch (error) {
@@ -167,126 +178,129 @@ const Test = ({ chapter, isPostTest = false }) => {
   }, [chapter, isFinished]);
 
   return (
-    <div
-      className={`flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900 ${
-        showOverlay ? "bg-black/70" : ""
-      }`}
-    >
-      {isLoading ? (
-        <div className="text-center">
-          <div className="h5-bold mb-1">{t("loading")}...</div>
-        </div>
-      ) : isFinished ? (
-        <>
+    <>
+      <NewAchievementPopup useStore={useCurriculum} />
+      <div
+        className={`flex size-full flex-col items-center justify-center gap-6 px-4 text-gray-900 ${
+          showOverlay ? "bg-black/70" : ""
+        }`}
+      >
+        {isLoading ? (
           <div className="text-center">
-            <div className="h5-bold mb-1">
-              {!isPostTest
-                ? t("pretest_finished")
-                : isRetry
-                ? t("try_again")
-                : t("chapter_finish")}
-            </div>
-            <div className="text-sm text-gray-600 lg:text-xl">
-              {!isPostTest
-                ? t("pretest_finished_description")
-                : isRetry
-                ? t("try_again_description")
-                : t("chapter_finish_description")}
-            </div>
+            <div className="h5-bold mb-1">{t("loading")}...</div>
           </div>
-          {isPostTest && (
+        ) : isFinished ? (
+          <>
+            <div className="text-center">
+              <div className="h5-bold mb-1">
+                {!isPostTest
+                  ? t("pretest_finished")
+                  : isRetry
+                  ? t("try_again")
+                  : t("chapter_finish")}
+              </div>
+              <div className="text-sm text-gray-600 lg:text-xl">
+                {!isPostTest
+                  ? t("pretest_finished_description")
+                  : isRetry
+                  ? t("try_again_description")
+                  : t("chapter_finish_description")}
+              </div>
+            </div>
+            {isPostTest && (
+              <div
+                className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
+                onClick={handleRetry}
+              >
+                {t("retry")}
+              </div>
+            )}
+          </>
+        ) : !isStarted ? (
+          <>
+            <div className="text-center">
+              <div className="h5-bold mb-1">
+                {!isPostTest ? t("pretest_title") : t("posttest_title")}
+              </div>
+              <div className="text-sm text-gray-600 lg:text-xl">
+                {t("score_is_private")}
+              </div>
+            </div>
             <div
               className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
-              onClick={handleRetry}
+              onClick={() => setIsStarted(true)}
             >
-              {t("retry")}
+              {!isPostTest ? t("start_pretest") : t("start_posttest")}
             </div>
-          )}
-        </>
-      ) : !isStarted ? (
-        <>
-          <div className="text-center">
-            <div className="h5-bold mb-1">
-              {!isPostTest ? t("pretest_title") : t("posttest_title")}
+          </>
+        ) : (
+          <div className="flex w-full flex-col items-center justify-center gap-6 px-4 sm:w-3/4 lg:w-2/3">
+            <div className="text-center text-gray-600 sm:text-lg md:text-xl">
+              {t("question")} {questionIndex + 1} / {shuffledQuestions.length}
             </div>
-            <div className="text-sm text-gray-600 lg:text-xl">
-              {t("score_is_private")}
+            <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-gray-100">
+              {shuffledQuestions[questionIndex][`question_${t("language")}`]}
             </div>
-          </div>
-          <div
-            className="btn-template w-36 cursor-pointer bg-orange-500 text-gray-100 hover:bg-orange-600 lg:w-48 lg:text-2xl"
-            onClick={() => setIsStarted(true)}
-          >
-            {!isPostTest ? t("start_pretest") : t("start_posttest")}
-          </div>
-        </>
-      ) : (
-        <div className="flex w-full flex-col items-center justify-center gap-6 px-4 sm:w-3/4 lg:w-2/3">
-          <div className="text-center text-gray-600 sm:text-lg md:text-xl">
-            {t("question")} {questionIndex + 1} / {shuffledQuestions.length}
-          </div>
-          <div className="h3-bold flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 p-6 text-center text-gray-100">
-            {shuffledQuestions[questionIndex][`question_${t("language")}`]}
-          </div>
-          <div className="flex w-full flex-col items-center gap-2">
-            {shuffledQuestions[questionIndex][`options_${t("language")}`].map(
-              (option, index) => (
-                <div
-                  key={index}
-                  className={`flex h-12 w-full cursor-pointer items-center justify-between rounded-lg border px-4 text-center shadow-sm shadow-black/30 hover:bg-gray-200 sm:text-lg md:text-xl ${
-                    userAnswers[questionIndex] === index ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => handleOptionClick(index)}
-                >
-                  <div>{["A", "B", "C", "D"][index]}</div>
-                  <div>{option}</div>
-                  <div></div>
-                </div>
-              )
-            )}
-          </div>
-          <div className="mt-10 flex w-full justify-between sm:text-lg md:text-xl">
-            <div
-              className={`w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100 ${
-                questionIndex === 0 ? "invisible" : ""
-              }`}
-              onClick={() => setQuestionIndex(questionIndex - 1)}
-            >
-              {t("prev")}
+            <div className="flex w-full flex-col items-center gap-2">
+              {shuffledQuestions[questionIndex][`options_${t("language")}`].map(
+                (option, index) => (
+                  <div
+                    key={index}
+                    className={`flex h-12 w-full cursor-pointer items-center justify-between rounded-lg border px-4 text-center shadow-sm shadow-black/30 hover:bg-gray-200 sm:text-lg md:text-xl ${
+                      userAnswers[questionIndex] === index ? "bg-gray-200" : ""
+                    }`}
+                    onClick={() => handleOptionClick(index)}
+                  >
+                    <div>{["A", "B", "C", "D"][index]}</div>
+                    <div>{option}</div>
+                    <div></div>
+                  </div>
+                )
+              )}
             </div>
-            <div
-              className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100"
-              onClick={
-                questionIndex + 1 < shuffledQuestions.length
-                  ? () => setQuestionIndex(questionIndex + 1)
-                  : () => handleFinished()
-              }
-            >
-              {questionIndex + 1 < shuffledQuestions.length
-                ? t("next")
-                : t("finish")}
+            <div className="mt-10 flex w-full justify-between sm:text-lg md:text-xl">
+              <div
+                className={`w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100 ${
+                  questionIndex === 0 ? "invisible" : ""
+                }`}
+                onClick={() => setQuestionIndex(questionIndex - 1)}
+              >
+                {t("prev")}
+              </div>
+              <div
+                className="w-20 cursor-pointer rounded-lg bg-gradient-to-r from-orange-500 to-orange-700 p-2 text-center font-bold text-gray-100"
+                onClick={
+                  questionIndex + 1 < shuffledQuestions.length
+                    ? () => setQuestionIndex(questionIndex + 1)
+                    : () => handleFinished()
+                }
+              >
+                {questionIndex + 1 < shuffledQuestions.length
+                  ? t("next")
+                  : t("finish")}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {showOverlay && (
-        <div className="absolute flex items-center justify-center">
-          <button
-            className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-gray-100 sm:text-4xl"
-            onClick={handleCloseOverlay}
-          >
-            <IoMdClose />
-          </button>
-          <div className="flex size-52 flex-col flex-wrap items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 text-center text-gray-100 lg:size-64">
-            <div className="mb-2 w-full text-2xl font-bold">
-              {t("your_score")}
+        {showOverlay && (
+          <div className="absolute flex items-center justify-center">
+            <button
+              className="absolute -right-8 -top-8 rounded-full p-1 text-3xl text-gray-100 sm:text-4xl"
+              onClick={handleCloseOverlay}
+            >
+              <IoMdClose />
+            </button>
+            <div className="flex size-52 flex-col flex-wrap items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-700 text-center text-gray-100 lg:size-64">
+              <div className="mb-2 w-full text-2xl font-bold">
+                {t("your_score")}
+              </div>
+              <div className="text-6xl font-bold">{score.toFixed(0)}</div>
             </div>
-            <div className="text-6xl font-bold">{score.toFixed(0)}</div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 
 import { achievementsData } from "../profile/stores/achievementsData";
 
-import { useGame } from "@/hooks/useGame";
-
-export default function NewAchievementPopup() {
+export default function NewAchievementPopup({ useStore }) {
   const t = useTranslations("Home");
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  const { achievementsPopup, setAchievementsPopup } = useGame((state) => ({
+  const { achievementsPopup, setAchievementsPopup } = useStore((state) => ({
     achievementsPopup: state.achievementsPopup,
     setAchievementsPopup: state.setAchievementsPopup,
   }));
