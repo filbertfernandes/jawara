@@ -84,7 +84,7 @@ const ProfileExperience = ({ profileUser, isMobile }) => {
         as="div"
         position={[0, isMobile ? 2.7 : 2.8, 0]}
         center
-        className="relative flex h-24 w-60 flex-col items-center justify-center rounded-lg border bg-white text-center text-xl font-medium text-gray-900 shadow-md"
+        className="relative flex h-24 w-60 flex-col items-center justify-center rounded-lg border bg-white text-center font-questrial text-xl font-medium text-gray-900 shadow-md"
       >
         <h5>{t("hi_my_name_is")}</h5>
         <h5 className="font-bold text-orange-500">{profileUser?.name}</h5>
