@@ -1,15 +1,14 @@
-import { useCallback } from "react";
 import { FaBook, FaQuestion } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
-import { IoGameController } from "react-icons/io5";
+import { IoGameController, IoHomeSharp } from "react-icons/io5";
 
-import { gameStates, useGame } from "@/hooks/useGame.jsx";
+import { gameStates, phases, useGame } from "@/hooks/useGame.jsx";
 
 const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
   return (
     <button
       className={`
-                btn btn-square btn-lg rounded-2xl text-4xl
+                btn btn-square btn-md rounded-2xl text-2xl lg:btn-lg lg:text-4xl
                 ${
                   isActive
                     ? "border-none bg-orange-500 text-gray-100"
@@ -27,7 +26,8 @@ const GameTabButton = ({ icon: Icon, isActive, onClick }) => {
 
 const GameTabsInterface = () => {
   // GAME STATE
-  const { gameState, changeGameState } = useGame((state) => ({
+  const { changePhase, gameState, changeGameState } = useGame((state) => ({
+    changePhase: state.changePhase,
     gameState: state.gameState,
     changeGameState: state.changeGameState,
   }));
@@ -39,12 +39,17 @@ const GameTabsInterface = () => {
   const isTutorialActive = gameState === gameStates.GAME_TUTORIAL;
 
   // Button click handlers
-  const handleTabButtonClick = useCallback((gameState) => {
+  const handleTabButtonClick = (gameState) => {
     changeGameState(gameState);
-  });
+  };
 
   return (
     <div className="flex w-full justify-evenly px-4 sm:mb-8 sm:ml-4 sm:h-full sm:w-auto sm:flex-col">
+      <GameTabButton
+        icon={IoHomeSharp}
+        isActive={false}
+        onClick={() => changePhase(phases.FREE)}
+      />
       <GameTabButton
         icon={IoGameController}
         isActive={isMenuActive}

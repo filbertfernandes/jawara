@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
   const t = useTranslations("Auth");
 
   const [isMounted, setIsMounted] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: 900 });
+  const isPortraitMobile = useMediaQuery({ maxWidth: 768 });
 
   // Ensure component is mounted before using useMediaQuery
   useEffect(() => {
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
 
   return (
     <main className="flex min-h-screen w-full flex-col justify-center font-questrial text-xs md:flex-row lg:text-sm xl:text-base">
-      {!isMobile ? (
+      {!isPortraitMobile ? (
         <>
           <div className="flex flex-1 flex-wrap items-center justify-center bg-white py-12 text-gray-900">
             <div className="flex w-full flex-wrap justify-center text-center">

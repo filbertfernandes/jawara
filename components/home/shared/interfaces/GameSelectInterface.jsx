@@ -1,20 +1,11 @@
 import { useTranslations } from "next-intl";
-import { useEffect, useState, useCallback, use } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-import { useGame, phases, gameStates } from "@/hooks/useGame.jsx";
+import { useGame, gameStates } from "@/hooks/useGame.jsx";
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
     className="btn-template w-28 bg-orange-500 px-1 text-sm text-gray-100 hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
-    onClick={onClick}
-  >
-    {label}
-  </button>
-);
-
-const OtherButton = ({ label, onClick }) => (
-  <button
-    className="btn-template w-28 border-2 border-orange-500 bg-white px-1 text-sm text-orange-500 hover:bg-orange-500 hover:text-gray-100 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}
@@ -32,8 +23,7 @@ const GameSelectInterface = ({ startGame, title }) => {
   }, []);
 
   // MAIN GAME STATE
-  const { changePhase, changeGameState } = useGame((state) => ({
-    changePhase: state.changePhase,
+  const { changeGameState } = useGame((state) => ({
     changeGameState: state.changeGameState,
   }));
 
@@ -45,11 +35,6 @@ const GameSelectInterface = ({ startGame, title }) => {
     },
     [changeGameState, startGame]
   );
-
-  const handleBackClick = useCallback(() => {
-    changeGameState(gameStates.MENU);
-    changePhase(phases.FREE);
-  }, [changeGameState, changePhase]);
 
   const handleKeyDown = (event) => {
     if (event.code === "Space" || event.code === "Enter") {
@@ -78,7 +63,6 @@ const GameSelectInterface = ({ startGame, title }) => {
         label="Krama Alus"
         onClick={() => handleButtonClick("alus")}
       />
-      <OtherButton label={t("go_back")} onClick={handleBackClick} />
     </div>
   );
 };
