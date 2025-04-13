@@ -3,7 +3,7 @@ export const guideData = [
     information: "Basic",
     english_description: "Click or walk closer to\ninteract with each objects",
     indonesian_description:
-      "Klik atau berjalan lebih dekat\nuntuk berinteraksi dengan setiap objek",
+      "Klik atau berjalan lebih\ndekat untuk berinteraksi\ndengan setiap objek",
     cameraPosition: { x: 2, y: 6, z: 27 },
     cameraTargetPosition: { x: 2, y: 0, z: 0 },
     textPosition: { x: 2, y: 5.2, z: 23 },
@@ -29,8 +29,8 @@ export const guideData = [
   },
   {
     information: "Translation Exercise",
-    english_description: "Practice your translation skill",
-    indonesian_description: "Melatih kemampuan menerjemahkan Anda",
+    english_description: "Practice your\ntranslation skill",
+    indonesian_description: "Melatih kemampuan\nmenerjemahkan Anda",
     cameraPosition: {
       x: 2.13,
       y: 4,
