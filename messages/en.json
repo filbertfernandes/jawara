@@ -48,7 +48,7 @@
     "check": "Check",
     "generating_sentence": "Generating",
     "generate_sentence": "Generate Sentence",
-    "daily_limit_reached": "Daily limit reached 🙂",
+    "daily_limit_reached": "Daily Limit Reached 🙂",
     "sign_in_to_generate": "Sign In to Generate Sentence",
 
     "loading": "Loading",
@@ -69,8 +69,10 @@
     "customization_warning": "Your avatar will be lost when you leave the app. Sign in to save it.",
     "i_understand": "I Understand",
 
-    "search_users": "Search users",
+    "search_users": "Search Users",
     "adjust_screen_rotation": "Tilt the Laptop Screen",
+    "searching": "Searching...",
+    "results": "Data not Found",
 
     "select_language_title": "Language",
     "select_language_english": "English",
