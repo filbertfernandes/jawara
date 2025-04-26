@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/sheet";
 import routes from "@/constants/routes";
 
-const MobileNavigation = ({ chapter, userProgress }) => {
+const MobileNavigation = ({ chapter }) => {
   const t = useTranslations("Curriculum");
 
   const { phase, updatedUserProgress } = useCurriculum((state) => ({
@@ -66,17 +66,7 @@ const MobileNavigation = ({ chapter, userProgress }) => {
                   inProgress={updatedUserProgress.completedPhases === index}
                   active={phase === chapterPhase.name_english}
                 />
-              ) : (
-                <ProgressBar
-                  key={index}
-                  phaseName={chapterPhase.name_english}
-                  title={chapterPhase[`name_${t("language")}`]}
-                  first={index === 0}
-                  completed={userProgress.completedPhases > index}
-                  inProgress={userProgress.completedPhases === index}
-                  active={phase === chapterPhase.name_english}
-                />
-              )
+              ) : null
             )}
           </SheetClose>
         </SheetContent>

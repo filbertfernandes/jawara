@@ -120,7 +120,6 @@ const Curriculum = () => {
                     </Link>
                   ) : (
                     <div
-                      href={`${routes.CURRICULUM}/${chapter.id}`}
                       className="flex h-1/4 w-full items-center justify-center bg-gradient-to-r from-orange-500 to-orange-700 text-center text-3xl font-bold text-gray-100"
                       disabled
                     >

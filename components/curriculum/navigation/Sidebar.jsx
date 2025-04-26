@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { RiArrowLeftSLine } from "react-icons/ri";
@@ -9,10 +10,11 @@ import ProgressBar from "./ProgressBar";
 import { useCurriculum } from "../stores/useCurriculum";
 
 import routes from "@/constants/routes";
-import { getUserProgress } from "@/lib/actions/userProgress.action";
+import { createOrGetUserProgress } from "@/lib/actions/userProgress.action";
 
-const Sidebar = ({ chapter, userProgress }) => {
+const Sidebar = ({ chapter }) => {
   const t = useTranslations("Curriculum");
+  const { data: session } = useSession();
 
   const { phase, updatedUserProgress, setUpdatedUserProgress } = useCurriculum(
     (state) => ({
@@ -22,13 +24,16 @@ const Sidebar = ({ chapter, userProgress }) => {
     })
   );
 
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUserProgress = async () => {
       try {
-        const result = await getUserProgress(chapter.id, userProgress.userId);
+        const result = await createOrGetUserProgress(
+          chapter.id,
+          session?.user?.id
+        );
 
         if (result.success) {
           setUpdatedUserProgress(result.data);
@@ -38,12 +43,12 @@ const Sidebar = ({ chapter, userProgress }) => {
       } catch (err) {
         setError("An error occurred while fetching user progress.");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchUserProgress();
-  }, [userProgress, chapter.id, phase]);
+  }, [session, chapter.id, phase]);
 
   if (error) return <div>{error}</div>;
 
@@ -60,7 +65,7 @@ const Sidebar = ({ chapter, userProgress }) => {
       </div>
       <div className="w-full">
         {chapter.phases.map((chapterPhase, index) =>
-          !loading ? (
+          !isLoading ? (
             <ProgressBar
               key={index}
               phaseName={chapterPhase.name_english}
@@ -70,17 +75,7 @@ const Sidebar = ({ chapter, userProgress }) => {
               inProgress={updatedUserProgress.completedPhases === index}
               active={phase === chapterPhase.name_english}
             />
-          ) : (
-            <ProgressBar
-              key={index}
-              phaseName={chapterPhase.name_english}
-              title={chapterPhase[`name_${t("language")}`]}
-              first={index === 0}
-              completed={userProgress.completedPhases > index}
-              inProgress={userProgress.completedPhases === index}
-              active={phase === chapterPhase.name_english}
-            />
-          )
+          ) : null
         )}
       </div>
     </section>

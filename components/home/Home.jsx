@@ -151,7 +151,7 @@ export default function Home() {
   };
 
   // INTERFACES MAPPING
-  const gameInterfaces = {
+  const interfaces = {
     [phases.FREE]: <FreePhaseInterface />,
     [phases.TRANSLATION]: <TranslationInterface />,
     [phases.FIRST_GAME]: <FirstGameInterface />,
@@ -195,7 +195,7 @@ export default function Home() {
           )}
       </KeyboardControls>
 
-      {!loading && gameInterfaces[phase]}
+      {!loading && interfaces[phase]}
 
       {loading && <CanvasLoader />}
 
