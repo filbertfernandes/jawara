@@ -1,27 +1,26 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
-import { FaCheckCircle } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
-
-import BackButton from "../../shared/interfaces/BackButton";
-
-import LoadingSpinner from "@/components/ui/loadingSpinner";
-import routes from "@/constants/routes";
-import { phases, useGame } from "@/hooks/useGame";
+import Image from "next/image"; // Image dari Next.js untuk menangani gambar
+import Link from "next/link"; // navigasi antar halaman
+import { useSession } from "next-auth/react"; // mengelola sesi pengguna
+import { useTranslations } from "next-intl"; // menerjemahkan teks sesuai bahasa yang dipilih
+import { useEffect, useRef, useState } from "react"; 
+import { FaCheckCircle } from "react-icons/fa"; 
+import { IoMdCloseCircle } from "react-icons/io"; 
+import BackButton from "../../shared/interfaces/BackButton"; 
+import LoadingSpinner from "@/components/ui/loadingSpinner"; 
+import routes from "@/constants/routes"; 
+import { phases, useGame } from "@/hooks/useGame"; // untuk mengelola fase permainan dan status game
 import {
   getTranslationAttemptsLeft,
   updateTranslationAttemptsLeft,
-} from "@/lib/actions/translation.action";
+} from "@/lib/actions/translation.action"; //fungsi untuk mendapatkan dan memperbarui sisa percakapan terjemahan.
 import {
   getTotalCorrectTranslations,
   incrementCorrectTranslations,
-} from "@/lib/actions/user.action";
-import { getUnseenAchievements } from "@/lib/actions/userAchievement.action";
-import { SoundManager } from "@/lib/SoundManager";
+} from "@/lib/actions/user.action"; // fungsi untuk mendapatkan dan memperbarui jumlah terjemahan yang benar.
+import { getUnseenAchievements } from "@/lib/actions/userAchievement.action"; // fungsi untuk mendapatkan pencapaian yang belum dilihat
+import { SoundManager } from "@/lib/SoundManager"; // suara untuk memainkan efek suara
 
+// ini yg pilihannya itu bisa sudah dipilih bisa jawaban yg benar
 const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
   <div
     className={`flex h-8 cursor-pointer items-center justify-center rounded-xl border-2 p-1 text-center text-sm font-bold text-gray-600 sm:p-2 sm:text-2xl ${
@@ -35,10 +34,11 @@ const Button = ({ id, word, isSelected, isAnswer = false, onClick }) => (
   </div>
 );
 
-const shuffleArray = (arr) => {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+// ini gunanya untuk mengacak urutannya
+const shuffleArray = (arr) => { // Fisher-Yates - Setiap elemen array memiliki peluang yang sama untuk berada di posisi manapun dalam array yang telah diacak
+  for (let i = arr.length - 1; i > 0; i--) { // mengacak nya dari blakang yah
+    const j = Math.floor(Math.random() * (i + 1)); // hasilin angka acak nya kan decimal makanya dikaliin sama integer, abis itu ambil yg floor
+    [arr[i], arr[j]] = [arr[j], arr[i]]; // terus di swap
   }
   return arr;
 };
@@ -49,25 +49,28 @@ export const TranslationInterface = () => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
-  const [correctCount, setCorrectCount] = useState(null);
-  const [attempsLeft, setAttemptsLeft] = useState(null);
-  const [isGeneratingSentence, setIsGeneratingSentence] = useState(false);
-  const [sentence, setSentence] = useState(null);
-  const [words, setWords] = useState([]);
-  const [wordsAnswer, setWordsAnswer] = useState([]);
-  const [isCheckingAnswer, setIsCheckingAnswer] = useState(false);
-  const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
-  const [isTrue, setIsTrue] = useState(false);
-  const [feedback, setFeedback] = useState("");
-  const [explanation, setExplanation] = useState("");
+  const [correctCount, setCorrectCount] = useState(null); // Menyimpan jumlah terjemahan yang benar
+  const [attempsLeft, setAttemptsLeft] = useState(null); // Menyimpan sisa percakapan terjemahan yang dapat dilakukan
+  const [isGeneratingSentence, setIsGeneratingSentence] = useState(false); // Menandakan apakah kalimat sedang dihasilkan
+  const [sentence, setSentence] = useState(null); // Menyimpan kalimat yang dihasilkan
+  const [words, setWords] = useState([]); // Menyimpan daftar kata yang akan dipilih
+  const [wordsAnswer, setWordsAnswer] = useState([]); // Menyimpan daftar kata yang dipilih oleh pemain
+  const [isCheckingAnswer, setIsCheckingAnswer] = useState(false); // Menandakan apakah jawaban sedang diperiksa
+  const [isFeedbackVisible, setIsFeedbackVisible] = useState(false); // Menandakan apakah feedback harus ditampilkan
+  const [isTrue, setIsTrue] = useState(false); // Menyimpan status apakah jawaban benar atau salah
+  const [feedback, setFeedback] = useState(""); // Menyimpan umpan balik yang diberikan oleh AI
+  const [explanation, setExplanation] = useState(""); // Menyimpan penjelasan dari AI
 
-  const sentenceBox = useRef();
+  // buat manipulasi Document Object Model ky div, p, button
+  const sentenceBox = useRef(); 
 
+  // perlu nih buat klo misalnya dapat achievements (badges)
   const { changePhase, setAchievementsPopup } = useGame((state) => ({
     changePhase: state.changePhase,
     setAchievementsPopup: state.setAchievementsPopup,
   }));
 
+  // mengambil data sisa berapa bisa translate dan jumlah yg benernya berapa
   useEffect(() => {
     if (!userId) return;
 
@@ -89,6 +92,7 @@ export const TranslationInterface = () => {
     fetchAttemptsLeft();
   }, []);
 
+  // ini untuk ambil kalimatnya dan di generate dari API
   const generateSentence = async () => {
     setIsGeneratingSentence(true);
 
@@ -127,6 +131,7 @@ export const TranslationInterface = () => {
     }
   };
 
+  // untuk cek apakah jawabannya user bener ga, terus kirim ke API untuk dieval, klo misal bener maka jumlah jawaban benar akan bertambah
   const checkAnswer = async () => {
     setIsCheckingAnswer(true);
 
@@ -170,6 +175,7 @@ export const TranslationInterface = () => {
     }
   };
 
+  // menangani klik pada kata yang dipilih. Jika kata sudah dipilih, maka akan dihapus dari daftar jawaban. Jika belum dipilih, maka ya tetep tampilin yah
   const handleWordClick = (id, word, isSelected) => {
     SoundManager.playSound("buttonClick");
 

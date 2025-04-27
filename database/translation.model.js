@@ -10,12 +10,6 @@ const TranslationSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-TranslationSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const Translation =
   models?.Translation || model("Translation", TranslationSchema);
 
