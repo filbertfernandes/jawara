@@ -6,8 +6,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   // Update halaman yang ditampilkan berdasarkan halaman aktif
   useEffect(() => {
-    const maxRange = 1;  // Menampilkan 1 halaman sebelumnya dan 1 halaman setelah halaman aktif
-    let range = [];
+    const maxRange = 1; // Menampilkan 1 halaman sebelumnya dan 1 halaman setelah halaman aktif
+    const range = [];
 
     if (totalPages <= 5) {
       // Jika jumlah halaman total kurang dari atau sama dengan 5, tampilkan semua halaman
@@ -22,12 +22,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         setRangeStart(1);
         setRangeEnd(3); // Tampilkan halaman pertama dan 2 setelahnya
       } else if (currentPage === totalPages) {
-        setRangeStart(totalPages-2);
+        setRangeStart(totalPages - 2);
         setRangeEnd(totalPages);
       } else {
         // Menampilkan halaman sekitar halaman aktif (1 halaman sebelumnya dan 1 halaman setelahnya)
-        setRangeStart(currentPage - maxRange);  // 1 halaman sebelumnya
-        setRangeEnd(currentPage + maxRange);    // 1 halaman setelahnya
+        setRangeStart(currentPage - maxRange); // 1 halaman sebelumnya
+        setRangeEnd(currentPage + maxRange); // 1 halaman setelahnya
       }
     }
   }, [currentPage, totalPages]); // Update ketika currentPage atau totalPages berubah
@@ -47,13 +47,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-1 max-w-full">
+    <div className="flex max-w-full items-center justify-center gap-1">
       {/* Tombol Prev */}
       <button
         onClick={goToPrevPage}
         disabled={currentPage === 1}
-        className={`text-[0.3rem] font-semibold border rounded-xl bg-gray-200 text-gray-600 hover:bg-gray-300
-          ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+        className={`text-[0.3rem] text-center px-[0.1rem] font-semibold bg-gray-200 text-gray-600 hover:bg-gray-300
+          ${
+            currentPage === 1
+              ? "cursor-not-allowed opacity-50"
+              : "cursor-pointer"
+          }`}
       >
         {"<"}
       </button>
@@ -63,11 +67,14 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <>
           <button
             onClick={() => onPageChange(1)}
-            className="text-[0.3rem] font-semibold border rounded-xl bg-gray-200 text-gray-600 hover:bg-gray-300"
+            className="bg-gray-200 px-[0.1rem] text-center text-[0.3rem] font-semibold text-gray-600 hover:bg-gray-300"
           >
             1
           </button>
-          <span className="text-[0.3rem] text-gray-600">...</span> {/* Ellipsis setelah halaman pertama */}
+          <span className="px-[0.1rem] text-center text-[0.3rem] text-gray-600">
+            ...
+          </span>{" "}
+          {/* Ellipsis setelah halaman pertama */}
         </>
       )}
 
@@ -76,10 +83,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           key={rangeStart + index}
           onClick={() => onPageChange(rangeStart + index)}
-          className={`text-[0.3rem] font-semibold border rounded-xl 
-            ${currentPage === rangeStart + index
-              ? 'bg-gray-900 text-white'
-              : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+          className={`text-[0.3rem] text-center px-[0.1rem] font-semibold
+            ${
+              currentPage === rangeStart + index
+                ? "bg-gray-900 text-white"
+                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+            }`}
         >
           {rangeStart + index}
         </button>
@@ -88,10 +97,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {/* Tombol Halaman Terakhir */}
       {rangeEnd < totalPages && (
         <>
-          <span className="text-[0.3rem] text-gray-600">...</span> {/* Ellipsis sebelum halaman terakhir */}
+          <span className="px-[0.1rem] text-center text-[0.3rem] text-gray-600">
+            ...
+          </span>{" "}
+          {/* Ellipsis sebelum halaman terakhir */}
           <button
             onClick={() => onPageChange(totalPages)}
-            className="text-[0.3rem] font-semibold border rounded-xl bg-gray-200 text-gray-600 hover:bg-gray-300"
+            className="bg-gray-200 px-[0.1rem] text-center text-[0.3rem] font-semibold text-gray-600 hover:bg-gray-300"
           >
             {totalPages}
           </button>
@@ -102,8 +114,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={goToNextPage}
         disabled={currentPage === totalPages}
-        className={`text-[0.3rem] font-semibold border rounded-xl bg-gray-200 text-gray-600 hover:bg-gray-300
-          ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+        className={`text-[0.3rem] text-center px-[0.1rem] font-semibold bg-gray-200 text-gray-600 hover:bg-gray-300
+          ${
+            currentPage === totalPages
+              ? "cursor-not-allowed opacity-50"
+              : "cursor-pointer"
+          }`}
       >
         {">"}
       </button>

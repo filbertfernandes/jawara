@@ -1,35 +1,33 @@
 import multiavatar from "@multiavatar/multiavatar/esm"; // Import untuk menghasilkan avatar pengguna secara dinamis
 import { Html } from "@react-three/drei"; // Untuk merender elemen HTML dalam konteks Three.js
 import Link from "next/link"; // Untuk navigasi antar halaman dengan Next.js
-import { useEffect, useState } from "react"; // Import hooks untuk manajemen state dan efek samping
 import { useTranslations } from "next-intl"; // Untuk translate yah
+import { useEffect, useState } from "react"; // Import hooks untuk manajemen state dan efek samping
 
+import Pagination from "./screen-interfaces/Pagination"; // Komponen pagination untuk halaman
 import SearchBar from "./screen-interfaces/SearchBar"; // Komponen pencarian
 import Taskbar from "./screen-interfaces/Taskbar"; // Komponen taskbar
-import Pagination from "./screen-interfaces/Pagination"; // Komponen pagination untuk halaman
-
 import { useLaptop } from "./stores/useLaptop"; // Hook untuk state terkait laptop
 
 import routes from "@/constants/routes"; // Rute navigasi aplikasi
 import { getUsers } from "@/lib/actions/user.action"; // Fungsi untuk mengambil data pengguna dari API
 
 const LaptopScreen = () => {
-
   // Ambil nya dari Home
   const t = useTranslations("Home");
 
   // State untuk menampung data pengguna yang ditemukan
   const [users, setUsers] = useState([]);
-  
+
   // State untuk menyimpan total halaman pagination
   const [totalPages, setTotalPages] = useState(0);
-  
+
   // State untuk menyimpan halaman yang sedang aktif, yg active pertama kali akan hlmn pertama
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   // State untuk menandakan apakah pencarian sedang berlangsung
   const [searching, setSearching] = useState(false);
-  
+
   // State untuk menampilkan pesan "Data not found" jika tidak ada hasil
   const [showNoResults, setShowNoResults] = useState(false);
 
@@ -37,7 +35,7 @@ const LaptopScreen = () => {
   const { screenRotation, search, setSearch } = useLaptop((state) => ({
     screenRotation: state.screenRotation,
     search: state.search,
-    setSearch: state.setSearch
+    setSearch: state.setSearch,
   }));
 
   // Mengatur ulang pencarian ketika komponen dimuat
@@ -95,42 +93,45 @@ const LaptopScreen = () => {
         rotation-x={-Math.PI / 2}
       >
         <div className="flex h-[4.75rem] w-28 flex-col justify-between border-none bg-white font-questrial text-gray-900">
-          
           {/* 1. Search Bar */}
           <div className="flex h-auto w-full flex-col">
-            <SearchBar text={t("search_users")} /> {/* Menampilkan komponen pencarian */}
-            
+            {/* Menampilkan komponen pencarian */}
+            <SearchBar text={t("search_users")} />
             {/* 2. Hasil Pencarian */}
             <div className="mt-1 flex h-auto w-full flex-wrap justify-center gap-1 px-1 text-[0.15rem]">
               {searching ? (
                 // Tampilkan pesan "Searching..." selama proses pencarian
-                <div className="flex items-center justify-center text-center text-[0.5rem] text-gray-500">{t("searching")}</div>
+                <div className="flex items-center justify-center text-center text-[0.5rem] text-gray-500">
+                  {t("searching")}
+                </div>
+              ) : showNoResults && search !== "" ? (
+                // Tampilkan pesan "Data not found" jika tidak ada hasil pencarian
+                <div className="flex items-center justify-center text-center text-[0.5rem] text-gray-500">
+                  {t("results")}
+                </div>
               ) : (
-                showNoResults && search !== "" ? (
-                  // Tampilkan pesan "Data not found" jika tidak ada hasil pencarian
-                  <div className="flex items-center justify-center text-center text-[0.5rem] text-gray-500">{t("results")}</div>
-                ) : (
-                  // Jika ada hasil pencarian, tampilkan data pengguna
-                  users.length > 0 &&
-                  users.map((user) => (
-                    <Link
-                      key={user._id}
-                      href={`${routes.PROFILE}/${user._id}`} // Link ke halaman profil pengguna
-                      className="flex h-auto max-w-full w-[45%] cursor-pointer items-center gap-[0.1rem] bg-gray-100 p-[0.1rem] transition-all duration-300 ease-in-out hover:bg-gray-300"
-                    >
-                      <div
-                        className="size-2"
-                        dangerouslySetInnerHTML={{
-                          __html: multiavatar(user._id + user.profileAvatarIndex), // Menampilkan avatar pengguna
-                        }}
-                      />
-                      <div className="flex h-full flex-col justify-center">
-                        <h1 className="font-bold text-gray-900">{user.name}</h1> {/* Menampilkan nama pengguna */}
-                        <h1 className="text-gray-900">@{user.username}</h1> {/* Menampilkan username pengguna */}
-                      </div>
-                    </Link>
-                  ))
-                )
+                // Jika ada hasil pencarian, tampilkan data pengguna
+                users.length > 0 &&
+                users.map((user) => (
+                  <Link
+                    key={user._id}
+                    href={`${routes.PROFILE}/${user._id}`} // Link ke halaman profil pengguna
+                    className="flex h-auto w-[45%] max-w-full cursor-pointer items-center gap-[0.1rem] bg-gray-100 p-[0.1rem] transition-all duration-300 ease-in-out hover:bg-gray-300"
+                  >
+                    <div
+                      className="size-2"
+                      dangerouslySetInnerHTML={{
+                        __html: multiavatar(user._id + user.profileAvatarIndex), // Menampilkan avatar pengguna
+                      }}
+                    />
+                    <div className="flex h-full flex-col justify-center">
+                      {/* Menampilkan nama pengguna */}
+                      <h1 className="font-bold text-gray-900">{user.name}</h1>
+                      {/* Menampilkan username pengguna */}
+                      <h1 className="text-gray-900">@{user.username}</h1>
+                    </div>
+                  </Link>
+                ))
               )}
             </div>
           </div>
@@ -138,7 +139,7 @@ const LaptopScreen = () => {
           {/* 3. Pagination */}
           {users.length > 0 && (
             // Menampilkan komponen pagination jika ada pengguna yang ditemukan
-            <div className="mb-0.5 w-full px-2 mt-auto">
+            <div className="mb-0.5 mt-auto w-full px-2">
               <Pagination
                 currentPage={currentPage} // Menampilkan halaman aktif
                 totalPages={totalPages} // Menampilkan jumlah total halaman
@@ -151,7 +152,6 @@ const LaptopScreen = () => {
           <div className="flex flex-col gap-1">
             <Taskbar /> {/* Menampilkan komponen taskbar */}
           </div>
-          
         </div>
       </Html>
     </group>
