@@ -59,4 +59,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return success;
     },
   },
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "lax", // <-- set SameSite to 'lax' here
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
 });
