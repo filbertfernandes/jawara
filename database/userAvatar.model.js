@@ -11,14 +11,8 @@ const UserAvatarSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true } // Automatically update the 'updatedAt' field on save
 );
-
-// Automatically update the 'updatedAt' field on save
-UserAvatarSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
 
 const UserAvatar = models?.UserAvatar || model("UserAvatar", UserAvatarSchema);
 

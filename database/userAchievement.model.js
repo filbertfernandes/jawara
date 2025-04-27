@@ -10,12 +10,6 @@ const UserAchievementSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-UserAchievementSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const UserAchievement =
   models?.UserAchievement || model("UserAchievement", UserAchievementSchema);
 

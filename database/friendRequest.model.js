@@ -8,12 +8,6 @@ const FriendRequestSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-FriendRequestSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const FriendRequest =
   models?.FriendRequest || model("FriendRequest", FriendRequestSchema);
 

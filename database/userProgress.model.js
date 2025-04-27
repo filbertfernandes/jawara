@@ -13,12 +13,6 @@ const UserChapterProgressSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-UserChapterProgressSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const UserChapterProgress =
   models?.UserChapterProgress ||
   model("UserChapterProgress", UserChapterProgressSchema);
