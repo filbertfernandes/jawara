@@ -6,7 +6,10 @@ import { api } from "./lib/api";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
-    Google,
+    Google({
+      clientId: process.env.AUTH_WEBAPP_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.AUTH_WEBAPP_GOOGLE_CLIENT_SECRET,
+    }),
     Credentials({
       async authorize(credentials) {
         return {
