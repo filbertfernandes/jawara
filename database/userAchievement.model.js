@@ -2,19 +2,17 @@ import { Schema, models, model } from "mongoose";
 
 const UserAchievementSchema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User
-    achievementId: { type: String, required: true },
-    earnedAt: { type: Date, default: Date.now }, // Timestamp when achievement was earned
-    seen: { type: Boolean, default: false }, // Whether the user has seen the achievement notification
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    achievements: [
+      {
+        achievementId: { type: String, required: true },
+        earnedAt: { type: Date, default: Date.now },
+        seen: { type: Boolean, default: false },
+      },
+    ],
   },
   { timestamps: true }
 );
-
-// Automatically update the 'updatedAt' field on save
-UserAchievementSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
 
 const UserAchievement =
   models?.UserAchievement || model("UserAchievement", UserAchievementSchema);
