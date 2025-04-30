@@ -100,6 +100,11 @@ export const FirstGameInterface = () => {
           gameState !== gameStates.GAME ? "pointer-events-none opacity-0" : ""
         }`}
       >
+        {/* Stage Info */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-md bg-orange-600/80 px-4 py-1 font-bold text-white shadow-md backdrop-blur-sm">
+          {`${t("stage")} ${currentStage + 1} / 5`}
+        </div>
+
         <div
           ref={time}
           className="pointer-events-none absolute left-0 top-0 w-full bg-gradient-to-r from-orange-500/80 to-orange-700/80 pt-1 text-center font-bebas text-3xl text-gray-100"

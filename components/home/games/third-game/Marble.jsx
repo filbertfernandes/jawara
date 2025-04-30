@@ -12,8 +12,13 @@ import { SoundManager } from "@/lib/SoundManager.jsx";
 const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5);
 
 export default function Marble() {
+  const frustum = new THREE.Frustum();
+  const cameraViewProjectionMatrix = new THREE.Matrix4();
+  const marbleVector = new THREE.Vector3();
+
   const marbleBody = useRef();
   const isMounted = useRef(true); // Track component mount status
+  const resetTimeoutRef = useRef(null);
 
   const [subscribeKeys, getKeys] = useKeyboardControls();
   const { rapier, world } = useRapier();
@@ -80,6 +85,9 @@ export default function Marble() {
   useFrame((state, delta) => {
     if (!isMounted.current || !marbleBody.current) return;
 
+    const camera = state.camera;
+    const marblePos = marbleBody.current.translation();
+
     /**
      * Controls
      */
@@ -133,7 +141,33 @@ export default function Marble() {
     marbleBody.current.applyImpulse(impulse);
     marbleBody.current.applyTorqueImpulse(torque);
 
-    if (marbleBody.current.translation().y < -4) reset();
+    // Check if the marble is out of camera view (frustum)
+    camera.updateMatrixWorld();
+    cameraViewProjectionMatrix.multiplyMatrices(
+      camera.projectionMatrix,
+      camera.matrixWorldInverse
+    );
+    frustum.setFromProjectionMatrix(cameraViewProjectionMatrix);
+
+    marbleVector.set(marblePos.x, marblePos.y, marblePos.z);
+    const isInView = frustum.containsPoint(marbleVector);
+    const isBelowThreshold = marblePos.y < -4;
+
+    if (!isInView || isBelowThreshold) {
+      // Start/reset the timeout if not already set
+      if (!resetTimeoutRef.current) {
+        resetTimeoutRef.current = setTimeout(() => {
+          reset();
+          resetTimeoutRef.current = null;
+        }, 3000); // 3 seconds
+      }
+    } else {
+      // Marble is back in view, cancel reset if pending
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+        resetTimeoutRef.current = null;
+      }
+    }
   });
 
   return (

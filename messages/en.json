@@ -78,7 +78,8 @@
     "select_language_english": "English",
     "select_language_indonesian": "Indonesian",
 
-    "new_achievement_unlocked": "New Achievement Unlocked!"
+    "new_achievement_unlocked": "New Achievement Unlocked!",
+    "stage": "Stage"
   },
   "Auth": {
     "welcome_to": "WELCOME TO",

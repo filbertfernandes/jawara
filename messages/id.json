@@ -79,7 +79,8 @@
     "select_language_english": "Inggris",
     "select_language_indonesian": "Indonesia",
 
-    "new_achievement_unlocked": "Pencapaian Baru Diraih!"
+    "new_achievement_unlocked": "Pencapaian Baru Diraih!",
+    "stage": "Tahap"
   },
   "Auth": {
     "welcome_to": "SELAMAT DATANG DI",
