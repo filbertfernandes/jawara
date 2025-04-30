@@ -1,10 +1,4 @@
-import {
-  Backdrop,
-  Environment,
-  Html,
-  OrbitControls,
-  SoftShadows,
-} from "@react-three/drei";
+import { Backdrop, Html, OrbitControls, SoftShadows } from "@react-three/drei";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
@@ -49,7 +43,6 @@ const ProfileExperience = ({ profileUser, isMobile }) => {
         enableRotate={true}
         enableZoom={false}
       />
-      <Environment preset="sunset" environmentIntensity={0.3} />
 
       <Backdrop scale={[50, 10, 5]} floor={1.5} receiveShadow position-z={-4}>
         <meshStandardMaterial color="#ffd893" />
@@ -60,7 +53,7 @@ const ProfileExperience = ({ profileUser, isMobile }) => {
       {/* Key Light */}
       <directionalLight
         position={[5, 5, 5]}
-        intensity={2.2}
+        intensity={3.6}
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
