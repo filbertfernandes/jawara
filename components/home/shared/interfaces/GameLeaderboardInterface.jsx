@@ -175,7 +175,14 @@ const GameLeaderboardInterface = () => {
                       <div className="text-sm">@{topScore.username}</div>
                     </div>
                   </div>
-                  <div className="flex items-center">{topScore.score}</div>
+                  <div className="flex items-center">
+                    <div>
+                      {topScore.score}
+                      {phase === phases.FIRST_GAME && (
+                        <span className="ml-0.5 text-xs sm:text-base">s</span>
+                      )}
+                    </div>
+                  </div>
                 </Link>
               </li>
             ))}

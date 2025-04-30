@@ -58,7 +58,12 @@ const ScoreTable = ({ scores }) => {
                 <h6 className="capitalize">
                   {category === "ngoko" ? category : `Krama ${category}`}
                 </h6>
-                <h6>{score === -1 ? 0 : score}</h6>
+                <h6>
+                  {score === -1 ? 0 : score}
+                  {index === 0 && (
+                    <span className="ml-0.5 sm:text-base lg:text-lg">s</span>
+                  )}
+                </h6>
               </div>
             ))}
           </div>
