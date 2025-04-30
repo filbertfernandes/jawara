@@ -38,9 +38,9 @@ const howToPlaySteps = {
       english_title: "Type the Javanese Word",
       indonesian_title: "Ketik Kata dalam Bahasa Jawa",
       english_description:
-        "Click on the input box and type the correct Javanese word for that body part. Example: If the input box is near the eye, type 'moto' (Javanese for 'eye').",
+        "Click on the input box and type the correct Javanese word for that body part. Example: If the input box is near the eye, type 'mripat' (Javanese for 'eye').",
       indonesian_description:
-        "Klik pada kotak input dan ketik kata dalam Bahasa Jawa yang benar untuk bagian tubuh tersebut. Contoh: Jika kotak input berada di dekat mata, ketik 'moto' (Bahasa Jawa untuk 'mata').",
+        "Klik pada kotak input dan ketik kata dalam Bahasa Jawa yang benar untuk bagian tubuh tersebut. Contoh: Jika kotak input berada di dekat mata, ketik 'mripat' (Bahasa Jawa untuk 'mata').",
     },
     {
       icon: "4️⃣ ✅",
