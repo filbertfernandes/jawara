@@ -5,7 +5,7 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx";
 
 const GameSelectButton = ({ label, onClick }) => (
   <button
-    className="btn-template w-28 bg-orange-500 px-1 text-sm text-gray-100 hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
+    className="btn-template w-28 bg-orange-500 px-1 text-sm text-gray-100 hover:scale-110 hover:bg-orange-600 lg:w-52 lg:p-1.5 lg:text-3xl"
     onClick={onClick}
   >
     {label}
