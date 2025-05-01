@@ -101,7 +101,7 @@ export const FirstGameInterface = () => {
         }`}
       >
         {/* Stage Info */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-md bg-orange-600/80 px-4 py-1 font-bold text-white shadow-md backdrop-blur-sm">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-md bg-orange-600/80 px-4 py-1 font-questrial font-bold text-white shadow-md backdrop-blur-sm">
           {`${t("stage")} ${currentStage + 1} / 5`}
         </div>
 
@@ -114,7 +114,7 @@ export const FirstGameInterface = () => {
       </div>
 
       {gameState === gameStates.GAME && Array.isArray(level[currentStage]) && (
-        <div className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col items-end gap-2 pr-4 text-right font-questrial font-bold text-white">
+        <div className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col items-end gap-2 pr-4 text-right font-questrial font-bold text-gray-100">
           {level[currentStage].map((item, idx) => (
             <div
               key={idx}

@@ -37,7 +37,7 @@ export default function SocialAuthForm() {
         <div className="w-1/2 border-t border-gray-400"></div>
       </div>
       <div
-        className="btn-template w-full cursor-pointer select-none border bg-white text-gray-900 drop-shadow-lg transition hover:bg-gray-100"
+        className="btn-template w-full cursor-pointer select-none border bg-white text-gray-900 drop-shadow-lg hover:bg-gray-100"
         onClick={() => handleSignIn("google")}
       >
         <Image
