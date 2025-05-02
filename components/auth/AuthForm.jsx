@@ -112,7 +112,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                         <PasswordInput
                           placeholder={t(`fields.${field.name}`)}
                           {...field}
-                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
+                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-400 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
                         />
                       ) : (
                         <Input
@@ -120,7 +120,7 @@ const AuthForm = ({ schema, defaultValues, formType, onSubmit }) => {
                           type="text"
                           placeholder={t(`fields.${field.name}`)}
                           {...field}
-                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
+                          className="rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-400 focus:ring-2 focus:ring-gray-500 lg:placeholder:text-sm xl:placeholder:text-base"
                         />
                       )}
                     </div>

@@ -75,7 +75,7 @@ const ResetPasswordForm = () => {
         placeholder={t("placeholder")}
         onChange={(e) => setEmail(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-        className="rounded-2xl border-none text-center font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
+        className="rounded-2xl border-none text-center font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-500"
       />
       <div
         onClick={handleSubmit}

@@ -157,7 +157,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
                     <Input
                       type="text"
                       {...field}
-                      className="mt-1 w-full rounded-2xl border-none px-3 py-2 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
+                      className="mt-1 w-full rounded-2xl border-none px-3 py-2 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-400 focus:ring-2 focus:ring-gray-500"
                       disabled={loading}
                     />
                   </FormControl>
@@ -180,7 +180,7 @@ const EditProfileCard = ({ onClose, isVisible, user, setUser }) => {
                     <Input
                       type="text"
                       {...field}
-                      className="mt-1 w-full rounded-2xl border-none px-3 py-2 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-gray-500"
+                      className="mt-1 w-full rounded-2xl border-none px-3 py-2 font-semibold text-gray-900 ring-2 ring-gray-300 placeholder:text-xs placeholder:text-gray-400 focus:ring-2 focus:ring-gray-500"
                       disabled={loading}
                     />
                   </FormControl>
