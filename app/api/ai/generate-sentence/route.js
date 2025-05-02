@@ -24,7 +24,7 @@ export async function POST() {
               "indonesian": ""
             }
 
-          Don't make it into a code, just a regular text but you provide it like JSON format, and don't say anything else other than give me the JSON string.`,
+          Don't make it into a code, just a regular text but you provide it like JSON format, and don't say anything else other than give me the JSON string.`,
         },
       ],
     });
