@@ -70,12 +70,6 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-UserSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const User = models?.User || model("User", UserSchema);
 
 export default User;

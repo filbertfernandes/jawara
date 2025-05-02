@@ -14,12 +14,6 @@ const LeaderboardSchema = new Schema(
   { timestamps: true }
 );
 
-// Automatically update the 'updatedAt' field on save
-LeaderboardSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
 const Leaderboard =
   models?.Leaderboard || model("Leaderboard", LeaderboardSchema);
 
