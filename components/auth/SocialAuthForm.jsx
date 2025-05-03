@@ -14,16 +14,17 @@ export default function SocialAuthForm() {
     try {
       await signIn(provider, {
         callbackUrl: routes.HOME,
+        redirect: false,
       });
     } catch (error) {
       console.log(error);
 
       toast({
-        title: "Sign-in Failed",
+        title: "Sign in Failed",
         description:
           error instanceof Error
             ? error.message
-            : "An error occured during sign-in",
+            : "An error occured during sign in",
         variant: "destructive",
       });
     }

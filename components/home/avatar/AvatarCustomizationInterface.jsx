@@ -32,7 +32,7 @@ const AssetBox = () => {
 
   return (
     <div className="flex flex-col gap-6 rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20 p-6 drop-shadow-md">
-      <div className="pointer-events-auto flex items-center gap-8 overflow-x-auto px-6 pb-2">
+      <div className="pointer-events-auto flex touch-auto items-center gap-8 overflow-x-auto scroll-smooth px-6 pb-2">
         {categories.map((category) => (
           <button
             key={category.id}
@@ -47,7 +47,7 @@ const AssetBox = () => {
           </button>
         ))}
       </div>
-      <div className="flex gap-2 overflow-x-auto px-6">
+      <div className="flex touch-auto gap-2 overflow-x-auto scroll-smooth px-6">
         {currentCategory?.removable && (
           <button
             onClick={() => changeAsset(currentCategory.name, null)}
@@ -237,7 +237,7 @@ const ColorPicker = () => {
   }
 
   return (
-    <div className="pointer-events-auto relative flex max-w-full gap-2 overflow-x-auto py-2 drop-shadow-md backdrop-blur-sm">
+    <div className="pointer-events-auto relative flex max-w-full touch-auto gap-2 overflow-x-auto scroll-smooth py-2 drop-shadow-md backdrop-blur-sm">
       {currentCategory.colorPalette?.colors.map((color, index) => (
         <button
           key={`${index}-${color}`}
