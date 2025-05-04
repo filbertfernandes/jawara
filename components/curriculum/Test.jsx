@@ -295,7 +295,7 @@ const Test = ({ chapter, isPostTest = false }) => {
               <div className="mb-2 w-full text-2xl font-bold">
                 {t("your_score")}
               </div>
-              <div className="text-6xl font-bold">{score.toFixed(0)}</div>
+              <div className="text-6xl font-bold">{score.toFixed(2)}</div>
             </div>
           </div>
         )}

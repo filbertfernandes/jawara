@@ -11,29 +11,28 @@ export const achievementsData = [
     id: "top-3",
     src: "/images/achievements/top-3.jpg",
     description_english: "Achieve a top 3 position in the Vocabulary Game.",
-    description_indonesian:
-      "Capai peringkat 3 besar dalam Permainan Kosa Kata.",
+    description_indonesian: "Capai peringkat 3 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-10",
     src: "/images/achievements/top-10.jpg",
     description_english: "Achieve a top 10 position in the Vocabulary Game.",
     description_indonesian:
-      "Capai peringkat 10 besar dalam Permainan Kosa Kata.",
+      "Capai peringkat 10 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-50",
     src: "/images/achievements/top-50.jpg",
     description_english: "Achieve a top 50 position in the Vocabulary Game.",
     description_indonesian:
-      "Capai peringkat 50 besar dalam Permainan Kosa Kata.",
+      "Capai peringkat 50 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-100",
     src: "/images/achievements/top-100.jpg",
     description_english: "Achieve a top 100 position in the Vocabulary Game.",
     description_indonesian:
-      "Capai peringkat 100 besar dalam Permainan Kosa Kata.",
+      "Capai peringkat 100 besar dalam Permainan Kosakata.",
   },
   {
     id: "correct-translations-1000",
@@ -77,7 +76,7 @@ export const achievementsData = [
     description_english:
       "Complete the Body Parts Vocabulary Game for the first time.",
     description_indonesian:
-      "Selesaikan Permainan Kosa Kata Bagian Tubuh untuk pertama kalinya.",
+      "Selesaikan Permainan Kosakata Bagian Tubuh untuk pertama kalinya.",
   },
   {
     id: "first-time-colors",
@@ -85,7 +84,7 @@ export const achievementsData = [
     description_english:
       "Complete the Colors Vocabulary Game for the first time.",
     description_indonesian:
-      "Selesaikan Permainan Kosa Kata Warna untuk pertama kalinya.",
+      "Selesaikan Permainan Kosakata Warna untuk pertama kalinya.",
   },
   {
     id: "first-time-numbers",
@@ -93,7 +92,7 @@ export const achievementsData = [
     description_english:
       "Complete the Numbers Vocabulary Game for the first time.",
     description_indonesian:
-      "Selesaikan Permainan Kosa Kata Angka untuk pertama kalinya.",
+      "Selesaikan Permainan Kosakata Angka untuk pertama kalinya.",
   },
   {
     id: "first-time-animals",
@@ -101,6 +100,6 @@ export const achievementsData = [
     description_english:
       "Complete the Animals Vocabulary Game for the first time.",
     description_indonesian:
-      "Selesaikan Permainan Kosa Kata Hewan untuk pertama kalinya.",
+      "Selesaikan Permainan Kosakata Hewan untuk pertama kalinya.",
   },
 ];

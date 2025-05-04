@@ -47,7 +47,7 @@ export const guideData = [
   {
     information: "Vocabularies Games",
     english_description: "Vocabulary mini-games",
-    indonesian_description: "Permainan kosa kata",
+    indonesian_description: "Permainan kosakata",
     cameraPosition: {
       x: 11.33,
       y: 5,

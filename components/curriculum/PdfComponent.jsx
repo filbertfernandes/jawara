@@ -47,7 +47,7 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
           href={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${
             chapterPhase["pdf_file_" + t("language")]
           }`}
-          download="chapter-1.pdf"
+          download={chapterPhase["pdf_file_" + t("language")]}
           className="btn-template bg-orange-500 px-4 text-sm text-gray-100 hover:bg-orange-600"
         >
           <IoMdDownload className="mr-1" />
