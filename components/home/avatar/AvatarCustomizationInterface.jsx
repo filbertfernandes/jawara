@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { FaSave } from "react-icons/fa";
+import { GiPerspectiveDiceSixFacesSix } from "react-icons/gi";
 import { IoMdAlert } from "react-icons/io";
 
 import { useCustomization } from "./stores/useCustomization";
@@ -178,15 +180,16 @@ const SaveButton = () => {
     <>
       {userId ? (
         <button
-          className="pointer-events-auto w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
+          className="btn-template pointer-events-auto w-36 bg-orange-500 px-3 font-bebas text-xl text-gray-100 drop-shadow-lg hover:bg-orange-600 lg:w-40 lg:text-2xl"
           onClick={save}
         >
+          <FaSave className="mr-2" size={22} />
           {saving ? `${t("saving")}...` : t("save")}
         </button>
       ) : (
         <Link href={routes.SIGN_IN}>
-          <button className="pointer-events-auto min-w-36 rounded-lg bg-orange-500 px-4 py-3 font-bold text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600">
-            {t("sign_in_to_save")}
+          <button className="btn-template pointer-events-auto w-48 bg-orange-500 px-3 font-bebas text-xl text-gray-100 drop-shadow-lg hover:bg-orange-600 lg:w-56 lg:text-2xl">
+            <FaSave className="mr-2" size={22} /> {t("sign_in_to_save")}
           </button>
         </Link>
       )}
@@ -195,26 +198,16 @@ const SaveButton = () => {
 };
 
 const RandomizeButton = () => {
+  const t = useTranslations("Home");
+
   const randomize = useCustomization((state) => state.randomize);
   return (
     <button
-      className="pointer-events-auto rounded-lg bg-orange-500 px-4 py-3 font-medium text-gray-100 drop-shadow-md transition-colors duration-300 hover:bg-orange-600"
+      className="btn-template pointer-events-auto w-36 bg-orange-500 px-3 font-bebas text-xl text-gray-100 drop-shadow-lg hover:bg-orange-600 lg:w-40 lg:text-2xl"
       onClick={randomize}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="size-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
-        />
-      </svg>
+      <GiPerspectiveDiceSixFacesSix className="mr-1" size={28} />{" "}
+      {t("randomize")}
     </button>
   );
 };
@@ -316,9 +309,9 @@ const AvatarCustomizationInterface = () => {
       )}
       <main className="pointer-events-none fixed inset-0 z-10 select-none font-questrial">
         <div className="mx-auto flex size-full max-w-screen-xl flex-col justify-between">
-          <div className="flex items-center justify-between p-10">
+          <div className="flex justify-between p-10">
             <BackButton onClick={() => changePhase(phases.FREE)} />
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
               <RandomizeButton />
               <SaveButton />
             </div>

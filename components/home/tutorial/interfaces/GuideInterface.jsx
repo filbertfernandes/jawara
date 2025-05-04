@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import BackButton from "../../shared/interfaces/BackButton";
@@ -51,25 +51,25 @@ const GuideInterface = ({ isFirstTime }) => {
       )}
       <div className="flex size-full items-end justify-center gap-24 text-4xl text-gray-100 lg:gap-60">
         <button
-          className={`flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200 ${
+          className={`btn-template bg-orange-500 px-6 drop-shadow-lg hover:bg-orange-600 ${
             isFirstTime && guideIndex === 0
               ? "pointer-events-none opacity-0"
               : ""
           }`}
           onClick={decrementGuideIndex}
         >
-          <FaArrowLeft size={32} /> {t("previous")}
+          <FaArrowLeft className="mr-3" size={32} /> {t("previous")}
         </button>
 
         <button
-          className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+          className="btn-template bg-orange-500 px-6 drop-shadow-lg hover:bg-orange-600"
           onClick={isFinishStep ? handleFinishButton : incrementGuideIndex}
         >
           {isFinishStep ? (
             <>{t("finish")}</>
           ) : (
             <>
-              {t("next")} <FaArrowRight size={32} />
+              {t("next")} <FaArrowRight className="ml-3" size={32} />
             </>
           )}
         </button>

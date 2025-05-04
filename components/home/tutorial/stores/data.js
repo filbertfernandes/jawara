@@ -1,7 +1,7 @@
 export const guideData = [
   {
     information: "Basic",
-    english_description: "Click or walk closer to\ninteract with each objects",
+    english_description: "Click or walk closer to\ninteract with each object",
     indonesian_description:
       "Klik atau berjalan lebih\ndekat untuk berinteraksi\ndengan setiap objek",
     cameraPosition: { x: 2, y: 6, z: 27 },
