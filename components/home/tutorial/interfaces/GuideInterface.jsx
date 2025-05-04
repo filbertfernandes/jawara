@@ -51,25 +51,25 @@ const GuideInterface = ({ isFirstTime }) => {
       )}
       <div className="flex size-full items-end justify-center gap-24 text-4xl text-gray-100 lg:gap-60">
         <button
-          className={`btn-template bg-orange-500 px-6 drop-shadow-lg hover:bg-orange-600 ${
+          className={`btn-template bg-orange-500 px-4 text-xl drop-shadow-lg hover:bg-orange-600 lg:text-2xl ${
             isFirstTime && guideIndex === 0
               ? "pointer-events-none opacity-0"
               : ""
           }`}
           onClick={decrementGuideIndex}
         >
-          <FaArrowLeft className="mr-3" size={32} /> {t("previous")}
+          <FaArrowLeft className="mr-3" /> {t("previous")}
         </button>
 
         <button
-          className="btn-template bg-orange-500 px-6 drop-shadow-lg hover:bg-orange-600"
+          className="btn-template bg-orange-500 px-4 text-xl drop-shadow-lg hover:bg-orange-600 lg:text-2xl"
           onClick={isFinishStep ? handleFinishButton : incrementGuideIndex}
         >
           {isFinishStep ? (
             <>{t("finish")}</>
           ) : (
             <>
-              {t("next")} <FaArrowRight className="ml-3" size={32} />
+              {t("next")} <FaArrowRight className="ml-3" />
             </>
           )}
         </button>
