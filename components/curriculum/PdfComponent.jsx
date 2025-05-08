@@ -54,15 +54,21 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
           {t("download")}
         </a>
       </div>
-      <Document
-        file={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${
-          chapterPhase["pdf_file_" + t("language")]
-        }`}
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        {Array.apply(null, Array(numPages))
-          .map((x, i) => i + 1)
-          .map((page) => (
+      {parentWidth > 0 ? (
+        <Document
+          file={`${process.env.NEXT_PUBLIC_JAWARA_BASE_URL}/pdf/${
+            chapterPhase["pdf_file_" + t("language")]
+          }`}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={
+            <div className="text-center">
+              <div className="h5-bold mb-1 text-gray-900">
+                {t("loading")}...
+              </div>
+            </div>
+          }
+        >
+          {Array.from({ length: numPages }, (_, i) => i + 1).map((page) => (
             <div key={`page-wrapper-${page}`} className="mb-8 text-center">
               <p className="mb-2 text-sm text-gray-600">
                 Page {page} of {numPages}
@@ -76,7 +82,13 @@ function PdfComponent({ isFinished, chapterPhase, onFinish }) {
               />
             </div>
           ))}
-      </Document>
+        </Document>
+      ) : (
+        // Optional fallback while waiting for parentWidth measurement
+        <div className="text-center">
+          <div className="h5-bold mb-1 text-gray-900">{t("loading")}...</div>
+        </div>
+      )}
 
       {!isFinished && (
         <div className="flex w-full justify-center">

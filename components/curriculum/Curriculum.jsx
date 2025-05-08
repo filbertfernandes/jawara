@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 
+import { Skeleton } from "../ui/skeleton";
+
 import chapters from "@/components/curriculum/data/chapters";
 import BackButton from "@/components/home/shared/interfaces/BackButton";
 import routes from "@/constants/routes";
@@ -74,7 +76,25 @@ const Curriculum = () => {
         </div>
 
         {loading ? (
-          <p>Loading progress...</p>
+          Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="relative m-7 inline-block h-[28rem] w-80 overflow-hidden rounded-xl bg-white shadow-2xl shadow-black/30"
+            >
+              <div className="h-1/2 w-full">
+                <Skeleton className="size-full rounded-none" />
+              </div>
+              <div className="flex h-1/2 flex-col justify-between p-4">
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-6 w-1/2" />
+                  <Skeleton className="mt-2 h-4 w-full" />
+                  <Skeleton className="h-4 w-5/6" />
+                </div>
+                <Skeleton className="mt-4 h-12 w-full" />
+              </div>
+            </div>
+          ))
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : (
