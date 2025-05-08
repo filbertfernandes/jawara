@@ -73,7 +73,7 @@
     "search_users": "Search Users",
     "adjust_screen_rotation": "Tilt the Laptop Screen",
     "searching": "Searching...",
-    "results": "Data not Found",
+    "user_not_found": "User not found.",
 
     "select_language_title": "Language",
     "select_language_english": "English",

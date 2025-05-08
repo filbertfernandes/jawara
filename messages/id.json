@@ -74,7 +74,7 @@
     "search_users": "Cari Pengguna",
     "adjust_screen_rotation": "Miringkan Layar Laptop",
     "searching": "Mencari...",
-    "results": "Data Tidak Ditemukan",
+    "user_not_found": "Pengguna tidak ditemukan.",
 
     "select_language_title": "Bahasa",
     "select_language_english": "Inggris",

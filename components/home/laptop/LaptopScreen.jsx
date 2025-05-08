@@ -105,9 +105,9 @@ const LaptopScreen = () => {
                   {t("searching")}
                 </div>
               ) : showNoResults && search !== "" ? (
-                // Tampilkan pesan "Data not found" jika tidak ada hasil pencarian
+                // Tampilkan pesan "User not found" jika tidak ada hasil pencarian
                 <div className="flex items-center justify-center text-center text-[0.5rem] text-gray-500">
-                  {t("results")}
+                  {t("user_not_found")}
                 </div>
               ) : (
                 // Jika ada hasil pencarian, tampilkan data pengguna
