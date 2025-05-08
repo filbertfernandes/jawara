@@ -73,7 +73,8 @@ export const FirstGameInterface = () => {
       elapsedTime /= 1000;
       elapsedTime = elapsedTime.toFixed(2);
 
-      if (time.current) time.current.textContent = elapsedTime;
+      if (time.current)
+        time.current.innerHTML = `${elapsedTime}<span class="ml-1 text-lg">s</span>`;
 
       // Update the score when the game is over
       if (state.gameState === gameStates.GAME_OVER) setScore(elapsedTime);
@@ -109,7 +110,7 @@ export const FirstGameInterface = () => {
           ref={time}
           className="pointer-events-none absolute left-0 top-0 w-full bg-gradient-to-r from-orange-500/80 to-orange-700/80 pt-1 text-center font-bebas text-3xl text-gray-100"
         >
-          0.00
+          0.00<span className="ml-1 text-lg">s</span>
         </div>
       </div>
 
