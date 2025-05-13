@@ -246,7 +246,7 @@ export const TranslationInterface = () => {
       <div className="flex w-full justify-center">
         <div className="flex h-48 w-full sm:h-60 lg:w-3/4">
           <Image
-            src="/images/character/jawara-ai.png"
+            src="/images/character/jawara-ai.webp"
             alt="Jawara AI Character"
             width={175}
             height={175}

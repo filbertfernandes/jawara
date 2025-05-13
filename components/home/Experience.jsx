@@ -103,7 +103,7 @@ export default function Experience() {
       position: [2, 0.5, -15],
       textPosition: [2 + 0.8, 0.75, -15 + 0.76],
       color: "rgb(249, 115, 22)",
-      texture: useTexture("/images/character/jawara-ai.jpg"),
+      texture: useTexture("/images/character/jawara-ai-thumbnail.webp"),
       game: t("translation_exercise_portal"),
     },
   ];

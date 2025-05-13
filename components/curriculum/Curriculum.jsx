@@ -113,7 +113,7 @@ const Curriculum = () => {
                 }`} // Apply grayscale and reduced opacity to incomplete chapters
               >
                 <Image
-                  src={`/images/curriculum/chapter-${chapter.order}.jpg`}
+                  src={`/images/curriculum/chapter-${chapter.order}.webp`}
                   alt={`Chapter ${chapter.order}`}
                   height={500}
                   width={500}

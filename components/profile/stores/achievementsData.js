@@ -1,7 +1,7 @@
 export const achievementsData = [
   {
     id: "curriculum-completion",
-    src: "/images/achievements/curriculum-completion.jpg",
+    src: "/images/achievements/curriculum-completion.webp",
     description_english:
       "Master the language by completing the entire curriculum.",
     description_indonesian:
@@ -9,70 +9,70 @@ export const achievementsData = [
   },
   {
     id: "top-3",
-    src: "/images/achievements/top-3.jpg",
+    src: "/images/achievements/top-3.webp",
     description_english: "Achieve a top 3 position in the Vocabulary Game.",
     description_indonesian: "Capai peringkat 3 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-10",
-    src: "/images/achievements/top-10.jpg",
+    src: "/images/achievements/top-10.webp",
     description_english: "Achieve a top 10 position in the Vocabulary Game.",
     description_indonesian:
       "Capai peringkat 10 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-50",
-    src: "/images/achievements/top-50.jpg",
+    src: "/images/achievements/top-50.webp",
     description_english: "Achieve a top 50 position in the Vocabulary Game.",
     description_indonesian:
       "Capai peringkat 50 besar dalam Permainan Kosakata.",
   },
   {
     id: "top-100",
-    src: "/images/achievements/top-100.jpg",
+    src: "/images/achievements/top-100.webp",
     description_english: "Achieve a top 100 position in the Vocabulary Game.",
     description_indonesian:
       "Capai peringkat 100 besar dalam Permainan Kosakata.",
   },
   {
     id: "correct-translations-1000",
-    src: "/images/achievements/correct-translations-1000.jpg",
+    src: "/images/achievements/correct-translations-1000.webp",
     description_english: "Achieve 1000 correct translations.",
     description_indonesian: "Capai 1000 terjemahan yang benar.",
   },
   {
     id: "correct-translations-500",
-    src: "/images/achievements/correct-translations-500.jpg",
+    src: "/images/achievements/correct-translations-500.webp",
     description_english: "Achieve 500 correct translations.",
     description_indonesian: "Capai 500 terjemahan yang benar.",
   },
   {
     id: "correct-translations-250",
-    src: "/images/achievements/correct-translations-250.jpg",
+    src: "/images/achievements/correct-translations-250.webp",
     description_english: "Achieve 250 correct translations.",
     description_indonesian: "Capai 250 terjemahan yang benar.",
   },
   {
     id: "correct-translations-100",
-    src: "/images/achievements/correct-translations-100.jpg",
+    src: "/images/achievements/correct-translations-100.webp",
     description_english: "Achieve 100 correct translations.",
     description_indonesian: "Capai 100 terjemahan yang benar.",
   },
   {
     id: "correct-translations-25",
-    src: "/images/achievements/correct-translations-25.jpg",
+    src: "/images/achievements/correct-translations-25.webp",
     description_english: "Achieve 25 correct translations.",
     description_indonesian: "Capai 25 terjemahan yang benar.",
   },
   {
     id: "correct-translations-1",
-    src: "/images/achievements/correct-translations-1.jpg",
+    src: "/images/achievements/correct-translations-1.webp",
     description_english: "Achieve your first correct translation.",
     description_indonesian: "Capai terjemahan benar pertamamu.",
   },
   {
     id: "first-time-body-parts",
-    src: "/images/achievements/first-time-body-parts.jpg",
+    src: "/images/achievements/first-time-body-parts.webp",
     description_english:
       "Complete the Body Parts Vocabulary Game for the first time.",
     description_indonesian:
@@ -80,7 +80,7 @@ export const achievementsData = [
   },
   {
     id: "first-time-colors",
-    src: "/images/achievements/first-time-colors.jpg",
+    src: "/images/achievements/first-time-colors.webp",
     description_english:
       "Complete the Colors Vocabulary Game for the first time.",
     description_indonesian:
@@ -88,7 +88,7 @@ export const achievementsData = [
   },
   {
     id: "first-time-numbers",
-    src: "/images/achievements/first-time-numbers.jpg",
+    src: "/images/achievements/first-time-numbers.webp",
     description_english:
       "Complete the Numbers Vocabulary Game for the first time.",
     description_indonesian:
@@ -96,7 +96,7 @@ export const achievementsData = [
   },
   {
     id: "first-time-animals",
-    src: "/images/achievements/first-time-animals.jpg",
+    src: "/images/achievements/first-time-animals.webp",
     description_english:
       "Complete the Animals Vocabulary Game for the first time.",
     description_indonesian:

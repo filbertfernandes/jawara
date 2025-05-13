@@ -53,7 +53,7 @@ const Layout = ({ children }) => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: "url('/images/jawara/auth-background.jpg')",
+                backgroundImage: "url('/images/jawara/auth-background.webp')",
               }}
             />
 
@@ -80,7 +80,7 @@ const Layout = ({ children }) => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: "url('/images/jawara/auth-background.jpg')",
+                backgroundImage: "url('/images/jawara/auth-background.webp')",
               }}
             />
 
