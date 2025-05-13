@@ -10,7 +10,7 @@ const sounds = {
   gamePhaseBackground: new Howl({
     src: ["/sounds/bgm/bgm-2.mp3"],
     loop: true,
-    volume: 0.06,
+    volume: 0.07,
   }),
   move: new Howl({ src: ["/sounds/sfx/footstep-grass.mp3"], volume: 1.5 }),
   soccerBallImpact: new Howl({
