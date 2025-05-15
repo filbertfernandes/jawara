@@ -80,7 +80,8 @@ const Test = ({ chapter, isPostTest = false }) => {
       }
     });
 
-    const calculatedScore = (correctCount / shuffledQuestions.length) * 100;
+    const calculatedScore =
+      Math.floor((13 / shuffledQuestions.length) * 100 * 100) / 100;
     setScore(calculatedScore);
 
     const updateProgress = async (calculatedScore) => {
@@ -295,7 +296,7 @@ const Test = ({ chapter, isPostTest = false }) => {
               <div className="mb-2 w-full text-2xl font-bold">
                 {t("your_score")}
               </div>
-              <div className="text-6xl font-bold">{score.toFixed(2)}</div>
+              <div className="text-6xl font-bold">{score}</div>
             </div>
           </div>
         )}
