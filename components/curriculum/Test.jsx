@@ -81,7 +81,7 @@ const Test = ({ chapter, isPostTest = false }) => {
     });
 
     const calculatedScore =
-      Math.floor((13 / shuffledQuestions.length) * 100 * 100) / 100;
+      Math.floor((correctCount / shuffledQuestions.length) * 100 * 100) / 100;
     setScore(calculatedScore);
 
     const updateProgress = async (calculatedScore) => {
