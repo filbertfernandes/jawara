@@ -48,11 +48,11 @@ const ProfileExperience = ({ profileUser, isMobile }) => {
         <meshStandardMaterial color="#ffd893" />
       </Backdrop>
 
-      <SoftShadows size={52} samples={16} />
+      <SoftShadows size={32} samples={16} />
 
       {/* Key Light */}
       <directionalLight
-        position={[5, 5, 5]}
+        position={[5, 5, 7]}
         intensity={3.6}
         castShadow
         shadow-mapSize-width={2048}
