@@ -1,8 +1,5 @@
-import { NodeIO } from "@gltf-transform/core";
-import { dedup, draco, prune, quantize } from "@gltf-transform/functions";
-import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
-import { GLTFExporter } from "three/examples/jsm/Addons.js";
 
 import Asset from "./Asset";
 import { useCustomization } from "./stores/useCustomization";
