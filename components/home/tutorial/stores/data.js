@@ -216,3 +216,16 @@ export const soundEffectsData = [
     url: "https://mixkit.co/free-sound-effects/ball/",
   },
 ];
+
+export const inspirationsData = [
+  {
+    name: "3D Avatar Builder with Threejs and React",
+    author: "Wawa Sensei",
+    url: "https://www.youtube.com/watch?v=yA4BpGqT3-s&t=4471s",
+  },
+  {
+    name: "Three.js Journey Course",
+    author: "Bruno Simon",
+    url: "https://threejs-journey.com/",
+  },
+];

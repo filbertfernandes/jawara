@@ -2,7 +2,12 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import BackButton from "../../shared/interfaces/BackButton";
-import { modelsData, musicData, soundEffectsData } from "../stores/data";
+import {
+  inspirationsData,
+  modelsData,
+  musicData,
+  soundEffectsData,
+} from "../stores/data";
 import { tutorialStates, useTutorial } from "../stores/useTutorial";
 
 const List = ({ title, data, isMusic = false }) => (
@@ -78,9 +83,10 @@ const CreditsInterface = () => {
           <div className="h1-bold">{t("special_thanks_to")}</div>
 
           {/* Reusable list components */}
-          <List title="Music" data={musicData} isMusic={true} />
           <List title="3D Models" data={modelsData} />
+          <List title="Music" data={musicData} isMusic={true} />
           <List title="Sound Effects" data={soundEffectsData} />
+          <List title="Inspirations" data={inspirationsData} />
         </div>
       </div>
     </div>
