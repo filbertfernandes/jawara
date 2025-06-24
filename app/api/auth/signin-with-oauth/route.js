@@ -34,6 +34,7 @@ export async function POST(request) {
       lower: true,
       strict: true,
       trim: true,
+      replacement: "_",
     });
 
     let existingUser = await User.findOne({ email }).session(session);

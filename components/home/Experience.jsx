@@ -40,8 +40,8 @@ export default function Experience() {
       // Day (07.00 - 15.59)
       setSky(skies.DAY);
     } else if (
-      (currentHour >= 16 && currentHour < 19) || // Dawn (16.00 - 18.59)
-      (currentHour >= 4 && currentHour < 7) // Dawn (04.00 - 06.59)
+      (currentHour >= 16 && currentHour < 18) || // Dawn (16.00 - 17.59)
+      (currentHour >= 4 && currentHour < 6) // Dawn (04.00 - 05.59)
     ) {
       setSky(skies.DAWN);
     } else {
