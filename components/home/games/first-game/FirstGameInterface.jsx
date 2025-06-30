@@ -102,7 +102,7 @@ export const FirstGameInterface = () => {
         }`}
       >
         {/* Stage Info */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-md bg-orange-600/80 px-4 py-1 font-questrial font-bold text-white shadow-md backdrop-blur-sm">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 select-none rounded-md bg-orange-600/80 px-4 py-1 font-questrial font-bold text-white shadow-md backdrop-blur-sm">
           {`${t("stage")} ${currentStage + 1} / 5`}
         </div>
 
@@ -119,7 +119,7 @@ export const FirstGameInterface = () => {
           {level[currentStage].map((item, idx) => (
             <div
               key={idx}
-              className="rounded-lg bg-orange-600/80 px-3 py-1 shadow-lg backdrop-blur"
+              className="select-none rounded-lg bg-orange-600/80 px-3 py-1 shadow-lg backdrop-blur"
             >
               {`${idx + 1}. ${
                 item[t("language")].charAt(0).toUpperCase() +

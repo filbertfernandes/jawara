@@ -120,14 +120,14 @@ export const modelsData = [
     url: "https://sketchfab.com/3d-models/pig-83358848ab0b4b7c8cbbe9d6b0860468",
   },
   {
-    name: "Lion",
-    author: "kenchoo",
-    url: "https://sketchfab.com/3d-models/lion-66be3258e2d64f32af2b73b2ecd47637",
+    name: "Lion (Lowpoly)",
+    author: "Nyilonelycompany",
+    url: "https://sketchfab.com/3d-models/lion-lowpoly-10bc0e8fcb85464395469fdddfaffce1",
   },
   {
-    name: "Labrador Dog",
+    name: "Dog Puppy",
     author: "kenchoo",
-    url: "https://sketchfab.com/3d-models/labrador-dog-1f56cfbab07e4fe49b5d9e521c82073a",
+    url: "https://sketchfab.com/3d-models/dog-puppy-72331763040e4314b154f84348fe0957",
   },
   {
     name: "Bicolor Cat",

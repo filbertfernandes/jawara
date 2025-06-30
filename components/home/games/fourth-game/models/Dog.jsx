@@ -9,16 +9,20 @@ export default function Dog(props) {
   useEffect(() => {
     const action = actions.Animation;
     action.reset().fadeIn(0.2).play();
-    action.timeScale = 1.5;
+    action.timeScale = 1;
   }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+        <group
+          name="Sketchfab_model"
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={6.398}
+        >
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
-              <group name="Dog_Armature_54">
+              <group name="puppy_46" scale={0.273}>
                 <group name="GLTF_created_0">
                   <primitive object={nodes.GLTF_created_0_rootJoint} />
                   <skinnedMesh
@@ -29,7 +33,7 @@ export default function Dog(props) {
                     morphTargetDictionary={nodes.Object_7.morphTargetDictionary}
                     morphTargetInfluences={nodes.Object_7.morphTargetInfluences}
                   />
-                  <group name="dog_body_53" />
+                  <group name="Object_0_45" />
                 </group>
               </group>
             </group>

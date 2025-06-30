@@ -41,7 +41,7 @@ export const IconButton = ({
 }) => {
   return (
     <div
-      className={`flex ${size} cursor-pointer items-center justify-center rounded-full bg-orange-500 transition-all duration-300 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
+      className={`flex ${size} cursor-pointer select-none items-center justify-center rounded-full bg-orange-500 transition-all duration-300 ease-in-out hover:bg-orange-600 lg:size-10 ${textSize}`}
       onClick={onClick}
     >
       {children}
@@ -381,7 +381,7 @@ export default function FreePhaseInterface() {
           </DropdownMenu>
         ) : (
           <Link href={routes.SIGN_IN}>
-            <div className="btn-template bg-orange-500 px-4 text-xl drop-shadow-lg hover:bg-orange-600 lg:text-2xl">
+            <div className="btn-template select-none bg-orange-500 px-4 text-xl drop-shadow-lg hover:bg-orange-600 lg:text-2xl">
               {t("sign_in")}
             </div>
           </Link>
@@ -394,7 +394,7 @@ export default function FreePhaseInterface() {
         }`}
       >
         <div
-          className="btn-template bg-orange-500 px-8 drop-shadow-lg hover:bg-orange-600"
+          className="btn-template select-none bg-orange-500 px-8 drop-shadow-lg hover:bg-orange-600"
           onClick={handleEnterButtonClick}
         >
           Enter

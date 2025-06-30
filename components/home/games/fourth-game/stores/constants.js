@@ -72,9 +72,9 @@ export const words = [
     madyaSound: "/sounds/vocabularies/animals/singo.mp3",
     alusSound: "/sounds/vocabularies/animals/singo.mp3",
     image: "/images/vocabularies/animals-lion.webp",
-    model: <Lion scale={0.9} />,
+    model: <Lion scale={1.8} />,
     colliderSize: [0.5, 1, 1.7],
-    colliderPosition: [0, 1, 0.2],
+    colliderPosition: [0, 1, -0.3],
   },
   {
     type: "animals",
@@ -87,8 +87,8 @@ export const words = [
     madyaSound: "/sounds/vocabularies/animals/segawon.mp3",
     alusSound: "/sounds/vocabularies/animals/segawon.mp3",
     image: "/images/vocabularies/animals-dog.webp",
-    model: <Dog scale={0.5} />,
-    colliderSize: [0.5, 0.6, 1.2],
+    model: <Dog scale={0.65} />,
+    colliderSize: [0.32, 0.55, 0.8],
     colliderPosition: [0, 0.6, 0],
   },
   {
