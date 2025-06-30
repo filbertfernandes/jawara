@@ -3,14 +3,14 @@ import { useFrame } from "@react-three/fiber";
 import { RigidBody, useRapier } from "@react-three/rapier";
 import { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-import * as THREE from "three";
+import { Vector3 } from "three";
 
 import { useSecondGame } from "./stores/useSecondGame";
 
 import { useGame, gameStates } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, 0);
+const MARBLE_INITIAL_POSITION = new Vector3(0, 0, 0);
 const MARBLE_ALLOW_PUSH_POSITION_LIMIT = MARBLE_INITIAL_POSITION.z - 3;
 
 export default function Marble() {
@@ -24,9 +24,9 @@ export default function Marble() {
   const { rapier, world } = useRapier();
 
   const [smoothCameraPosition] = useState(
-    () => new THREE.Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)
+    () => new Vector3(0, 0.65, MARBLE_INITIAL_POSITION.z + 3.5)
   ); // set camera initial position to 0 0.65 7.5
-  const [smoothCameraTarget] = useState(() => new THREE.Vector3(0, 0.25, 3.5));
+  const [smoothCameraTarget] = useState(() => new Vector3(0, 0.25, 3.5));
 
   // GAME STATE
   const { gameState, joystickInput } = useGame((state) => ({
@@ -179,7 +179,7 @@ export default function Marble() {
      */
     const marbleBodyPosition = marbleBody.current.translation();
 
-    const cameraPosition = new THREE.Vector3();
+    const cameraPosition = new Vector3();
     cameraPosition.copy(marbleBodyPosition);
     if (marbleBodyPosition.z > MARBLE_INITIAL_POSITION.z) {
       cameraPosition.z += isPortraitMobile ? 8 : 3.5;
@@ -189,7 +189,7 @@ export default function Marble() {
     }
     cameraPosition.y += isPortraitMobile ? 2 : 0.65;
 
-    const cameraTarget = new THREE.Vector3();
+    const cameraTarget = new Vector3();
     cameraTarget.copy(marbleBodyPosition);
     cameraTarget.y += isPortraitMobile ? 0.65 : 0.25;
 

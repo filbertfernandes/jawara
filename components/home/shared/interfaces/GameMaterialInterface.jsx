@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { PiSpeakerHighBold } from "react-icons/pi";
 
 import { SoundManager } from "@/lib/SoundManager";
@@ -97,4 +97,4 @@ const GameMaterialInterface = ({ words }) => {
   );
 };
 
-export default React.memo(GameMaterialInterface);
+export default GameMaterialInterface;

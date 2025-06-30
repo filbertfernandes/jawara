@@ -1,7 +1,6 @@
 import { Sparkles, useGLTF, useTexture } from "@react-three/drei";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { useTranslations } from "next-intl";
-import { Perf } from "r3f-perf";
 import { useEffect } from "react";
 
 import Customization from "./avatar/Customization.jsx";

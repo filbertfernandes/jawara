@@ -70,7 +70,7 @@ const Book = () => {
         rotation={[-Math.PI, 0.273, -Math.PI]}
         scale={0.112}
       >
-        <RigidBody type="fixed" colliders="trimesh" density={7} restitution={0}>
+        <RigidBody type="fixed" colliders="cuboid" density={7} restitution={0}>
           <mesh
             geometry={nodes.Cube_1.geometry}
             material={materials["Material.001"]}

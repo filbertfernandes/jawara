@@ -1,5 +1,5 @@
 import { useGLTF, useAnimations } from "@react-three/drei";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Lion(props) {
   const group = useRef();

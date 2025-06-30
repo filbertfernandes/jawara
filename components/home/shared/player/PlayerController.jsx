@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-import * as THREE from "three";
+import { Vector3 } from "three";
 
 import { Avatar } from "@/components/home/avatar/Avatar.jsx";
 import controls from "@/constants/controls.js";
@@ -17,8 +17,8 @@ const MAX_VEL = 4.2;
 const RUN_VEL = 2;
 
 // Reusable vector instances
-const playerWorldPosition = new THREE.Vector3();
-const targetLookAt = new THREE.Vector3();
+const playerWorldPosition = new Vector3();
+const targetLookAt = new Vector3();
 
 // Debounced footstep sound
 let footstepTimer;

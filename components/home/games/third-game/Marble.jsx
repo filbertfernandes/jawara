@@ -2,19 +2,19 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody, useRapier } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import { Frustum, Matrix4, Vector3 } from "three";
 
 import { useThirdGame } from "./stores/useThirdGame";
 
 import { useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
-const MARBLE_INITIAL_POSITION = new THREE.Vector3(0, 0, -5);
+const MARBLE_INITIAL_POSITION = new Vector3(0, 0, -5);
 
 export default function Marble() {
-  const frustum = new THREE.Frustum();
-  const cameraViewProjectionMatrix = new THREE.Matrix4();
-  const marbleVector = new THREE.Vector3();
+  const frustum = new Frustum();
+  const cameraViewProjectionMatrix = new Matrix4();
+  const marbleVector = new Vector3();
 
   const marbleBody = useRef();
   const isMounted = useRef(true); // Track component mount status

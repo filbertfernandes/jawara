@@ -7,7 +7,6 @@ Title: Football
 */
 
 import { useGLTF } from "@react-three/drei";
-import React from "react";
 
 export default function Football(props) {
   const { nodes, materials } = useGLTF("/models/environment/football.glb");
