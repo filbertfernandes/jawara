@@ -27,7 +27,6 @@ export const gameStates = {
 
 export const skies = {
   DAY: "day",
-  DAWN: "dawn",
   NIGHT: "night",
 };
 
@@ -40,7 +39,7 @@ export const useGame = create(
       gameState: gameStates.MENU,
       canPressEnter: false,
       canChangePhase: { condition: false, phase: "" },
-      sky: null,
+      sky: skies.DAY,
       playerPosition: PLAYER_INITIAL_POSITION,
       customizationWarning: true,
       joystickInput: { x: 0, y: 0 },

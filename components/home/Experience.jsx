@@ -36,16 +36,9 @@ export default function Experience() {
   useEffect(() => {
     const currentHour = new Date().getHours();
 
-    if (currentHour >= 7 && currentHour < 16) {
-      // Day (07.00 - 15.59)
+    if (currentHour >= 6 && currentHour < 18) {
       setSky(skies.DAY);
-    } else if (
-      (currentHour >= 16 && currentHour < 18) || // Dawn (16.00 - 17.59)
-      (currentHour >= 4 && currentHour < 6) // Dawn (04.00 - 05.59)
-    ) {
-      setSky(skies.DAWN);
     } else {
-      // Night (19.00 - 03.59)
       setSky(skies.NIGHT);
     }
   }, []);
@@ -109,11 +102,7 @@ export default function Experience() {
   ];
 
   // WORLD
-  const worldFloorModel = useGLTF(
-    `./models/environment/${
-      sky === skies.NIGHT ? "world-floor-night" : "world-floor"
-    }.glb`
-  );
+  const worldFloorModel = useGLTF("./models/environment/world-floor.glb");
   const worldPhysicModel = useGLTF(
     "./models/environment/world-physic-environment.glb"
   );
@@ -128,15 +117,7 @@ export default function Experience() {
 
       {/* Background Color (ccf2fc, ffbe8b, 000a24) */}
       <color
-        args={[
-          `${
-            sky === skies.DAY
-              ? "#ccf2fc"
-              : sky === skies.DAWN
-              ? "#ffbe8b"
-              : "#000a24"
-          }`,
-        ]}
+        args={[`${sky === skies.DAY ? "#ccf2fc" : "#000a24"}`]}
         attach="background"
       />
 

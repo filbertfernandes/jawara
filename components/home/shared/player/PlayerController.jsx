@@ -11,9 +11,9 @@ import { phases, gameStates, useGame } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export const PLAYER_INITIAL_POSITION = { x: 2, y: 0.5, z: 18 };
-const JUMP_FORCE = 2;
-const MOVEMENT_SPEED = 0.6;
-const MAX_VEL = 3;
+const JUMP_FORCE = 2.7;
+const MOVEMENT_SPEED = 0.4;
+const MAX_VEL = 4.2;
 const RUN_VEL = 2;
 
 // Reusable vector instances

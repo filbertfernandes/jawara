@@ -112,9 +112,9 @@ const howToPlaySteps = {
       english_title: "Beat the Timer",
       indonesian_title: "Kalahkan Waktu",
       english_description:
-        "Try to get as many points as possible before the time runs out (100 seconds).",
+        "Try to get as many points as possible before the time runs out (60 seconds).",
       indonesian_description:
-        "Coba dapatkan sebanyak mungkin poin sebelum waktu habis (100 detik).",
+        "Coba dapatkan sebanyak mungkin poin sebelum waktu habis (60 detik).",
     },
   ],
   [phases.THIRD_GAME]: [
@@ -159,9 +159,9 @@ const howToPlaySteps = {
       english_title: "Beat the Timer",
       indonesian_title: "Kalahkan Waktu",
       english_description:
-        "Try to get as many points as possible before the time runs out (100 seconds).",
+        "Try to get as many points as possible before the time runs out (60 seconds).",
       indonesian_description:
-        "Cobalah mendapatkan sebanyak mungkin poin sebelum waktu habis (100 detik).",
+        "Cobalah mendapatkan sebanyak mungkin poin sebelum waktu habis (60 detik).",
     },
   ],
   [phases.FOURTH_GAME]: [
@@ -215,9 +215,9 @@ const howToPlaySteps = {
       english_title: "Beat the Timer",
       indonesian_title: "Kalahkan Waktu",
       english_description:
-        "Try to get as many points as possible before the time runs out (100 seconds).",
+        "Try to get as many points as possible before the time runs out (60 seconds).",
       indonesian_description:
-        "Cobalah mendapatkan sebanyak mungkin poin sebelum waktu habis (100 detik).",
+        "Cobalah mendapatkan sebanyak mungkin poin sebelum waktu habis (60 detik).",
     },
   ],
 };
