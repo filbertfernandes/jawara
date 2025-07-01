@@ -112,6 +112,10 @@ export const FirstGameInterface = () => {
     if (gameState !== gameStates.GAME_OVER) {
       setPenaltyTime(0);
     }
+
+    level[currentStage].forEach((word) => {
+      word.isCorrect = false;
+    });
   }, [gameState]);
 
   const handleDragStart = (event) => {
