@@ -33,6 +33,10 @@ export const useFirstGame = create((set) => ({
   startTime: 0,
   endTime: 0,
   cameraPosition: { x: 0, y: 1, z: 3 },
+  hoveredLockBox: null,
+  isDragging: false,
+  draggingItem: null,
+  correctCount: 0,
 
   startGame: ({ mode }) => {
     set((state) => {
@@ -41,6 +45,7 @@ export const useFirstGame = create((set) => ({
       return {
         level,
         currentStage: 0,
+        correctCount: 0,
         mode,
         startTime: Date.now(),
         cameraPosition: { x: 0, y: 1, z: 3 },
@@ -51,13 +56,38 @@ export const useFirstGame = create((set) => ({
   nextStage: () => {
     set((state) => {
       const currentStage = state.currentStage + 1;
-      return { currentStage };
+      return { currentStage, correctCount: 0 };
     });
   },
 
   gameOver: () => {
     set(() => {
-      return { endTime: Date.now() };
+      return { endTime: Date.now(), correctCount: 0 };
+    });
+  },
+
+  setDraggingItem: (item) => {
+    set(() => {
+      return { draggingItem: item };
+    });
+  },
+
+  incrementCorrectCount: () => {
+    set((state) => {
+      const newCorrectCount = state.correctCount + 1;
+      return { correctCount: newCorrectCount };
+    });
+  },
+
+  setIsDragging: (condition) => {
+    set(() => {
+      return { isDragging: condition };
+    });
+  },
+
+  setHoveredLockBox: (lockBoxIndex) => {
+    set(() => {
+      return { hoveredLockBox: lockBoxIndex };
     });
   },
 }));

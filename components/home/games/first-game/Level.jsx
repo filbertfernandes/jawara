@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { FaLock, FaUnlock } from "react-icons/fa";
 
 import { useFirstGame } from "./stores/useFirstGame.jsx";
 
@@ -12,102 +13,88 @@ export default function Level({ characterBody }) {
     changeGameState: state.changeGameState,
   }));
 
-  const { level, currentStage, nextStage, mode, gameOver } = useFirstGame(
-    (state) => ({
-      level: state.level,
-      currentStage: state.currentStage,
-      nextStage: state.nextStage,
-      mode: state.mode,
-      gameOver: state.gameOver,
-    })
-  );
-
-  const [inputBoxes, setInputBoxes] = useState([]); // all questions (input box need to be filled)
-  const [correctCount, setCorrectCount] = useState(0); // correct counts (used for checking when run nextStage or game over)
-  const [inputValues, setInputValues] = useState({}); // input values, used to update correct count
+  const {
+    level,
+    currentStage,
+    nextStage,
+    correctCount,
+    gameOver,
+    hoveredLockBox,
+    setHoveredLockBox,
+    mode,
+    draggingItem,
+  } = useFirstGame((state) => ({
+    level: state.level,
+    currentStage: state.currentStage,
+    nextStage: state.nextStage,
+    correctCount: state.correctCount,
+    gameOver: state.gameOver,
+    hoveredLockBox: state.hoveredLockBox,
+    setHoveredLockBox: state.setHoveredLockBox,
+    mode: state.mode,
+    draggingItem: state.draggingItem,
+  }));
 
   useEffect(() => {
     if (!level) return;
 
-    setInputBoxes(level[currentStage]);
-    setCorrectCount(0);
-    setInputValues({});
-    level[currentStage].forEach((word) => {
-      word.isCorrect = false;
-    });
+    if (correctCount === level[currentStage].length) {
+      level[currentStage].forEach((word) => {
+        word.isCorrect = false;
+      });
 
-    if (Object.keys(inputValues).length === 0) {
-      const totalInputs = level[currentStage].length;
-      for (let i = 0; i < totalInputs; i++) {
-        inputValues[i] = "";
+      if (currentStage < 4) {
+        nextStage();
+      } else {
+        SoundManager.playSound("gameComplete");
+        changeGameState(gameStates.GAME_OVER);
+        gameOver();
       }
-    }
-  }, [level, currentStage]);
-
-  useEffect(() => {
-    if (!level) return;
-
-    if (correctCount === level[currentStage].length && currentStage < 4) {
-      nextStage();
-    } else if (correctCount === level[currentStage].length) {
-      SoundManager.playSound("gameComplete");
-      changeGameState(gameStates.GAME_OVER);
-      gameOver();
     }
   }, [correctCount]);
-
-  const handleInputChange = (index, event) => {
-    SoundManager.playSound("keyboardType");
-
-    const newInputValues = { ...inputValues, [index]: event.target.value };
-    setInputValues(newInputValues);
-
-    const inputValue = newInputValues[index].toLowerCase();
-    const levelInput = level[currentStage][index]; // corecct answer based on the index
-
-    // Compare input value with correct answer, if it's true
-    if (inputValue === levelInput[mode].toLowerCase()) {
-      // If it was false before, then increment the correctCount
-      if (!levelInput.isCorrect) {
-        SoundManager.playSound("correctAnswer");
-        setCorrectCount((prevCount) => prevCount + 1);
-        levelInput.isCorrect = true;
-      }
-    } else {
-      // if it was true before, then decrement the correctCount.
-      if (levelInput && levelInput.isCorrect) {
-        setCorrectCount((prevCount) => prevCount - 1);
-        levelInput.isCorrect = false;
-      }
-    }
-  };
 
   return (
     <>
       {/* HTML */}
       {level !== null &&
         gameState === gameStates.GAME &&
-        inputBoxes.map((box, index) => (
+        level[currentStage].map((lockBox, index) => (
           <Html
             key={index}
-            position={box.position}
+            position={lockBox.position}
             wrapperClass="label"
             distanceFactor={1.2}
             occlude={[characterBody]}
           >
-            <div className={`number ${box.isCorrect ? "number-green" : ""}`}>
-              {index + 1}
-            </div>
             <div
-              className={`input-box visible ${
-                box.isCorrect ? "input-box-green" : ""
-              }`}
+              className="flex"
+              onMouseEnter={() =>
+                !lockBox.isCorrect && setHoveredLockBox(index)
+              }
+              onMouseLeave={() => setHoveredLockBox(null)}
             >
-              <input
-                type="text"
-                value={inputValues[index] || ""}
-                onChange={(event) => handleInputChange(index, event)}
-              />
+              <div
+                className={`z-0 flex size-14 items-center justify-center ${
+                  lockBox.isCorrect ? "bg-orange-600" : "bg-gray-600"
+                }`}
+              >
+                {lockBox.isCorrect ? (
+                  <FaUnlock className="text-2xl" />
+                ) : (
+                  <FaLock className="text-2xl" />
+                )}
+              </div>
+              <div
+                className={`z-0 flex h-14 w-32 items-center justify-center bg-white text-2xl font-bold capitalize ${
+                  lockBox.isCorrect ? "text-orange-600" : "text-gray-600"
+                }`}
+              >
+                {draggingItem !== null && hoveredLockBox === index
+                  ? `${draggingItem}?`
+                  : lockBox.isCorrect
+                  ? lockBox[mode]
+                  : "?????"}
+              </div>
             </div>
           </Html>
         ))}

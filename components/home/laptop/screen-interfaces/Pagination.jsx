@@ -86,7 +86,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className={`text-[0.3rem] text-center px-[0.1rem] font-semibold
             ${
               currentPage === rangeStart + index
-                ? "bg-gray-900 text-white"
+                ? "bg-gray-900 text-gray-100"
                 : "bg-gray-200 text-gray-600 hover:bg-gray-300"
             }`}
         >

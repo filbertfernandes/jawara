@@ -34,7 +34,7 @@ const ScorePlusInterface = ({ score }) => {
   return (
     <div
       className={`pointer-events-none absolute left-0 top-0 flex size-full items-center justify-center text-center font-bebas text-5xl md:text-6xl lg:text-8xl ${
-        scoreDifferent > 0 ? "text-gray-100" : "text-red-600"
+        scoreDifferent > 0 ? "text-gray-100" : "text-red-400"
       } ${isVisible ? "animate-bounceInFadeOut" : "opacity-0"}`}
     >
       <div>
