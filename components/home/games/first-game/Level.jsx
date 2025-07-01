@@ -1,6 +1,7 @@
 import { Html } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaLock, FaUnlock } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 import { useFirstGame } from "./stores/useFirstGame.jsx";
 
@@ -8,6 +9,8 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Level({ characterBody }) {
+  const isMobile = useMediaQuery({ maxWidth: 900 });
+
   const { gameState, changeGameState } = useGame((state) => ({
     gameState: state.gameState,
     changeGameState: state.changeGameState,
@@ -76,7 +79,9 @@ export default function Level({ characterBody }) {
                 !lockBox.isCorrect && setHoveredLockBox(index)
               }
               onMouseLeave={() => setHoveredLockBox(null)}
-              onTouchStart={(e) => {
+              onClick={(e) => {
+                if (!isMobile) return;
+
                 e.stopPropagation();
                 setTouchedIndex(index);
               }}
