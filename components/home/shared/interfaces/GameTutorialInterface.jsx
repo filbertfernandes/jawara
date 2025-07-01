@@ -26,39 +26,48 @@ const howToPlaySteps = {
     },
     {
       icon: "2️⃣",
-      english_title: "Find the Input Box",
-      indonesian_title: "Temukan Kotak Input",
+      english_title: "Find the Locked Parts",
+      indonesian_title: "Temukan Bagian yang Terkunci",
       english_description:
-        "Some body parts have an input box attached to them.",
+        "Some body parts have a lock icon. These are the parts you need to match with the correct Javanese words.",
       indonesian_description:
-        "Beberapa bagian tubuh memiliki kotak input yang terpasang padanya.",
+        "Beberapa bagian tubuh memiliki ikon gembok. Bagian-bagian ini harus dicocokkan dengan kata dalam Bahasa Jawa yang benar.",
     },
     {
       icon: "3️⃣",
-      english_title: "Type the Javanese Word",
-      indonesian_title: "Ketik Kata dalam Bahasa Jawa",
+      english_title: "Match the Word (PC & Mobile)",
+      indonesian_title: "Cocokkan Kata (PC & Mobile)",
       english_description:
-        "Click on the input box and type the correct Javanese word for that body part. Example: If the input box is near the eye, type 'mripat' (Javanese for 'eye').",
+        "On PC: Drag the answer (with a key icon) and drop it onto the correct body part. On Mobile: Tap the body part, then tap the answer.",
       indonesian_description:
-        "Klik pada kotak input dan ketik kata dalam Bahasa Jawa yang benar untuk bagian tubuh tersebut. Contoh: Jika kotak input berada di dekat mata, ketik 'mripat' (Bahasa Jawa untuk 'mata').",
+        "Di PC: Drag jawaban (dengan ikon kunci) dan letakkan ke bagian tubuh yang benar. Di Mobile: Tap bagian tubuh, lalu tap jawabannya.",
     },
     {
-      icon: "4️⃣ ✅",
-      english_title: "Instant Feedback",
-      indonesian_title: "Umpan Balik Instan",
+      icon: "4️⃣ ❌",
+      english_title: "Wrong",
+      indonesian_title: "Salah",
       english_description:
-        "If your answer is correct, the input box will turn green automatically!",
+        "Wrong matches will add 5 seconds to your time. Be careful!",
       indonesian_description:
-        "Jika jawabanmu benar, kotak input akan berubah menjadi hijau secara otomatis!",
+        "Jawaban yang salah akan menambah 5 detik ke waktumu. Hati-hati!",
     },
     {
-      icon: "5️⃣ ⏳",
-      english_title: "Finish as Fast as Possible",
-      indonesian_title: "Selesaikan Secepat Mungkin",
+      icon: "5️⃣ ✅",
+      english_title: "Correct",
+      indonesian_title: "Benar",
       english_description:
-        "The goal is to complete all body parts as quickly as You can. The faster You finish, the better your score!",
+        "The label turns orange and shows the correct Javanese word.",
       indonesian_description:
-        "Tujuannya adalah menyelesaikan semua bagian tubuh secepat mungkin. Semakin cepat Anda selesai, semakin tinggi skormu!",
+        "Label akan berubah menjadi oranye dan menampilkan kata yang benar dalam Bahasa Jawa.",
+    },
+    {
+      icon: "6️⃣ ⏳",
+      english_title: "Finish Fast",
+      indonesian_title: "Selesaikan Cepat",
+      english_description:
+        "Finish all matches as fast as possible for a better score.",
+      indonesian_description:
+        "Selesaikan semua kecocokan secepat mungkin untuk skor terbaik.",
     },
   ],
   [phases.SECOND_GAME]: [

@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaLock, FaUnlock } from "react-icons/fa";
 
 import { useFirstGame } from "./stores/useFirstGame.jsx";
@@ -8,6 +8,8 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Level({ characterBody }) {
+  const [touchedIndex, setTouchedIndex] = useState(null);
+
   const { gameState, changeGameState } = useGame((state) => ({
     gameState: state.gameState,
     changeGameState: state.changeGameState,
@@ -72,6 +74,7 @@ export default function Level({ characterBody }) {
                 !lockBox.isCorrect && setHoveredLockBox(index)
               }
               onMouseLeave={() => setHoveredLockBox(null)}
+              onTouchStart={() => setTouchedIndex(index)}
             >
               <div
                 className={`z-0 flex size-14 items-center justify-center ${
@@ -86,7 +89,11 @@ export default function Level({ characterBody }) {
               </div>
               <div
                 className={`z-0 flex h-14 w-32 items-center justify-center bg-white text-2xl font-bold capitalize ${
-                  lockBox.isCorrect ? "text-orange-600" : "text-gray-600"
+                  lockBox.isCorrect
+                    ? "text-orange-600"
+                    : touchedIndex === index
+                    ? "bg-gray-300 text-gray-600"
+                    : "text-gray-600"
                 }`}
               >
                 {draggingItem !== null && hoveredLockBox === index
