@@ -225,9 +225,9 @@ export const words = [
     madyaSound: "/sounds/vocabularies/animals/kodhok.mp3",
     alusSound: "/sounds/vocabularies/animals/kodhok.mp3",
     image: "/images/vocabularies/animals-frog.webp",
-    model: <Frog scale={0.3} />,
-    colliderSize: [0.1, 0.25, 0.15],
-    colliderPosition: [0, 0, 0.05],
+    model: <Frog scale={0.7} />,
+    colliderSize: [0.15, 0.25, 0.15],
+    colliderPosition: [0, 0, -0.1],
     rigidPositionY: 0.15,
   },
   {

@@ -7,7 +7,7 @@ export default function Frog(props) {
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    const action = actions.Animation;
+    const action = actions["Take 001"];
     action.reset().fadeIn(0.2).play();
     action.timeScale = 1.3;
   }, [actions]);
@@ -18,25 +18,41 @@ export default function Frog(props) {
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
-              <group name="Frog_001_Eyes_0_0">
-                <mesh
-                  name="mesh_0"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_0.geometry}
-                  material={materials.Eyes}
-                  morphTargetDictionary={nodes.mesh_0.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_0.morphTargetInfluences}
-                />
-                <mesh
-                  name="mesh_0_1"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_0_1.geometry}
-                  material={materials.Frog}
-                  morphTargetDictionary={nodes.mesh_0_1.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_0_1.morphTargetInfluences}
-                />
+              <group name="Sketchfab_model_86" rotation={[-Math.PI / 2, 0, 0]}>
+                <group
+                  name="frog_animatedfbx_85"
+                  rotation={[Math.PI / 2, 0, 0]}
+                  scale={0.01}
+                >
+                  <group name="Object_2_84">
+                    <group name="RootNode_83">
+                      <group name="frogs_82">
+                        <group name="frog_01b_group_001_81">
+                          <group
+                            name="frog_01b_001_locator_80"
+                            rotation={[-0.216, 0.287, 0.062]}
+                            scale={20}
+                          >
+                            <group name="Object_7_79">
+                              <group name="GLTF_created_0">
+                                <primitive
+                                  object={nodes.GLTF_created_0_rootJoint}
+                                />
+                                <skinnedMesh
+                                  name="Object_14"
+                                  geometry={nodes.Object_14.geometry}
+                                  material={materials.M_frog_01b}
+                                  skeleton={nodes.Object_14.skeleton}
+                                />
+                                <group name="Object_85_78" />
+                              </group>
+                            </group>
+                          </group>
+                        </group>
+                      </group>
+                    </group>
+                  </group>
+                </group>
               </group>
             </group>
           </group>

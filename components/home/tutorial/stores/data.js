@@ -175,9 +175,9 @@ export const modelsData = [
     url: "https://sketchfab.com/3d-models/deer-idle-c80f3de2e24542e1a8e578f832c6211c",
   },
   {
-    name: "Frog",
-    author: "kenchoo",
-    url: "https://sketchfab.com/3d-models/frog-ebce6aa962db491d87619a6a31a7af99",
+    name: "Frog 369 low",
+    author: "Anginio.Torres.Rodriguez",
+    url: "https://sketchfab.com/3d-models/frog-369-low-4b9245e88b274d8caa39cbae8ebda2c4",
   },
   {
     name: "African Buffalo",
