@@ -39,6 +39,7 @@ export const FirstGameInterface = () => {
     setDraggingItem,
     hoveredLockBox,
     incrementCorrectCount,
+    setTouchedIndex,
   } = useFirstGame((state) => ({
     startGame: state.startGame,
     mode: state.mode,
@@ -48,6 +49,7 @@ export const FirstGameInterface = () => {
     setDraggingItem: state.setDraggingItem,
     hoveredLockBox: state.hoveredLockBox,
     incrementCorrectCount: state.incrementCorrectCount,
+    setTouchedIndex: state.setTouchedIndex,
   }));
 
   useEffect(() => {
@@ -138,6 +140,8 @@ export const FirstGameInterface = () => {
       SoundManager.playSound("wrongAnswer");
       setPenaltyTime((prev) => prev + 5);
     }
+
+    setTouchedIndex(null);
   };
 
   return (

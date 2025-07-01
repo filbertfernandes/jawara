@@ -8,8 +8,6 @@ import { useGame, gameStates } from "@/hooks/useGame.jsx";
 import { SoundManager } from "@/lib/SoundManager.jsx";
 
 export default function Level({ characterBody }) {
-  const [touchedIndex, setTouchedIndex] = useState(null);
-
   const { gameState, changeGameState } = useGame((state) => ({
     gameState: state.gameState,
     changeGameState: state.changeGameState,
@@ -25,6 +23,8 @@ export default function Level({ characterBody }) {
     setHoveredLockBox,
     mode,
     draggingItem,
+    touchedIndex,
+    setTouchedIndex,
   } = useFirstGame((state) => ({
     level: state.level,
     currentStage: state.currentStage,
@@ -35,6 +35,8 @@ export default function Level({ characterBody }) {
     setHoveredLockBox: state.setHoveredLockBox,
     mode: state.mode,
     draggingItem: state.draggingItem,
+    touchedIndex: state.touchedIndex,
+    setTouchedIndex: state.setTouchedIndex,
   }));
 
   useEffect(() => {
@@ -74,7 +76,10 @@ export default function Level({ characterBody }) {
                 !lockBox.isCorrect && setHoveredLockBox(index)
               }
               onMouseLeave={() => setHoveredLockBox(null)}
-              onTouchStart={() => setTouchedIndex(index)}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+                setTouchedIndex(index);
+              }}
             >
               <div
                 className={`z-0 flex size-14 items-center justify-center ${
@@ -92,7 +97,7 @@ export default function Level({ characterBody }) {
                   lockBox.isCorrect
                     ? "text-orange-600"
                     : touchedIndex === index
-                    ? "bg-gray-300 text-gray-600"
+                    ? "bg-gray-400 text-gray-600"
                     : "text-gray-600"
                 }`}
               >

@@ -37,6 +37,7 @@ export const useFirstGame = create((set) => ({
   isDragging: false,
   draggingItem: null,
   correctCount: 0,
+  touchedIndex: null,
 
   startGame: ({ mode }) => {
     set((state) => {
@@ -63,6 +64,12 @@ export const useFirstGame = create((set) => ({
   gameOver: () => {
     set(() => {
       return { endTime: Date.now(), correctCount: 0 };
+    });
+  },
+
+  setTouchedIndex: (index) => {
+    set(() => {
+      return { touchedIndex: index };
     });
   },
 
