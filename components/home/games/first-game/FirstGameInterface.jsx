@@ -113,6 +113,8 @@ export const FirstGameInterface = () => {
       setPenaltyTime(0);
     }
 
+    if (!level) return;
+
     level[currentStage].forEach((word) => {
       word.isCorrect = false;
     });
