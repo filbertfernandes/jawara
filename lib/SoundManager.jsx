@@ -31,12 +31,6 @@ const sounds = {
     volume: 1,
   }),
 
-  // FIRST GAME
-  keyboardType: new Howl({
-    src: ["/sounds/sfx/keyboard-type.mp3"],
-    volume: 1,
-  }),
-
   // SECOND GAME
   marblePush: new Howl({ src: ["/sounds/sfx/marble-push.mp3"], volume: 1 }),
   marbleImpact: new Howl({
