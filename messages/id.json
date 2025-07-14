@@ -81,7 +81,16 @@
     "select_language_indonesian": "Indonesia",
 
     "new_achievement_unlocked": "Pencapaian Baru Diraih!",
-    "stage": "Tahap"
+    "stage": "Tahap",
+
+    "developed_by": "Dikembangkan oleh",
+    "3d_assets": "Aset 3D",
+    "music": "Musik",
+    "sound_effects": "Efek Suara",
+    "inspirations": "Inspirasi",
+    "curriculum_content": "Konten Kurikulum",
+    "created_by": "Dibuat oleh",
+    "and": "dan"
   },
   "Auth": {
     "welcome_to": "SELAMAT DATANG DI",

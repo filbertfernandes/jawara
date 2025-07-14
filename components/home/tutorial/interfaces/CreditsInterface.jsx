@@ -70,7 +70,7 @@ const CreditsInterface = () => {
   }, []);
 
   return (
-    <div className="fullscreen-backdrop">
+    <>
       <div className="absolute left-4 top-4">
         <BackButton onClick={() => setTutorialState(tutorialStates.MENU)} />
       </div>
@@ -79,17 +79,42 @@ const CreditsInterface = () => {
           isVisible ? "animate-bounceIn" : "opacity-0"
         }`}
       >
-        <div className="flex size-[90%] flex-col items-center gap-6 overflow-scroll rounded-3xl p-4 text-gray-100 lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
-          <div className="h1-bold">{t("special_thanks_to")}</div>
+        <div className="flex size-[90%] flex-col items-center gap-8 overflow-y-scroll rounded-3xl p-4 text-gray-100 lg:w-3/4 lg:p-8 xl:w-1/2 xl:p-10">
+          {/* Special Thanks */}
+          <div className="h2-bold text-center">{t("special_thanks_to")}</div>
 
           {/* Reusable list components */}
-          <List title="3D Models" data={modelsData} />
-          <List title="Music" data={musicData} isMusic={true} />
-          <List title="Sound Effects" data={soundEffectsData} />
-          <List title="Inspirations" data={inspirationsData} />
+          <List title={t("3d_assets")} data={modelsData} />
+          <List title={t("music")} data={musicData} isMusic={true} />
+          <List title={t("sound_effects")} data={soundEffectsData} />
+          <List title={t("inspirations")} data={inspirationsData} />
+
+          <div className="flex w-full flex-col">
+            <h5 className="h5-bold">{t("curriculum_content")}</h5>
+            <ul className="list-disc pl-5 font-questrial lg:text-xl">
+              <li className="mb-2">
+                {t("created_by")}{" "}
+                <a
+                  href="https://www.linkedin.com/in/yuliani-hermanto-470063226"
+                  target="_blank"
+                  className="font-bold hover:underline"
+                >
+                  Yuliani Hermanto
+                </a>{" "}
+                {t("and")}{" "}
+                <a
+                  href="https://www.linkedin.com/in/filbert-fernandes-lienardy-52846a269/"
+                  target="_blank"
+                  className="font-bold hover:underline"
+                >
+                  Filbert Fernandes
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

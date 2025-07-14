@@ -80,7 +80,16 @@
     "select_language_indonesian": "Indonesian",
 
     "new_achievement_unlocked": "New Achievement Unlocked!",
-    "stage": "Stage"
+    "stage": "Stage",
+
+    "developed_by": "Developed by",
+    "3d_assets": "3D Assets",
+    "music": "Music",
+    "sound_effects": "Sound Effects",
+    "inspirations": "Inspirations",
+    "curriculum_content": "Curriculum Content",
+    "created_by": "Created by",
+    "and": "and"
   },
   "Auth": {
     "welcome_to": "WELCOME TO",

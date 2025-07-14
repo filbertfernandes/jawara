@@ -25,7 +25,7 @@ const ControlsInterface = () => {
   }, []);
 
   return (
-    <div className="fullscreen-backdrop pb-8">
+    <>
       <div className="absolute left-4 top-4">
         <BackButton onClick={() => setTutorialState(tutorialStates.MENU)} />
       </div>
@@ -70,7 +70,7 @@ const ControlsInterface = () => {
           </ControlButton>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

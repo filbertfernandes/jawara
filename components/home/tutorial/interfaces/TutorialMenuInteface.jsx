@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 import ControlsInterface from "./ControlsInterface";
 import CreditsInterface from "./CreditsInterface";
@@ -54,45 +56,89 @@ const TutorialMenuInterface = () => {
     };
   }, []);
 
-  return isFirstTime ? (
-    <GuideInterface isFirstTime />
-  ) : tutorialState === tutorialStates.MENU ? (
-    <div className="fullscreen-backdrop">
-      <div
-        className={`flex h-[90%] w-full flex-col items-center justify-center gap-6 ${
-          isVisible ? "animate-bounceIn" : "opacity-0"
-        }`}
-      >
-        <Button
-          text={t("guide")}
-          onClick={() => setTutorialState(tutorialStates.GUIDE)}
-        />
-        <Button
-          text={t("controls")}
-          onClick={() => setTutorialState(tutorialStates.CONTROLS)}
-        />
-        <Button
-          text={t("credits")}
-          onClick={() => setTutorialState(tutorialStates.CREDITS)}
-        />
-        <Button
-          text={t("go_back")}
-          onClick={() => changePhase(phases.FREE)}
-          isOutlined
-        />
+  if (isFirstTime) return <GuideInterface isFirstTime />;
+
+  if (tutorialState === tutorialStates.GUIDE)
+    return <GuideInterface isFirstTime={false} />;
+
+  return (
+    <>
+      <div className="fullscreen-backdrop h-screen flex-col pb-12">
+        <div className="flex-1 overflow-hidden">
+          {tutorialState === tutorialStates.MENU ? (
+            <div
+              className={`flex size-full flex-col items-center justify-center gap-6 ${
+                isVisible ? "animate-bounceIn" : "opacity-0"
+              }`}
+            >
+              <Button
+                text={t("guide")}
+                onClick={() => setTutorialState(tutorialStates.GUIDE)}
+              />
+              <Button
+                text={t("controls")}
+                onClick={() => setTutorialState(tutorialStates.CONTROLS)}
+              />
+              <Button
+                text={t("credits")}
+                onClick={() => setTutorialState(tutorialStates.CREDITS)}
+              />
+              <Button
+                text={t("go_back")}
+                onClick={() => changePhase(phases.FREE)}
+                isOutlined
+              />
+            </div>
+          ) : tutorialState === tutorialStates.CONTROLS ? (
+            <ControlsInterface />
+          ) : (
+            <CreditsInterface />
+          )}
+        </div>
+
+        <div className="mt-4 flex flex-col items-center gap-2 text-center text-gray-300">
+          <div className="text-sm font-light uppercase tracking-wider">
+            {t("developed_by")}
+          </div>
+          <div className="text-3xl font-extrabold text-gray-100">
+            Filbert Fernandes
+          </div>
+          <div className="mt-2 flex gap-6">
+            <a
+              href="https://github.com/filbertfernandes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-gray-300 transition-all duration-200 hover:scale-110 hover:text-gray-100"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/filbert-fernandes-lienardy-52846a269/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-gray-300 transition-all duration-200 hover:scale-110 hover:text-white"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://x.com/filbertfl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-gray-300 transition-all duration-200 hover:scale-110 hover:text-white"
+            >
+              <FaXTwitter />
+            </a>
+            <a
+              href="https://www.instagram.com/filbert_fernandes/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-gray-300 transition-all duration-200 hover:scale-110 hover:text-white"
+            >
+              <FaInstagram />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  ) : tutorialState === tutorialStates.GUIDE ? (
-    <>
-      <GuideInterface isFirstTime={false} />
-    </>
-  ) : tutorialState === tutorialStates.CONTROLS ? (
-    <>
-      <ControlsInterface />
-    </>
-  ) : (
-    <>
-      <CreditsInterface />
     </>
   );
 };
